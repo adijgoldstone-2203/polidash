@@ -87,6 +87,18 @@ const Issues: React.FC = () => {
                   <h3 className="font-label font-bold text-sm text-primary flex items-center gap-2 uppercase tracking-wide">
                     <span className="material-symbols-outlined text-sm">tune</span> BINARY STANDPOINTS
                   </h3>
+                  {selectedCriteria.length > 0 && (
+                    <button 
+                      onClick={() => {
+                        setSelectedCriteria([]);
+                        setActiveCriteria([]);
+                        setHasCalculated(false);
+                      }}
+                      className="text-[10px] font-bold text-secondary uppercase tracking-widest hover:underline transition-all"
+                    >
+                      Clear
+                    </button>
+                  )}
                 </div>
                 <div className="flex justify-end gap-11 mb-2 px-1">
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Support</span>
