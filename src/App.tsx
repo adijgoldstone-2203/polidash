@@ -25,7 +25,7 @@ function App() {
   const isHome = currentPath === '#/' || currentPath === '#/transparency';
   const isProfiles = currentPath === '#/profiles';
   const isIssues = currentPath.startsWith('#/issues');
-  const isCoalition = currentPath === '#/coalition';
+  // const isCoalition = currentPath === '#/coalition';
   const isQuiz = currentPath === '#/quiz';
   const isReply = currentPath === '#/reply';
   const isProfileDetail = currentPath.startsWith('#/profile/');
