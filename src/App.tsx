@@ -25,11 +25,12 @@ function App() {
       const id = currentPath.replace('#/profile/', '');
       return <ProfileDetail id={id} />;
     }
+    if (currentPath.startsWith('#/issues')) {
+      return <Issues />;
+    }
     switch (currentPath) {
       case '#/profiles':
         return <Profiles />;
-      case '#/issues':
-        return <Issues />;
       case '#/quiz':
         return <Quiz />;
       case '#/reply':
