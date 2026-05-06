@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#eae8e4",
+                    "on-secondary-container": "#00476e",
+                    "secondary-fixed-dim": "#92ccff",
+                    "on-primary-fixed-variant": "#36485b",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#96a9be",
+                    "surface-bright": "#fbf9f5",
+                    "primary-fixed": "#d1e4fb",
+                    "inverse-on-surface": "#f2f0ed",
+                    "inverse-primary": "#b5c8df",
+                    "inverse-surface": "#30312e",
+                    "outline-variant": "#c4c6cd",
+                    "secondary-container": "#5cb8fd",
+                    "primary": "#162839",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "primary-container": "#2c3e50",
+                    "secondary": "#006397",
+                    "surface-variant": "#e4e2de",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#cce5ff",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#43474c",
+                    "tertiary": "#1c2732",
+                    "on-tertiary-container": "#9ca8b6",
+                    "primary-fixed-dim": "#b5c8df",
+                    "on-background": "#1b1c1a",
+                    "surface-dim": "#dbdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#4e6073",
+                    "on-tertiary-fixed-variant": "#3d4854",
+                    "outline": "#74777d",
+                    "surface-container": "#efeeea",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#001d31",
+                    "surface-container-low": "#f5f3ef",
+                    "surface-container-highest": "#e4e2de",
+                    "on-tertiary-fixed": "#111d27",
+                    "on-secondary-fixed-variant": "#004b73",
+                    "on-secondary": "#ffffff",
+                    "background": "#fbf9f5",
+                    "tertiary-fixed": "#d8e4f3",
+                    "surface": "#fbf9f5",
+                    "tertiary-container": "#323d49",
+                    "on-primary-fixed": "#091d2e",
+                    "tertiary-fixed-dim": "#bcc8d6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f5;
+            color: #162839;
+        }
+        .slate-gradient {
+            background: linear-gradient(135deg, #162839 0%, #2c3e50 100%);
+        }
+        .apple-shadow {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-[#162839]/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-8">
+<a class="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]" href="#">PoliDash</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-['Inter'] text-sm font-bold border-b-2 border-[#162839] dark:border-[#fbf9f5] pb-1 text-[#162839] dark:text-[#fbf9f5] hover:text-[#006397] transition-colors duration-200" href="#">Home</a>
+<a class="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#">Profiles</a>
+<a class="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#">Issues</a>
+<a class="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#">Quiz</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-['Inter'] text-sm font-medium tracking-tight text-[#162839] dark:text-[#fbf9f5] cursor-pointer hover:text-[#006397] transition-colors duration-200">EN/HE</span>
+<span class="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" data-icon="language">language</span>
+<span class="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" data-icon="search">search</span>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<!-- Main Content -->
+<main class="flex-grow bg-surface transition-colors duration-300">
+<!-- Hero Section -->
+<section class="relative min-h-[716px] flex items-center justify-center overflow-hidden px-12">
+<div class="absolute inset-0 z-0 opacity-10">
+<img alt="Legislative chamber architectural detail" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDztkE3h6L9By6v-q6ScNnajmjURbWMHaC4GCi33RhfJ4pgcWnQvuKEcLvv3DUSWFtndHgkY2_J5WDOfStKlRF204WI41w99rFFgbuBQWyw-jY0kDsObzsevlgouAYlt4DaI2N9vzV4Zh0QSzJn83TH8DGhnN9pkPf5Ddm-KcCYPh6CJjM5ZUJqJBZoc_RytGfiTjzMeBf8tbveQdBl46M-b04gvkCW3J35YPrjjCV5WS999h89z6YTWc86ACtjZclecJnh36yZOU"/>
+</div>
+<div class="relative z-10 max-w-4xl text-center flex flex-col items-center">
+<h1 class="font-headline text-6xl md:text-8xl font-black text-primary leading-none tracking-tighter mb-8">
+                        See the stances.<br/>
+<span class="italic text-secondary">Build the future.</span>
+</h1>
+<p class="font-headline text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-12">
+                        A neutral gateway to political clarity. We aggregate verified policy data and media sentiment to provide a synthesized perspective on the decisions shaping our collective tomorrow.
+                    </p>
+<div class="flex gap-4">
+<button class="px-8 py-4 bg-primary text-on-primary font-label font-bold text-lg rounded-sm hover:shadow-xl transition-all">Explore the Intelligence Room</button>
+<button class="px-8 py-4 bg-surface-container-low text-primary font-label font-bold text-lg rounded-sm hover:bg-surface-container-high transition-all">Our Methodology</button>
+</div>
+</div>
+</section>
+<!-- 3-Step Breakdown -->
+<section class="py-24 px-12 bg-white border-y border-stone-100"><div class="max-w-7xl mx-auto text-center mb-16"><h2 class="font-headline text-sm uppercase tracking-[0.2em] font-bold text-primary opacity-60 mb-2"><br/></h2><h3 class="font-headline text-4xl font-bold text-primary tracking-tight">Our Workflow</h3></div>
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="description">description</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-3">Verified Data</h3>
+<p class="font-body text-on-surface-variant leading-relaxed">We aggregate manifestos, voting records, and official transcripts.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-3">AI Synthesis</h3>
+<p class="font-body text-on-surface-variant leading-relaxed">Advanced models generate concise, source-grounded summaries.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="filter_tilt_shift">filter_tilt_shift</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-3">Neutral Clarity</h3>
+<p class="font-body text-on-surface-variant leading-relaxed">We map standings without bias to clarify positions.</p>
+</div>
+</div>
+</section>
+<!-- CTA Section (3-Card Grid) -->
+<section class="py-24 px-12">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-white p-10 rounded-xl apple-shadow flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+<div>
+<h3 class="font-headline text-3xl font-bold text-primary mb-6">PolitiScan Profiles</h3>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed mb-8">View AI summaries and manifestos of all major politicians.</p>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-all">Explore Profiles</button>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-10 rounded-xl apple-shadow flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+<div>
+<h3 class="font-headline text-3xl font-bold text-primary mb-6">Issue Pivot</h3>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed mb-8">Compare where every politician stands on key dynamic issues (e.g., Judicial Reform, Economy).</p>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-all">Compare Issues</button>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-10 rounded-xl apple-shadow flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+<div>
+<h3 class="font-headline text-3xl font-bold text-primary mb-4">Interactive Maps</h3>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed mb-6">Visualize ideological convergence based on selected frameworks.</p>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-all">Launch Maps</button>
+</div>
+</div>
+</section>
+<!-- Disclaimer Footer -->
+<section class="bg-stone-50 py-24 px-12">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-headline text-3xl font-bold text-primary mb-6">Transparency &amp; Accountability</h2>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed mb-10 max-w-2xl mx-auto">
+                        PoliDash uses AI to synthesize public records. Every summary includes a direct link to the original document. Fact-checking and source verification are fundamental.
+                    </p>
+<button class="px-8 py-4 border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all rounded-lg">
+                        Submit a Right of Reply Correction
+                    </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-12 gap-8 py-12 border-t border-stone-200/50 dark:border-slate-800/50 bg-[#fbf9f5] dark:bg-[#162839]">
+<div class="flex flex-col gap-2">
+<p class="font-['Inter'] text-xs uppercase tracking-widest text-[#162839] dark:text-[#fbf9f5] font-bold">© 2024 PoliDash Intelligence. AI-Generated Synthesis.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">AI Methodology</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">Right of Reply Protocol</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">Privacy</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">Terms</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

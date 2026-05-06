@@ -1,0 +1,184 @@
+import React from 'react';
+
+const Profiles: React.FC = () => {
+  return (
+    <>
+      {/* TopAppBar */}
+      <header className="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 backdrop-blur-[20px] dark:bg-[#162839]/80 transition-all duration-200">
+        <div className="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+          <div className="flex items-center gap-8">
+            <a className="text-2xl font-bold font-['Newsreader'] text-[#162839] dark:text-[#fbf9f5] scale-95 active:scale-90 transition-transform" href="#" style={{}}>PoliDash</a>
+            <nav className="hidden md:flex gap-6">
+              <a className="font-['Inter'] text-sm tracking-wide text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#/" style={{}}>Home</a>
+              <a className="font-['Inter'] text-sm tracking-wide text-[#162839] dark:text-[#fbf9f5] font-bold border-b-2 border-[#162839] dark:border-[#fbf9f5] pb-1 hover:text-[#006397] transition-colors duration-200" href="#/profiles" style={{}}>Profiles</a>
+              <a className="font-['Inter'] text-sm tracking-wide text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#" style={{}}>Issues</a>
+              <a className="font-['Inter'] text-sm tracking-wide text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#" style={{}}>Quiz</a>
+            </nav>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="font-['Inter'] text-sm font-medium text-[#162839] dark:text-[#fbf9f5] cursor-pointer hover:opacity-80" style={{}}>EN/HE</span>
+            <span className="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" style={{}}>language</span>
+            <span className="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" style={{}}>search</span>
+          </div>
+        </div>
+      </header>
+      <div className="flex pt-16">
+        {/* SideNavBar */}
+        {/* Main Content Area */}
+        <main className="flex-1 p-8 min-h-screen">
+          <div className="max-w-6xl mx-auto">
+            {/* Hero Header */}
+            <section className="mb-12">
+              <h1 className="font-['Newsreader'] text-5xl md:text-7xl font-light tracking-tight text-primary mb-4" style={{}}>
+                Politician <span className="italic font-bold" style={{}}>Profiles</span>
+              </h1>
+              <div className="h-1 w-24 bg-primary mb-8"></div>
+              <p className="font-['Inter'] text-lg text-slate-600 max-w-2xl leading-relaxed" style={{}}>
+                An objective summary of backgrounds, stances on key issues, and policy priorities within the leading representatives.
+              </p>
+            </section>
+            {/* Profile Grid (15 Cards) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-24">
+              {/* Profile Card 1: James Aridson */}
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-center gap-4">
+                    <img alt="professional portrait of James Aridson" className="w-16 h-16 rounded-full object-cover filter grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVkuJQi3AMYGZMboEddlM1sGMuBr7_bCHDZL13HD6yziIjg9t51TrOgBJ-fZ4IXANzkT7Fl785ZSWlIo41IoYBuZLbCnWxu1spHT97rc3KtpB69jvfoW-s320zxR1c0kjjYza_sepzLVeK5LN-StiIIbWJuHXkmYrNGB2HjJGYW_y_YOiD75CbLywg5N3FrezPDuFUvXsp3P18Z1gFrf70GMq3BCYjr5VA6tpznHL4izNDrqd0S_d1-37zg9px-IRG5H2oO3zfh7g" style={{}} />
+                    <div>
+                      <h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>James Aridson</h2>
+                      <p className="text-xs font-bold text-secondary uppercase tracking-widest mt-1" style={{}}>Liberty Party</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="block text-2xl font-['Newsreader'] italic font-bold" style={{}}>12</span>
+                    <div className="flex flex-col">
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span>
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex justify-start">
+                  <button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>
+                    View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+              {/* Profile Card 2: Elena Vass */}
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-center gap-4">
+                    <img alt="mature woman in professional attire" className="w-16 h-16 rounded-full object-cover filter grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsDApHtbF4MmGeyAqJgS4H8jbtuZkYRENyE84BL543q7YTTvAWKRCoRWZVBI2q6yKwu9m8BWzpfQosc3HDArwuaEgWexW0m57OgUeq1I1gwErHKxu6ZwWeDhzFL_xjbXDwlpf59ryHLuJcNKH6bVkMDc6xuBiMMw-9ww5nLLrmemwfy6BVgyo1fDWSuvw3oBs4zRpFlmVE1CDZMZGHQ4uNUnxFBdzSVXlDSY55HjCcbgJvK-VTs1gaW2RVjOxtMiTPl0nZKe1o4os" style={{}} />
+                    <div>
+                      <h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Elena Vass</h2>
+                      <p className="text-xs font-bold text-secondary uppercase tracking-widest mt-1" style={{}}>Union Front</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="block text-2xl font-['Newsreader'] italic font-bold" style={{}}>28</span>
+                    <div className="flex flex-col">
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span>
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex justify-start">
+                  <button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>
+                    View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+              {/* Profile Card 3: Marcus Thorne */}
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group border-l-4 border-secondary">
+                <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-full bg-slate-300 flex items-center justify-center">
+                      <span className="material-symbols-outlined text-white text-3xl" style={{}}>person</span>
+                    </div>
+                    <div>
+                      <h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Marcus Thorne</h2>
+                      <p className="text-xs font-bold text-secondary uppercase tracking-widest mt-1" style={{}}>Reformist</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="block text-2xl font-['Newsreader'] italic font-bold" style={{}}>04</span>
+                    <div className="flex flex-col">
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span>
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex justify-start">
+                  <button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>
+                    View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+              {/* 12 Generic Placeholder Cards */}
+              {/* Card 4 */}
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center">
+                      <span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span>
+                    </div>
+                    <div>
+                      <h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span>
+                    <div className="flex flex-col">
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span>
+                      <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex justify-start">
+                  <button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>
+                    View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+              {/* Repeat for Cards 5-15 */}
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+              <div className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
+                <div className="flex items-start justify-between mb-8"><div className="flex items-center gap-4"><div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><span className="material-symbols-outlined text-slate-300 text-3xl" style={{}}>person</span></div><div><h2 className="font-['Newsreader'] text-2xl font-bold text-primary leading-none" style={{}}>Candidate Name</h2><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1" style={{}}>Political Party</p></div></div><div className="text-right"><span className="block text-2xl font-['Newsreader'] italic font-bold text-slate-300" style={{}}>00</span><div className="flex flex-col"><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Seats</span><span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold" style={{}}>Held</span></div></div></div><div className="mt-4 flex justify-start"><button className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-secondary transition-colors" style={{}}>View Full Profile <span className="material-symbols-outlined text-base" style={{}}>arrow_forward</span></button></div></div>
+            </div>
+          </div>
+        </main>
+      </div>
+      {/* Footer */}
+      <footer className="w-full flex flex-col md:flex-row justify-between items-center px-12 gap-8 py-12 border-t border-stone-200/50 bg-[#fbf9f5]">
+        <p className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400" style={{}}>© 2024 PoliDash Intelligence. AI-Generated Synthesis.</p>
+        <div className="flex gap-8">
+          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#" style={{}}>AI Methodology</a>
+          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#" style={{}}>Right of Reply Protocol</a>
+          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#" style={{}}>Privacy</a>
+          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#" style={{}}>Terms</a>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export default Profiles;

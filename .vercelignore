@@ -1,0 +1,9 @@
+node_modules
+dist
+firebase
+preview-*.html
+*.log
+firebase-debug.log
+.vercel
+.git
+.DS_Store
