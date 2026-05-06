@@ -49,8 +49,8 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
   }
 
   const numCircles = criteria.length;
-  const colors = ['bg-secondary/30', 'bg-error/30', 'bg-amber-400/30'];
-  const textColors = ['text-secondary', 'text-error', 'text-amber-700'];
+  const colors = ['bg-[#006397]/30', 'bg-[#ba1a1a]/30', 'bg-[#facc15]/30'];
+  const textColors = ['text-[#006397]', 'text-[#ba1a1a]', 'text-[#a16207]'];
   
   const getCircleStyles = (index: number) => {
     if (numCircles === 1) return { top: '20%', left: '20%', width: '60%', height: '60%' };
@@ -60,9 +60,9 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
     }
     if (numCircles === 3) {
       const size = '52%';
-      if (index === 0) return { top: '8%', left: '24%', width: size, height: size }; // Top
-      if (index === 1) return { top: '38%', left: '10%', width: size, height: size };  // Bottom Left
-      if (index === 2) return { top: '38%', left: '38%', width: size, height: size }; // Bottom Right
+      if (index === 0) return { top: '8%', left: '24%', width: size, height: size }; // Blue
+      if (index === 1) return { top: '38%', left: '10%', width: size, height: size };  // Red
+      if (index === 2) return { top: '38%', left: '38%', width: size, height: size }; // Yellow
     }
     return {};
   };
@@ -72,28 +72,18 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
       if (sig === '0') return { top: '50%', left: '50%' };
     }
     if (numCircles === 2) {
-      // Centers are at (34, 48) and (66, 48)
-      if (sig === '0') return { top: '48%', left: '26%' };    // Left crescent middle
-      if (sig === '1') return { top: '48%', left: '74%' };    // Right crescent middle
-      if (sig === '0,1') return { top: '48%', left: '50%' };  // Shared lens center
+      if (sig === '0') return { top: '48%', left: '26%' };    
+      if (sig === '1') return { top: '48%', left: '74%' };    
+      if (sig === '0,1') return { top: '48%', left: '50%' };  
     }
     if (numCircles === 3) {
-      /**
-       * Geometric centers based on circle centers:
-       * C0: (50, 34), C1: (36, 64), C2: (64, 64)
-       */
-      // Single regions (Outer regions furthest from other circles)
-      if (sig === '0') return { top: '26%', left: '50%' };    // Top crescent center
-      if (sig === '1') return { top: '72%', left: '25%' };    // Bottom-left crescent center
-      if (sig === '2') return { top: '72%', left: '75%' };    // Bottom-right crescent center
-      
-      // Dual regions (Lens centers between circle pairs)
-      if (sig === '0,1') return { top: '48%', left: '34%' };  // A+B intersection center
-      if (sig === '0,2') return { top: '48%', left: '66%' };  // A+C intersection center
-      if (sig === '1,2') return { top: '72%', left: '50%' };  // B+C intersection center
-      
-      // Triple region (Absolute center of the Reuleaux triangle)
-      if (sig === '0,1,2') return { top: '56%', left: '50%' }; // Center of all three
+      if (sig === '0') return { top: '26%', left: '50%' };    
+      if (sig === '1') return { top: '72%', left: '25%' };    
+      if (sig === '2') return { top: '72%', left: '75%' };    
+      if (sig === '0,1') return { top: '48%', left: '34%' };  
+      if (sig === '0,2') return { top: '48%', left: '66%' };  
+      if (sig === '1,2') return { top: '72%', left: '50%' };  
+      if (sig === '0,1,2') return { top: '53%', left: '50%' }; 
     }
     return { top: '50%', left: '50%' };
   };
@@ -122,16 +112,15 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
       {Object.entries(regions).map(([sig, matchedPols]) => {
         const pos = getNodePosition(sig);
         
-        // Map intersection signature to a specific identity color for borders
-        // These colors are chosen to be darker versions of the blended area colors
+        // Map intersection signature to Primary/Secondary colors
         const getBorderColor = (signature: string) => {
-          if (signature === '0') return 'border-[#006397]'; // Darker version of Secondary/30
-          if (signature === '1') return 'border-[#ba1a1a]'; // Darker version of Error/30
-          if (signature === '2') return 'border-[#d97706]'; // Darker version of Amber-400/30
-          if (signature === '0,1') return 'border-[#583e5a]'; // Darker version of Blue+Red blend
-          if (signature === '0,2') return 'border-[#007b8a]'; // Darker version of Blue+Amber blend
-          if (signature === '1,2') return 'border-[#a85a1a]'; // Darker version of Red+Amber blend
-          if (signature === '0,1,2') return 'border-[#162839]'; // Darkest center (Primary color)
+          if (signature === '0') return 'border-[#006397]'; // Primary Blue
+          if (signature === '1') return 'border-[#ba1a1a]'; // Primary Red
+          if (signature === '2') return 'border-[#facc15]'; // Primary Yellow
+          if (signature === '0,1') return 'border-[#6b21a8]'; // Secondary Purple (Blue+Red)
+          if (signature === '0,2') return 'border-[#15803d]'; // Secondary Green (Blue+Yellow)
+          if (signature === '1,2') return 'border-[#c2410c]'; // Secondary Orange (Red+Yellow)
+          if (signature === '0,1,2') return 'border-white';   // White Center
           return 'border-white';
         };
 
