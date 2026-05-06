@@ -33,42 +33,45 @@ const CoalitionBuilder: React.FC = () => {
     <div className="min-h-screen bg-[#fbf9f5] px-6 lg:px-12 pt-4 pb-12">
       <div className="max-w-[1600px] mx-auto space-y-6">
         
-        {/* Compact Integrated Header */}
-        <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-lg flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden">
-          {/* Title - Much Smaller */}
-          <div className="flex-shrink-0">
-            <h1 className="font-['Newsreader'] text-2xl md:text-3xl font-light tracking-tight text-primary leading-none">
+        {/* Top Header Row */}
+        <div className="flex flex-col xl:flex-row justify-between items-end gap-6 mb-2">
+          {/* Page Title (Left) */}
+          <div className="shrink-0">
+            <h1 className="font-['Newsreader'] text-5xl md:text-7xl font-light tracking-tight text-primary mb-4">
               Coalition <span className="italic font-bold">Simulator</span>
             </h1>
+            <div className="h-1 w-24 bg-primary mb-2"></div>
           </div>
 
-          {/* Seat Counter & Progress Bar - LONGER to fill the space */}
-          <div className="flex-grow flex flex-col md:flex-row items-center gap-10 w-full">
-            <div className="flex items-baseline gap-2 shrink-0">
-              <motion.span 
-                key={currentSeats}
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                className="text-5xl font-['Newsreader'] font-bold text-primary"
-              >
-                {currentSeats}
-              </motion.span>
-              <span className="text-sm text-slate-300 font-bold">/ 120</span>
-            </div>
-            
-            <div className="flex-grow w-full">
-              <div className="flex justify-between items-center mb-1">
-                 <span className={`text-[8px] font-bold uppercase tracking-[0.2em] ${isMajority ? 'text-green-600' : 'text-secondary'}`}>
-                   {isMajority ? 'Majority Formed' : 'Majority Threshold: 61'}
-                 </span>
+          {/* Progress Bar (Right) */}
+          <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex-grow w-full xl:max-w-3xl mb-2">
+            <div className="flex flex-col md:flex-row items-center gap-6 w-full">
+              <div className="flex items-baseline gap-2 shrink-0">
+                <motion.span 
+                  key={currentSeats}
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  className="text-5xl font-['Newsreader'] font-bold text-primary leading-none"
+                >
+                  {currentSeats}
+                </motion.span>
+                <span className="text-sm text-slate-300 font-bold">/ 120</span>
               </div>
-              <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden relative">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${Math.min(100, (currentSeats / TOTAL_SEATS) * 100)}%` }}
-                  className={`h-full ${isMajority ? 'bg-green-500' : 'bg-secondary'}`}
-                />
-                <div className="absolute top-0 bottom-0 w-px bg-primary opacity-30" style={{ left: `${(MAJORITY_THRESHOLD / TOTAL_SEATS) * 100}%` }} />
+              
+              <div className="flex-grow w-full">
+                <div className="flex justify-between items-center mb-1">
+                   <span className={`text-[8px] font-bold uppercase tracking-[0.2em] ${isMajority ? 'text-green-600' : 'text-secondary'}`}>
+                     {isMajority ? 'Majority Formed' : 'Majority Threshold: 61'}
+                   </span>
+                </div>
+                <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden relative">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${Math.min(100, (currentSeats / TOTAL_SEATS) * 100)}%` }}
+                    className={`h-full ${isMajority ? 'bg-green-500' : 'bg-secondary'}`}
+                  />
+                  <div className="absolute top-0 bottom-0 w-px bg-primary opacity-30" style={{ left: `${(MAJORITY_THRESHOLD / TOTAL_SEATS) * 100}%` }} />
+                </div>
               </div>
             </div>
           </div>

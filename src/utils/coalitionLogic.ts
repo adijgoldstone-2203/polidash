@@ -5,15 +5,19 @@ export const PARTY_LEADER_MAP: Record<string, string> = {
   "Likud": "benjamin-netanyahu",
   "National Unity Party": "benny-gantz",
   "Yesh Atid": "yair-lapid",
+  "Together (Bennett-Lapid)": "naftali-bennett",
   "Yisrael Beiteinu": "avigdor-lieberman",
   "Shas": "aryeh-deri",
   "United Torah Judaism": "yitzhak-goldknopf",
   "Otzma Yehudit": "itamar-ben-gvir",
   "Religious Zionist": "bezalel-smotrich",
   "Hadash-Ta'al": "ayman-odeh",
+  "Hadash": "ayman-odeh",
   "Ra'am": "mansour-abbas",
+  "United Arab List (Ra'am)": "mansour-abbas",
   "Labor": "yair-golan",
-  "Democrats": "yair-golan"
+  "Democrats": "yair-golan",
+  "Yashar!": "gadi-eisenkot"
 };
 
 export interface Conflict {

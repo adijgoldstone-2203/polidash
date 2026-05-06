@@ -82,10 +82,13 @@ const Quiz: React.FC = () => {
       {/* TopAppBar */}
       <div className="flex pt-4">
         <main className="flex-1 px-6 md:px-12 lg:px-24 py-12">
-          <header className="mb-16 max-w-2xl">
-            <h1 className="font-headline text-5xl font-black text-primary leading-tight mb-4 italic">The Alignment Quotient</h1>
+          <section className="mb-12 max-w-2xl">
+            <h1 className="font-['Newsreader'] text-5xl md:text-7xl font-light tracking-tight text-primary mb-4">
+              Alignment <span className="italic font-bold">Quotient</span>
+            </h1>
+            <div className="h-1 w-24 bg-primary mb-8"></div>
             <p className="font-body text-on-surface-variant text-lg leading-relaxed">Find your political match. Take our 9-issue quiz to discover which representatives share your perspective on the decisions shaping our future.</p>
-          </header>
+          </section>
 
           <div className="max-w-7xl mx-auto mb-6 flex items-center gap-2">
             <span className="text-secondary material-symbols-outlined text-sm">stars</span>
