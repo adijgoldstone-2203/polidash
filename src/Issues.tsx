@@ -145,7 +145,6 @@ const Issues: React.FC = () => {
               </div>
             </div>
           </div>
-
           <section className="max-w-6xl mx-auto mt-20 pt-12 border-t border-stone-200/50">
             <h2 className="font-headline text-3xl font-bold mb-10">Ideological Matrix Definitions</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -164,17 +163,6 @@ const Issues: React.FC = () => {
           </section>
         </main>
       </div>
-      <footer className="w-full flex flex-col md:flex-row justify-between items-center px-12 gap-8 py-12 border-t border-stone-200/50 bg-[#fbf9f5]">
-        <div className="flex flex-col gap-2">
-          <span className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400">© 2024 PoliDash Intelligence. AI-Generated Synthesis.</span>
-        </div>
-        <div className="flex gap-8">
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 smooth transition-colors duration-300" href="#">AI Methodology</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 smooth transition-colors duration-300" href="#">Right of Reply Protocol</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 smooth transition-colors duration-300" href="#">Privacy</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 smooth transition-colors duration-300" href="#">Terms</a>
-        </div>
-      </footer>
     </>
   );
 };

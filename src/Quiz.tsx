@@ -270,17 +270,6 @@ const Quiz: React.FC = () => {
           </AnimatePresence>
         </main>
       </div>
-      <footer className="w-full flex flex-col md:flex-row justify-between items-center px-12 gap-8 py-12 border-t border-stone-200/50 dark:border-slate-800/50 bg-[#fbf9f5] dark:bg-[#162839] text-[#162839] dark:text-[#fbf9f5]">
-        <div className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
-          © 2024 PoliDash Intelligence. AI-Generated Synthesis.
-        </div>
-        <div className="flex flex-wrap justify-center gap-8">
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1 transition-opacity" href="#">AI Methodology</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1 transition-opacity" href="#">Right of Reply Protocol</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1 transition-opacity" href="#">Privacy</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1 transition-opacity" href="#">Terms</a>
-        </div>
-      </footer>
     </div>
   );
 };

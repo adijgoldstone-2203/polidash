@@ -5,6 +5,8 @@ import Profiles from './Profiles';
 import ProfileDetail from './ProfileDetail';
 import Issues from './Issues';
 import Quiz from './Quiz';
+import Reply from './Reply';
+import Footer from './Footer';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
@@ -30,6 +32,9 @@ function App() {
         return <Issues />;
       case '#/quiz':
         return <Quiz />;
+      case '#/reply':
+        return <Reply />;
+      case '#/transparency':
       case '#/':
       default:
         return <Home />;
@@ -39,7 +44,10 @@ function App() {
   return (
     <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300">
       <Header currentPath={currentPath} />
-      {renderCurrentPage()}
+      <div className="flex-grow">
+        {renderCurrentPage()}
+      </div>
+      <Footer />
     </div>
   );
 }

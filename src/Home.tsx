@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    if (window.location.hash === '#/transparency') {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('transparency');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <>
       <div className="flex min-h-screen">
@@ -19,7 +31,7 @@ const Home: React.FC = () => {
               <p className="font-headline text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-12">
                 A neutral gateway to political clarity. We aggregate verified policy data and media sentiment to provide a synthesized perspective on the decisions shaping our collective tomorrow.
               </p>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 <a href="#/issues" className="px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:shadow-xl transition-all flex items-center justify-center">Explore the Issues</a>
                 <a href="#workflow" className="px-8 py-4 bg-stone-100 text-primary font-label font-bold text-lg rounded-sm hover:bg-stone-200 transition-all flex items-center justify-center">Our Workflow</a>
               </div>
@@ -84,29 +96,18 @@ const Home: React.FC = () => {
             </div>
           </section>
           {/* Disclaimer Footer */}
-          <section className="bg-stone-50 py-24 px-12">
+          <section id="transparency" className="bg-stone-50 py-24 px-12">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="font-headline text-3xl font-bold text-primary mb-6">Transparency &amp; Accountability</h2>
               <p className="font-body text-lg text-on-surface-variant leading-relaxed mb-10 max-w-2xl mx-auto">
-                PoliDash uses AI to synthesize public records. Every summary includes a direct link to the original document. Fact-checking and source verification are fundamental.
+                At PoliDash we believe in fact checking and verification. If you have any issues please leave a request for review.
               </p>
-              <button className="px-8 py-4 border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all rounded-lg">
-                Submit a Right of Reply Correction
-              </button>
+              <a href="#/reply" className="flex items-center gap-2 px-8 py-3 bg-[#162839] dark:bg-[#fbf9f5] text-white dark:text-[#162839] rounded-full font-bold hover:bg-secondary hover:text-white transition-all transform hover:scale-105 shadow-lg group">
+                Submit a Correction
+                <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+              </a>
             </div>
           </section>
-          {/* Footer */}
-          <footer className="w-full flex flex-col md:flex-row justify-between items-center px-12 gap-8 py-12 border-t border-stone-200/50 dark:border-slate-800/50 bg-[#fbf9f5] dark:bg-[#162839]">
-            <div className="flex flex-col gap-2">
-              <p className="font-['Inter'] text-xs uppercase tracking-widest text-[#162839] dark:text-[#fbf9f5] font-bold">© 2024 PoliDash Intelligence. AI-Generated Synthesis.</p>
-            </div>
-            <div className="flex gap-8">
-              <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">AI Methodology</a>
-              <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">Right of Reply Protocol</a>
-              <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">Privacy</a>
-              <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">Terms</a>
-            </div>
-          </footer>
         </main>
       </div>
     </>

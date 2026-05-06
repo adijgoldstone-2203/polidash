@@ -192,16 +192,6 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
           </div>
         </main>
       </div>
-
-      <footer className="w-full flex flex-col md:flex-row justify-between items-center px-12 gap-8 py-12 border-t border-stone-200/50 bg-[#fbf9f5]">
-        <p className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400">© 2024 PoliDash Intelligence. AI-Generated Synthesis.</p>
-        <div className="flex gap-8">
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#">AI Methodology</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#">Right of Reply Protocol</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#">Privacy</a>
-          <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 underline decoration-1 transition-all" href="#">Terms</a>
-        </div>
-      </footer>
     </>
   );
 };
