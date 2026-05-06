@@ -98,11 +98,11 @@ const Home: React.FC = () => {
           {/* Disclaimer Footer */}
           <section id="transparency" className="bg-stone-50 py-24 px-12">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-headline text-3xl font-bold text-primary mb-6">Transparency &amp; Accountability</h2>
+              <h2 className="font-headline text-3xl font-bold text-primary mb-6">Right of Reply</h2>
               <p className="font-body text-lg text-on-surface-variant leading-relaxed mb-10 max-w-2xl mx-auto">
                 At PoliDash we believe in fact checking and verification. If you have any issues please leave a request for review.
               </p>
-              <a href="#/reply" className="flex items-center gap-2 px-8 py-3 bg-[#162839] dark:bg-[#fbf9f5] text-white dark:text-[#162839] rounded-full font-bold hover:bg-secondary hover:text-white transition-all transform hover:scale-105 shadow-lg group">
+              <a href="#/reply" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:shadow-xl transition-all group mx-auto">
                 Submit a Correction
                 <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
               </a>

@@ -28,8 +28,11 @@ const Issues: React.FC = () => {
       setSelectedCriteria([newCrit]);
       setActiveCriteria([newCrit]);
       setHasCalculated(true);
+      
+      // Clean up the URL to prevent re-triggering on every mount if not intended
+      // window.location.hash = '#/issues'; 
     }
-  }, []);
+  }, [window.location.hash]);
 
   const handleToggle = (topic: string, stance: 'SUPPORT' | 'OPPOSE') => {
     const existingIndex = selectedCriteria.findIndex(c => c.topic === topic);
