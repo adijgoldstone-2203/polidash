@@ -100,7 +100,7 @@ const Quiz: React.FC = () => {
                     <h3 className="font-headline text-2xl font-bold text-primary leading-snug">{q.title}</h3>
                     <button 
                       onClick={() => setShowInfo(showInfo === q.id ? null : q.id)}
-                      className={`transition-colors self-start flex items-center gap-1.5 ${showInfo === q.id ? 'text-secondary' : 'text-slate-300 hover:text-secondary'}`}
+                      className={`transition-colors self-start flex items-center gap-1.5 ${showInfo === q.id ? 'text-secondary font-bold' : 'text-secondary/70 hover:text-secondary'}`}
                     >
                       <span className="material-symbols-outlined text-sm">info</span>
                       <span className="text-[9px] font-bold uppercase tracking-[0.1em]">Details</span>
