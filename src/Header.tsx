@@ -111,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
               <div className="absolute top-full right-0 mt-2 w-64 md:w-80 bg-white dark:bg-[#1b2a3a] shadow-2xl rounded-lg border border-stone-200 dark:border-slate-700 overflow-hidden py-2 animate-in fade-in slide-in-from-top-2 duration-200 z-[110]">
                 <div className="max-h-[400px] overflow-y-auto custom-scrollbar">
                   {results.length > 0 ? (
-                    results.map((res, i) => (
+                    results.map((res) => (
                       <button
                         key={`${res.type}-${res.id}`}
                         onClick={() => handleSelect(res)}
