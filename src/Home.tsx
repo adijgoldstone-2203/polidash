@@ -32,7 +32,7 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
                 See the stances.<br />
                 <span className="italic text-secondary">Build the future.</span>
               </h1>
-              <p className="font-headline text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-12">
+              <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed mb-12">
                 PoliDash is your unbiased guide to political clarity. We use verified data and policy records to show you exactly where every leader stands on the issues that matter.
               </p>
               <div className="flex flex-wrap justify-center gap-4">

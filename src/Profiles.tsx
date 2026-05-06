@@ -15,7 +15,7 @@ const Profiles: React.FC = () => {
                 Politician <span className="italic font-bold" style={{}}>Profiles</span>
               </h1>
               <div className="h-1 w-24 bg-primary mb-8"></div>
-              <p className="font-['Inter'] text-lg text-[#162839] max-w-2xl leading-relaxed">
+              <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">
                 An objective summary of backgrounds, stances on key issues, and policy priorities within the leading representatives.
               </p>
             </section>

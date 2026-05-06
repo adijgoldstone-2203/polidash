@@ -78,7 +78,7 @@ const Issues: React.FC = () => {
         <main className="flex-1 p-8 bg-surface">
           <div className="max-w-6xl mx-auto mb-12">
             <h1 className="font-headline text-5xl font-bold text-primary mb-4 leading-tight">Venn Intelligence Engine</h1>
-            <p className="font-headline text-xl text-on-surface-variant max-w-2xl italic">Select two strategic frameworks to identify the convergence points of political leadership and ideological alignment.</p>
+            <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">Select two strategic frameworks to identify the convergence points of political leadership and ideological alignment.</p>
           </div>
           <div className="max-w-6xl mx-auto grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-4 space-y-6 z-20">
