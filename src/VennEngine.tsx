@@ -122,6 +122,20 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
       {Object.entries(regions).map(([sig, matchedPols]) => {
         const pos = getNodePosition(sig);
         
+        // Map intersection signature to a specific identity color for borders
+        const getBorderColor = (signature: string) => {
+          if (signature === '0') return 'border-secondary';
+          if (signature === '1') return 'border-error';
+          if (signature === '2') return 'border-amber-500';
+          if (signature === '0,1') return 'border-indigo-500';
+          if (signature === '0,2') return 'border-teal-500';
+          if (signature === '1,2') return 'border-orange-500';
+          if (signature === '0,1,2') return 'border-slate-800';
+          return 'border-white';
+        };
+
+        const borderColor = getBorderColor(sig);
+        
         return matchedPols.map((pol, i) => {
           const isTriple = sig === '0,1,2';
           // Tighter spacing for the central intersection to prevent "bleeding" into bottom regions
@@ -154,7 +168,7 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                className="w-10 h-10 md:w-11 md:h-11 rounded-full border-2 border-white shadow-lg bg-white flex items-center justify-center overflow-hidden cursor-pointer hover:scale-110 hover:shadow-xl transition-all"
+                className={`w-10 h-10 md:w-11 md:h-11 rounded-full border-2 ${borderColor} shadow-lg bg-white flex items-center justify-center overflow-hidden cursor-pointer hover:scale-110 hover:shadow-xl transition-all`}
               >
                 {pol.imageUrl ? (
                   <img src={pol.imageUrl} alt={pol.name} className="w-full h-full object-cover transition-all" />
