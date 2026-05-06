@@ -29,7 +29,7 @@ const Home: React.FC = () => {
                 <span className="italic text-secondary">Build the future.</span>
               </h1>
               <p className="font-headline text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-12">
-                A neutral gateway to political clarity. We aggregate verified policy data and media sentiment to provide a synthesized perspective on the decisions shaping our collective tomorrow.
+                PoliDash is your unbiased guide to political clarity. We use verified data and policy records to show you exactly where every leader stands on the issues that matter.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a href="#/issues" className="px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:shadow-xl transition-all flex items-center justify-center">Explore the Issues</a>
