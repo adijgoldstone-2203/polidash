@@ -6,6 +6,7 @@ import ProfileDetail from './ProfileDetail';
 import Issues from './Issues';
 import Quiz from './Quiz';
 import Reply from './Reply';
+import CoalitionBuilder from './CoalitionBuilder';
 import Footer from './Footer';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   const isHome = currentPath === '#/' || currentPath === '#/transparency';
   const isProfiles = currentPath === '#/profiles';
   const isIssues = currentPath.startsWith('#/issues');
+  const isCoalition = currentPath === '#/coalition';
   const isQuiz = currentPath === '#/quiz';
   const isReply = currentPath === '#/reply';
   const isProfileDetail = currentPath.startsWith('#/profile/');
@@ -45,6 +47,12 @@ function App() {
         <div className={isIssues ? 'block' : 'hidden'}>
           <Issues />
         </div>
+
+        {/* 
+        <div className={isCoalition ? 'block' : 'hidden'}>
+          <CoalitionBuilder />
+        </div>
+        */}
         
         <div className={isQuiz ? 'block' : 'hidden'}>
           <Quiz />
