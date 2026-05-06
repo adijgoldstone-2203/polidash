@@ -123,14 +123,15 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
         const pos = getNodePosition(sig);
         
         // Map intersection signature to a specific identity color for borders
+        // These colors are chosen to be darker versions of the blended area colors
         const getBorderColor = (signature: string) => {
-          if (signature === '0') return 'border-secondary';
-          if (signature === '1') return 'border-error';
-          if (signature === '2') return 'border-amber-500';
-          if (signature === '0,1') return 'border-indigo-500';
-          if (signature === '0,2') return 'border-teal-500';
-          if (signature === '1,2') return 'border-orange-500';
-          if (signature === '0,1,2') return 'border-slate-800';
+          if (signature === '0') return 'border-[#006397]'; // Darker version of Secondary/30
+          if (signature === '1') return 'border-[#ba1a1a]'; // Darker version of Error/30
+          if (signature === '2') return 'border-[#d97706]'; // Darker version of Amber-400/30
+          if (signature === '0,1') return 'border-[#583e5a]'; // Darker version of Blue+Red blend
+          if (signature === '0,2') return 'border-[#007b8a]'; // Darker version of Blue+Amber blend
+          if (signature === '1,2') return 'border-[#a85a1a]'; // Darker version of Red+Amber blend
+          if (signature === '0,1,2') return 'border-[#162839]'; // Darkest center (Primary color)
           return 'border-white';
         };
 
