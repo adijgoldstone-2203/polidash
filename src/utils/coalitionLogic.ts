@@ -1,4 +1,4 @@
-import { Politician, politicians } from '../data';
+import { politicians } from '../data';
 
 // Maps poll party names to their leading politicians for stance analysis
 export const PARTY_LEADER_MAP: Record<string, string> = {
