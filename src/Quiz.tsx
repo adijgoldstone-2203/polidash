@@ -84,7 +84,7 @@ const Quiz: React.FC = () => {
         <main className="flex-1 px-6 md:px-12 lg:px-24 py-12">
           <header className="mb-16 max-w-2xl">
             <h1 className="font-headline text-5xl font-black text-primary leading-tight mb-4 italic">The Alignment Quotient</h1>
-            <p className="font-body text-on-surface-variant text-lg leading-relaxed">Define your stance on the nine pillars of modern national governance. Our algorithm synthesizes your responses against the leading representatives standings and manifestos.</p>
+            <p className="font-body text-on-surface-variant text-lg leading-relaxed">Find your political match. Take our 9-issue quiz to discover which representatives share your perspective on the decisions shaping our future.</p>
           </header>
 
           <div className="max-w-7xl mx-auto mb-6 flex items-center gap-2">
