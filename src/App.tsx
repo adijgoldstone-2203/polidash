@@ -13,41 +13,53 @@ function App() {
 
   React.useEffect(() => {
     const handleHashChange = () => {
-      setCurrentPath(window.location.hash);
+      setCurrentPath(window.location.hash || '#/');
     };
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const renderCurrentPage = () => {
-    if (currentPath.startsWith('#/profile/')) {
-      const id = currentPath.replace('#/profile/', '');
-      return <ProfileDetail id={id} />;
-    }
-    if (currentPath.startsWith('#/issues')) {
-      return <Issues />;
-    }
-    switch (currentPath) {
-      case '#/profiles':
-        return <Profiles />;
-      case '#/quiz':
-        return <Quiz />;
-      case '#/reply':
-        return <Reply />;
-      case '#/transparency':
-      case '#/':
-      default:
-        return <Home />;
-    }
-  };
+  // Determine which page to show for simple routing logic
+  const isHome = currentPath === '#/' || currentPath === '#/transparency';
+  const isProfiles = currentPath === '#/profiles';
+  const isIssues = currentPath.startsWith('#/issues');
+  const isQuiz = currentPath === '#/quiz';
+  const isReply = currentPath === '#/reply';
+  const isProfileDetail = currentPath.startsWith('#/profile/');
 
   return (
-    <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300">
+    <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300 flex flex-col">
       <Header currentPath={currentPath} />
-      <div className="flex-grow">
-        {renderCurrentPage()}
-      </div>
+      
+      <main className="flex-grow relative">
+        {/* Persistent Tab Stack */}
+        <div className={isHome ? 'block' : 'hidden'}>
+          <Home currentPath={currentPath} />
+        </div>
+        
+        <div className={isProfiles ? 'block' : 'hidden'}>
+          <Profiles />
+        </div>
+        
+        <div className={isIssues ? 'block' : 'hidden'}>
+          <Issues />
+        </div>
+        
+        <div className={isQuiz ? 'block' : 'hidden'}>
+          <Quiz />
+        </div>
+        
+        <div className={isReply ? 'block' : 'hidden'}>
+          <Reply />
+        </div>
+
+        {/* Dynamic Detail Page (Unmounted when not in use to handle ID changes) */}
+        {isProfileDetail && (
+          <ProfileDetail id={currentPath.replace('#/profile/', '')} />
+        )}
+      </main>
+
       <Footer />
     </div>
   );

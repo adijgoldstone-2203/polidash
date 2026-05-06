@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Politician } from './data';
+import OptimizedImage from './components/OptimizedImage';
 
 export interface Criterion {
   topic: string;
@@ -161,7 +162,11 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
                 className={`w-10 h-10 md:w-11 md:h-11 rounded-full border-2 ${borderColor} shadow-lg bg-white flex items-center justify-center overflow-hidden cursor-pointer hover:scale-110 hover:shadow-xl transition-all`}
               >
                 {pol.imageUrl ? (
-                  <img src={pol.imageUrl} alt={pol.name} className="w-full h-full object-cover transition-all" />
+                  <OptimizedImage 
+                    src={pol.imageUrl} 
+                    alt={pol.name}
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
                   <span className="material-symbols-outlined text-slate-400">person</span>
                 )}

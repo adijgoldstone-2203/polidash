@@ -27,7 +27,7 @@ export const politicians: Politician[] = [
   {
     "id": "benjamin-netanyahu",
     "name": "Benjamin Netanyahu",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Benjamin_Netanyahu%2C_February_2023.jpg/960px-Benjamin_Netanyahu%2C_February_2023.jpg",
+    "imageUrl": "assets/politicians/benjamin-netanyahu.avif",
     "party": "Likud",
     "seats": "32",
     "biography": "Benjamin Netanyahu is the longest-serving Prime Minister in Israel's history. Before entering politics, he served as an officer in the Sayeret Matkal special forces unit. He earned degrees from MIT and worked as a corporate consultant in the United States. He served as Israel’s Ambassador to the United Nations in the 1980s before assuming leadership of the Likud party in 1993. He has served multiple terms as Prime Minister (1996–1999, 2009–2021, and 2022–present).",
@@ -64,7 +64,7 @@ export const politicians: Politician[] = [
   {
     "id": "naftali-bennett",
     "name": "Naftali Bennett",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Naftali_Bennett_official_portrait.jpg/960px-Naftali_Bennett_official_portrait.jpg",
+    "imageUrl": "assets/politicians/naftali-bennett.avif",
     "party": "Bennett 2026",
     "seats": "N/A",
     "biography": "Bennett served as a company commander in the Maglan special forces unit. He later co-founded and sold multiple international technology companies, including Cyota and Soluto. Entering politics as Netanyahu's Chief of Staff, he subsequently led the Jewish Home party. In 2021, he formed a rotation government consisting of right-wing, centrist, left-wing, and Arab parties, serving as Prime Minister. He recently re-entered politics with the \"Bennett 2026\" faction.",
@@ -101,7 +101,7 @@ export const politicians: Politician[] = [
   {
     "id": "benny-gantz",
     "name": "Benny Gantz",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Israeli_Minister_Benny_Gantz_at_the_Department_of_State_in_Washington%2C_D.C._on_March_5%2C_2024_%28cropped%29.jpg",
+    "imageUrl": "assets/politicians/benny-gantz.avif",
     "party": "National Unity Party",
     "seats": "12",
     "biography": "Benny Gantz served in the Israel Defense Forces for nearly four decades, reaching the position of Chief of General Staff (2011–2015). He entered politics in 2019, forming the Blue and White alliance. Gantz has served as Minister of Defense and Alternate Prime Minister. He joined an emergency war cabinet following the October 2023 attacks, later resigning over strategic disagreements regarding the conduct of the war.",
@@ -138,7 +138,7 @@ export const politicians: Politician[] = [
   {
     "id": "gadi-eisenkot",
     "name": "Gadi Eisenkot",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Gadi_Eisenkot_1.jpg",
+    "imageUrl": "assets/politicians/gadi-eisenkot.avif",
     "party": "Yashar!",
     "seats": "N/A",
     "biography": "Gadi Eisenkot served as the IDF Chief of General Staff from 2015 to 2019. He authored military doctrines focused on deterrence and infrastructure targeting. He entered politics with the National Unity party and served in the emergency war cabinet in 2023. He recently launched a new political movement, \"Yashar!,\" focused on systemic governance reform.",
@@ -175,7 +175,7 @@ export const politicians: Politician[] = [
   {
     "id": "yair-golan",
     "name": "Yair Golan",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Yair_Golan_%28SHL_9404%29.jpg/960px-Yair_Golan_%28SHL_9404%29.jpg",
+    "imageUrl": "assets/politicians/yair-golan.avif",
     "party": "Democrats",
     "seats": "4",
     "biography": "Yair Golan is a retired IDF Major General who served as Deputy Chief of the General Staff. He entered politics with the Meretz party and served as Deputy Minister of Economy. In 2024, he was elected leader of the Labor Party and facilitated a merger with Meretz, creating a unified faction called \"The Democrats.\"",
@@ -212,7 +212,7 @@ export const politicians: Politician[] = [
   {
     "id": "aryeh-deri",
     "name": "Aryeh Deri",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/%D7%90%D7%A8%D7%99%D7%94_%D7%93%D7%A8%D7%A2%D7%99_2.jpg/960px-%D7%90%D7%A8%D7%99%D7%94_%D7%93%D7%A8%D7%A2%D7%99_2.jpg",
+    "imageUrl": "assets/politicians/aryeh-deri.avif",
     "party": "Shas",
     "seats": "11",
     "biography": "Aryeh Deri serves as the chairman of Shas, a party founded in 1984. He has held multiple ministerial roles, including Minister of the Interior. In 2021, he resigned from the Knesset following a plea bargain regarding tax offenses, but returned to the government in 2022. Following a Supreme Court ruling in early 2023, he relinquished his ministerial posts but remained a Knesset member and the leader of the party.",
@@ -249,7 +249,7 @@ export const politicians: Politician[] = [
   {
     "id": "mansour-abbas",
     "name": "Mansour Abbas",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Mansour_Abbas%2C_April_3_2023_%28cropped%29.jpg",
+    "imageUrl": "assets/politicians/mansour-abbas.avif",
     "party": "United Arab List (Ra'am)",
     "seats": "5",
     "biography": "Mansour Abbas is the chairman of the United Arab List, which operates as the political wing of the Southern Branch of the Islamic Movement in Israel. He holds a degree in dentistry from the Hebrew University of Jerusalem. In 2021, he led his party to become the first independent Arab party to join an Israeli governing coalition, signing an agreement with Yair Lapid and Naftali Bennett.",
@@ -286,7 +286,7 @@ export const politicians: Politician[] = [
   {
     "id": "yair-lapid",
     "name": "Yair Lapid",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Yair_Lapid_%28D1237-011%29.jpg/960px-Yair_Lapid_%28D1237-011%29.jpg",
+    "imageUrl": "assets/politicians/yair-lapid.avif",
     "party": "Yesh Atid",
     "seats": "24",
     "biography": "Yair Lapid is the leader of Yesh Atid. Prior to entering politics, he worked as an author, television presenter, and news anchor. He entered politics in 2012, subsequently serving as Minister of Finance. He later served as Prime Minister of Israel during the 36th government rotation agreement.",
@@ -323,7 +323,7 @@ export const politicians: Politician[] = [
   {
     "id": "yoaz-hendel",
     "name": "Yoaz Hendel",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/%D7%99%D7%95%D7%A2%D7%96-%D7%94%D7%A0%D7%93%D7%9C-%D7%91%D7%90%D7%95%D7%9C%D7%A4%D7%9F-103fm-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%99%D7%A0%D7%99%D7%91-%D7%9E%D7%95%D7%A8%D7%95%D7%96%D7%95%D7%91%D7%A1%D7%A7%D7%99.jpg/960px-%D7%99%D7%95%D7%A2%D7%96-%D7%94%D7%A0%D7%93%D7%9C-%D7%91%D7%90%D7%95%D7%9C%D7%A4%D7%9F-103fm-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%99%D7%A0%D7%99%D7%91-%D7%9E%D7%95%D7%A8%D7%95%D7%96%D7%95%D7%91%D7%A1%D7%A7%D7%99.jpg",
+    "imageUrl": "assets/politicians/yoaz-hendel.avif",
     "party": "HaMiluimnikim",
     "seats": "N/A",
     "biography": "Yoaz Hendel is the leader of HaMiluimnikim (The Reservists), a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
@@ -360,7 +360,7 @@ export const politicians: Politician[] = [
   {
     "id": "ayman-odeh",
     "name": "Ayman Odeh",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Ayman_Odeh_2021.png/960px-Ayman_Odeh_2021.png",
+    "imageUrl": "assets/politicians/ayman-odeh.avif",
     "party": "Hadash",
     "seats": "5",
     "biography": "Ayman Odeh is the leader of Hadash (The Democratic Front for Peace and Equality). He is a lawyer from Haifa and has served as a member of the Knesset since 2015. He advocates for Jewish-Arab political partnership and civil rights, leading a joint list with the Ta'al faction.",
@@ -397,7 +397,7 @@ export const politicians: Politician[] = [
   {
     "id": "yitzhak-goldknopf",
     "name": "Yitzhak Goldknopf",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Yitzchak_Goldknopf_1.jpg/960px-Yitzchak_Goldknopf_1.jpg",
+    "imageUrl": "assets/politicians/yitzhak-goldknopf.avif",
     "party": "United Torah Judaism",
     "seats": "7",
     "biography": "Yitzhak Goldknopf represents the Hasidic Agudat Yisrael faction and leads the United Torah Judaism list. Before entering the Knesset in 2022, he managed a large network of Haredi kindergartens and daycare centers. He succeeded Yaakov Litzman as the faction's primary representative.",
@@ -434,7 +434,7 @@ export const politicians: Politician[] = [
   {
     "id": "itamar-ben-gvir",
     "name": "Itamar Ben Gvir",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Itamar_Ben_Gvir_3_%28cropped%29.jpg",
+    "imageUrl": "assets/politicians/itamar-ben-gvir.avif",
     "party": "Otzma Yehudit",
     "seats": "6",
     "biography": "Itamar Ben Gvir is the leader of Otzma Yehudit (Jewish Power). He is a lawyer who often represented right-wing activists before entering national politics. He entered the Knesset during the 24th legislative term and has maintained significant public visibility through activism.",
@@ -471,7 +471,7 @@ export const politicians: Politician[] = [
   {
     "id": "avigdor-lieberman",
     "name": "Avigdor Lieberman",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/Avigdor_Lieberman_2017.jpg",
+    "imageUrl": "assets/politicians/avigdor-lieberman.avif",
     "party": "Yisrael Beiteinu",
     "seats": "6",
     "biography": "Avigdor Lieberman is the founder and leader of Yisrael Beiteinu (Israel Our Home). He immigrated to Israel from the Soviet Union in 1978. He has served in numerous senior ministerial roles, including Minister of Defense, Minister of Foreign Affairs, and Minister of Finance. Initially drawing his primary political support from Russian-speaking immigrants, he has since expanded his base to focus on secular, right-wing voters.",
@@ -508,7 +508,7 @@ export const politicians: Politician[] = [
   {
     "id": "sami-abu-shehadeh",
     "name": "Sami Abu Shehadeh",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Sami_Abou_Shahadeh.png/960px-Sami_Abou_Shahadeh.png",
+    "imageUrl": "assets/politicians/sami-abu-shehadeh.avif",
     "party": "Balad (National Democratic Alliance)",
     "seats": "N/A",
     "biography": "Sami Abu Shehadeh is a historian, educator, and political leader from Jaffa. Prior to entering national politics, he served as a member of the Tel Aviv-Yafo City Council. He entered the Knesset in 2019 as part of the Joint List alliance. In 2021, he was elected as the chairman of the Balad party.",
@@ -545,7 +545,7 @@ export const politicians: Politician[] = [
   {
     "id": "bezalel-smotrich",
     "name": "Bezalel Smotrich",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Bezalel_Smotrich.jpg/960px-Bezalel_Smotrich.jpg",
+    "imageUrl": "assets/politicians/bezalel-smotrich.avif",
     "party": "Religious Zionist",
     "seats": "7",
     "biography": "Bezalel Smotrich is the leader of the Religious Zionist Party. He is a lawyer and a co-founder of the Regavim organization, an NGO focused on monitoring and taking legal action regarding land use and construction in Israel and the West Bank. He entered the Knesset in 2015 as part of the Jewish Home party before eventually forming and leading his own independent Religious Zionist faction.",

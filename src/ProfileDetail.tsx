@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { politicians, ISSUE_DEFINITIONS } from './data';
 import { motion, AnimatePresence } from 'framer-motion';
+import OptimizedImage from './components/OptimizedImage';
 
 interface Props {
   id: string;
@@ -27,7 +28,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                 <div className="lg:col-span-4">
                   <div className="sticky top-24">
                     {politician.imageUrl ? (
-                      <img alt={`portrait of ${politician.name}`} className="w-full aspect-square object-cover mb-8" src={politician.imageUrl} />
+                      <OptimizedImage alt={`portrait of ${politician.name}`} className="w-full aspect-square object-cover mb-8" src={politician.imageUrl} />
                     ) : (
                       <div className="w-full aspect-square bg-slate-200 mb-8 flex items-center justify-center">
                         <span className="material-symbols-outlined text-7xl text-slate-400">person</span>

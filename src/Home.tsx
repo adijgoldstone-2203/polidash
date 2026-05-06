@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  currentPath: string;
+}
+
+const Home: React.FC<HomeProps> = ({ currentPath }) => {
   useEffect(() => {
-    if (window.location.hash === '#/transparency') {
+    if (currentPath === '#/transparency') {
       const timer = setTimeout(() => {
         const el = document.getElementById('transparency');
         if (el) {
@@ -11,7 +15,7 @@ const Home: React.FC = () => {
       }, 150);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [currentPath]);
 
   return (
     <>
