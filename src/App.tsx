@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Home from './Home';
+import Header from './Header';
 import Profiles from './Profiles';
 import ProfileDetail from './ProfileDetail';
 import Issues from './Issues';
@@ -35,7 +36,12 @@ function App() {
     }
   };
 
-  return renderCurrentPage();
+  return (
+    <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300">
+      <Header currentPath={currentPath} />
+      {renderCurrentPage()}
+    </div>
+  );
 }
 
 export default App;

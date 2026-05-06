@@ -80,25 +80,7 @@ const Quiz: React.FC = () => {
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
       {/* TopAppBar */}
-      <header className="sticky top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-[#162839]/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
-          <div className="flex items-center gap-8">
-            <a className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]" href="#/">PoliDash</a>
-            <nav className="hidden md:flex items-center gap-6">
-              <a className="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#/">Home</a>
-              <a className="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#/profiles">Profiles</a>
-              <a className="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#/issues">Issues</a>
-              <a className="font-['Inter'] text-sm font-bold border-b-2 border-[#162839] dark:border-[#fbf9f5] pb-1 text-[#162839] dark:text-[#fbf9f5] hover:text-[#006397] transition-colors duration-200" href="#/quiz">Quiz</a>
-            </nav>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="font-['Inter'] text-sm font-medium tracking-tight text-[#162839] dark:text-[#fbf9f5] cursor-pointer hover:text-[#006397] transition-colors duration-200">EN/HE</span>
-            <span className="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" data-icon="language">language</span>
-            <span className="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" data-icon="search">search</span>
-          </div>
-        </div>
-      </header>
-      <div className="flex pt-16">
+      <div className="flex pt-4">
         <main className="flex-1 px-6 md:px-12 lg:px-24 py-12">
           <header className="mb-16 max-w-2xl">
             <h1 className="font-headline text-5xl font-black text-primary leading-tight mb-4 italic">The Alignment Quotient</h1>

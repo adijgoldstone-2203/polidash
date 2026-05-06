@@ -20,6 +20,17 @@ const Issues: React.FC = () => {
   const [activeCriteria, setActiveCriteria] = useState<Criterion[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.hash.split('?')[1]);
+    const topic = params.get('topic');
+    if (topic && ISSUE_DEFINITIONS[topic]) {
+      const newCrit: Criterion = { topic, stance: 'SUPPORT' };
+      setSelectedCriteria([newCrit]);
+      setActiveCriteria([newCrit]);
+      setHasCalculated(true);
+    }
+  }, []);
+
   const handleToggle = (topic: string, stance: 'SUPPORT' | 'OPPOSE') => {
     const existingIndex = selectedCriteria.findIndex(c => c.topic === topic);
     if (existingIndex > -1) {
@@ -60,25 +71,7 @@ const Issues: React.FC = () => {
             box-shadow: 0 32px 64px -12px rgba(22, 40, 57, 0.04);
         }
       `}</style>
-      <header className="sticky top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-[#162839]/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
-          <div className="flex items-center gap-8">
-            <a className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]" href="#/">PoliDash</a>
-            <nav className="hidden md:flex items-center gap-6">
-              <a className="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#/">Home</a>
-              <a className="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#/profiles">Profiles</a>
-              <a className="font-['Inter'] text-sm font-bold border-b-2 border-[#162839] dark:border-[#fbf9f5] pb-1 text-[#162839] dark:text-[#fbf9f5] hover:text-[#006397] transition-colors duration-200" href="#/issues">Issues</a>
-              <a className="font-['Inter'] text-sm font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] transition-colors duration-200" href="#/quiz">Quiz</a>
-            </nav>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="font-['Inter'] text-sm font-medium tracking-tight text-[#162839] dark:text-[#fbf9f5] cursor-pointer hover:text-[#006397] transition-colors duration-200">EN/HE</span>
-            <span className="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" data-icon="language">language</span>
-            <span className="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-95 active:scale-90 transition-transform" data-icon="search">search</span>
-          </div>
-        </div>
-      </header>
-      <div className="flex min-h-screen pt-16">
+      <div className="flex min-h-screen">
         <main className="flex-1 p-8 bg-surface">
           <div className="max-w-6xl mx-auto mb-12">
             <h1 className="font-headline text-5xl font-bold text-primary mb-4 leading-tight">Venn Intelligence Engine</h1>
