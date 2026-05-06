@@ -48,10 +48,9 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
     );
   }
 
-  // Define layout logic
   const numCircles = criteria.length;
-  const colors = ['bg-secondary/40', 'bg-error/40'];
-  const textColors = ['text-secondary', 'text-error'];
+  const colors = ['bg-secondary/30', 'bg-error/30', 'bg-amber-400/30'];
+  const textColors = ['text-secondary', 'text-error', 'text-amber-700'];
   
   const getCircleStyles = (index: number) => {
     if (numCircles === 1) return { top: '20%', left: '20%', width: '60%', height: '60%' };
@@ -59,17 +58,42 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
       if (index === 0) return { top: '22%', left: '8%', width: '52%', height: '52%' };
       if (index === 1) return { top: '22%', left: '40%', width: '52%', height: '52%' };
     }
+    if (numCircles === 3) {
+      const size = '52%';
+      if (index === 0) return { top: '8%', left: '24%', width: size, height: size }; // Top
+      if (index === 1) return { top: '38%', left: '10%', width: size, height: size };  // Bottom Left
+      if (index === 2) return { top: '38%', left: '38%', width: size, height: size }; // Bottom Right
+    }
+    return {};
   };
 
   const getNodePosition = (sig: string) => {
-    // Return x, y percentages for absolute positioning of nodes within the Venn container
     if (numCircles === 1) {
       if (sig === '0') return { top: '50%', left: '50%' };
     }
     if (numCircles === 2) {
-      if (sig === '0') return { top: '48%', left: '28%' };
-      if (sig === '1') return { top: '48%', left: '72%' };
-      if (sig === '0,1') return { top: '48%', left: '50%' };
+      // Centers are at (34, 48) and (66, 48)
+      if (sig === '0') return { top: '48%', left: '26%' };    // Left crescent middle
+      if (sig === '1') return { top: '48%', left: '74%' };    // Right crescent middle
+      if (sig === '0,1') return { top: '48%', left: '50%' };  // Shared lens center
+    }
+    if (numCircles === 3) {
+      /**
+       * Geometric centers based on circle centers:
+       * C0: (50, 34), C1: (36, 64), C2: (64, 64)
+       */
+      // Single regions (Outer regions furthest from other circles)
+      if (sig === '0') return { top: '26%', left: '50%' };    // Top crescent center
+      if (sig === '1') return { top: '72%', left: '25%' };    // Bottom-left crescent center
+      if (sig === '2') return { top: '72%', left: '75%' };    // Bottom-right crescent center
+      
+      // Dual regions (Lens centers between circle pairs)
+      if (sig === '0,1') return { top: '48%', left: '34%' };  // A+B intersection center
+      if (sig === '0,2') return { top: '48%', left: '66%' };  // A+C intersection center
+      if (sig === '1,2') return { top: '72%', left: '50%' };  // B+C intersection center
+      
+      // Triple region (Absolute center of the Reuleaux triangle)
+      if (sig === '0,1,2') return { top: '56%', left: '50%' }; // Center of all three
     }
     return { top: '50%', left: '50%' };
   };
@@ -77,34 +101,39 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
   return (
     <div className="relative w-full h-full min-h-[700px] overflow-hidden flex items-center justify-center">
       {/* Render Venn Circles */}
-      {criteria.map((crit, index) => (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          key={index}
-          className={`absolute rounded-full venn-circle overflow-hidden flex items-start justify-center pt-8 border-4 border-white shadow-xl ${colors[index]}`}
-          style={{ ...getCircleStyles(index) }}
-        >
-          <div className={`text-center font-bold px-4 pt-12 uppercase tracking-widest text-[11px] ${textColors[index]}`} style={{textShadow: '0 1px 3px rgba(255,255,255,0.8)'}}>
-            {crit.topic} <br/> ({crit.stance})
-          </div>
-        </motion.div>
-      ))}
+      {criteria.map((crit, index) => {
+        const isBottom = numCircles === 3 && (index === 1 || index === 2);
+        return (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            key={index}
+            className={`absolute rounded-full venn-circle overflow-hidden flex ${isBottom ? 'items-end pb-8' : 'items-start pt-6'} justify-center border-2 border-white/50 shadow-2xl ${colors[index]}`}
+            style={{ ...getCircleStyles(index) }}
+          >
+            <div className={`text-center font-bold px-6 uppercase tracking-widest text-[9px] leading-tight ${textColors[index]}`} style={{textShadow: '0 1px 3px rgba(255,255,255,1)'}}>
+              {crit.topic} <br/> ({crit.stance})
+            </div>
+          </motion.div>
+        );
+      })}
 
       {/* Render Nodes */}
       {Object.entries(regions).map(([sig, matchedPols]) => {
         const pos = getNodePosition(sig);
         
-        // Arrange items dynamically around the central coordinate to avoid overlap
-        // Using a hexagonal grid layout for each region
         return matchedPols.map((pol, i) => {
-          const spacing = 45; // pixels
-          const cols = Math.ceil(Math.sqrt(matchedPols.length));
+          const isTriple = sig === '0,1,2';
+          const spacingX = isTriple ? 35 : 42; 
+          const spacingY = isTriple ? 40 : 48;
+          
+          // Using a column-first vertical stack for clarity (max 2 columns)
+          const cols = matchedPols.length > 3 ? 2 : 1;
           const row = Math.floor(i / cols);
           const col = i % cols;
           
-          const xOffset = (col - (cols - 1) / 2) * spacing;
-          const yOffset = (row - (Math.ceil(matchedPols.length / cols) - 1) / 2) * spacing;
+          const xOffset = (col - (cols - 1) / 2) * spacingX;
+          const yOffset = (row - (Math.ceil(matchedPols.length / cols) - 1) / 2) * spacingY;
           
           return (
             <a 
@@ -123,7 +152,7 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-white shadow-md bg-white flex items-center justify-center overflow-hidden cursor-pointer hover:scale-110 hover:shadow-xl transition-all"
+                className="w-10 h-10 md:w-11 md:h-11 rounded-full border-2 border-white shadow-lg bg-white flex items-center justify-center overflow-hidden cursor-pointer hover:scale-110 hover:shadow-xl transition-all"
               >
                 {pol.imageUrl ? (
                   <img src={pol.imageUrl} alt={pol.name} className="w-full h-full object-cover transition-all" />

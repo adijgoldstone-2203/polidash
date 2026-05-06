@@ -44,10 +44,10 @@ const Issues: React.FC = () => {
         setSelectedCriteria(newArr);
       }
     } else {
-      if (selectedCriteria.length < 2) {
+      if (selectedCriteria.length < 3) {
         setSelectedCriteria([...selectedCriteria, { topic, stance }]);
       } else {
-        alert("You can only select up to 2 criteria.");
+        alert("You can only select up to 3 criteria.");
       }
     }
   };
@@ -110,7 +110,7 @@ const Issues: React.FC = () => {
                     </div>
                   ))}
                 </div>
-                <p className="text-[10px] text-slate-400 mt-4 italic">*Select 1-2 criteria for synthesis.</p>
+                <p className="text-[10px] text-slate-400 mt-4 italic">*Select 1-3 criteria for synthesis.</p>
               </div>
               <div className="bg-primary p-6 rounded-lg text-white">
                 <p className="text-xs text-on-primary-container font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
