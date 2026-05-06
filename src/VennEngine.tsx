@@ -124,11 +124,13 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
         
         return matchedPols.map((pol, i) => {
           const isTriple = sig === '0,1,2';
-          const spacingX = isTriple ? 35 : 42; 
-          const spacingY = isTriple ? 40 : 48;
+          // Tighter spacing for the central intersection to prevent "bleeding" into bottom regions
+          const spacingX = isTriple ? 32 : 42; 
+          const spacingY = isTriple ? 32 : 48;
           
-          // Using a column-first vertical stack for clarity (max 2 columns)
-          const cols = matchedPols.length > 3 ? 2 : 1;
+          // Force 2-columns for the triple intersection if there's more than 1 person
+          // This keeps the cluster "square" rather than a tall line
+          const cols = isTriple ? (matchedPols.length > 1 ? 2 : 1) : (matchedPols.length > 3 ? 2 : 1);
           const row = Math.floor(i / cols);
           const col = i % cols;
           
