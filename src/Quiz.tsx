@@ -234,28 +234,26 @@ const Quiz: React.FC = () => {
                         </div>
                         <p className="text-sm text-slate-500 leading-relaxed italic mb-4">"{pol.quote}"</p>
                         
-                        {index === 0 && (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-secondary/10">
-                            <div>
-                              <p className="text-[10px] font-black text-secondary uppercase tracking-widest mb-2 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">verified</span> Alignment Summary
-                              </p>
-                              <div className="flex flex-wrap gap-2">
-                                {pol.matches.length > 0 ? pol.matches.slice(0, 3).map((m: string) => (
-                                  <span key={m} className="text-[10px] bg-secondary/10 text-secondary px-2 py-1 rounded-sm font-bold">{m}</span>
-                                )) : <span className="text-[10px] text-slate-400 italic">No direct matches</span>}
-                              </div>
-                            </div>
-                            <div>
-                              <p className="text-[10px] font-black text-error uppercase tracking-widest mb-2 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">warning</span> Friction Point
-                              </p>
-                              <p className="text-xs font-bold text-primary">
-                                {pol.friction ? pol.friction : "No major conflicts"}
-                              </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-stone-100">
+                          <div>
+                            <p className="text-[10px] font-black text-secondary uppercase tracking-widest mb-2 flex items-center gap-2">
+                              <span className="material-symbols-outlined text-sm">verified</span> Alignment Summary
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {pol.matches.length > 0 ? pol.matches.slice(0, 3).map((m: string) => (
+                                <span key={m} className="text-[10px] bg-secondary/10 text-secondary px-2 py-1 rounded-sm font-bold">{m}</span>
+                              )) : <span className="text-[10px] text-slate-400 italic">No direct matches</span>}
                             </div>
                           </div>
-                        )}
+                          <div>
+                            <p className="text-[10px] font-black text-error uppercase tracking-widest mb-2 flex items-center gap-2">
+                              <span className="material-symbols-outlined text-sm">warning</span> Friction Point
+                            </p>
+                            <p className="text-xs font-bold text-primary">
+                              {pol.friction ? pol.friction : "No major conflicts"}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                       
                       <div className="flex flex-col justify-center shrink-0">
