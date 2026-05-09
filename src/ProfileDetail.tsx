@@ -28,7 +28,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                 <div className="lg:col-span-4">
                   <div className="sticky top-24">
                     {politician.imageUrl ? (
-                      <OptimizedImage alt={`portrait of ${politician.name}`} className="w-full aspect-square object-cover mb-8" src={politician.imageUrl} />
+                      <OptimizedImage alt={`portrait of ${politician.name}`} className="w-full aspect-square object-cover object-top mb-8" src={politician.imageUrl} />
                     ) : (
                       <div className="w-full aspect-square bg-slate-200 mb-8 flex items-center justify-center">
                         <span className="material-symbols-outlined text-7xl text-slate-400">person</span>
@@ -154,7 +154,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                                         politician.stances[expandedTopic] === 'Oppose' ? 'bg-primary/10 hover:border-primary' : 'bg-stone-50 hover:border-slate-300'
                                       }`}
                                     >
-                                      <img src={p.imageUrl} alt={p.name} className="w-8 h-8 rounded-full object-cover transition-all" />
+                                      <img src={p.imageUrl} alt={p.name} className="w-8 h-8 rounded-full object-cover object-top transition-all" />
                                       <div className="min-w-0">
                                         <p className="text-[10px] font-black text-primary truncate">{p.name}</p>
                                         <p className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter truncate">{p.party}</p>

@@ -219,7 +219,7 @@ const Quiz: React.FC = () => {
                       }`}
                     >
                       <div className="relative shrink-0">
-                        <img src={pol.imageUrl} alt={pol.name} className="w-32 h-32 object-cover rounded-sm" />
+                        <img src={pol.imageUrl} alt={pol.name} className="w-32 h-32 object-cover object-top rounded-sm" />
                         <div className={`absolute -top-3 -left-3 px-3 py-1 text-[11px] font-black uppercase tracking-tighter text-white ${index === 0 ? 'bg-secondary' : 'bg-slate-400'}`}>
                           {pol.percentage}% Match
                         </div>

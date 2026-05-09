@@ -165,7 +165,7 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
                   <OptimizedImage 
                     src={pol.imageUrl} 
                     alt={pol.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 ) : (
                   <span className="material-symbols-outlined text-slate-400">person</span>

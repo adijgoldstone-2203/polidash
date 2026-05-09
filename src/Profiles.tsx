@@ -26,7 +26,7 @@ const Profiles: React.FC = () => {
                     <div className="flex items-center gap-4">
                       <a href={`#/profile/${pol.id}`} className="shrink-0">
                         {pol.imageUrl ? (
-                          <OptimizedImage alt={`portrait of ${pol.name}`} className="w-16 h-16 rounded-full object-cover transition-all duration-500 hover:scale-105" src={pol.imageUrl} />
+                          <OptimizedImage alt={`portrait of ${pol.name}`} className="w-16 h-16 rounded-full object-cover object-top transition-all duration-500 hover:scale-105" src={pol.imageUrl} />
                         ) : (
                           <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center">
                             <span className="material-symbols-outlined text-slate-500 text-3xl">person</span>
