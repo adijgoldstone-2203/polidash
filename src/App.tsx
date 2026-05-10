@@ -48,7 +48,7 @@ function App() {
           <Issues />
         </div>
 
-        {/* 
+        {/*
         <div className={isCoalition ? 'block' : 'hidden'}>
           <CoalitionBuilder />
         </div>

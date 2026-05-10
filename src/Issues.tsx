@@ -82,7 +82,7 @@ const Issues: React.FC = () => {
                 Venn Intelligence <span className="italic font-bold">Engine</span>
               </h1>
               <div className="h-1 w-24 bg-primary mb-8"></div>
-              <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">Select two strategic frameworks to identify the convergence points of political leadership and ideological alignment.</p>
+              <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">Select up to three strategic frameworks to identify the convergence points of political leadership and ideological alignment.</p>
             </section>
           </div>
           <div className="max-w-6xl mx-auto grid grid-cols-12 gap-8 items-start">
