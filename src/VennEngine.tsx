@@ -99,6 +99,10 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
             if (index === 1) return 'items-end justify-start pb-10 pl-10';
             if (index === 2) return 'items-end justify-end pb-10 pr-10';
           }
+          if (numCircles === 2) {
+            if (index === 0) return 'items-start justify-start pt-10 pl-14';
+            if (index === 1) return 'items-start justify-end pt-10 pr-14';
+          }
           return 'items-start justify-center pt-6';
         };
 
