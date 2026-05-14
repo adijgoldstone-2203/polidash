@@ -96,8 +96,8 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
         const getAlignmentClasses = () => {
           if (numCircles === 3) {
             if (index === 0) return 'items-start justify-center pt-8';
-            if (index === 1) return 'items-end justify-start pb-20 pl-16';
-            if (index === 2) return 'items-end justify-end pb-20 pr-16';
+            if (index === 1) return 'items-end justify-start pb-10 pl-10';
+            if (index === 2) return 'items-end justify-end pb-10 pr-10';
           }
           return 'items-start justify-center pt-6';
         };
