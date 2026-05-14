@@ -113,8 +113,8 @@ const Issues: React.FC = () => {
                   {ISSUES_LIST.map((topic) => (
                     <div key={topic} className="flex items-center justify-between p-3 bg-white rounded border border-transparent hover:border-secondary transition-all shadow-sm">
                       <div className="flex items-center gap-1.5 w-2/3 relative group/tooltip">
-                        <span className="text-sm font-medium text-slate-700">{topic}</span>
-                        <span className="material-symbols-outlined text-[16px] text-slate-400 cursor-help hover:text-primary transition-colors">info</span>
+                        <span className="text-sm font-medium text-slate-700 truncate">{topic}</span>
+                        <span className="material-symbols-outlined text-[16px] text-slate-400 shrink-0 cursor-help hover:text-primary transition-colors">info</span>
                         <div className="absolute bottom-full left-0 mb-2 w-64 p-3 bg-slate-900 text-white text-[11px] leading-relaxed rounded-md shadow-2xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all z-[100] pointer-events-none">
                           {ISSUE_DEFINITIONS[topic as keyof typeof ISSUE_DEFINITIONS]}
                           <div className="absolute -bottom-1 left-4 w-2 h-2 bg-slate-900 transform rotate-45"></div>
