@@ -77,43 +77,46 @@ const Issues: React.FC = () => {
       `}</style>
       <div className="flex min-h-screen">
         <main className="flex-1 p-8 bg-surface">
-          <div className="max-w-6xl mx-auto mb-12 flex flex-col md:flex-row items-start justify-between gap-8">
-            <section>
+          <div className="max-w-6xl mx-auto mb-12">
+            <section className="mb-12">
               <h1 className="font-['Newsreader'] text-5xl md:text-7xl font-light tracking-tight text-primary mb-4">
                 Venn Intelligence <span className="italic font-bold">Engine</span>
               </h1>
               <div className="h-1 w-24 bg-primary mb-8"></div>
               <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">Select up to three strategic frameworks to identify the convergence points of political leadership and ideological alignment.</p>
             </section>
-            
-            <div className="bg-primary p-6 rounded-lg text-white w-full md:w-96 shrink-0 shadow-xl">
-              <p className="text-xs text-on-primary-container font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
-              {selectedCriteria.length === 0 ? (
-                <p className="text-sm leading-relaxed mb-4 text-slate-400 italic">Waiting for Criteria Selection...</p>
-              ) : (
-                <p className="text-sm leading-relaxed mb-4">
-                  Finding politicians aligned with <br/>
-                  {selectedCriteria.map((c, i) => (
-                    <React.Fragment key={c.topic}>
-                      <span className={c.stance === 'SUPPORT' ? 'text-secondary-container font-bold' : 'text-error-container font-bold'}>
-                        {c.stance} {c.topic}
-                      </span>
-                      {i < selectedCriteria.length - 1 && " and "}
-                    </React.Fragment>
-                  ))}
-                </p>
-              )}
-              <button 
-                onClick={handleCalculate}
-                className="w-full py-3 bg-secondary hover:bg-secondary-container transition-colors text-white hover:text-on-secondary-container text-sm font-bold rounded flex items-center justify-center gap-2 uppercase tracking-widest"
-              >
-                <span className="material-symbols-outlined text-base">{hasCalculated ? 'refresh' : 'play_arrow'}</span>
-                {hasCalculated ? 'Recalculate' : 'Calculate'}
-              </button>
-            </div>
           </div>
           <div className="max-w-6xl mx-auto grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-4 space-y-6 z-20">
+              
+              <div className="bg-primary p-6 rounded-lg text-white shadow-xl">
+                <p className="text-xs text-on-primary-container font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
+                {selectedCriteria.length === 0 ? (
+                  <p className="text-sm leading-relaxed mb-4 text-slate-400 italic">Waiting for Criteria Selection...</p>
+                ) : (
+                  <div className="mb-6 space-y-2">
+                    <p className="text-[10px] uppercase tracking-widest text-slate-300 font-bold mb-3">Finding politicians aligned with:</p>
+                    <div className="space-y-2">
+                      {selectedCriteria.map((c) => (
+                        <div key={c.topic} className="flex items-center gap-3 bg-white/10 p-3 rounded-md border border-white/5">
+                          <span className={`text-[10px] font-black px-2 py-1 rounded-sm uppercase tracking-widest ${c.stance === 'SUPPORT' ? 'bg-secondary-container text-on-secondary-container' : 'bg-white text-primary'}`}>
+                            {c.stance}
+                          </span>
+                          <span className="text-sm font-medium text-white truncate">{c.topic}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <button 
+                  onClick={handleCalculate}
+                  className="w-full py-3 bg-secondary hover:bg-secondary-container transition-colors text-white hover:text-on-secondary-container text-sm font-bold rounded flex items-center justify-center gap-2 uppercase tracking-widest"
+                >
+                  <span className="material-symbols-outlined text-base">{hasCalculated ? 'refresh' : 'play_arrow'}</span>
+                  {hasCalculated ? 'Recalculate' : 'Calculate'}
+                </button>
+              </div>
+
               <div className="bg-surface-container-low p-6 rounded-lg">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-label font-bold text-sm text-primary flex items-center gap-2 uppercase tracking-wide">
