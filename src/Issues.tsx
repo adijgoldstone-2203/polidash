@@ -20,7 +20,6 @@ const Issues: React.FC = () => {
   const [activeCriteria, setActiveCriteria] = useState<Criterion[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
   const [expandedIssue, setExpandedIssue] = useState<string | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.hash.split('?')[1]);
@@ -186,23 +185,8 @@ const Issues: React.FC = () => {
               </div>
             </div>
             {/* Main Venn Container */}
-            <div className={`col-span-12 md:col-span-8 ${isFullscreen ? 'relative z-[400]' : ''}`}>
-              <div className={`relative transition-all duration-500 ${
-                isFullscreen 
-                  ? 'fixed inset-0 z-[300] bg-[#fbf9f5] dark:bg-[#162839] border-none rounded-none shadow-none' 
-                  : 'bg-surface-container-low/30 border-2 border-dashed border-stone-200 rounded-xl editorial-shadow h-[860px] overflow-hidden'
-              }`}>
-                {/* Full Screen Toggle Button */}
-                <button 
-                  onClick={() => setIsFullscreen(!isFullscreen)}
-                  className="absolute top-4 right-4 z-40 p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-full shadow-lg hover:scale-105 hover:bg-white dark:hover:bg-slate-700 transition-all group"
-                  title={isFullscreen ? "Exit Full Screen" : "Full Screen"}
-                >
-                  <span className="material-symbols-outlined text-primary dark:text-white">
-                    {isFullscreen ? 'fullscreen_exit' : 'fullscreen'}
-                  </span>
-                </button>
-
+            <div className="col-span-12 md:col-span-8">
+              <div className="relative bg-surface-container-low/30 border-2 border-dashed border-stone-200 rounded-xl h-[860px] editorial-shadow overflow-hidden">
                 <VennEngine criteria={activeCriteria} politicians={politicians} />
               </div>
             </div>
