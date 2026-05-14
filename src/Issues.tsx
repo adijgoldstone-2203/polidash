@@ -19,6 +19,7 @@ const Issues: React.FC = () => {
   const [selectedCriteria, setSelectedCriteria] = useState<Criterion[]>([]);
   const [activeCriteria, setActiveCriteria] = useState<Criterion[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
+  const [expandedIssue, setExpandedIssue] = useState<string | null>(null);
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.hash.split('?')[1]);
@@ -111,28 +112,42 @@ const Issues: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   {ISSUES_LIST.map((topic) => (
-                    <div key={topic} className="flex items-center justify-between p-3 bg-white rounded border border-transparent hover:border-secondary transition-all shadow-sm">
-                      <div className="flex items-center gap-1.5 w-2/3 relative group/tooltip">
-                        <span className="text-sm font-medium text-slate-700 truncate">{topic}</span>
-                        <span className="material-symbols-outlined text-[16px] text-slate-400 shrink-0 cursor-help hover:text-primary transition-colors">info</span>
-                        <div className="absolute bottom-full left-0 mb-2 w-64 p-3 bg-slate-900 text-white text-[11px] leading-relaxed rounded-md shadow-2xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all z-[100] pointer-events-none">
-                          {ISSUE_DEFINITIONS[topic as keyof typeof ISSUE_DEFINITIONS]}
-                          <div className="absolute -bottom-1 left-4 w-2 h-2 bg-slate-900 transform rotate-45"></div>
+                    <div key={topic} className="bg-white rounded border border-transparent shadow-sm overflow-hidden transition-all duration-300">
+                      <div className="flex items-center justify-between p-3 hover:bg-slate-50 transition-colors">
+                        <div 
+                          className="flex items-center gap-2 w-2/3 cursor-pointer select-none group"
+                          onClick={() => setExpandedIssue(expandedIssue === topic ? null : topic)}
+                        >
+                          <span className="text-sm font-medium text-slate-700 group-hover:text-primary transition-colors truncate">
+                            {topic}
+                          </span>
+                          <span className={`material-symbols-outlined text-[16px] text-slate-400 shrink-0 transition-transform duration-300 ${expandedIssue === topic ? 'rotate-180 text-primary' : ''}`}>
+                            expand_more
+                          </span>
+                        </div>
+                        <div className="flex gap-14 px-1 pr-3 w-1/3 justify-end">
+                          <input 
+                            type="checkbox"
+                            className="rounded-sm border-slate-300 text-secondary focus:ring-secondary h-4 w-4 cursor-pointer"
+                            checked={isChecked(topic, 'SUPPORT')}
+                            onChange={() => handleToggle(topic, 'SUPPORT')}
+                          />
+                          <input 
+                            type="checkbox"
+                            className="rounded-sm border-slate-300 text-error focus:ring-error h-4 w-4 cursor-pointer"
+                            checked={isChecked(topic, 'OPPOSE')}
+                            onChange={() => handleToggle(topic, 'OPPOSE')}
+                          />
                         </div>
                       </div>
-                      <div className="flex gap-14 px-1 pr-3 w-1/3 justify-end">
-                        <input 
-                          type="checkbox"
-                          className="rounded-sm border-slate-300 text-secondary focus:ring-secondary h-4 w-4 cursor-pointer"
-                          checked={isChecked(topic, 'SUPPORT')}
-                          onChange={() => handleToggle(topic, 'SUPPORT')}
-                        />
-                        <input 
-                          type="checkbox"
-                          className="rounded-sm border-slate-300 text-error focus:ring-error h-4 w-4 cursor-pointer"
-                          checked={isChecked(topic, 'OPPOSE')}
-                          onChange={() => handleToggle(topic, 'OPPOSE')}
-                        />
+                      
+                      {/* Accordion Expansion Content */}
+                      <div className={`grid transition-all duration-300 ease-in-out ${expandedIssue === topic ? 'grid-rows-[1fr] opacity-100 border-t border-slate-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                        <div className="overflow-hidden">
+                          <p className="p-4 text-xs leading-relaxed text-slate-600 bg-slate-50/50">
+                            {ISSUE_DEFINITIONS[topic as keyof typeof ISSUE_DEFINITIONS]}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}

@@ -78,7 +78,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                             iconColor = "text-on-secondary-container";
                           } else if (status.toUpperCase() === "OPPOSE") {
                             bgClass = "bg-primary";
-                            labelColor = "text-on-primary-fixed-variant";
+                            labelColor = "text-slate-300";
                             valColor = "text-white";
                             iconName = "cancel";
                             iconColor = "text-white";
