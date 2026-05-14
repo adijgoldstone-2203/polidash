@@ -112,9 +112,9 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
           >
             <div className={`relative group/venntooltip text-center font-bold px-6 uppercase tracking-widest text-[9px] leading-tight ${textColors[index]} cursor-help`} style={{textShadow: '0 1px 3px rgba(255,255,255,1)'}}>
               {crit.topic} <br/> ({crit.stance})
-              <div className={`absolute left-1/2 -translate-x-1/2 w-56 p-3 bg-slate-900 text-white text-[11px] normal-case tracking-normal font-normal leading-relaxed rounded-md shadow-2xl opacity-0 invisible group-hover/venntooltip:opacity-100 group-hover/venntooltip:visible transition-all z-[100] pointer-events-none ${index === 0 ? 'top-full mt-4' : 'bottom-full mb-4'}`} style={{textShadow: 'none'}}>
+              <div className={`absolute left-1/2 -translate-x-1/2 w-56 p-3 bg-slate-900 text-white text-[11px] normal-case tracking-normal font-normal leading-relaxed rounded-md shadow-2xl opacity-0 invisible group-hover/venntooltip:opacity-100 group-hover/venntooltip:visible transition-all z-[100] pointer-events-none ${index === 0 ? 'bottom-full mb-4' : 'top-full mt-4'}`} style={{textShadow: 'none'}}>
                 {ISSUE_DEFINITIONS[crit.topic as keyof typeof ISSUE_DEFINITIONS]}
-                <div className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 transform rotate-45 ${index === 0 ? '-top-1.5' : '-bottom-1.5'}`}></div>
+                <div className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 transform rotate-45 ${index === 0 ? '-bottom-1.5' : '-top-1.5'}`}></div>
               </div>
             </div>
           </motion.div>
