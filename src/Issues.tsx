@@ -157,7 +157,7 @@ const Issues: React.FC = () => {
                         <div className="flex gap-14 px-1 pr-3 w-1/3 justify-end">
                           <input 
                             type="checkbox"
-                            className="rounded-sm border-slate-300 text-secondary focus:ring-secondary h-4 w-4 cursor-pointer"
+                            className="rounded-sm border-slate-300 text-secondary-container focus:ring-secondary-container h-4 w-4 cursor-pointer"
                             checked={isChecked(topic, 'SUPPORT')}
                             onChange={() => handleToggle(topic, 'SUPPORT')}
                           />
