@@ -187,10 +187,10 @@ const Issues: React.FC = () => {
             </div>
             {/* Main Venn Container */}
             <div className="col-span-12 md:col-span-8">
-              <div className={`relative border-2 border-dashed border-stone-200 rounded-xl editorial-shadow overflow-hidden transition-all duration-500 ${
+              <div className={`relative transition-all duration-500 ${
                 isFullscreen 
-                  ? 'fixed inset-4 md:inset-8 z-[200] bg-[#fbf9f5] dark:bg-[#162839] shadow-2xl' 
-                  : 'bg-surface-container-low/30 h-[860px]'
+                  ? 'fixed inset-0 z-[300] bg-[#fbf9f5] dark:bg-[#162839] border-none rounded-none shadow-none' 
+                  : 'bg-surface-container-low/30 border-2 border-dashed border-stone-200 rounded-xl editorial-shadow h-[860px] overflow-hidden'
               }`}>
                 {/* Full Screen Toggle Button */}
                 <button 
