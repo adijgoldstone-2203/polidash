@@ -89,20 +89,20 @@ const Issues: React.FC = () => {
           <div className="max-w-6xl mx-auto grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-4 space-y-6 z-20">
               
-              <div className="bg-primary p-6 rounded-lg text-white shadow-xl">
-                <p className="text-xs text-on-primary-container font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
+              <div className="bg-white border border-stone-200 p-6 rounded-lg text-slate-800 shadow-xl">
+                <p className="text-xs text-primary font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
                 {selectedCriteria.length === 0 ? (
-                  <p className="text-sm leading-relaxed mb-4 text-slate-400 italic">Waiting for Criteria Selection...</p>
+                  <p className="text-sm leading-relaxed mb-4 text-slate-500 italic">Waiting for Criteria Selection...</p>
                 ) : (
                   <div className="mb-6 space-y-2">
-                    <p className="text-[10px] uppercase tracking-widest text-slate-300 font-bold mb-3">Finding politicians aligned with:</p>
+                    <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Finding politicians aligned with:</p>
                     <div className="space-y-2">
                       {selectedCriteria.map((c) => (
-                        <div key={c.topic} className="flex items-center gap-3 bg-white/10 p-3 rounded-md border border-white/5">
-                          <span className={`text-[10px] font-black px-2 py-1 rounded-sm uppercase tracking-widest ${c.stance === 'SUPPORT' ? 'bg-secondary-container text-on-secondary-container' : 'bg-white text-primary'}`}>
+                        <div key={c.topic} className="flex items-center gap-3 bg-slate-50 p-3 rounded-md border border-slate-100">
+                          <span className={`text-[10px] font-black px-2 py-1 rounded-sm uppercase tracking-widest ${c.stance === 'SUPPORT' ? 'bg-secondary-container text-on-secondary-container' : 'bg-primary text-white'}`}>
                             {c.stance}
                           </span>
-                          <span className="text-sm font-medium text-white truncate">{c.topic}</span>
+                          <span className="text-sm font-medium text-slate-800 truncate">{c.topic}</span>
                         </div>
                       ))}
                     </div>
@@ -163,7 +163,7 @@ const Issues: React.FC = () => {
                           />
                           <input 
                             type="checkbox"
-                            className="rounded-sm border-slate-300 text-error focus:ring-error h-4 w-4 cursor-pointer"
+                            className="rounded-sm border-slate-300 text-primary focus:ring-primary h-4 w-4 cursor-pointer"
                             checked={isChecked(topic, 'OPPOSE')}
                             onChange={() => handleToggle(topic, 'OPPOSE')}
                           />
