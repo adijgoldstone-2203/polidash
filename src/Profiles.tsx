@@ -20,7 +20,7 @@ const Profiles: React.FC = () => {
               </p>
             </section>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-24">
-              {politicians.map((pol, idx) => (
+              {[...politicians].sort((a, b) => a.name.localeCompare(b.name)).map((pol, idx) => (
                 <div key={idx} className="bg-surface-container-lowest transition-all hover:bg-white p-6 relative overflow-hidden group">
                   <div className="flex items-start justify-between mb-8">
                     <div className="flex items-center gap-4">
