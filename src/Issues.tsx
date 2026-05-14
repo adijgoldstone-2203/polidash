@@ -195,7 +195,7 @@ const Issues: React.FC = () => {
                 {/* Full Screen Toggle Button */}
                 <button 
                   onClick={() => setIsFullscreen(!isFullscreen)}
-                  className="absolute top-4 right-4 z-[100] p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-full shadow-lg hover:scale-105 hover:bg-white dark:hover:bg-slate-700 transition-all group"
+                  className="absolute top-4 right-4 z-40 p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-full shadow-lg hover:scale-105 hover:bg-white dark:hover:bg-slate-700 transition-all group"
                   title={isFullscreen ? "Exit Full Screen" : "Full Screen"}
                 >
                   <span className="material-symbols-outlined text-primary dark:text-white">
