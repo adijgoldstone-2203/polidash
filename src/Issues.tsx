@@ -77,14 +77,40 @@ const Issues: React.FC = () => {
       `}</style>
       <div className="flex min-h-screen">
         <main className="flex-1 p-8 bg-surface">
-          <div className="max-w-6xl mx-auto mb-12">
-            <section className="mb-12">
+          <div className="max-w-6xl mx-auto mb-12 flex flex-col md:flex-row items-start justify-between gap-8">
+            <section>
               <h1 className="font-['Newsreader'] text-5xl md:text-7xl font-light tracking-tight text-primary mb-4">
                 Venn Intelligence <span className="italic font-bold">Engine</span>
               </h1>
               <div className="h-1 w-24 bg-primary mb-8"></div>
               <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">Select up to three strategic frameworks to identify the convergence points of political leadership and ideological alignment.</p>
             </section>
+            
+            <div className="bg-primary p-6 rounded-lg text-white w-full md:w-96 shrink-0 shadow-xl">
+              <p className="text-xs text-on-primary-container font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
+              {selectedCriteria.length === 0 ? (
+                <p className="text-sm leading-relaxed mb-4 text-slate-400 italic">Waiting for Criteria Selection...</p>
+              ) : (
+                <p className="text-sm leading-relaxed mb-4">
+                  Finding politicians aligned with <br/>
+                  {selectedCriteria.map((c, i) => (
+                    <React.Fragment key={c.topic}>
+                      <span className={c.stance === 'SUPPORT' ? 'text-secondary-container font-bold' : 'text-error-container font-bold'}>
+                        {c.stance} {c.topic}
+                      </span>
+                      {i < selectedCriteria.length - 1 && " and "}
+                    </React.Fragment>
+                  ))}
+                </p>
+              )}
+              <button 
+                onClick={handleCalculate}
+                className="w-full py-3 bg-secondary hover:bg-secondary-container transition-colors text-white hover:text-on-secondary-container text-sm font-bold rounded flex items-center justify-center gap-2 uppercase tracking-widest"
+              >
+                <span className="material-symbols-outlined text-base">{hasCalculated ? 'refresh' : 'play_arrow'}</span>
+                {hasCalculated ? 'Recalculate' : 'Calculate'}
+              </button>
+            </div>
           </div>
           <div className="max-w-6xl mx-auto grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-4 space-y-6 z-20">
@@ -153,31 +179,6 @@ const Issues: React.FC = () => {
                   ))}
                 </div>
                 <p className="text-[10px] text-slate-400 mt-4 italic">*Select 1-3 criteria for synthesis.</p>
-              </div>
-              <div className="bg-primary p-6 rounded-lg text-white">
-                <p className="text-xs text-on-primary-container font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
-                {selectedCriteria.length === 0 ? (
-                  <p className="text-sm leading-relaxed mb-4 text-slate-400 italic">Waiting for Criteria Selection...</p>
-                ) : (
-                  <p className="text-sm leading-relaxed mb-4">
-                    Finding politicians aligned with <br/>
-                    {selectedCriteria.map((c, i) => (
-                      <React.Fragment key={c.topic}>
-                        <span className={c.stance === 'SUPPORT' ? 'text-secondary-container font-bold' : 'text-error-container font-bold'}>
-                          {c.stance} {c.topic}
-                        </span>
-                        {i < selectedCriteria.length - 1 && " and "}
-                      </React.Fragment>
-                    ))}
-                  </p>
-                )}
-                <button 
-                  onClick={handleCalculate}
-                  className="w-full py-3 bg-secondary hover:bg-secondary-container transition-colors text-white hover:text-on-secondary-container text-sm font-bold rounded flex items-center justify-center gap-2 uppercase tracking-widest"
-                >
-                  <span className="material-symbols-outlined text-base">{hasCalculated ? 'refresh' : 'play_arrow'}</span>
-                  {hasCalculated ? 'Recalculate' : 'Calculate'}
-                </button>
               </div>
             </div>
             {/* Main Venn Container */}
