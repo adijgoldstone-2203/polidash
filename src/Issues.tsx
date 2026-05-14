@@ -118,7 +118,7 @@ const Issues: React.FC = () => {
                           className="flex items-center gap-2 w-2/3 cursor-pointer select-none group"
                           onClick={() => setExpandedIssue(expandedIssue === topic ? null : topic)}
                         >
-                          <span className="text-sm font-medium text-slate-700 group-hover:text-primary transition-colors truncate">
+                          <span className="text-xs font-medium text-slate-700 group-hover:text-primary transition-colors truncate">
                             {topic}
                           </span>
                           <span className={`material-symbols-outlined text-[16px] text-slate-400 shrink-0 transition-transform duration-300 ${expandedIssue === topic ? 'rotate-180 text-primary' : ''}`}>
