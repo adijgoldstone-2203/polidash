@@ -186,7 +186,7 @@ const Issues: React.FC = () => {
               </div>
             </div>
             {/* Main Venn Container */}
-            <div className="col-span-12 md:col-span-8">
+            <div className={`col-span-12 md:col-span-8 ${isFullscreen ? 'relative z-[400]' : ''}`}>
               <div className={`relative transition-all duration-500 ${
                 isFullscreen 
                   ? 'fixed inset-0 z-[300] bg-[#fbf9f5] dark:bg-[#162839] border-none rounded-none shadow-none' 
