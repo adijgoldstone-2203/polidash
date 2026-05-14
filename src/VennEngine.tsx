@@ -93,13 +93,21 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
     <div className="relative w-full h-full min-h-[700px] overflow-hidden flex items-center justify-center">
       {/* Render Venn Circles */}
       {criteria.map((crit, index) => {
-        const isBottom = numCircles === 3 && (index === 1 || index === 2);
+        const getAlignmentClasses = () => {
+          if (numCircles === 3) {
+            if (index === 0) return 'items-start justify-center pt-8';
+            if (index === 1) return 'items-end justify-start pb-20 pl-16';
+            if (index === 2) return 'items-end justify-end pb-20 pr-16';
+          }
+          return 'items-start justify-center pt-6';
+        };
+
         return (
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             key={index}
-            className={`absolute rounded-full venn-circle overflow-hidden flex ${isBottom ? 'items-end pb-8' : 'items-start pt-6'} justify-center border-2 border-white/50 shadow-2xl ${colors[index]}`}
+            className={`absolute rounded-full venn-circle overflow-hidden flex ${getAlignmentClasses()} border-2 border-white/50 shadow-2xl ${colors[index]}`}
             style={{ ...getCircleStyles(index) }}
           >
             <div className={`text-center font-bold px-6 uppercase tracking-widest text-[9px] leading-tight ${textColors[index]}`} style={{textShadow: '0 1px 3px rgba(255,255,255,1)'}}>
