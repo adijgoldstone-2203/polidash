@@ -37,7 +37,12 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a href="#/issues" className="px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:shadow-xl transition-all flex items-center justify-center">Explore the Issues</a>
-                <a href="#workflow" className="px-8 py-4 bg-stone-100 text-primary font-label font-bold text-lg rounded-sm hover:bg-stone-200 transition-all flex items-center justify-center">Our Workflow</a>
+                <button 
+                  onClick={() => document.getElementById('workflow')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 bg-stone-100 text-primary font-label font-bold text-lg rounded-sm hover:bg-stone-200 transition-all flex items-center justify-center cursor-pointer"
+                >
+                  Our Workflow
+                </button>
               </div>
             </div>
           </section>
