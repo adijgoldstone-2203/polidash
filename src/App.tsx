@@ -15,6 +15,7 @@ function App() {
   React.useEffect(() => {
     const handleHashChange = () => {
       setCurrentPath(window.location.hash || '#/');
+      window.scrollTo(0, 0);
     };
 
     window.addEventListener('hashchange', handleHashChange);
