@@ -318,7 +318,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
           <LineChart 
             key={animationKey} 
             data={data} 
-            margin={{ top: 20, right: 30, left: 0, bottom: 10 }}
+            margin={{ top: 20, right: 40, left: 0, bottom: 10 }}
             onMouseDown={(e: any) => {
               const x = getXValue(e);
               const y = e ? (e.chartY !== undefined ? e.chartY : (e.activeCoordinate ? e.activeCoordinate.y : undefined)) : undefined;
@@ -345,6 +345,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
               type="number"
               scale="time"
               domain={[left, right]}
+              padding={{ left: 20, right: 20 }}
               allowDataOverflow={true}
               tickFormatter={formatDate} 
               tick={{ fontSize: 10, fill: '#94a3b8', angle: -45, textAnchor: 'end', dy: 10 }}
