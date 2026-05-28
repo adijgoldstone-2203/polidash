@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Politician, ISSUE_DEFINITIONS } from './data';
+import { Politician } from './data';
 import OptimizedImage from './components/OptimizedImage';
+import { useLanguage } from './i18n';
 
 export interface Criterion {
   topic: string;
@@ -14,6 +15,8 @@ interface VennEngineProps {
 }
 
 const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
+  const { t, tParty, tPolitician, tIssue, tStance, tIssueDefinition, lang } = useLanguage();
+
   // Compute intersection regions
   const regions = useMemo(() => {
     const map: Record<string, Politician[]> = {};
@@ -43,8 +46,8 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center text-center p-12">
         <span className="material-symbols-outlined text-6xl text-stone-300 mb-4">insights</span>
-        <h3 className="font-headline text-2xl text-stone-400 font-medium italic">Synthesizing Matrix...</h3>
-        <p className="text-stone-400 text-sm max-w-sm mt-2">Configure binary standpoints in the sidebar to generate a live visualization of political alignment.</p>
+        <h3 className="font-headline text-2xl text-stone-400 font-medium italic">{t('issues.venn.placeholder.title')}</h3>
+        <p className="text-stone-400 text-sm max-w-sm mt-2">{t('issues.venn.placeholder.desc')}</p>
       </div>
     );
   }
@@ -54,39 +57,49 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
   const textColors = ['text-[#006397]', 'text-[#ba1a1a]', 'text-[#a16207]'];
   
   const getCircleStyles = (index: number) => {
-    if (numCircles === 1) return { top: '20%', left: '20%', width: '60%', height: '60%' };
-    if (numCircles === 2) {
-      if (index === 0) return { top: '22%', left: '8%', width: '52%', height: '52%' };
-      if (index === 1) return { top: '22%', left: '40%', width: '52%', height: '52%' };
-    }
-    if (numCircles === 3) {
+    let styles: any = {};
+    if (numCircles === 1) styles = { top: '20%', left: '20%', width: '60%', height: '60%' };
+    else if (numCircles === 2) {
+      if (index === 0) styles = { top: '22%', left: '8%', width: '52%', height: '52%' };
+      if (index === 1) styles = { top: '22%', left: '40%', width: '52%', height: '52%' };
+    } else if (numCircles === 3) {
       const size = '52%';
-      if (index === 0) return { top: '8%', left: '24%', width: size, height: size }; // Blue
-      if (index === 1) return { top: '38%', left: '10%', width: size, height: size };  // Red
-      if (index === 2) return { top: '38%', left: '38%', width: size, height: size }; // Yellow
+      if (index === 0) styles = { top: '8%', left: '24%', width: size, height: size }; // Blue
+      if (index === 1) styles = { top: '38%', left: '10%', width: size, height: size };  // Red
+      if (index === 2) styles = { top: '38%', left: '38%', width: size, height: size }; // Yellow
     }
-    return {};
+
+    if (lang === 'he' && styles.left && styles.width) {
+      const leftVal = parseFloat(styles.left);
+      const widthVal = parseFloat(styles.width);
+      styles.left = `${100 - leftVal - widthVal}%`;
+    }
+    return styles;
   };
 
   const getNodePosition = (sig: string) => {
+    let pos = { top: '50%', left: '50%' };
     if (numCircles === 1) {
-      if (sig === '0') return { top: '50%', left: '50%' };
+      if (sig === '0') pos = { top: '50%', left: '50%' };
+    } else if (numCircles === 2) {
+      if (sig === '0') pos = { top: '48%', left: '26%' };    
+      if (sig === '1') pos = { top: '48%', left: '74%' };    
+      if (sig === '0,1') pos = { top: '48%', left: '50%' };  
+    } else if (numCircles === 3) {
+      if (sig === '0') pos = { top: '26%', left: '50%' };    
+      if (sig === '1') pos = { top: '72%', left: '25%' };    
+      if (sig === '2') pos = { top: '72%', left: '75%' };    
+      if (sig === '0,1') pos = { top: '48%', left: '34%' };  
+      if (sig === '0,2') pos = { top: '48%', left: '66%' };  
+      if (sig === '1,2') pos = { top: '72%', left: '50%' };  
+      if (sig === '0,1,2') pos = { top: '53%', left: '50%' }; 
     }
-    if (numCircles === 2) {
-      if (sig === '0') return { top: '48%', left: '26%' };    
-      if (sig === '1') return { top: '48%', left: '74%' };    
-      if (sig === '0,1') return { top: '48%', left: '50%' };  
+
+    if (lang === 'he' && pos.left) {
+      const leftVal = parseFloat(pos.left);
+      pos.left = `${100 - leftVal}%`;
     }
-    if (numCircles === 3) {
-      if (sig === '0') return { top: '26%', left: '50%' };    
-      if (sig === '1') return { top: '72%', left: '25%' };    
-      if (sig === '2') return { top: '72%', left: '75%' };    
-      if (sig === '0,1') return { top: '48%', left: '34%' };  
-      if (sig === '0,2') return { top: '48%', left: '66%' };  
-      if (sig === '1,2') return { top: '72%', left: '50%' };  
-      if (sig === '0,1,2') return { top: '53%', left: '50%' }; 
-    }
-    return { top: '50%', left: '50%' };
+    return pos;
   };
 
   return (
@@ -96,12 +109,12 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
         const getAlignmentClasses = () => {
           if (numCircles === 3) {
             if (index === 0) return 'items-start justify-center pt-8';
-            if (index === 1) return 'items-end justify-start pb-10 pl-10';
-            if (index === 2) return 'items-end justify-end pb-10 pr-10';
+            if (index === 1) return 'items-end justify-start pb-10 ps-10';
+            if (index === 2) return 'items-end justify-end pb-10 pe-10';
           }
           if (numCircles === 2) {
-            if (index === 0) return 'items-start justify-start pt-10 pl-14';
-            if (index === 1) return 'items-start justify-end pt-10 pr-14';
+            if (index === 0) return 'items-start justify-start pt-10 ps-14';
+            if (index === 1) return 'items-start justify-end pt-10 pe-14';
           }
           return 'items-start justify-center pt-6';
         };
@@ -117,9 +130,9 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
             style={{ ...getCircleStyles(index) }}
           >
             <div className={`relative group/venntooltip text-center font-bold px-6 uppercase tracking-widest text-[9px] leading-tight ${textColors[index]} cursor-help`} style={{textShadow: '0 1px 3px rgba(255,255,255,1)'}}>
-              {crit.topic} <br/> ({crit.stance})
+              {tIssue(crit.topic)} <br/> ({tStance(crit.stance)})
               <div className={`absolute left-1/2 -translate-x-1/2 w-56 p-3 bg-slate-900 text-white text-[11px] normal-case tracking-normal font-normal leading-relaxed rounded-md shadow-2xl opacity-0 invisible group-hover/venntooltip:opacity-100 group-hover/venntooltip:visible transition-all z-[100] pointer-events-none ${isHeaderBottom ? 'top-full mt-4' : 'bottom-full mb-4'}`} style={{textShadow: 'none'}}>
-                {ISSUE_DEFINITIONS[crit.topic as keyof typeof ISSUE_DEFINITIONS]}
+                {tIssueDefinition(crit.topic)}
                 <div className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 transform rotate-45 ${isHeaderBottom ? '-top-1.5' : '-bottom-1.5'}`}></div>
               </div>
             </div>
@@ -133,13 +146,26 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
         
         // Map intersection signature to Primary/Secondary colors
         const getBorderColor = (signature: string) => {
-          if (signature === '0') return 'border-[#006397]'; // Primary Blue
-          if (signature === '1') return 'border-[#ba1a1a]'; // Primary Red
-          if (signature === '2') return 'border-[#facc15]'; // Primary Yellow
-          if (signature === '0,1') return 'border-[#6b21a8]'; // Secondary Purple (Blue+Red)
-          if (signature === '0,2') return 'border-[#15803d]'; // Secondary Green (Blue+Yellow)
-          if (signature === '1,2') return 'border-[#c2410c]'; // Secondary Orange (Red+Yellow)
-          if (signature === '0,1,2') return 'border-white';   // White Center
+          let checkSig = signature;
+          if (lang === 'he' && numCircles === 3) {
+            // Mirror signatures since indices 1 and 2 are swapped in Hebrew mode circles
+            if (signature === '1') checkSig = '2';
+            else if (signature === '2') checkSig = '1';
+            else if (signature === '0,1') checkSig = '0,2';
+            else if (signature === '0,2') checkSig = '0,1';
+          } else if (lang === 'he' && numCircles === 2) {
+            // Mirror signatures since indices 0 and 1 are swapped in Hebrew mode circles
+            if (signature === '0') checkSig = '1';
+            else if (signature === '1') checkSig = '0';
+          }
+
+          if (checkSig === '0') return 'border-[#006397]'; // Primary Blue
+          if (checkSig === '1') return 'border-[#ba1a1a]'; // Primary Red
+          if (checkSig === '2') return 'border-[#facc15]'; // Primary Yellow
+          if (checkSig === '0,1') return 'border-[#6b21a8]'; // Secondary Purple (Blue+Red)
+          if (checkSig === '0,2') return 'border-[#15803d]'; // Secondary Green (Blue+Yellow)
+          if (checkSig === '1,2') return 'border-[#c2410c]'; // Secondary Orange (Red+Yellow)
+          if (checkSig === '0,1,2') return 'border-white';   // White Center
           return 'border-white';
         };
 
@@ -182,7 +208,7 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
                 {pol.imageUrl ? (
                   <OptimizedImage 
                     src={pol.imageUrl} 
-                    alt={pol.name}
+                    alt={tPolitician(pol.name)}
                     className="w-full h-full object-cover object-top"
                   />
                 ) : (
@@ -191,9 +217,9 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
               </motion.div>
               
               {/* Tooltip on hover */}
-              <div className="absolute opacity-0 group-hover:opacity-100 bottom-full mb-3 left-1/2 -translate-x-1/2 bg-[#162839] text-white text-[10px] font-black whitespace-nowrap px-3 py-2 rounded shadow-2xl transition-all duration-200 pointer-events-none z-50 uppercase tracking-widest border border-white/10 flex flex-col items-center gap-0.5 min-w-[80px]">
-                <span>{pol.name}</span>
-                <span className="text-[8px] text-secondary-container font-bold opacity-90">{pol.party}</span>
+              <div className="absolute opacity-0 group-hover:opacity-100 bottom-full mb-3 left-1/2 -translate-x-1/2 bg-[#162839] text-white text-[10px] font-black whitespace-nowrap px-3 py-2 rounded shadow-2xl transition-all duration-200 pointer-events-none z-50 uppercase tracking-widest border border-white/10 flex flex-col items-center gap-0.5 min-w-[80px]" dir={lang === 'he' ? 'rtl' : 'ltr'}>
+                <span>{tPolitician(pol.name)}</span>
+                <span className="text-[8px] text-secondary-container font-bold opacity-90">{tParty(pol.party)}</span>
                 <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#162839]"></div>
               </div>
             </a>

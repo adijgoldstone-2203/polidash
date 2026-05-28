@@ -1,5 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n';
+
+import { PARTY_COLORS } from '../polls';
 
 interface ParliamentChartProps {
   totalSeats: number;
@@ -7,22 +10,8 @@ interface ParliamentChartProps {
   parties: { name: string; seats: number; isSelected: boolean }[];
 }
 
-const PARTY_COLORS: Record<string, string> = {
-  "Likud": "#2B4C7E",
-  "National Unity Party": "#5A9BD5",
-  "Yesh Atid": "#FFD700",
-  "Yisrael Beiteinu": "#1A237E",
-  "Shas": "#424242",
-  "United Torah Judaism": "#212121",
-  "Otzma Yehudit": "#E65100",
-  "Religious Zionist": "#EF6C00",
-  "Democrats": "#B71C1C",
-  "Ra'am": "#1B5E20",
-  "Hadash-Ta'al": "#2E7D32",
-  "Default": "#E0E0E0"
-};
-
 const ParliamentChart: React.FC<ParliamentChartProps> = ({ totalSeats, parties }) => {
+  const { t } = useLanguage();
   const dotsPerRow = 20; 
   const rows = Math.ceil(totalSeats / dotsPerRow); 
   
@@ -48,7 +37,7 @@ const ParliamentChart: React.FC<ParliamentChartProps> = ({ totalSeats, parties }
 
   return (
     <div className="relative w-full flex justify-center overflow-visible px-12">
-      <svg width="900" height="400" viewBox="0 0 900 400" className="overflow-visible">
+      <svg viewBox="0 0 900 400" className="w-full max-w-[650px] h-auto overflow-visible">
         <g>
           {seatMap.map((seat, i) => {
             const colIndex = Math.floor(i / rows);
@@ -82,7 +71,7 @@ const ParliamentChart: React.FC<ParliamentChartProps> = ({ totalSeats, parties }
         
         <line x1="450" y1="350" x2="450" y2="40" stroke="#162839" strokeWidth="1.5" strokeDasharray="6 6" className="opacity-20" />
         {/* Darker text for the majority threshold */}
-        <text x="450" y="30" textAnchor="middle" className="text-[12px] font-bold uppercase fill-primary opacity-80 tracking-widest">Majority Threshold (61)</text>
+        <text x="450" y="30" textAnchor="middle" className="text-[12px] font-bold uppercase fill-primary opacity-80 tracking-widest">{t('shared.majorityThreshold')}</text>
       </svg>
     </div>
   );

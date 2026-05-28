@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import VennEngine, { Criterion } from './VennEngine';
-import { politicians, ISSUE_DEFINITIONS } from './data';
+import { politicians } from './data';
+import { useLanguage } from './i18n';
 
 const ISSUES_LIST = [
   "Free Market Priority",
@@ -14,24 +15,26 @@ const ISSUES_LIST = [
   "Basic Law: Equality"
 ];
 
-
 const Issues: React.FC = () => {
   const [selectedCriteria, setSelectedCriteria] = useState<Criterion[]>([]);
   const [activeCriteria, setActiveCriteria] = useState<Criterion[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
   const [expandedIssue, setExpandedIssue] = useState<string | null>(null);
 
+  const { t, tIssue, tIssueDefinition, tStance } = useLanguage();
+
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.hash.split('?')[1]);
     const topic = params.get('topic');
-    if (topic && ISSUE_DEFINITIONS[topic]) {
-      const newCrit: Criterion = { topic, stance: 'SUPPORT' };
+    const stanceParam = params.get('stance')?.toUpperCase();
+    const stance: 'SUPPORT' | 'OPPOSE' = stanceParam === 'OPPOSE' ? 'OPPOSE' : 'SUPPORT';
+    
+    if (topic) {
+      const newCrit: Criterion = { topic, stance };
       setSelectedCriteria([newCrit]);
       setActiveCriteria([newCrit]);
       setHasCalculated(true);
-      
-      // Clean up the URL to prevent re-triggering on every mount if not intended
-      // window.location.hash = '#/issues'; 
+      setExpandedIssue(topic);
     }
   }, [window.location.hash]);
 
@@ -51,7 +54,7 @@ const Issues: React.FC = () => {
       if (selectedCriteria.length < 3) {
         setSelectedCriteria([...selectedCriteria, { topic, stance }]);
       } else {
-        alert("You can only select up to 3 criteria.");
+        alert(t('issues.maxAlert'));
       }
     }
   };
@@ -75,34 +78,35 @@ const Issues: React.FC = () => {
             box-shadow: 0 32px 64px -12px rgba(22, 40, 57, 0.04);
         }
       `}</style>
-      <div className="flex min-h-screen">
-        <main className="flex-1 p-8 bg-surface">
-          <div className="max-w-6xl mx-auto mb-12">
-            <section className="mb-12">
-              <h1 className="font-['Newsreader'] text-5xl md:text-7xl font-light tracking-tight text-primary mb-4">
-                Venn Intelligence <span className="italic font-bold">Engine</span>
-              </h1>
-              <div className="h-1 w-24 bg-primary mb-8"></div>
-              <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">Select up to three strategic frameworks to identify the convergence points of political leadership and ideological alignment.</p>
-            </section>
-          </div>
-          <div className="max-w-6xl mx-auto grid grid-cols-12 gap-8 items-start">
+      <div className="min-h-screen bg-surface px-6 lg:px-12 pt-8 pb-20">
+        <main className="max-w-7xl mx-auto">
+          <section className="mb-12">
+            <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4">
+              {t('issues.title1')} <span className="italic font-bold">{t('issues.title2')}</span>
+            </h1>
+            <div className="h-1 w-24 bg-primary mb-6"></div>
+            <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+              {t('issues.desc')}
+            </p>
+          </section>
+          
+          <div className="grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-4 space-y-6 z-20">
               
               <div className="bg-white border border-stone-200 p-6 rounded-lg text-slate-800 shadow-xl">
-                <p className="text-xs text-primary font-bold uppercase tracking-widest mb-2">Live Synthesis</p>
+                <p className="text-xs text-primary font-bold uppercase tracking-widest mb-2">{t('issues.liveSynthesis')}</p>
                 {selectedCriteria.length === 0 ? (
-                  <p className="text-sm leading-relaxed mb-4 text-slate-500 italic">Waiting for Criteria Selection...</p>
+                  <p className="text-sm leading-relaxed mb-4 text-slate-500 italic">{t('issues.waiting')}</p>
                 ) : (
                   <div className="mb-6 space-y-2">
-                    <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Finding politicians aligned with:</p>
+                    <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">{t('issues.findingAligned')}</p>
                     <div className="space-y-2">
                       {selectedCriteria.map((c) => (
                         <div key={c.topic} className="flex items-center gap-3 bg-slate-50 p-3 rounded-md border border-slate-100">
                           <span className={`text-[10px] font-black px-2 py-1 rounded-sm uppercase tracking-widest ${c.stance === 'SUPPORT' ? 'bg-secondary-container text-on-secondary-container' : 'bg-primary text-white'}`}>
-                            {c.stance}
+                            {tStance(c.stance === 'SUPPORT' ? 'Support' : 'Oppose')}
                           </span>
-                          <span className="text-sm font-medium text-slate-800 truncate">{c.topic}</span>
+                          <span className="text-sm font-medium text-slate-800 truncate">{tIssue(c.topic)}</span>
                         </div>
                       ))}
                     </div>
@@ -113,14 +117,14 @@ const Issues: React.FC = () => {
                   className="w-full py-3 bg-secondary hover:bg-secondary-container transition-colors text-white hover:text-on-secondary-container text-sm font-bold rounded flex items-center justify-center gap-2 uppercase tracking-widest"
                 >
                   <span className="material-symbols-outlined text-base">{hasCalculated ? 'refresh' : 'play_arrow'}</span>
-                  {hasCalculated ? 'Recalculate' : 'Calculate'}
+                  {hasCalculated ? t('issues.recalculate') : t('issues.calculate')}
                 </button>
               </div>
 
               <div className="bg-surface-container-low p-6 rounded-lg">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-label font-bold text-sm text-primary flex items-center gap-2 uppercase tracking-wide">
-                    <span className="material-symbols-outlined text-sm">tune</span> BINARY STANDPOINTS
+                    <span className="material-symbols-outlined text-sm">tune</span> {t('issues.binaryStandpoints')}
                   </h3>
                   {selectedCriteria.length > 0 && (
                     <button 
@@ -131,13 +135,13 @@ const Issues: React.FC = () => {
                       }}
                       className="text-[10px] font-bold text-secondary uppercase tracking-widest hover:underline transition-all"
                     >
-                      Clear
+                      {t('issues.clear')}
                     </button>
                   )}
                 </div>
                 <div className="flex justify-end gap-11 mb-2 px-1">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Support</span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Oppose</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('issues.support')}</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('issues.oppose')}</span>
                 </div>
                 <div className="space-y-2">
                   {ISSUES_LIST.map((topic) => (
@@ -148,13 +152,13 @@ const Issues: React.FC = () => {
                           onClick={() => setExpandedIssue(expandedIssue === topic ? null : topic)}
                         >
                           <span className="text-xs font-medium text-slate-700 group-hover:text-primary transition-colors truncate">
-                            {topic}
+                            {tIssue(topic)}
                           </span>
                           <span className={`material-symbols-outlined text-[16px] text-slate-400 shrink-0 transition-transform duration-300 ${expandedIssue === topic ? 'rotate-180 text-primary' : ''}`}>
                             expand_more
                           </span>
                         </div>
-                        <div className="flex gap-14 px-1 pr-3 w-1/3 justify-end">
+                        <div className="flex gap-14 px-1 pe-3 w-1/3 justify-end">
                           <input 
                             type="checkbox"
                             className="rounded-sm border-slate-300 text-secondary-container focus:ring-secondary-container h-4 w-4 cursor-pointer"
@@ -174,14 +178,14 @@ const Issues: React.FC = () => {
                       <div className={`grid transition-all duration-300 ease-in-out ${expandedIssue === topic ? 'grid-rows-[1fr] opacity-100 border-t border-slate-100' : 'grid-rows-[0fr] opacity-0'}`}>
                         <div className="overflow-hidden">
                           <p className="p-4 text-xs leading-relaxed text-slate-600 bg-slate-50/50">
-                            {ISSUE_DEFINITIONS[topic as keyof typeof ISSUE_DEFINITIONS]}
+                            {tIssueDefinition(topic)}
                           </p>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
-                <p className="text-[10px] text-slate-400 mt-4 italic">*Select 1-3 criteria for synthesis.</p>
+                <p className="text-[10px] text-slate-400 mt-4 italic">{t('issues.selectCriteria')}</p>
               </div>
             </div>
             {/* Main Venn Container */}
@@ -192,18 +196,18 @@ const Issues: React.FC = () => {
             </div>
           </div>
           <section className="max-w-6xl mx-auto mt-20 pt-12 border-t border-stone-200/50">
-            <h2 className="font-headline text-3xl font-bold mb-10">Ideological Matrix Definitions</h2>
+            <h2 className="font-headline text-3xl font-bold mb-10">{t('issues.definitions')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {activeCriteria.length > 0 ? (
                 // Only render Definitions for active selected topics (unique)
                 Array.from(new Set(activeCriteria.map(c => c.topic))).map(topic => (
                   <div key={topic} className="space-y-4">
-                    <h4 className="font-label font-bold text-secondary text-sm tracking-widest uppercase">{topic}</h4>
-                    <p className="font-headline text-lg leading-relaxed text-primary">{ISSUE_DEFINITIONS[topic]}</p>
+                    <h4 className="font-label font-bold text-secondary text-sm tracking-widest uppercase">{tIssue(topic)}</h4>
+                    <p className="font-headline text-lg leading-relaxed text-primary">{tIssueDefinition(topic)}</p>
                   </div>
                 ))
               ) : (
-                <div className="col-span-3 text-stone-400 italic">Select criteria to view definitions.</div>
+                <div className="col-span-3 text-stone-400 italic">{t('issues.selectToView')}</div>
               )}
             </div>
           </section>

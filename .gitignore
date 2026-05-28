@@ -25,5 +25,17 @@ dist-ssr
 .vercel
 firebase
 preview-*.html
-*.log
-firebase-debug.log
+# Scratch and helper scripts
+fix_polls.cjs
+intercept_api.cjs
+madad_raw.html
+parse_allpolls.cjs
+parse_polls.py
+patch_slider.sh
+patch_trendchart.ts
+polls_data_snippet.ts
+polls_extracted.json
+scrape_test.cjs
+translate_polls.py
+typescript
+update_polls.py

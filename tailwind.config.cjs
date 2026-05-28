@@ -64,8 +64,8 @@ module.exports = {
       },
       fontFamily: {
         "headline": ["Newsreader", "serif"],
-        "body": ["Inter", "sans-serif"],
-        "label": ["Inter", "sans-serif"]
+        "body": ["Heebo", "Inter", "sans-serif"],
+        "label": ["Heebo", "Inter", "sans-serif"]
       }
     },
   },

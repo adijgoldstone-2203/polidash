@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { politicians, ISSUE_DEFINITIONS } from './data';
+import { politicians } from './data';
 import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedImage from './components/OptimizedImage';
+import { useLanguage } from './i18n';
 
 interface Props {
   id: string;
@@ -10,15 +11,16 @@ interface Props {
 const ProfileDetail: React.FC<Props> = ({ id }) => {
   const politician = politicians.find(p => p.id === id) || politicians[0];
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
+  
+  const { t, tPolitician, tParty, tIssue, tIntelligenceTopic, tStance, tIssueDefinition, tBio, tQuote, tFacts, tIntelligence, lang } = useLanguage();
 
   return (
     <>
-      <div className="flex pt-4">
-        <main className="flex-1 p-8 min-h-screen">
-          <div className="max-w-6xl mx-auto">
+      <div className="min-h-screen bg-[#fbf9f5] px-6 lg:px-12 pt-8 pb-20">
+        <div className="max-w-6xl mx-auto">
             <div className="mb-12">
               <a className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors" href="#/profiles">
-                <span className="material-symbols-outlined text-base">arrow_back</span> Back to All Profiles
+                <span className="material-symbols-outlined text-base">{lang === 'he' ? 'arrow_forward' : 'arrow_back'}</span> {t('profileDetail.back')}
               </a>
             </div>
 
@@ -28,20 +30,23 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                 <div className="lg:col-span-4">
                   <div className="sticky top-24">
                     {politician.imageUrl ? (
-                      <OptimizedImage alt={`portrait of ${politician.name}`} className="w-full aspect-square object-cover object-top mb-8" src={politician.imageUrl} />
+                      <OptimizedImage alt={`portrait of ${tPolitician(politician.name)}`} className="w-full aspect-square object-cover object-top mb-8" src={politician.imageUrl} />
                     ) : (
                       <div className="w-full aspect-square bg-slate-200 mb-8 flex items-center justify-center">
                         <span className="material-symbols-outlined text-7xl text-slate-400">person</span>
                       </div>
                     )}
-                    <h2 className="font-['Newsreader'] text-4xl font-bold mb-2 text-primary">{politician.name}</h2>
-                    <p className="text-secondary font-bold uppercase tracking-widest text-sm mb-6">{politician.party} • {politician.seats !== "N/A" ? `${politician.seats} Seats` : "N/A"}</p>
+                    <h2 className="font-['Newsreader'] text-4xl font-bold mb-2 text-primary">{tPolitician(politician.name)}</h2>
+                    <p className="text-secondary font-bold uppercase tracking-widest text-sm mb-6">
+                      {tParty(politician.party)} • {politician.seats !== "N/A" ? `${politician.seats} ${t('profileDetail.seats')}` : t('profileDetail.na')}
+                    </p>
                     
-                    <div className="font-['Inter'] text-slate-600 leading-relaxed border-l-2 border-stone-200 pl-6 mb-8 space-y-6">
-                      <p>{politician.biography}</p>
-                      {politician.facts && politician.facts.length > 0 && (
-                        <ul className="list-disc ml-5 space-y-2 mt-4 text-sm font-medium">
-                          {politician.facts.map((fact, i) => (
+                    <div className="font-['Inter'] text-slate-600 leading-relaxed border-s-2 border-stone-200 ps-6 mb-8 space-y-6">
+                      <p className="italic font-medium text-slate-700 text-lg">"{tQuote(politician.id)}"</p>
+                      <p>{tBio(politician.id)}</p>
+                      {tFacts(politician.id) && tFacts(politician.id).length > 0 && (
+                        <ul className="list-disc ms-5 space-y-2 mt-4 text-sm font-medium">
+                          {tFacts(politician.id).map((fact, i) => (
                             <li key={i}>{fact}</li>
                           ))}
                         </ul>
@@ -50,7 +55,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
 
                     <div className="flex gap-4">
                       <a href={politician.partyWebsite} target="_blank" rel="noreferrer" className="w-full bg-primary text-white px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-2">
-                        Link to Party Website <span className="material-symbols-outlined text-sm">open_in_new</span>
+                        {t('profileDetail.partyLink')} <span className="material-symbols-outlined text-sm">open_in_new</span>
                       </a>
                     </div>
                   </div>
@@ -60,7 +65,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                 <div className="lg:col-span-8 space-y-16">
                   {/* Binary Stance Board */}
                   <div>
-                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary">Stance Board: Core Principles</h3>
+                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary">{t('profileDetail.stanceBoard')}</h3>
                     <div className="relative">
                       <div className={`grid grid-cols-1 md:grid-cols-3 gap-1 transition-all duration-500 ${expandedTopic ? 'opacity-20 pointer-events-none' : 'opacity-100'}`}>
                         {Object.entries(politician.stances).map(([topic, status], i) => {
@@ -91,11 +96,11 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                               className={`${bgClass} p-6 flex flex-col justify-between h-32 cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:z-10 transition-all duration-300 group border-2 border-transparent hover:border-black/5 dark:hover:border-white/10`}
                             >
                               <div className="flex justify-between items-start">
-                                <p className={`text-[10px] font-bold ${labelColor} uppercase tracking-widest`}>{topic}</p>
+                                <p className={`text-[10px] font-bold ${labelColor} uppercase tracking-widest`}>{tIssue(topic)}</p>
                                 <span className={`material-symbols-outlined text-sm ${labelColor} opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0`}>open_in_full</span>
                               </div>
                               <div className="flex items-center justify-between">
-                                <span className={`${valColor} font-black text-xl`}>{status}</span>
+                                <span className={`${valColor} font-black text-xl`}>{tStance(status)}</span>
                                 <span className={`material-symbols-outlined ${iconColor} group-hover:scale-110 transition-transform`}>{iconName}</span>
                               </div>
                             </div>
@@ -116,30 +121,30 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                           >
                             <button 
                               onClick={() => setExpandedTopic(null)}
-                              className="absolute top-4 right-4 p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
+                              className="absolute top-4 end-4 p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
                             >
                               <span className="material-symbols-outlined text-slate-400">close</span>
                             </button>
                             
                             <div className="mb-6">
-                              <h4 className="font-bold text-[10px] uppercase tracking-widest text-secondary mb-2">{expandedTopic}</h4>
+                              <h4 className="font-bold text-[10px] uppercase tracking-widest text-secondary mb-2">{tIssue(expandedTopic)}</h4>
                               <p className="font-['Newsreader'] text-2xl font-bold text-primary leading-tight mb-4">
-                                {ISSUE_DEFINITIONS[expandedTopic]}
+                                {tIssueDefinition(expandedTopic)}
                               </p>
                               <div className="flex items-center gap-3">
-                                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Politician's Stance:</span>
+                                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('profileDetail.stance')}</span>
                                 <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm ${
                                   politician.stances[expandedTopic] === 'Support' ? 'bg-secondary-container text-on-secondary-container' : 
                                   politician.stances[expandedTopic] === 'Oppose' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'
                                 }`}>
-                                  {politician.stances[expandedTopic]}
+                                  {tStance(politician.stances[expandedTopic])}
                                 </span>
                               </div>
                             </div>
                             
-                            <div className="flex-1 overflow-y-auto pr-2">
+                            <div className="flex-1 overflow-y-auto pe-2">
                               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">groups</span> Shared Stance Alignment
+                                <span className="material-symbols-outlined text-sm">groups</span> {t('profileDetail.sharedAlignment')}
                               </p>
                               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                 {politicians
@@ -154,17 +159,17 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                                         politician.stances[expandedTopic] === 'Oppose' ? 'bg-primary/10 hover:border-primary' : 'bg-stone-50 hover:border-slate-300'
                                       }`}
                                     >
-                                      <img src={p.imageUrl} alt={p.name} className="w-8 h-8 rounded-full object-cover object-top transition-all" />
+                                      <img src={p.imageUrl} alt={tPolitician(p.name)} className="w-8 h-8 rounded-full object-cover object-top transition-all" />
                                       <div className="min-w-0">
-                                        <p className="text-[10px] font-black text-primary truncate">{p.name}</p>
-                                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter truncate">{p.party}</p>
+                                        <p className="text-[10px] font-black text-primary truncate">{tPolitician(p.name)}</p>
+                                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter truncate">{tParty(p.party)}</p>
                                       </div>
                                     </a>
                                   ))
                                 }
                                 {politicians.filter(p => p.id !== politician.id && p.stances[expandedTopic] === politician.stances[expandedTopic]).length === 0 && (
                                   <div className="col-span-full py-8 text-center border-2 border-dashed border-stone-100 rounded">
-                                    <p className="text-xs text-slate-400 italic">No other politicians share this specific stance.</p>
+                                    <p className="text-xs text-slate-400 italic">{t('profileDetail.noShared')}</p>
                                   </div>
                                 )}
                               </div>
@@ -177,12 +182,12 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
 
                   {/* 10 Detailed Issues Section */}
                   <div className="space-y-12">
-                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary">Issues Intelligence</h3>
+                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary">{t('profileDetail.intelligence')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                      {Object.entries(politician.intelligence).map(([topic, description], i) => (
+                      {Object.keys(politician.intelligence).map((topic, i) => (
                         <div key={i} className="group">
-                          <h4 className="font-bold text-xs uppercase tracking-widest text-secondary mb-4">{topic}</h4>
-                          <p className="text-sm leading-relaxed text-slate-700">{description}</p>
+                          <h4 className="font-bold text-xs uppercase tracking-widest text-secondary mb-4">{tIntelligenceTopic(topic)}</h4>
+                          <p className="text-sm leading-relaxed text-slate-700">{tIntelligence(politician.id, topic)}</p>
                         </div>
                       ))}
                     </div>
@@ -191,10 +196,9 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
               </div>
             </section>
           </div>
-        </main>
-      </div>
-    </>
-  );
-};
+        </div>
+      </>
+    );
+  };
 
 export default ProfileDetail;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { politicians, ISSUE_DEFINITIONS } from './data';
+import { useLanguage } from './i18n';
 
 interface HeaderProps {
   currentPath: string;
@@ -10,23 +11,25 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<{ type: 'politician' | 'issue', id: string, name: string }[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
+  
+  const { lang, setLang, t, tPolitician, tIssue } = useLanguage();
 
   useEffect(() => {
     if (searchQuery.length > 1) {
       const q = searchQuery.toLowerCase();
       const matchedPoliticians = politicians
-        .filter(p => p.name.toLowerCase().includes(q))
-        .map(p => ({ type: 'politician' as const, id: p.id, name: p.name }));
+        .filter(p => p.name.toLowerCase().includes(q) || tPolitician(p.name).toLowerCase().includes(q))
+        .map(p => ({ type: 'politician' as const, id: p.id, name: tPolitician(p.name) }));
       
       const matchedIssues = Object.keys(ISSUE_DEFINITIONS)
-        .filter(i => i.toLowerCase().includes(q))
-        .map(i => ({ type: 'issue' as const, id: i, name: i }));
+        .filter(i => i.toLowerCase().includes(q) || tIssue(i).toLowerCase().includes(q))
+        .map(i => ({ type: 'issue' as const, id: i, name: tIssue(i) }));
 
       setResults([...matchedPoliticians, ...matchedIssues]);
     } else {
       setResults([]);
     }
-  }, [searchQuery]);
+  }, [searchQuery, tPolitician, tIssue]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -49,10 +52,12 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
   };
 
   const navLinks = [
-    { name: 'Home', path: '#/' },
-    { name: 'Profiles', path: '#/profiles' },
-    { name: 'Issues', path: '#/issues' },
-    { name: 'Quiz', path: '#/quiz' },
+    { name: t('header.nav.home'), path: '#/' },
+    { name: t('header.nav.profiles'), path: '#/profiles' },
+    { name: t('header.nav.issues'), path: '#/issues' },
+    { name: t('header.nav.quiz'), path: '#/quiz' },
+    { name: t('header.nav.polls'), path: '#/polls' },
+    { name: t('header.nav.coalition'), path: '#/coalition' },
   ];
 
   return (
@@ -88,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
                 <input 
                   autoFocus
                   type="text" 
-                  placeholder="Search..."
+                  placeholder={t('header.search.placeholder')}
                   className="bg-transparent border-none focus:ring-0 text-sm w-full px-2 text-primary placeholder-slate-400"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -122,13 +127,13 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
                         </span>
                         <div className="flex flex-col">
                           <span className="text-sm font-bold text-primary">{res.name}</span>
-                          <span className="text-[10px] uppercase tracking-widest text-slate-400">{res.type}</span>
+                          <span className="text-[10px] uppercase tracking-widest text-slate-400">{t(res.type === 'politician' ? 'profiles.title1' : 'header.nav.issues')}</span>
                         </div>
                       </button>
                     ))
                   ) : (
                     <div className="px-4 py-6 text-center">
-                      <p className="text-xs text-slate-400 italic">No results found for "{searchQuery}"</p>
+                      <p className="text-xs text-slate-400 italic">{t('header.search.noResults')} "{searchQuery}"</p>
                     </div>
                   )}
                 </div>
@@ -136,9 +141,14 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
             )}
           </div>
           
-          <div className="flex items-center gap-3 border-l border-stone-200 dark:border-slate-800 pl-4 ml-2">
-            <span className="font-['Inter'] text-sm font-medium tracking-tight text-[#162839] dark:text-[#fbf9f5] cursor-pointer hover:text-secondary transition-colors">EN</span>
-            <span className="material-symbols-outlined text-[#162839] dark:text-[#fbf9f5] cursor-pointer scale-90 opacity-60 hover:opacity-100 transition-all">language</span>
+          <div className="flex items-center gap-3 border-s border-stone-200 dark:border-slate-800 ps-4 ms-2">
+            <button 
+              onClick={() => setLang(lang === 'en' ? 'he' : 'en')}
+              className="font-['Inter'] text-sm font-medium tracking-tight text-[#162839] dark:text-[#fbf9f5] cursor-pointer hover:text-secondary transition-colors flex items-center gap-1.5"
+            >
+              <span>{lang === 'en' ? 'EN' : 'עב'}</span>
+              <span className="material-symbols-outlined scale-90 opacity-60 hover:opacity-100 transition-all text-base">language</span>
+            </button>
           </div>
         </div>
       </div>

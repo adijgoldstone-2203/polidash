@@ -1,0 +1,429 @@
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import ReactSlider from 'react-slider';
+import { POLL_DATA, CURRENT_KNESSET, PARTY_COLORS } from './polls';
+import { computeWeightedAverage, getRunningWeightedAverageData, getAllParties, getSinglePollTimeSeriesData } from './utils/pollAnalytics';
+import TrendChart from './components/TrendChart';
+import { useLanguage } from './i18n';
+
+interface DateRangeSliderProps {
+  months: string[];
+  initialRange: [number, number];
+  onChange: (val: [number, number]) => void;
+  formatMonthLabel: (monthStr: string) => string;
+}
+
+const DateRangeSlider: React.FC<DateRangeSliderProps> = ({ months, initialRange, onChange, formatMonthLabel }) => {
+  const [localRange, setLocalRange] = useState<[number, number]>(initialRange);
+
+  useEffect(() => {
+    setLocalRange(initialRange);
+  }, [initialRange]);
+
+  return (
+    <ReactSlider
+      className="w-full h-2 bg-slate-200 rounded-full relative"
+      thumbClassName="h-5 w-5 bg-primary rounded-full shadow cursor-grab outline-none flex justify-center items-center top-1/2 -translate-y-1/2 focus:ring-2 focus:ring-offset-1 focus:ring-primary/50"
+      min={0}
+      max={months.length - 1}
+      value={localRange}
+      onChange={(val) => setLocalRange(val as [number, number])}
+      onAfterChange={(val) => onChange(val as [number, number])}
+      pearling
+      minDistance={0}
+      renderTrack={(props, state) => {
+        const { key, className, ...restProps } = props;
+        return (
+          <div 
+            key={key} 
+            {...restProps} 
+            className={`${className || ''} h-2 rounded-full ${state.index === 1 ? 'bg-primary' : 'bg-slate-200'}`} 
+          />
+        );
+      }}
+      renderThumb={(props, state) => {
+        const { key, ...restProps } = props;
+        return (
+          <div key={key} {...restProps}>
+            <div className={`absolute ${state.index === 0 ? '-top-6' : '-bottom-6'} whitespace-nowrap text-xs font-medium text-gray-600`}>
+              {formatMonthLabel(months[state.valueNow])}
+            </div>
+          </div>
+        );
+      }}
+    />
+  );
+};
+
+const PollsDashboard: React.FC = () => {
+  const { t, tParty, tPollSource, dateLocale, lang } = useLanguage();
+  const [selectedChannels, setSelectedChannels] = useState<Set<string>>(new Set());
+  const [monthRange, setMonthRange] = useState<[number, number]>([0, 100]); // will sync dynamically
+  const [sortColumn, setSortColumn] = useState<string>('weighted');
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
+  const [visibleParties, setVisibleParties] = useState<Set<string>>(new Set());
+  
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const handleRowClick = (party: string) => {
+    if (!visibleParties.has(party)) {
+      toggleParty(party);
+    }
+    // Small delay to ensure the chart renders the new line before scrolling
+    setTimeout(() => {
+      chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 50);
+  };
+
+  const allParties = useMemo(() => {
+    const rawParties = getAllParties(POLL_DATA);
+    if (POLL_DATA.length === 0) return rawParties;
+    
+    const sorted = [...POLL_DATA].sort((a, b) => b.dateISO.localeCompare(a.dateISO));
+    
+    // Check the 5 most recent polls to see which parties are still actively running
+    const recentPolls = sorted.slice(0, 5);
+    const activeParties = new Set<string>();
+    
+    recentPolls.forEach(poll => {
+      Object.entries(poll.data).forEach(([party, seats]) => {
+        if (seats > 0) activeParties.add(party);
+      });
+    });
+    
+    return rawParties.filter(party => activeParties.has(party));
+  }, []);
+
+  // Analytics
+  const weightedAvg = useMemo(() => computeWeightedAverage(POLL_DATA), []);
+  // Unique poll sources (including pollster) for the footer
+  const fullSources = useMemo(() => {
+    const s = new Set<string>();
+    POLL_DATA.forEach(p => s.add(p.source.split(' (')[0]));
+    return Array.from(s);
+  }, []);
+
+  // Unique channels (excluding pollster) for the filter dropdown
+  const channels = useMemo(() => {
+    const s = new Set<string>();
+    POLL_DATA.forEach(p => s.add(p.source.split(' (')[0]));
+    return Array.from(s).sort((a, b) => a.localeCompare(b));
+  }, []);
+
+  // Unique months for the date filter dropdown (chronological)
+  const months = useMemo(() => {
+    const m = new Set<string>();
+    POLL_DATA.forEach(p => {
+      if (!p.dateISO) return;
+      const d = new Date(p.dateISO);
+      m.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+    });
+    return Array.from(m).sort();
+  }, []);
+
+  // Sync range when months load
+  useEffect(() => {
+    if (months.length > 0) {
+      // Default to the most recent 2 months
+      setMonthRange([Math.max(0, months.length - 2), months.length - 1]);
+    }
+  }, [months]);
+
+  // Filter polls based on selected channels and month range
+  const filteredPolls = useMemo(() => {
+    return POLL_DATA.filter(p => {
+      const channelName = p.source.split(' (')[0];
+      const matchSource = selectedChannels.size === 0 || selectedChannels.has(channelName);
+      
+      let matchDate = true;
+      if (months.length > 0 && p.dateISO) {
+        const d = new Date(p.dateISO);
+        const monthStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+        const pollMonthIdx = months.indexOf(monthStr);
+        if (pollMonthIdx !== -1) {
+          matchDate = pollMonthIdx >= monthRange[0] && pollMonthIdx <= monthRange[1];
+        }
+      }
+      return matchSource && matchDate;
+    });
+  }, [selectedChannels, monthRange, months]);
+
+  // Extract most recent unique poll from each source up to 6
+  const latestUniquePolls = useMemo(() => {
+    const seen = new Set<string>();
+    const result = [];
+    for (const p of filteredPolls) {
+      const channel = p.source.split(' (')[0];
+      if (!seen.has(channel)) {
+        seen.add(channel);
+        result.push(p);
+      }
+      if (result.length === 6) break;
+    }
+    return result;
+  }, [filteredPolls]);
+
+  // Data for the trend chart
+  const chartData = useMemo(() => {
+    if (selectedChannels.size === 1) {
+      return getSinglePollTimeSeriesData(filteredPolls);
+    }
+    return getRunningWeightedAverageData(filteredPolls);
+  }, [filteredPolls, selectedChannels]);
+
+  // Sortable parties for the comparison table
+  const sortedPartiesForTable = useMemo(() => {
+    const parties = allParties.filter(p => (weightedAvg[p] || 0) > 0.5);
+    return parties.sort((a, b) => {
+      let valA = 0, valB = 0;
+      if (sortColumn === 'weighted') { valA = weightedAvg[a] || 0; valB = weightedAvg[b] || 0; }
+      else if (sortColumn === 'knesset') { valA = CURRENT_KNESSET[a] || 0; valB = CURRENT_KNESSET[b] || 0; }
+      else { valA = 0; valB = 0; }
+      return sortDir === 'desc' ? valB - valA : valA - valB;
+    });
+  }, [sortColumn, sortDir, allParties, weightedAvg]);
+
+  const toggleSort = (col: string) => {
+    if (sortColumn === col) setSortDir(d => d === 'desc' ? 'asc' : 'desc');
+    else { setSortColumn(col); setSortDir('desc'); }
+  };
+
+  const toggleParty = (party: string) => {
+    setVisibleParties(prev => {
+      const next = new Set(prev);
+      if (next.has(party)) next.delete(party);
+      else next.add(party);
+      return next;
+    });
+  };
+
+  const formatMonthLabel = (monthStr: string) => {
+    const [y, m] = monthStr.split('-');
+    const date = new Date(parseInt(y), parseInt(m) - 1, 1);
+    return date.toLocaleDateString(dateLocale, { month: 'short', year: 'numeric' });
+  };
+
+  const handleReset = () => {
+    setSelectedChannels(new Set());
+    if (months.length > 0) {
+      setMonthRange([Math.max(0, months.length - 2), months.length - 1]);
+    }
+    setVisibleParties(new Set());
+    setSortColumn('weighted');
+    setSortDir('desc');
+  };
+
+  const isDefaultRange = months.length > 0 && monthRange[0] === Math.max(0, months.length - 2) && monthRange[1] === months.length - 1;
+  const isDefaultState = selectedChannels.size === 0 && isDefaultRange && visibleParties.size === 0 && sortColumn === 'weighted';
+
+  const SortArrow = ({ col }: { col: string }) => (
+    <span className="text-[8px] ms-0.5 opacity-50">
+      {sortColumn === col ? (sortDir === 'desc' ? '▼' : '▲') : '⬍'}
+    </span>
+  );
+
+  const ChannelSelector = () => (
+    <div className="flex flex-col gap-2 w-full lg:w-auto mt-2 lg:mt-0" dir={lang === 'he' ? 'rtl' : 'ltr'}>
+      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{t('polls.trend.channels')}</label>
+      <div className="flex flex-wrap gap-2">
+        <button 
+          onClick={() => setSelectedChannels(new Set())}
+          className={`px-3 py-1.5 text-xs font-bold rounded-full border transition-colors ${selectedChannels.size === 0 ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
+        >
+          {t('polls.trend.all')}
+        </button>
+        {channels.map(c => (
+          <button
+            key={c}
+            onClick={() => {
+              const next = new Set(selectedChannels);
+              if (next.has(c)) {
+                next.delete(c);
+              } else {
+                next.add(c);
+              }
+              setSelectedChannels(next);
+            }}
+            className={`px-3 py-1.5 text-xs font-bold rounded-full border transition-colors ${selectedChannels.has(c) ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
+          >
+            {tPollSource(c)}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-[#fbf9f5] px-6 lg:px-12 pt-8 pb-20">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Page Header */}
+        <section className="mb-12">
+          <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4">
+            {t('polls.title1')} <span className="italic font-bold">{t('polls.title2')}</span>
+          </h1>
+          <div className="h-1 w-24 bg-primary mb-6" />
+          <p className="font-body text-lg text-on-surface-variant max-w-3xl leading-relaxed">
+            {t('polls.desc')
+              .replace('{count}', String(POLL_DATA.length))
+              .replace('{channels}', String(channels.length))
+              .replace('{from}', POLL_DATA[POLL_DATA.length - 1]?.date || '')
+              .replace('{to}', POLL_DATA[0]?.date || '')}
+          </p>
+        </section>
+        {/* ===================== SECTION 1: Trend Chart ===================== */}
+        <section className="mb-16" ref={chartRef}>
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-6 gap-6">
+            <div>
+              <div className="flex items-center gap-4 mb-2">
+                <h2 className="font-['Newsreader'] text-3xl font-bold text-primary">
+                  {t('polls.trend.title')}
+                </h2>
+              </div>
+              <p className="text-slate-500 text-sm max-w-2xl leading-relaxed">
+                {t('polls.trend.desc')}
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 bg-white/50 p-4 rounded-xl border border-slate-100 w-full lg:w-auto flex-grow">
+              <div className="flex flex-col flex-grow min-w-[280px] lg:min-w-[400px]">
+                <label className="text-sm font-medium text-gray-500 mb-2">{t('polls.trend.dateRange')}</label>
+                {months.length > 0 ? (
+                  <div className="px-3 pt-6 pb-6">
+                    <DateRangeSlider
+                      months={months}
+                      initialRange={monthRange}
+                      onChange={setMonthRange}
+                      formatMonthLabel={formatMonthLabel}
+                    />
+                  </div>
+                ) : (
+                  <div className="text-sm text-gray-400 py-2">{t('polls.trend.noDates')}</div>
+                )}
+              </div>
+              <ChannelSelector />
+              <button
+                onClick={handleReset}
+                disabled={isDefaultState}
+                className={`px-4 py-2 ms-1 text-[10px] font-bold uppercase tracking-wider rounded-lg border-2 border-transparent transition-all underline decoration-dashed underline-offset-4 ${
+                  !isDefaultState
+                    ? "text-slate-400 hover:text-slate-700 cursor-pointer"
+                    : "text-slate-200 cursor-not-allowed opacity-50 decoration-slate-200"
+                }`}
+              >
+                {t('polls.trend.reset')}
+              </button>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 md:p-8">
+            <TrendChart 
+              data={chartData}
+              visibleParties={visibleParties}
+              onToggleParty={toggleParty}
+              onClearAll={() => setVisibleParties(new Set())}
+              onSelectAll={() => setVisibleParties(new Set(allParties))}
+              allParties={allParties}
+              animationKey={`${Array.from(selectedChannels).join(',')}-${monthRange[0]}-${monthRange[1]}`}
+            />
+          </div>
+        </section>
+
+        {/* ===================== SECTION 2: Poll Comparison Table ===================== */}
+        <section className="mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-6">
+            <div>
+              <h2 className="font-['Newsreader'] text-2xl font-bold text-primary mb-2">{t('polls.table.title')}</h2>
+              <p className="text-sm text-slate-500">
+                {t('polls.table.desc')}
+              </p>
+            </div>
+            <div className="bg-white/50 p-4 rounded-xl border border-slate-100 w-full lg:w-auto">
+              <ChannelSelector />
+            </div>
+          </div>
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-slate-50/80">
+                    <th className="text-start py-3 px-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 sticky start-0 bg-slate-50/80 z-10 min-w-[160px]">
+                      {t('polls.table.party')}
+                    </th>
+                    {latestUniquePolls.map(poll => (
+                      <th key={poll.id} className="text-center py-3 px-3 text-[9px] font-bold uppercase tracking-widest text-slate-400 min-w-[80px]">
+                        <div>{tPollSource(poll.source.split(' (')[0])}</div>
+                        <div className="font-normal text-[8px] text-slate-400 mt-0.5">{poll.date}</div>
+                      </th>
+                    ))}
+                    <th 
+                      className="text-center py-3 px-4 text-[10px] font-bold uppercase tracking-widest text-primary cursor-pointer hover:text-secondary transition-colors min-w-[100px]"
+                      onClick={() => toggleSort('weighted')}
+                    >
+                      {t('polls.table.avg')} <SortArrow col="weighted" />
+                    </th>
+                    <th 
+                      className="text-center py-3 px-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 cursor-pointer hover:text-primary transition-colors min-w-[100px]"
+                      onClick={() => toggleSort('knesset')}
+                    >
+                      {t('polls.table.knesset')} <SortArrow col="knesset" />
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sortedPartiesForTable.map((party, i) => {
+                    const weighted = weightedAvg[party] || 0;
+                    const knesset = CURRENT_KNESSET[party] || 0;
+                    const partyColor = PARTY_COLORS[party] || '#94a3b8';
+                    
+                    return (
+                      <tr 
+                        key={party} 
+                        onClick={() => handleRowClick(party)}
+                        className={`border-b border-slate-50 hover:bg-blue-50/30 transition-colors cursor-pointer ${i % 2 === 0 ? '' : 'bg-slate-50/20'}`}
+                      >
+                        <td className="py-2.5 px-4 sticky start-0 bg-inherit z-10">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: partyColor }} />
+                            <span className="font-bold text-slate-800 text-xs">{tParty(party)}</span>
+                          </div>
+                        </td>
+                        {latestUniquePolls.map(poll => (
+                          <td key={poll.id} className="text-center py-2.5 px-3 text-slate-600 text-sm">
+                            {poll.data[party] || '—'}
+                          </td>
+                        ))}
+                        <td className="text-center py-2.5 px-4">
+                          <span className="font-bold text-slate-800 text-sm">
+                            {weighted}
+                          </span>
+                        </td>
+                        <td className="text-center py-2.5 px-4 text-slate-500 font-medium">
+                          {knesset || '—'}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer Note */}
+        <section className="text-center border-t border-slate-200 pt-8 pb-4">
+          <p className="text-xs text-slate-400 max-w-3xl mx-auto leading-relaxed mb-4">
+            {t('polls.footer.note')}
+          </p>
+          <div className="bg-white/50 rounded-lg p-4 inline-block text-start border border-slate-100 max-w-4xl mx-auto">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">{t('polls.footer.sources')}</p>
+            <p className="text-[11px] text-slate-500 leading-relaxed">
+              {fullSources.map(s => tPollSource(s)).join(', ')}
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  );
+};
+
+export default PollsDashboard;
