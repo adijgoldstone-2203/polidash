@@ -117,17 +117,20 @@ const CoalitionBuilder: React.FC = () => {
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Top Header Row */}
-        <div className="flex flex-col xl:flex-row justify-between items-end gap-6 mb-2">
+        <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-6 mb-4">
           {/* Page Title (Left) */}
-          <div className="shrink-0">
+          <div className="max-w-3xl">
             <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4">
               {t('coalition.title1')} <span className="italic font-bold">{t('coalition.title2')}</span>
             </h1>
-            <div className="h-1 w-24 bg-primary mb-6"></div>
+            <div className="h-1 w-24 bg-primary mb-4"></div>
+            <p className="font-body text-base text-on-surface-variant leading-relaxed">
+              {t('coalition.desc')}
+            </p>
           </div>
 
           {/* Progress Bar (Right) */}
-          <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex-grow w-full xl:max-w-3xl mb-2">
+          <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex-grow w-full xl:max-w-2xl mb-2">
             <div className="flex flex-col md:flex-row items-center gap-6 w-full">
               <div className="flex items-baseline gap-2 shrink-0">
                 <motion.span 
@@ -166,35 +169,47 @@ const CoalitionBuilder: React.FC = () => {
           {/* LEFT: Party Selector (Compact Sidebar) */}
           <section className="col-span-12 lg:col-span-3 space-y-4">
             
-            {/* Poll Selection & Date */}
-            <div className="bg-white p-3 rounded-xl border border-stone-100 shadow-sm">
+            {/* Poll Selection Card */}
+            <div className="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-stone-300 transition-all duration-200">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[8px] font-bold uppercase text-slate-400">{t('coalition.pollSource')}</span>
-                  <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">{t('coalition.pollSource')}</span>
+                  <span className="px-2 py-0.5 text-[8px] font-bold rounded-full bg-slate-100 text-primary uppercase tracking-wider">
                     {selectedPoll.id === 'polidash_avg' 
                       ? (lang === 'he' ? 'עדכני' : 'Current') 
                       : selectedPoll.date}
                   </span>
                 </div>
-                <select 
-                  className="bg-transparent border-none font-bold text-primary focus:ring-0 text-[10px] cursor-pointer p-0"
-                  value={selectedPoll.id}
-                  onChange={(e) => {
-                    const poll = latestUniquePolls.find(p => p.id === e.target.value);
-                    if (poll) {
-                      setSelectedPoll(poll);
-                    }
-                  }}
-                >
-                  {latestUniquePolls.map(poll => (
-                    <option key={poll.id} value={poll.id}>
-                      {poll.id === 'polidash_avg' 
-                        ? t('polls.table.avg') 
-                        : `${tPollSource(poll.source.split(' (')[0])} - ${poll.date}`}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative mt-1">
+                  <select 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2 px-3 text-[11px] font-bold text-primary focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer transition-all duration-150 appearance-none pr-8 rtl:pl-8 rtl:pr-3"
+                    value={selectedPoll.id}
+                    onChange={(e) => {
+                      const poll = latestUniquePolls.find(p => p.id === e.target.value);
+                      if (poll) {
+                        setSelectedPoll(poll);
+                      }
+                    }}
+                  >
+                    {latestUniquePolls.map(poll => (
+                      <option key={poll.id} value={poll.id}>
+                        {poll.id === 'polidash_avg' 
+                          ? t('polls.table.avg') 
+                          : `${tPollSource(poll.source.split(' (')[0])} - ${poll.date}`}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-slate-400 rtl:left-0 rtl:right-auto rtl:pl-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+                <p className="text-[9px] text-slate-400 leading-normal mt-1">
+                  {lang === 'he' 
+                    ? 'ניתן לבחור סקרים שונים מתוך מגוון ערוצי החדשות או להשתמש בממוצע PoliDash.' 
+                    : 'Compare seat projections across news channels or use the PoliDash Average.'}
+                </p>
               </div>
             </div>
 

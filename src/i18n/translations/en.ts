@@ -177,6 +177,7 @@ export const en: Record<string, string> = {
   // Coalition Page
   "coalition.title1": "Coalition",
   "coalition.title2": "Simulator",
+  "coalition.desc": "Assemble a proposed Knesset majority government (61+ seats). Select different poll sources from the database, toggle party memberships in the builder sidebar, and analyze ideological stance conflicts in real-time.",
   "coalition.seatsOf": "/ 120",
   "coalition.majorityFormed": "Majority Formed",
   "coalition.majorityThreshold": "Majority Threshold: 61",

@@ -177,6 +177,7 @@ export const he: Record<string, string> = {
   // Coalition Page
   "coalition.title1": "סימולטור",
   "coalition.title2": "קואליציה",
+  "coalition.desc": "הרכיבו ממשלת רוב מוצעת בכנסת (61 מנדטים ומעלה). בחרו מקורות סקר שונים מתוך מאגר הנתונים, סמנו חברות במפלגות בסרגל הצידי, ונתחו בזמן אמת מחלוקות ועמדות אידיאולוגיות.",
   "coalition.seatsOf": "/ 120",
   "coalition.majorityFormed": "הושגה רוב",
   "coalition.majorityThreshold": "סף רוב: 61",
