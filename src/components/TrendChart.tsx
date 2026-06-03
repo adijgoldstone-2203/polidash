@@ -177,6 +177,17 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
   const [showTooltip, setShowTooltip] = React.useState(true);
   const [hoveredPoint, setHoveredPoint] = React.useState<{ poll: any, party: string } | null>(null);
 
+  // Calculate the maximum number of polls on a single date dynamically
+  const maxPollsPerDate = React.useMemo(() => {
+    let max = 0;
+    data.forEach((d: any) => {
+      if (d.pollsOnDate && d.pollsOnDate.length > max) {
+        max = d.pollsOnDate.length;
+      }
+    });
+    return max;
+  }, [data]);
+
   // States for Click-and-Drag 2D Zoom
   const [refAreaLeft, setRefAreaLeft] = React.useState<any>(null);
   const [refAreaRight, setRefAreaRight] = React.useState<any>(null);
@@ -396,7 +407,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
               ];
 
               if (showPoints) {
-                [0, 1, 2, 3, 4].forEach(i => {
+                Array.from({ length: maxPollsPerDate }).forEach((_, i) => {
                   lines.push(
                     <Line
                       key={`raw_${i}_${party}`}
