@@ -37,26 +37,26 @@ export const he: Record<string, string> = {
     "אנו ממפים עמדות ללא הטיה כדי להבהיר עמדות.",
 
   // Home – CTA Cards
-  "home.cta.profiles.title": "פרופילי PolitiScan",
+  "home.cta.profiles.title": "פרופילי פוליטיקאים",
   "home.cta.profiles.desc":
     "צפה בסיכומי AI ומצעים של כל הפוליטיקאים המרכזיים.",
-  "home.cta.profiles.btn": "פרופילי פוליטיקאים",
-  "home.cta.issues.title": "ציר סוגיות",
+  "home.cta.profiles.btn": "חקור פרופילים",
+  "home.cta.issues.title": "מנוע דיאגרמות וֶן",
   "home.cta.issues.desc":
     "השווה היכן כל פוליטיקאי עומד בסוגיות מפתח דינמיות (למשל, רפורמה משפטית, כלכלה).",
-  "home.cta.issues.btn": "מנוע דיאגרמות וֶן",
-  "home.cta.quiz.title": "שאלון עמדות",
+  "home.cta.issues.btn": "השווה סוגיות",
+  "home.cta.quiz.title": "שאלון התאמה פוליטית",
   "home.cta.quiz.desc":
     "הגדר את עמדתך בתשעת עמודי הממשל הלאומי המודרני.",
-  "home.cta.quiz.btn": "שאלון התאמה פוליטית",
-  "home.cta.polls.title": "מודיעין סקרים",
+  "home.cta.quiz.btn": "ענה על שאלון",
+  "home.cta.polls.title": "לוח מעקב סקרים",
   "home.cta.polls.desc":
     "צלול ללוח המחוונים שלנו העוקב אחר סקרי הבחירות האחרונים ומגמות מפלגתיות.",
-  "home.cta.polls.btn": "לוח מעקב סקרים",
-  "home.cta.coalition.title": "בונה קואליציות",
+  "home.cta.polls.btn": "צפה בסקרים",
+  "home.cta.coalition.title": "סימולטור קואליציה",
   "home.cta.coalition.desc":
     "הרכב ממשלת רוב של 61 מושבים באופן אינטראקטיבי באמצעות נתוני הסקרים האחרונים.",
-  "home.cta.coalition.btn": "סימולטור קואליציה",
+  "home.cta.coalition.btn": "בנה קואליציה",
 
   // Home – Right of Reply
   "home.reply.title": "זכות תגובה",

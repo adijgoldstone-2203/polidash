@@ -37,26 +37,26 @@ export const en: Record<string, string> = {
     "We map standings without bias to clarify positions.",
 
   // Home – CTA Cards
-  "home.cta.profiles.title": "PolitiScan Profiles",
+  "home.cta.profiles.title": "Politician Profiles",
   "home.cta.profiles.desc":
     "View AI summaries and manifestos of all major politicians.",
-  "home.cta.profiles.btn": "Politician Profiles",
-  "home.cta.issues.title": "Issue Pivot",
+  "home.cta.profiles.btn": "Explore Profiles",
+  "home.cta.issues.title": "Venn Intelligence Engine",
   "home.cta.issues.desc":
     "Compare where every politician stands on key dynamic issues (e.g., Judicial Reform, Economy).",
-  "home.cta.issues.btn": "Venn Intelligence Engine",
-  "home.cta.quiz.title": "Standings Quiz",
+  "home.cta.issues.btn": "Compare Issues",
+  "home.cta.quiz.title": "Alignment Quotient",
   "home.cta.quiz.desc":
     "Define your stance on the nine pillars of modern national governance.",
-  "home.cta.quiz.btn": "Alignment Quotient",
-  "home.cta.polls.title": "Poll Intelligence",
+  "home.cta.quiz.btn": "Take Quiz",
+  "home.cta.polls.title": "Poll Intelligence Dashboard",
   "home.cta.polls.desc":
     "Dive into our data dashboard tracking the latest aggregated election polls and party trends.",
-  "home.cta.polls.btn": "Poll Intelligence Dashboard",
-  "home.cta.coalition.title": "Coalition Builder",
+  "home.cta.polls.btn": "View Polls",
+  "home.cta.coalition.title": "Coalition Simulator",
   "home.cta.coalition.desc":
     "Interactively form a 61-seat majority government using the most recent poll numbers.",
-  "home.cta.coalition.btn": "Coalition Simulator",
+  "home.cta.coalition.btn": "Build Coalition",
 
   // Home – Right of Reply
   "home.reply.title": "Right of Reply",
