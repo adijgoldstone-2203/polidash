@@ -182,7 +182,9 @@ const CoalitionBuilder: React.FC = () => {
                 </div>
                 <div className="relative mt-1">
                   <select 
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2 px-3 text-[11px] font-bold text-primary focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer transition-all duration-150 appearance-none pr-8 rtl:pl-8 rtl:pr-3"
+                    className={`w-full bg-slate-50 border border-slate-200 rounded-lg py-2 text-[11px] font-bold text-primary focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer transition-all duration-150 appearance-none bg-none ${
+                      lang === 'he' ? 'pl-8 pr-3' : 'pr-8 pl-3'
+                    }`}
                     value={selectedPoll.id}
                     onChange={(e) => {
                       const poll = latestUniquePolls.find(p => p.id === e.target.value);
@@ -199,7 +201,9 @@ const CoalitionBuilder: React.FC = () => {
                       </option>
                     ))}
                   </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-slate-400 rtl:left-0 rtl:right-auto rtl:pl-2">
+                  <div className={`absolute inset-y-0 flex items-center pointer-events-none text-slate-400 ${
+                    lang === 'he' ? 'left-0 pl-2' : 'right-0 pr-2'
+                  }`}>
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>

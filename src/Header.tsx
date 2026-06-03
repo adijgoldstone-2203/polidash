@@ -120,7 +120,7 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
                       <button
                         key={`${res.type}-${res.id}`}
                         onClick={() => handleSelect(res)}
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-stone-50 dark:hover:bg-slate-800 text-left transition-colors group border-b border-stone-50 dark:border-slate-800 last:border-none"
+                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-stone-50 dark:hover:bg-slate-800 text-start transition-colors group border-b border-stone-50 dark:border-slate-800 last:border-none"
                       >
                         <span className="material-symbols-outlined text-slate-400 group-hover:text-secondary text-lg">
                           {res.type === 'politician' ? 'person' : 'policy'}
