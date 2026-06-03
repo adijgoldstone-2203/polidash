@@ -40,23 +40,23 @@ export const en: Record<string, string> = {
   "home.cta.profiles.title": "PolitiScan Profiles",
   "home.cta.profiles.desc":
     "View AI summaries and manifestos of all major politicians.",
-  "home.cta.profiles.btn": "Explore Profiles",
+  "home.cta.profiles.btn": "Politician Profiles",
   "home.cta.issues.title": "Issue Pivot",
   "home.cta.issues.desc":
     "Compare where every politician stands on key dynamic issues (e.g., Judicial Reform, Economy).",
-  "home.cta.issues.btn": "Compare Issues",
+  "home.cta.issues.btn": "Venn Intelligence Engine",
   "home.cta.quiz.title": "Standings Quiz",
   "home.cta.quiz.desc":
     "Define your stance on the nine pillars of modern national governance.",
-  "home.cta.quiz.btn": "Take Quiz",
+  "home.cta.quiz.btn": "Alignment Quotient",
   "home.cta.polls.title": "Poll Intelligence",
   "home.cta.polls.desc":
     "Dive into our data dashboard tracking the latest aggregated election polls and party trends.",
-  "home.cta.polls.btn": "View Polls",
+  "home.cta.polls.btn": "Poll Intelligence Dashboard",
   "home.cta.coalition.title": "Coalition Builder",
   "home.cta.coalition.desc":
     "Interactively form a 61-seat majority government using the most recent poll numbers.",
-  "home.cta.coalition.btn": "Build Coalition",
+  "home.cta.coalition.btn": "Coalition Simulator",
 
   // Home – Right of Reply
   "home.reply.title": "Right of Reply",
