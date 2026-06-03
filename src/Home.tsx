@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
           {/* Hero Section */}
           <section className="relative min-h-[716px] flex items-center justify-center overflow-hidden px-12">
             <div className="absolute inset-0 z-0 pointer-events-none">
-              <img alt="Flag of Israel" className="w-full h-full object-cover opacity-[0.03]" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg" />
+              <img alt="Flag of Israel" className="w-full h-full object-cover opacity-[0.06]" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg" />
             </div>
             <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
               <h1 className="font-headline text-6xl md:text-8xl font-black text-primary leading-none tracking-tighter mb-8">
