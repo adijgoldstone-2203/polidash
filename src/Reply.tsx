@@ -267,17 +267,28 @@ const Reply: React.FC = () => {
 
                 <div className="mb-8 space-y-2">
                   <label className="text-xs font-black uppercase tracking-widest text-slate-500 ms-1">{t('reply.form.category')}</label>
-                  <select 
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 focus:ring-2 focus:ring-secondary focus:border-transparent transition-all outline-none cursor-pointer text-xs"
-                    value={formData.category}
-                    onChange={e => setFormData({...formData, category: e.target.value})}
-                  >
-                    <option value="fact-check">{t('reply.form.cat1')}</option>
-                    <option value="missing-info">{t('reply.form.cat2')}</option>
-                    <option value="source-request">{t('reply.form.cat3')}</option>
-                    <option value="stance-correction">{t('reply.form.cat4')}</option>
-                    <option value="other">{t('reply.form.cat5')}</option>
-                  </select>
+                  <div className="relative">
+                    <select 
+                      className={`w-full bg-stone-50 border border-stone-200 rounded-xl py-3 text-xs focus:ring-2 focus:ring-secondary focus:border-transparent cursor-pointer transition-all outline-none appearance-none bg-none ${
+                        lang === 'he' ? 'pl-10 pr-4' : 'pr-10 pl-4'
+                      }`}
+                      value={formData.category}
+                      onChange={e => setFormData({...formData, category: e.target.value})}
+                    >
+                      <option value="fact-check">{t('reply.form.cat1')}</option>
+                      <option value="missing-info">{t('reply.form.cat2')}</option>
+                      <option value="source-request">{t('reply.form.cat3')}</option>
+                      <option value="stance-correction">{t('reply.form.cat4')}</option>
+                      <option value="other">{t('reply.form.cat5')}</option>
+                    </select>
+                    <div className={`absolute inset-y-0 flex items-center pointer-events-none text-slate-400 ${
+                      lang === 'he' ? 'left-0 pl-3' : 'right-0 pr-3'
+                    }`}>
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mb-10 space-y-2">
