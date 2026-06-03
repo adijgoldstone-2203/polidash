@@ -27,8 +27,8 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
         <main className="flex-grow bg-surface transition-colors duration-300">
           {/* Hero Section */}
           <section className="relative min-h-[716px] flex items-center justify-center overflow-hidden px-12">
-            <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-              <img alt="Flag of Israel" className="max-w-[70%] max-h-[70%] object-contain opacity-[0.03]" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg" />
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <img alt="Flag of Israel" className="w-full h-full object-cover opacity-[0.03]" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg" />
             </div>
             <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
               <h1 className="font-headline text-6xl md:text-8xl font-black text-primary leading-none tracking-tighter mb-8">
