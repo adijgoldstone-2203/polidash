@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
           {/* Hero Section */}
           <section className="relative min-h-[716px] flex items-center justify-center overflow-hidden px-12">
             <div className="absolute inset-0 z-0 opacity-10">
-              <img alt="Legislative chamber architectural detail" className="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDztkE3h6L9By6v-q6ScNnajmjURbWMHaC4GCi33RhfJ4pgcWnQvuKEcLvv3DUSWFtndHgkY2_J5WDOfStKlRF204WI41w99rFFgbuBQWyw-jY0kDsObzsevlgouAYlt4DaI2N9vzV4Zh0QSzJn83TH8DGhnN9pkPf5Ddm-KcCYPh6CJjM5ZUJqJBZoc_RytGfiTjzMeBf8tbveQdBl46M-b04gvkCW3J35YPrjjCV5WS999h89z6YTWc86ACtjZclecJnh36yZOU" />
+              <img alt="The Knesset building in Jerusalem with the Israeli flag" className="w-full h-full object-cover grayscale" src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Knesset_front_side_-_2022.jpg" />
             </div>
             <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
               <h1 className="font-headline text-6xl md:text-8xl font-black text-primary leading-none tracking-tighter mb-8">
