@@ -18,6 +18,26 @@ const TrendIcon: React.FC<{ trend: 'up' | 'down' | 'stable' }> = ({ trend }) => 
   return <span className="text-slate-400 font-bold text-sm">–</span>;
 };
 
+const getPartyLeaderId = (partyName: string): string | null => {
+  const normalized = partyName.toLowerCase();
+  if (normalized.includes('likud')) return 'benjamin-netanyahu';
+  if (normalized.includes('bennett') || normalized.includes('together')) return 'naftali-bennett';
+  if (normalized.includes('national unity')) return 'benny-gantz';
+  if (normalized.includes('yashar')) return 'gadi-eisenkot';
+  if (normalized.includes('democrats') || normalized.includes('labor')) return 'yair-golan';
+  if (normalized.includes('shas')) return 'aryeh-deri';
+  if (normalized.includes('ra\'am') || normalized.includes('united arab list')) return 'mansour-abbas';
+  if (normalized.includes('yesh atid')) return 'yair-lapid';
+  if (normalized.includes('miluimnikim')) return 'yoaz-hendel';
+  if (normalized.includes('hadash') || normalized.includes('ta\'al')) return 'ayman-odeh';
+  if (normalized.includes('torah') || normalized.includes('utj') || normalized.includes('goldknopf')) return 'yitzhak-goldknopf';
+  if (normalized.includes('otzma') || normalized.includes('gvir')) return 'itamar-ben-gvir';
+  if (normalized.includes('beiteinu') || normalized.includes('lieberman')) return 'avigdor-lieberman';
+  if (normalized.includes('balad') || normalized.includes('shehadeh')) return 'sami-abu-shehadeh';
+  if (normalized.includes('religious zionist') || normalized.includes('smotrich')) return 'bezalel-smotrich';
+  return null;
+};
+
 const SummaryTable: React.FC<SummaryTableProps> = ({
   weightedAvg, latestPoll, simpleAvg, currentKnesset, trends, allParties
 }) => {
@@ -51,10 +71,32 @@ const SummaryTable: React.FC<SummaryTableProps> = ({
                 return (
                   <tr key={party} className={`border-b border-slate-100 hover:bg-slate-50/50 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'}`}>
                     <td className="py-3 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: partyColor }} />
-                        <span className="font-bold text-slate-800 text-sm">{tParty(party)}</span>
-                      </div>
+                      {(() => {
+                        const leaderId = getPartyLeaderId(party);
+                        if (leaderId) {
+                          return (
+                            <button
+                              onClick={() => {
+                                window.location.hash = `#/profile/${leaderId}`;
+                              }}
+                              className="flex items-center gap-2 cursor-pointer group text-start transition-colors"
+                              title={`${t('profiles.viewFull')}: ${tParty(party)}`}
+                            >
+                              <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: partyColor }} />
+                              <span className="font-bold text-slate-800 text-sm group-hover:text-primary group-hover:underline transition-colors">{tParty(party)}</span>
+                              <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 transition-opacity text-slate-400">
+                                open_in_new
+                              </span>
+                            </button>
+                          );
+                        }
+                        return (
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: partyColor }} />
+                            <span className="font-bold text-slate-800 text-sm">{tParty(party)}</span>
+                          </div>
+                        );
+                      })()}
                     </td>
                     <td className="text-center py-3 px-4 text-slate-600">{knesset || '—'}</td>
                     <td className="text-center py-3 px-4 font-medium text-slate-700">{latest || '—'}</td>

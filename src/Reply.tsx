@@ -28,6 +28,7 @@ const Reply: React.FC = () => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [viewMode, setViewMode] = useState<'form' | 'inbox'>('form');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   // Admin access & authentication state
   const [isAdminURL, setIsAdminURL] = useState(false);
@@ -109,6 +110,7 @@ const Reply: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSending(true);
     
     const newSubmission: Submission = {
       id: Math.random().toString(36).substring(2, 9),
@@ -123,8 +125,65 @@ const Reply: React.FC = () => {
     const updated = [newSubmission, ...submissions];
     setSubmissions(updated);
     localStorage.setItem('polidash_inbox_submissions', JSON.stringify(updated));
-    
-    setIsSubmitted(true);
+
+    // Construct structured subject and body text for FormSubmit API and mailto fallback
+    const categoryLabel = getCategoryLabel(formData.category);
+    let subject = '';
+    let body = '';
+
+    if (lang === 'he') {
+      subject = `בקשת תיקון PoliDash: ${categoryLabel}`;
+      body = `בקשת תיקון - זכות תגובה PoliDash\n` +
+             `==================================\n\n` +
+             `שם השולח: ${formData.name}\n` +
+             `אימייל השולח: ${formData.email}\n` +
+             `קטגוריית בקשה: ${categoryLabel}\n\n` +
+             `תיאור הבעיה / בקשת התיקון:\n` +
+             `-----------------------------------\n` +
+             `${formData.problem}\n\n` +
+             `---\n` +
+             `נשלח דרך פורטל המידע PoliDash בתאריך ${new Date().toLocaleDateString('he-IL')}`;
+    } else {
+      subject = `PoliDash Correction Request: ${categoryLabel}`;
+      body = `PoliDash Right of Reply Submission\n` +
+             `==================================\n\n` +
+             `Sender Name: ${formData.name}\n` +
+             `Sender Email: ${formData.email}\n` +
+             `Category: ${categoryLabel}\n\n` +
+             `Discrepancy / Correction Requested:\n` +
+             `-----------------------------------\n` +
+             `${formData.problem}\n\n` +
+             `---\n` +
+             `Submitted via PoliDash Integrity Portal on ${new Date().toLocaleDateString('en-US')}`;
+    }
+
+    // Attempt background email delivery via FormSubmit ajax endpoint
+    fetch("https://formsubmit.co/ajax/polidash.am@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        category: categoryLabel,
+        message: body,
+        _subject: subject
+      })
+    })
+    .then(res => res.json())
+    .then(() => {
+      setIsSending(false);
+      setIsSubmitted(true);
+    })
+    .catch(err => {
+      console.error("FormSubmit API request failed, using mailto fallback:", err);
+      // Fallback: trigger default local mail client so request is not lost
+      window.location.href = `mailto:polidash.am@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setIsSending(false);
+      setIsSubmitted(true);
+    });
     setFormData({
       name: '',
       email: '',
@@ -229,7 +288,7 @@ const Reply: React.FC = () => {
           <>
             <header className="mb-12 text-start">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3 block">{t('reply.subtitle')}</span>
-              <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4">
+              <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-7xl tracking-tight text-primary mb-4">
                 {t('reply.title1')} <span className="italic font-bold">{t('reply.title2')}</span>
               </h1>
               <div className="h-1 w-24 bg-primary mb-6" />
@@ -305,9 +364,20 @@ const Reply: React.FC = () => {
 
                 <button 
                   type="submit"
-                  className="w-full py-4 bg-primary text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-secondary shadow-lg shadow-primary/20 hover:shadow-secondary/30 transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+                  disabled={isSending}
+                  className="w-full py-4 bg-primary text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-secondary shadow-lg shadow-primary/20 hover:shadow-secondary/30 transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t('reply.form.submit')}
+                  {isSending ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      {lang === 'he' ? 'שולח...' : 'Sending...'}
+                    </>
+                  ) : (
+                    t('reply.form.submit')
+                  )}
                 </button>
                 
                 <p className="text-center text-[9px] text-slate-400 mt-6 uppercase tracking-widest leading-relaxed">
@@ -320,7 +390,7 @@ const Reply: React.FC = () => {
           <>
             <header className="mb-12 text-start">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3 block">{t('reply.subtitle')}</span>
-              <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4">
+              <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-7xl tracking-tight text-primary mb-4">
                 {t('reply.inbox.title')}
               </h1>
               <div className="h-1 w-24 bg-primary mb-6" />

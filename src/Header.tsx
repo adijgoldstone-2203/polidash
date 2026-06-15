@@ -8,9 +8,11 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ currentPath }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<{ type: 'politician' | 'issue', id: string, name: string }[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
+  const mobileNavRef = useRef<HTMLDivElement>(null);
   
   const { lang, setLang, t, tPolitician, tIssue } = useLanguage();
 
@@ -35,6 +37,9 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setIsSearchOpen(false);
+      }
+      if (mobileNavRef.current && !mobileNavRef.current.contains(event.target as Node)) {
+        setIsMobileNavOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -62,9 +67,52 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
 
   return (
     <header className="sticky top-0 w-full z-[100] bg-[#fbf9f5]/80 dark:bg-[#162839]/80 backdrop-blur-md border-b border-stone-200/50 dark:border-slate-800/50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4 relative">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-4 relative">
         <div className="flex items-center gap-8">
-          <a className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]" href="#/">PoliDash</a>
+          {/* Desktop logo link */}
+          <div className="hidden md:flex items-center gap-2">
+            <a className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]" href="#/">PoliDash</a>
+            <span className="px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest rounded bg-secondary/15 text-secondary border border-secondary/20 leading-none">BETA</span>
+          </div>
+
+          {/* Mobile logo dropdown */}
+          <div ref={mobileNavRef} className="relative md:hidden flex items-center">
+            <button 
+              onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+              className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5] flex items-center gap-1.5 focus:outline-none"
+            >
+              <span>PoliDash</span>
+              <span className="px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest rounded bg-secondary/15 text-secondary border border-secondary/20 leading-none">BETA</span>
+              <span className={`material-symbols-outlined text-lg transition-transform duration-200 ${isMobileNavOpen ? 'rotate-180' : ''}`}>
+                keyboard_arrow_down
+              </span>
+            </button>
+            {isMobileNavOpen && (
+              <div className={`absolute top-full ${lang === 'he' ? 'right-0' : 'left-0'} mt-2 w-48 bg-white/95 dark:bg-[#162839]/95 backdrop-blur-md rounded-xl border border-stone-200/50 dark:border-slate-800/50 shadow-xl py-2 z-[110] animate-in fade-in slide-in-from-top-2 duration-150`}>
+                {navLinks.map(link => {
+                  const isActive = currentPath === link.path || (link.path !== '#/' && currentPath.startsWith(link.path));
+                  return (
+                    <a
+                      key={link.path}
+                      href={link.path}
+                      onClick={() => {
+                        setIsMobileNavOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`block px-5 py-2.5 text-sm font-['Inter'] transition-colors ${
+                        isActive
+                          ? 'font-bold text-[#162839] dark:text-[#fbf9f5] bg-stone-100/60 dark:bg-slate-800/60'
+                          : 'font-medium text-[#2c3e50] dark:text-[#f5f3ef] opacity-80 hover:text-[#006397] hover:bg-stone-50 dark:hover:bg-slate-800/30'
+                      }`}
+                    >
+                      {link.name}
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map(link => {
               const isActive = currentPath === link.path || (link.path !== '#/' && currentPath.startsWith(link.path));
@@ -146,7 +194,7 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
               onClick={() => setLang(lang === 'en' ? 'he' : 'en')}
               className="font-['Inter'] text-sm font-medium tracking-tight text-[#162839] dark:text-[#fbf9f5] cursor-pointer hover:text-secondary transition-colors flex items-center gap-1.5"
             >
-              <span>{lang === 'en' ? 'EN' : 'עב'}</span>
+              <span>{lang === 'en' ? 'עב' : 'EN'}</span>
               <span className="material-symbols-outlined scale-90 opacity-60 hover:opacity-100 transition-all text-base">language</span>
             </button>
           </div>

@@ -3,6 +3,7 @@ import { politicians } from './data';
 import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedImage from './components/OptimizedImage';
 import { useLanguage } from './i18n';
+import { IMAGE_CREDITS } from './utils/imageCredits';
 
 interface Props {
   id: string;
@@ -13,6 +14,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   
   const { t, tPolitician, tParty, tIssue, tIntelligenceTopic, tStance, tIssueDefinition, tBio, tQuote, tFacts, tIntelligence, lang } = useLanguage();
+  const credit = IMAGE_CREDITS[politician.id];
 
   return (
     <>
@@ -30,16 +32,28 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                 <div className="lg:col-span-4">
                   <div className="sticky top-24">
                     {politician.imageUrl ? (
-                      <OptimizedImage alt={`portrait of ${tPolitician(politician.name)}`} className="w-full aspect-square object-cover object-top mb-8" src={politician.imageUrl} />
+                      <div className="mb-6 lg:mb-8 text-center lg:text-start">
+                        <OptimizedImage alt={`portrait of ${tPolitician(politician.name)}`} className="w-40 h-40 lg:w-full lg:h-auto aspect-square object-cover object-top rounded-full lg:rounded-2xl mx-auto lg:mx-0 shadow-md" src={politician.imageUrl} />
+                        {credit && (
+                          <div className="text-[10px] text-slate-400 mt-2 px-2">
+                            {t('profileDetail.photoCredit')}:{' '}
+                            <a href={credit.source} target="_blank" rel="noreferrer" className="underline hover:text-primary transition-colors">
+                              {credit.attribution}
+                            </a>
+                          </div>
+                        )}
+                      </div>
                     ) : (
-                      <div className="w-full aspect-square bg-slate-200 mb-8 flex items-center justify-center">
-                        <span className="material-symbols-outlined text-7xl text-slate-400">person</span>
+                      <div className="w-40 h-40 lg:w-full lg:h-auto aspect-square bg-slate-200 rounded-full lg:rounded-2xl mx-auto lg:mx-0 mb-6 lg:mb-8 flex items-center justify-center">
+                        <span className="material-symbols-outlined text-5xl lg:text-7xl text-slate-400">person</span>
                       </div>
                     )}
-                    <h2 className="font-['Newsreader'] text-4xl font-bold mb-2 text-primary">{tPolitician(politician.name)}</h2>
-                    <p className="text-secondary font-bold uppercase tracking-widest text-sm mb-6">
-                      {tParty(politician.party)} • {politician.seats !== "N/A" ? `${politician.seats} ${t('profileDetail.seats')}` : t('profileDetail.na')}
-                    </p>
+                    <div className="text-center lg:text-start">
+                      <h2 className="font-['Newsreader'] text-3xl md:text-4xl font-bold mb-2 text-primary">{tPolitician(politician.name)}</h2>
+                      <p className="text-secondary font-bold uppercase tracking-widest text-sm mb-6">
+                        {tParty(politician.party)} • {politician.seats !== "N/A" ? `${politician.seats} ${t('profileDetail.seats')}` : t('profileDetail.na')}
+                      </p>
+                    </div>
                     
                     <div className="font-['Inter'] text-slate-600 leading-relaxed border-s-2 border-stone-200 ps-6 mb-8 space-y-6">
                       <p className="italic font-medium text-slate-700 text-lg">"{tQuote(politician.id)}"</p>
@@ -67,7 +81,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                   <div>
                     <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary">{t('profileDetail.stanceBoard')}</h3>
                     <div className="relative">
-                      <div className={`grid grid-cols-1 md:grid-cols-3 gap-1 transition-all duration-500 ${expandedTopic ? 'opacity-20 pointer-events-none' : 'opacity-100'}`}>
+                      <div className={`grid grid-cols-3 gap-1 md:gap-1.5 transition-all duration-500 ${expandedTopic ? 'opacity-20 pointer-events-none' : 'opacity-100'}`}>
                         {Object.entries(politician.stances).map(([topic, status], i) => {
                           let bgClass = "bg-surface-container-highest";
                           let labelColor = "text-slate-500";
@@ -93,15 +107,15 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                             <div 
                               key={i} 
                               onClick={() => setExpandedTopic(topic)}
-                              className={`${bgClass} p-6 flex flex-col justify-between h-32 cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:z-10 transition-all duration-300 group border-2 border-transparent hover:border-black/5 dark:hover:border-white/10`}
+                              className={`${bgClass} p-2 md:p-6 flex flex-col justify-between h-20 sm:h-24 md:h-32 cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:z-10 transition-all duration-300 group border-2 border-transparent hover:border-black/5 dark:hover:border-white/10`}
                             >
                               <div className="flex justify-between items-start">
-                                <p className={`text-[10px] font-bold ${labelColor} uppercase tracking-widest`}>{tIssue(topic)}</p>
-                                <span className={`material-symbols-outlined text-sm ${labelColor} opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0`}>open_in_full</span>
+                                <p className={`text-[7.5px] sm:text-[9px] md:text-[10px] font-bold ${labelColor} uppercase tracking-wider`}>{tIssue(topic)}</p>
+                                <span className={`material-symbols-outlined text-[10px] md:text-sm ${labelColor} opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0`}>open_in_full</span>
                               </div>
                               <div className="flex items-center justify-between">
-                                <span className={`${valColor} font-black text-xl`}>{tStance(status)}</span>
-                                <span className={`material-symbols-outlined ${iconColor} group-hover:scale-110 transition-transform`}>{iconName}</span>
+                                <span className={`${valColor} font-black text-xs sm:text-sm md:text-xl`}>{tStance(status)}</span>
+                                <span className={`material-symbols-outlined text-xs sm:text-sm md:text-base ${iconColor} group-hover:scale-110 transition-transform`}>{iconName}</span>
                               </div>
                             </div>
                           );
@@ -114,26 +128,26 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className={`absolute inset-0 z-20 p-8 shadow-2xl border border-stone-200 dark:border-slate-700 flex flex-col transition-colors duration-500 ${
+                            className={`absolute inset-x-0 top-0 min-h-[380px] md:inset-0 z-20 p-4 sm:p-6 md:p-8 shadow-2xl border border-stone-200 dark:border-slate-700 rounded-lg flex flex-col transition-colors duration-500 ${
                               politician.stances[expandedTopic] === 'Support' ? 'bg-[#f4f7f4] dark:bg-[#1b2a1b]' : 
                               politician.stances[expandedTopic] === 'Oppose' ? 'bg-[#f5f6f8] dark:bg-[#1a1f2c]' : 'bg-white dark:bg-[#162839]'
                             }`}
                           >
                             <button 
                               onClick={() => setExpandedTopic(null)}
-                              className="absolute top-4 end-4 p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
+                              className="absolute top-2 end-2 md:top-4 md:end-4 p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
                             >
                               <span className="material-symbols-outlined text-slate-400">close</span>
                             </button>
                             
-                            <div className="mb-6">
-                              <h4 className="font-bold text-[10px] uppercase tracking-widest text-secondary mb-2">{tIssue(expandedTopic)}</h4>
-                              <p className="font-['Newsreader'] text-2xl font-bold text-primary leading-tight mb-4">
+                            <div className="mb-4 md:mb-6">
+                              <h4 className="font-bold text-[10px] uppercase tracking-widest text-secondary mb-1 md:mb-2">{tIssue(expandedTopic)}</h4>
+                              <p className="font-['Newsreader'] text-sm sm:text-base md:text-2xl font-bold text-primary leading-tight mb-2 md:mb-4">
                                 {tIssueDefinition(expandedTopic)}
                               </p>
                               <div className="flex items-center gap-3">
-                                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('profileDetail.stance')}</span>
-                                <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm ${
+                                <span className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">{t('profileDetail.stance')}</span>
+                                <span className={`px-2.5 py-0.5 md:px-3 md:py-1 text-[9px] md:text-[10px] font-black uppercase tracking-widest rounded-sm ${
                                   politician.stances[expandedTopic] === 'Support' ? 'bg-secondary-container text-on-secondary-container' : 
                                   politician.stances[expandedTopic] === 'Oppose' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'
                                 }`}>

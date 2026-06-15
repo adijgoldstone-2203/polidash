@@ -17,24 +17,26 @@ export const en: Record<string, string> = {
   "footer.terms": "Terms",
 
   // Home – Hero
-  "home.hero.title1": "See the stances.",
-  "home.hero.title2": "Build the future.",
+  "home.hero.title1": "Your window to",
+  "home.hero.title2": "political clarity.",
   "home.hero.description":
     "is your unbiased guide to political clarity. We use verified data and policy records to show you exactly where every leader stands on the issues that matter.",
   "home.hero.exploreBtn": "Explore the Issues",
   "home.hero.workflowBtn": "Our Workflow",
+  "home.hero.photoCredit": "Background: Knesset Plenum / Bayit HaShalom (Attribution)",
 
   // Home – Workflow
   "home.workflow.title": "Our Workflow",
-  "home.workflow.data.title": "Verified Data",
+  "home.workflow.subtitle": "Explore",
+  "home.workflow.data.title": "Centralised Verified Data",
   "home.workflow.data.desc":
-    "We aggregate manifestos, voting records, and official transcripts.",
+    "We aggregate manifestos, polling data, and official transcripts.",
   "home.workflow.ai.title": "AI Synthesis",
   "home.workflow.ai.desc":
-    "Advanced models generate concise, source-grounded summaries.",
-  "home.workflow.neutral.title": "Neutral Clarity",
+    "Advanced AI models summarise our sources and remove political bias",
+  "home.workflow.neutral.title": "Visual Presentation",
   "home.workflow.neutral.desc":
-    "We map standings without bias to clarify positions.",
+    "Interactive visualisation tools to understand the political landscape",
 
   // Home – CTA Cards
   "home.cta.profiles.title": "Politician Profiles",
@@ -83,6 +85,7 @@ export const en: Record<string, string> = {
   "profileDetail.sharedAlignment": "Shared Stance Alignment",
   "profileDetail.noShared": "No other politicians share this specific stance.",
   "profileDetail.intelligence": "Issues Intelligence",
+  "profileDetail.photoCredit": "Photo Credit",
 
   // Issues Page
   "issues.title1": "Venn Intelligence",
@@ -91,8 +94,8 @@ export const en: Record<string, string> = {
     "Select up to three strategic frameworks to identify the convergence points of political leadership and ideological alignment.",
   "issues.liveSynthesis": "Live Synthesis",
   "issues.waiting": "Waiting for Criteria Selection...",
-  "issues.venn.placeholder.title": "Synthesizing Matrix...",
-  "issues.venn.placeholder.desc": "Configure binary standpoints in the sidebar to generate a live visualization of political alignment.",
+  "issues.venn.placeholder.title": "Synthesising Matrix...",
+  "issues.venn.placeholder.desc": "Configure binary standpoints in the sidebar to generate a live visualisation of political alignment.",
   "issues.findingAligned": "Finding politicians aligned with:",
   "issues.recalculate": "Recalculate",
   "issues.calculate": "Calculate",
@@ -177,7 +180,7 @@ export const en: Record<string, string> = {
   // Coalition Page
   "coalition.title1": "Coalition",
   "coalition.title2": "Simulator",
-  "coalition.desc": "Assemble a proposed Knesset majority government (61+ seats). Select different poll sources from the database, toggle party memberships in the builder sidebar, and analyze ideological stance conflicts in real-time.",
+  "coalition.desc": "Assess coalition combinations based on current polling data, select a possible structure and analyse potential conflicts.",
   "coalition.seatsOf": "/ 120",
   "coalition.majorityFormed": "Majority Formed",
   "coalition.majorityThreshold": "Majority Threshold: 61",
@@ -186,7 +189,7 @@ export const en: Record<string, string> = {
   "coalition.dataSource": "Data Source:",
   "coalition.stability.title": "Ideological Conflict Analysis",
   "coalition.stability.desc": "Identifies stance disagreements between proposed coalition members on core national issues.",
-  "coalition.stability.empty": "Select parties in the left pane to analyze potential coalition conflicts.",
+  "coalition.stability.empty": "Select parties in the left pane to analyse potential coalition conflicts.",
   "coalition.stability.noConflictsTitle": "No key conflicts",
   "coalition.stability.noConflictsDesc": "All selected parties share compatible stances on the core national issues analyzed.",
 
@@ -194,7 +197,7 @@ export const en: Record<string, string> = {
   "polls.title1": "Poll Intelligence",
   "polls.title2": "Dashboard",
   "polls.desc":
-    "A comprehensive aggregation of {count} published surveys from {channels} news channels, spanning {from} to {to}. The PoliDash Average uses recency-weighted averaging to prioritize the freshest data. Use the controls below to filter polls by news channel and toggle party trendlines by clicking on their names in the legend or comparison table.",
+    "Understand the polling momentum behind leading parties over time and across various major sources. This page gives a comprehensive view of {count} published surveys from {channels} news channels, spanning from {from} to {to}. Choose all or some news channels, a date range, and parties to map on the graph below.",
   "polls.trend.title": "Average Trend Timeline",
   "polls.trend.desc":
     "A continuously updated average over time. Toggle parties below to compare trends.",

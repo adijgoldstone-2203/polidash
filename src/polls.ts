@@ -10,6 +10,234 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "612",
+    source: "מעריב (Jun 12, 2026)",
+    date: "Jun 12, 2026",
+    dateISO: "2026-06-12",
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 7,
+      "Shas": 8,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 4,
+      "United Arab List (Ra'am)": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 21,
+      "Yashar!": 20,
+    }
+  },
+  {
+    id: "607",
+    source: "ישראל היום (Jun 11, 2026)",
+    date: "Jun 11, 2026",
+    dateISO: "2026-06-11",
+    data: {
+      "Likud": 24,
+      "United Torah Judaism": 7,
+      "Shas": 9,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 9,
+      "Religious Zionist": 4,
+      "United Arab List (Ra'am)": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 19,
+      "Yashar!": 20,
+    }
+  },
+  {
+    id: "608",
+    source: "זמן ישראל (Jun 11, 2026)",
+    date: "Jun 11, 2026",
+    dateISO: "2026-06-11",
+    data: {
+      "Likud": 24,
+      "United Torah Judaism": 8,
+      "Shas": 10,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 8,
+      "United Arab List (Ra'am)": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 21,
+      "Yashar!": 21,
+    }
+  },
+  {
+    id: "609",
+    source: "i24 news (Jun 11, 2026)",
+    date: "Jun 11, 2026",
+    dateISO: "2026-06-11",
+    data: {
+      "Likud": 30,
+      "United Torah Judaism": 8,
+      "Shas": 9,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 11,
+      "Religious Zionist": 4,
+      "United Arab List (Ra'am)": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 12,
+      "Yashar!": 17,
+      "Hadash-Ta'al": 7,
+    }
+  },
+  {
+    id: "610",
+    source: "חדשות 12 (Jun 11, 2026)",
+    date: "Jun 11, 2026",
+    dateISO: "2026-06-11",
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 7,
+      "Shas": 9,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 11,
+      "Religious Zionist": 4,
+      "United Arab List (Ra'am)": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 20,
+      "Yashar!": 20,
+    }
+  },
+  {
+    id: "611",
+    source: "ערוץ 14 (Jun 11, 2026)",
+    date: "Jun 11, 2026",
+    dateISO: "2026-06-11",
+    data: {
+      "Likud": 33,
+      "United Torah Judaism": 7,
+      "Shas": 10,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 9,
+      "Religious Zionist": 5,
+      "United Arab List (Ra'am)": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 13,
+      "Yashar!": 16,
+      "Hadash-Ta'al": 6,
+    }
+  },
+  {
+    id: "603",
+    source: "חדשות 12 (Jun 5, 2026)",
+    date: "Jun 5, 2026",
+    dateISO: "2026-06-05",
+    data: {
+      "Likud": 23,
+      "United Torah Judaism": 7,
+      "Shas": 9,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 4,
+      "United Arab List (Ra'am)": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 21,
+      "Yashar!": 19,
+    }
+  },
+  {
+    id: "606",
+    source: "מעריב (Jun 5, 2026)",
+    date: "Jun 5, 2026",
+    dateISO: "2026-06-05",
+    data: {
+      "Likud": 25,
+      "United Torah Judaism": 7,
+      "Shas": 9,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 10,
+      "United Arab List (Ra'am)": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 23,
+      "Yashar!": 17,
+    }
+  },
+  {
+    id: "601",
+    source: "i24 news (Jun 4, 2026)",
+    date: "Jun 4, 2026",
+    dateISO: "2026-06-04",
+    data: {
+      "Likud": 30,
+      "United Torah Judaism": 8,
+      "Shas": 9,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "United Arab List (Ra'am)": 6,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 16,
+    }
+  },
+  {
+    id: "602",
+    source: "ערוץ 14 (Jun 4, 2026)",
+    date: "Jun 4, 2026",
+    dateISO: "2026-06-04",
+    data: {
+      "Likud": 32,
+      "United Torah Judaism": 7,
+      "Shas": 10,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 9,
+      "Religious Zionist": 5,
+      "United Arab List (Ra'am)": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 16,
+    }
+  },
+  {
+    id: "604",
+    source: "זמן ישראל (Jun 4, 2026)",
+    date: "Jun 4, 2026",
+    dateISO: "2026-06-04",
+    data: {
+      "Likud": 23,
+      "United Torah Judaism": 8,
+      "Shas": 9,
+      "Blue and White": 4,
+      "Hadash-Ta'al": 4,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 8,
+      "Religious Zionist": 4,
+      "United Arab List (Ra'am)": 4,
+      "Otzma Yehudit": 6,
+      "Together (Bennett-Lapid)": 21,
+      "Yashar!": 19,
+    }
+  },
+  {
+    id: "605",
+    source: "כאן חדשות (Jun 4, 2026)",
+    date: "Jun 4, 2026",
+    dateISO: "2026-06-04",
+    data: {
+      "Likud": 24,
+      "United Torah Judaism": 7,
+      "Shas": 8,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 9,
+      "Religious Zionist": 4,
+      "United Arab List (Ra'am)": 4,
+      "Otzma Yehudit": 10,
+      "Together (Bennett-Lapid)": 23,
+      "Yashar!": 17,
+    }
+  },
+
+  {
     id: "600",
     source: "מעריב (May 29, 2026)",
     date: "May 29, 2026",
@@ -5081,6 +5309,7 @@ export const PARTY_COLORS: Record<string, string> = {
   "Likud": "#1E3A8A",                   // Royal Blue (Largest Right)
   "Yesh Atid": "#7C3AED",               // Purple (Largest Center)
   "National Unity Party": "#0284C7",    // Sky Blue (Largest Center-Right State)
+  "Blue and White": "#3B82F6",          // Blue (Cahol Lavan)
   "Democrats": "#DC2626",               // Red (Largest Left)
   "Shas": "#B45309",                    // Gold/Bronze (Largest Ultra-Orthodox)
   "Yisrael Beiteinu": "#4F46E5",        // Indigo (Secular Right)
@@ -5111,6 +5340,7 @@ export const BLOCS: Record<string, string[]> = {
   "Center/Left/Arab": [
     "Together (Bennett-Lapid)",
     "National Unity Party",
+    "Blue and White",
     "Yesh Atid",
     "Yisrael Beiteinu",
     "Democrats",

@@ -7,6 +7,7 @@ const enData = {
   partyNames: {
     "Likud": "Likud",
     "National Unity Party": "National Unity Party",
+    "Blue and White": "Blue and White",
     "Yesh Atid": "Yesh Atid",
     "Yisrael Beiteinu": "Yisrael Beiteinu",
     "Shas": "Shas",
@@ -21,7 +22,7 @@ const enData = {
     "Bennett 2026": "Bennett 2026",
     "HaMiluimnikim": "HaMiluimnikim",
     "Balad (National Democratic Alliance)": "Balad (National Democratic Alliance)",
-    "Labor": "Labor"
+    "Labor": "Labour"
   },
   politicianNames: {
     "Benjamin Netanyahu": "Benjamin Netanyahu",
@@ -71,7 +72,7 @@ const enData = {
   },
   blocNames: {
     "Right/Religious": "Right/Religious",
-    "Center/Left/Arab": "Center/Left/Arab"
+    "Center/Left/Arab": "Centre/Left/Arab"
   },
   pollSources: {
     "מעריב": "Maariv",

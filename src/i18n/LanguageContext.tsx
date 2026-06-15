@@ -58,7 +58,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const strings = translations[lang];
 
   const t = useCallback((key: string): string => {
-    return strings[key] || key;
+    return key in strings ? strings[key] : key;
   }, [strings]);
 
   const tParty = useCallback((name: string): string => {
@@ -90,8 +90,28 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [data]);
 
   const tPollSource = useCallback((source: string): string => {
+    if (!source) return '';
+    
+    // Check if it has a parenthesis suffix, e.g., "Channel (Date)" or "Channel (Multiple)"
+    const openParenIdx = source.indexOf(' (');
+    if (openParenIdx !== -1 && source.endsWith(')')) {
+      const base = source.substring(0, openParenIdx).trim();
+      const suffix = source.substring(openParenIdx + 2, source.length - 1).trim();
+      
+      const translatedBase = (data.pollSources as Record<string, string>)[base] || base;
+      
+      let translatedSuffix = suffix;
+      if (suffix === 'Multiple') {
+        translatedSuffix = lang === 'he' ? 'מרובה' : 'Multiple';
+      } else if (suffix === 'Multiple Polls') {
+        translatedSuffix = lang === 'he' ? 'סקרים מרובים' : 'Multiple Polls';
+      }
+      
+      return `${translatedBase} (${translatedSuffix})`;
+    }
+    
     return (data.pollSources as Record<string, string>)[source] || source;
-  }, [data]);
+  }, [data, lang]);
 
   const tBio = useCallback((id: string): string => {
     return (data.politicians as Record<string, any>)[id]?.biography || '';

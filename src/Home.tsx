@@ -26,27 +26,35 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
         {/* Main Content */}
         <main className="flex-grow bg-surface transition-colors duration-300">
           {/* Hero Section */}
-          <section className="relative min-h-[716px] flex items-center justify-center overflow-hidden px-12">
+          <section className="relative min-h-[500px] md:min-h-[716px] flex items-center justify-center overflow-hidden px-4 md:px-12">
             <div className="absolute inset-0 z-0 pointer-events-none">
-              <img alt="Flag of Israel" className="w-full h-full object-cover opacity-[0.06]" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg" />
+              <img alt="Knesset Plenum" className="w-full h-full object-cover opacity-[0.15] md:opacity-[0.22] object-center" src="assets/knesset_plenum.jpg" />
+            </div>
+            <div className="absolute bottom-4 end-4 z-10 text-[9px] text-[#162839]/40 dark:text-[#fbf9f5]/40 hover:text-primary dark:hover:text-white transition-colors">
+              <a href="https://commons.wikimedia.org/wiki/File:Knesset_Hall.JPG" target="_blank" rel="noreferrer" className="underline">
+                {t('home.hero.photoCredit')}
+              </a>
             </div>
             <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
-              <h1 className="font-headline text-6xl md:text-8xl font-black text-primary leading-none tracking-tighter mb-8">
+              <h1 className="font-headline text-5xl md:text-8xl font-black text-primary leading-none tracking-tighter mb-6 md:mb-8">
                 {t('home.hero.title1')}<br />
                 <span className="italic text-secondary">{t('home.hero.title2')}</span>
               </h1>
-              <p className="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed mb-12">
-                <span className="font-['Newsreader'] italic font-bold text-xl">PoliDash</span> {t('home.hero.description')}
+              <p className="font-body text-base md:text-lg text-on-surface-variant max-w-2xl leading-relaxed mb-8 md:mb-12">
+                <span className="font-['Newsreader'] italic font-bold text-lg md:text-xl">PoliDash</span> {t('home.hero.description')}
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a href="#/issues" className="px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:bg-secondary hover:shadow-xl transition-all flex items-center justify-center cursor-pointer">
-                  {t('home.hero.exploreBtn')}
-                </a>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                 <button 
                   onClick={() => document.getElementById('workflow')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-white text-primary border border-primary/20 font-label font-bold text-lg rounded-sm hover:bg-stone-100 hover:shadow-lg transition-all flex items-center justify-center cursor-pointer"
+                  className="px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:bg-secondary hover:shadow-xl transition-all flex items-center justify-center cursor-pointer w-64"
                 >
                   {t('home.hero.workflowBtn')}
+                </button>
+                <button 
+                  onClick={() => document.getElementById('explore')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 bg-white text-primary border border-primary/20 font-label font-bold text-lg rounded-sm hover:bg-stone-100 hover:shadow-lg transition-all flex items-center justify-center cursor-pointer w-64"
+                >
+                  {t('home.workflow.subtitle')}
                 </button>
               </div>
             </div>
@@ -54,7 +62,7 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
           {/* 3-Step Breakdown */}
           <section id="workflow" className="py-24 px-12 bg-white border-y border-stone-100">
             <div className="max-w-7xl mx-auto text-center mb-16">
-              <h3 className="font-headline text-4xl font-bold text-primary tracking-tight">
+              <h3 className="font-headline text-3xl md:text-4xl font-bold text-primary tracking-tight">
                 {t('home.workflow.title')}
               </h3>
             </div>
@@ -95,7 +103,12 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
             </div>
           </section>
           {/* CTA Section */}
-          <section className="py-24 px-12">
+          <section id="explore" className="py-24 px-12">
+            <div className="max-w-7xl mx-auto text-center mb-16">
+              <h3 className="font-headline text-3xl md:text-4xl font-bold text-primary tracking-tight">
+                {t('home.workflow.subtitle')}
+              </h3>
+            </div>
             <div className="max-w-7xl mx-auto flex flex-col gap-8">
               {/* Top Row: 3 Cards */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

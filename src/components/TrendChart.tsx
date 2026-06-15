@@ -27,7 +27,7 @@ const CustomDot = (props: any) => {
 
   return (
     <g 
-      className="cursor-pointer group"
+      className="cursor-pointer group raw-poll-dot"
       onMouseEnter={() => onMouseEnter({ poll: pollObj, party: partyName })}
       onMouseLeave={() => onMouseLeave()}
     >
@@ -76,15 +76,18 @@ const CustomTooltip = ({ active, payload, label, hoveredPoint, visibleParties, i
         <div className="mb-4">
           <p className="text-[10px] font-bold text-slate-300 border-b border-slate-600 pb-1 mb-2">{tPollSource(poll.source)}</p>
           <div className="space-y-1.5">
-            {targetParties.map(p => (
-              <div key={p} className="flex justify-between items-center gap-6">
-                 <div className="flex items-center gap-2">
-                   <div className="w-1.5 h-1.5 rounded-full border border-white/20" style={{ backgroundColor: PARTY_COLORS[p] || '#94a3b8' }} />
-                   <span className="font-medium text-white">{tParty(p)}</span>
-                 </div>
-                 <span className="font-bold font-mono text-white">{poll.data[p] !== undefined ? poll.data[p] : 0}</span>
-              </div>
-            ))}
+            {targetParties.map(p => {
+              const isHovered = p === party;
+              return (
+                <div key={p} className="flex justify-between items-center gap-6">
+                   <div className="flex items-center gap-2">
+                     <div className="w-1.5 h-1.5 rounded-full border border-white/20" style={{ backgroundColor: PARTY_COLORS[p] || '#94a3b8' }} />
+                     <span className={`text-white transition-all ${isHovered ? 'font-black' : 'font-medium opacity-90'}`}>{tParty(p)}</span>
+                   </div>
+                   <span className={`font-mono text-white transition-all ${isHovered ? 'font-black' : 'font-bold opacity-90'}`}>{poll.data[p] !== undefined ? poll.data[p] : 0}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -330,18 +333,24 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
             key={animationKey} 
             data={data} 
             margin={{ top: 20, right: 40, left: 0, bottom: 10 }}
-            onMouseDown={(e: any) => {
-              const x = getXValue(e);
-              const y = e ? (e.chartY !== undefined ? e.chartY : (e.activeCoordinate ? e.activeCoordinate.y : undefined)) : undefined;
+            onMouseDown={(nextState: any, event: any) => {
+              if (event && event.target && !(event.target as HTMLElement).closest('.raw-poll-dot')) {
+                setHoveredPoint(null);
+              }
+              const x = getXValue(nextState);
+              const y = nextState ? (nextState.chartY !== undefined ? nextState.chartY : (nextState.activeCoordinate ? nextState.activeCoordinate.y : undefined)) : undefined;
               if (x && y !== undefined) {
                 setRefAreaLeft(x);
                 setRefAreaTop(getYValue(y));
               }
             }}
-            onMouseMove={(e: any) => {
+            onMouseMove={(nextState: any, event: any) => {
+              if (event && event.target && !(event.target as HTMLElement).closest('.raw-poll-dot')) {
+                setHoveredPoint(null);
+              }
               if (refAreaLeft) {
-                const x = getXValue(e);
-                const y = e ? (e.chartY !== undefined ? e.chartY : (e.activeCoordinate ? e.activeCoordinate.y : undefined)) : undefined;
+                const x = getXValue(nextState);
+                const y = nextState ? (nextState.chartY !== undefined ? nextState.chartY : (nextState.activeCoordinate ? nextState.activeCoordinate.y : undefined)) : undefined;
                 if (x && y !== undefined) {
                   setRefAreaRight(x);
                   setRefAreaBottom(getYValue(y));
@@ -401,7 +410,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
                   dot={false}
                   activeDot={{ r: 5 }}
                   isAnimationActive={true}
-                  animationDuration={1500}
+                  animationDuration={3000}
                   animationEasing="ease-out"
                 />
               ];
@@ -433,7 +442,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
       </div>
 
       {/* Party Toggle Pills */}
-      <div className="flex flex-wrap gap-2 mt-6 justify-center items-center">
+      <div className="flex flex-wrap md:flex-nowrap gap-1.5 mt-6 justify-center items-center w-full overflow-x-auto xl:overflow-x-visible no-scrollbar">
         {allParties.map(party => {
           const isVisible = visibleParties.has(party);
           const color = PARTY_COLORS[party] || '#94a3b8';
@@ -446,7 +455,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
                 }
                 onToggleParty(party);
               }}
-              className={`group relative px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full border-2 transition-all duration-200 ${
+              className={`group relative px-2.5 py-1 text-[7px] lg:text-[8px] font-bold uppercase tracking-wider rounded-full border-2 transition-all duration-200 whitespace-nowrap ${
                 isVisible
                   ? 'text-white shadow-sm'
                   : 'bg-white text-slate-400 border-slate-200 hover:border-slate-400'
@@ -467,7 +476,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
                       e.stopPropagation();
                       window.location.hash = `#/profile/${leader.id}`;
                     }}
-                    className="leader-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-white/95 backdrop-blur-sm border border-stone-200 shadow-xl rounded-xl p-3 flex items-center gap-3 text-start pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100 scale-95 opacity-0 transition-all duration-200 delay-0 group-hover:delay-[1000ms] z-50 normal-case cursor-pointer hover:border-secondary text-slate-800 before:absolute before:content-[''] before:w-full before:h-3 before:top-full before:left-0"
+                    className="leader-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-white/95 backdrop-blur-sm border border-stone-200 shadow-xl rounded-xl p-3 hidden md:flex items-center gap-3 text-start pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100 scale-95 opacity-0 transition-all duration-200 delay-0 group-hover:delay-[1000ms] z-50 normal-case cursor-pointer hover:border-secondary text-slate-800 before:absolute before:content-[''] before:w-full before:h-3 before:top-full before:left-0"
                   >
                     <img 
                       src={leader.imageUrl} 
@@ -491,16 +500,20 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
             </button>
           );
         })}
+      </div>
+
+      {/* Select All / Reset Actions */}
+      <div className="flex justify-center items-center gap-4 mt-4 w-full">
         <button
           onClick={onSelectAll}
-          className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full border-2 border-transparent text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4 ml-2 cursor-pointer"
+          className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4 cursor-pointer whitespace-nowrap"
         >
           {t('polls.trend.selectAll')}
         </button>
         {visibleParties.size > 0 && (
           <button
             onClick={onClearAll}
-            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full border-2 border-transparent text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4 ml-2 cursor-pointer"
+            className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4 cursor-pointer whitespace-nowrap"
           >
             {t('polls.trend.reset')}
           </button>

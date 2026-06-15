@@ -10,7 +10,7 @@ const PARTY_MAP: Record<string, string> = {
   'הליכוד': 'Likud',
   'יהדות התורה': 'United Torah Judaism',
   'ש״ס': 'Shas',
-  'כחול לבן': 'National Unity Party',
+  'כחול לבן': 'Blue and White',
   'המחנה הממלכתי': 'National Unity Party',
   'יש עתיד': 'Yesh Atid',
   'חדש תע״ל': 'Hadash-Ta\'al',
@@ -38,7 +38,11 @@ function parseDateString(dateStr: string): string {
 async function run() {
   console.log('🚀 Starting TheMadad Poll Scraper (Stealth Mode)...');
   
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
   
   await page.setExtraHTTPHeaders({
@@ -69,6 +73,11 @@ async function run() {
   }
   
   const headers = rows[0];
+  console.log('--- Scraped Headers ---', headers);
+  console.log('--- Scraped Top Rows ---');
+  for (let i = 1; i <= Math.min(5, rows.length - 1); i++) {
+    console.log(`Row ${i}:`, rows[i]);
+  }
   const pollsFile = path.join(process.cwd(), 'src/polls.ts');
   let currentContent = fs.readFileSync(pollsFile, 'utf8');
   
@@ -78,42 +87,72 @@ async function run() {
   let latestDate = oneYearAgo.toISOString().split('T')[0];
 
   // Extract latest date from existing polls
-  const dateRegex = /date:\s*['"]([^'"]+)['"]/g;
+  const dateRegex = /dateISO:\s*['"]([^'"]+)['"]/g;
   let match;
   while ((match = dateRegex.exec(currentContent)) !== null) {
-    const d = new Date(match[1]);
-    if (!isNaN(d.getTime())) {
-      const iso = d.toISOString().split('T')[0];
-      if (iso > latestDate) latestDate = iso;
-    }
+    const iso = match[1];
+    if (iso > latestDate) latestDate = iso;
+  }
+
+  // Extract all existing poll IDs
+  const existingIds = new Set<string>();
+  const idRegex = /id:\s*['"]([^'"]+)['"]/g;
+  let idMatch;
+  while ((idMatch = idRegex.exec(currentContent)) !== null) {
+    existingIds.add(idMatch[1]);
   }
   
   console.log(`📊 Found latest poll date in local DB: ${latestDate}`);
+  console.log(`📊 Found ${existingIds.size} existing polls in local DB`);
   
   const newPolls: any[] = [];
+  const oneYearAgoStr = oneYearAgo.toISOString().split('T')[0];
   
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
     if (row.length < 4) continue;
     
     // Row mapping: [0] ID, [1] Date, [2] Respondents, [3] Source, [4] Pollster, [5...] Parties
+    const id = row[0];
+    if (existingIds.has(id)) {
+      continue;
+    }
+    
     const dateStr = row[1];
     const dateISO = parseDateString(dateStr);
     
-    if (dateISO <= latestDate) {
-      // Reached polls we already have
-      break;
+    if (dateISO < oneYearAgoStr) {
+      continue;
     }
     
     const source = row[3];
     const dateFormatted = new Date(dateISO).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     
     const data: Record<string, number> = {};
+    
+    // Check if both 'רע״מ' and '‏רשימה ערבית מאוחדת' are present with positive values in this row
+    let hasRaam = false;
+    let hasUnifiedArab = false;
     for (let j = 5; j < headers.length; j++) {
       const hebParty = headers[j];
       const val = parseInt(row[j], 10);
       if (!isNaN(val) && val > 0) {
-        const engParty = PARTY_MAP[hebParty];
+        if (hebParty === 'רע״מ') hasRaam = true;
+        if (hebParty === '‏רשימה ערבית מאוחדת') hasUnifiedArab = true;
+      }
+    }
+
+    for (let j = 5; j < headers.length; j++) {
+      const hebParty = headers[j];
+      const val = parseInt(row[j], 10);
+      if (!isNaN(val) && val > 0) {
+        let engParty = PARTY_MAP[hebParty];
+        // If both Ra'am and Unified Arab List are present in this poll,
+        // map Unified Arab List to Hadash-Ta'al because it represents Hadash-Ta'al's seats here.
+        if (hasRaam && hasUnifiedArab && hebParty === '‏רשימה ערבית מאוחדת') {
+          engParty = "Hadash-Ta'al";
+        }
+        
         if (engParty) {
           data[engParty] = val;
         } else {

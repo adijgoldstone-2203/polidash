@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import ParliamentChart from './components/ParliamentChart';
 import { useLanguage } from './i18n';
 import { analyzeCoalitionStability } from './utils/coalitionStability';
-import { politicians } from './data';
 
 const getPartyLeaderId = (partyName: string): string | null => {
   const normalized = partyName.toLowerCase();
@@ -33,7 +32,7 @@ const getPartyRepresentativeUrl = (partyName: string): string => {
 };
 
 const CoalitionBuilder: React.FC = () => {
-  const { t, tParty, tPolitician, tPollSource, tIssue, tIssueDefinition, tStance, lang } = useLanguage();
+  const { t, tParty, tPollSource, tIssue, tIssueDefinition, tStance, lang } = useLanguage();
 
   const latestUniquePolls = useMemo(() => {
     const seen = new Set<string>();
@@ -120,7 +119,7 @@ const CoalitionBuilder: React.FC = () => {
         <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-6 mb-4">
           {/* Page Title (Left) */}
           <div className="max-w-3xl">
-            <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4">
+            <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-7xl tracking-tight text-primary mb-4">
               {t('coalition.title1')} <span className="italic font-bold">{t('coalition.title2')}</span>
             </h1>
             <div className="h-1 w-24 bg-primary mb-4"></div>
@@ -130,7 +129,7 @@ const CoalitionBuilder: React.FC = () => {
           </div>
 
           {/* Progress Bar (Right) */}
-          <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex-grow w-full xl:max-w-2xl mb-2">
+          <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex-grow w-full xl:max-w-2xl mb-2 hidden lg:block">
             <div className="flex flex-col md:flex-row items-center gap-6 w-full">
               <div className="flex items-baseline gap-2 shrink-0">
                 <motion.span 
@@ -164,13 +163,13 @@ const CoalitionBuilder: React.FC = () => {
         </div>
 
         {/* Side-by-Side Content Area */}
-        <div className="grid grid-cols-12 gap-6 items-start">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-start">
           
           {/* LEFT: Party Selector (Compact Sidebar) */}
-          <section className="col-span-12 lg:col-span-3 space-y-4">
+          <section className="contents lg:flex lg:flex-col lg:col-span-3 lg:gap-4">
             
             {/* Poll Selection Card */}
-            <div className="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-stone-300 transition-all duration-200">
+            <div className="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-stone-300 transition-all duration-200 order-2 lg:order-none">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">{t('coalition.pollSource')}</span>
@@ -217,7 +216,7 @@ const CoalitionBuilder: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 order-3 lg:order-none w-full bg-white lg:bg-transparent p-4 lg:p-0 rounded-xl border border-stone-200 lg:border-none shadow-sm lg:shadow-none">
               <div className="flex items-center justify-between border-b border-stone-200 pb-2 mb-2 px-1">
                 <h3 className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t('coalition.assemble')}</h3>
                 {proposedCoalition.length > 0 && (
@@ -229,76 +228,39 @@ const CoalitionBuilder: React.FC = () => {
                   </button>
                 )}
               </div>
-              {Object.entries(selectedPoll.data)
-                .sort((a, b) => b[1] - a[1])
-                .map(([name, seats]) => {
-                  if (seats === 0) return null;
-                  const isSelected = proposedCoalition.includes(name);
-                  const color = PARTY_COLORS[name] || '#2B4C7E';
-                  return (
-                    <button
-                      key={name}
-                      onClick={(e) => {
-                        if ((e.target as HTMLElement).closest('.leader-tooltip')) {
-                          return;
-                        }
-                        toggleParty(name);
-                      }}
-                      className={`group relative flex items-center justify-between px-3 py-1.5 rounded-lg transition-all border shadow-sm ${
-                        !isSelected ? 'bg-white text-primary border-stone-100 hover:border-secondary' : 'text-white'
-                      }`}
-                      style={isSelected ? { backgroundColor: color, borderColor: color } : {}}
-                    >
-                      <span className="font-bold text-[8px] uppercase tracking-tight text-start truncate pe-2">{tParty(name)}</span>
-                      <span className="font-['Newsreader'] italic font-bold text-sm">{seats}</span>
-                      
-                      {/* Hover Tooltip Card */}
-                      {(() => {
-                        const leaderId = getPartyLeaderId(name);
-                        const leader = leaderId ? politicians.find(p => p.id === leaderId) : null;
-                        if (!leader) return null;
-                        
-                        return (
-                          <div 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.location.hash = `#/profile/${leader.id}`;
-                            }}
-                            className="leader-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-white/95 backdrop-blur-sm border border-stone-200 shadow-xl rounded-xl p-3 flex items-center gap-3 text-start pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100 scale-95 opacity-0 transition-all duration-200 delay-0 group-hover:delay-[1000ms] z-50 normal-case cursor-pointer hover:border-secondary before:absolute before:content-[''] before:w-full before:h-3 before:top-full before:left-0"
-                          >
-                            <img 
-                              src={leader.imageUrl} 
-                              alt={leader.name} 
-                              className="w-9 h-9 rounded-full object-cover object-top border border-stone-200 flex-shrink-0"
-                            />
-                            <div className="flex flex-col min-w-0">
-                              <span className="font-bold text-[10px] text-slate-800 uppercase tracking-tight truncate">
-                                {tPolitician(leader.name)}
-                              </span>
-                              <span className="text-[8px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5 truncate">
-                                {lang === 'he' ? 'יו"ר מפלגה' : 'Party Leader'}
-                              </span>
-                            </div>
-                            <span className="material-symbols-outlined text-[12px] text-slate-400 ms-auto flex-shrink-0 hover:text-secondary">
-                              open_in_new
-                            </span>
-                          </div>
-                        );
-                      })()}
-                    </button>
-                  );
-                })}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-col gap-1.5">
+                {Object.entries(selectedPoll.data)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([name, seats]) => {
+                    if (seats === 0) return null;
+                    const isSelected = proposedCoalition.includes(name);
+                    const color = PARTY_COLORS[name] || '#2B4C7E';
+                    return (
+                      <button
+                        key={name}
+                        onClick={() => toggleParty(name)}
+                        className={`group relative flex items-center justify-between px-3 py-1.5 rounded-lg transition-all border shadow-sm ${
+                          !isSelected ? 'bg-white text-primary border-stone-100 hover:border-secondary' : 'text-white'
+                        }`}
+                        style={isSelected ? { backgroundColor: color, borderColor: color } : {}}
+                      >
+                        <span className="font-bold text-[8px] uppercase tracking-tight text-start truncate pe-2">{tParty(name)}</span>
+                        <span className="font-['Newsreader'] italic font-bold text-sm">{seats}</span>
+                      </button>
+                    );
+                  })}
+              </div>
             </div>
           </section>
 
           {/* RIGHT: Wide Graph Area & Stability Index */}
-          <div className="col-span-12 lg:col-span-9 flex flex-col gap-6">
-            <div className="bg-white p-4 md:p-6 rounded-2xl border border-stone-200 shadow-sm flex items-center justify-center min-h-[280px] md:min-h-[320px]">
+          <div className="contents lg:flex lg:flex-col lg:col-span-9 lg:gap-6">
+            <div className="bg-white p-2 md:p-6 rounded-2xl border border-stone-200 shadow-sm flex items-center justify-center min-h-[280px] md:min-h-[320px] order-1 lg:order-none w-full">
               <ParliamentChart totalSeats={TOTAL_SEATS} coalitionSeats={currentSeats} parties={chartParties} />
             </div>
 
             {/* Ideological Conflict Analysis Card */}
-            <div className="bg-white p-6 md:p-8 rounded-2xl border border-stone-200 shadow-sm" dir={lang === 'he' ? 'rtl' : 'ltr'}>
+            <div className="bg-white p-6 md:p-8 rounded-2xl border border-stone-200 shadow-sm order-4 lg:order-none w-full" dir={lang === 'he' ? 'rtl' : 'ltr'}>
               <div className="border-b border-stone-100 pb-5 mb-6">
                 <h3 className="font-['Newsreader'] text-2xl font-bold text-primary flex items-center gap-2">
                   {t('coalition.stability.title')}

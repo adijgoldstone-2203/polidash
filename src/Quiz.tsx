@@ -94,7 +94,7 @@ const Quiz: React.FC = () => {
         <main className="max-w-7xl mx-auto">
           <section className="mb-12">
             <div className="flex-1">
-              <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4 whitespace-nowrap lg:whitespace-normal">
+              <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-7xl tracking-tight text-primary mb-4">
                 {t('quiz.title1')} <span className="italic font-bold">{t('quiz.title2')}</span>
               </h1>
               <div className="h-1 w-24 bg-primary mb-6" />
@@ -196,7 +196,7 @@ const Quiz: React.FC = () => {
             <div className="absolute top-0 end-0 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] -me-32 -mt-32"></div>
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
               <div className="flex-1">
-                <h2 className="font-headline text-4xl font-bold mb-6 italic">{t('quiz.synthesis.title')}</h2>
+                <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 italic">{t('quiz.synthesis.title')}</h2>
                 <p className="text-slate-300 text-lg mb-8 leading-relaxed">
                   {t('quiz.synthesis.desc')}
                 </p>

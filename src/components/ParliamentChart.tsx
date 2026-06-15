@@ -10,7 +10,7 @@ interface ParliamentChartProps {
   parties: { name: string; seats: number; isSelected: boolean }[];
 }
 
-const ParliamentChart: React.FC<ParliamentChartProps> = ({ totalSeats, parties }) => {
+const ParliamentChart: React.FC<ParliamentChartProps> = ({ totalSeats, coalitionSeats, parties }) => {
   const { t } = useLanguage();
   const dotsPerRow = 20; 
   const rows = Math.ceil(totalSeats / dotsPerRow); 
@@ -36,7 +36,7 @@ const ParliamentChart: React.FC<ParliamentChartProps> = ({ totalSeats, parties }
   while(seatMap.length < totalSeats) seatMap.push({ party: "Default", isSelected: false });
 
   return (
-    <div className="relative w-full flex justify-center overflow-visible px-12">
+    <div className="relative w-full flex justify-center overflow-visible px-2 md:px-12">
       <svg viewBox="0 0 900 400" className="w-full max-w-[650px] h-auto overflow-visible">
         <g>
           {seatMap.map((seat, i) => {
@@ -69,9 +69,28 @@ const ParliamentChart: React.FC<ParliamentChartProps> = ({ totalSeats, parties }
           })}
         </g>
         
-        <line x1="450" y1="350" x2="450" y2="40" stroke="#162839" strokeWidth="1.5" strokeDasharray="6 6" className="opacity-20" />
+        <line x1="450" y1="200" x2="450" y2="40" stroke="#162839" strokeWidth="1.5" strokeDasharray="6 6" className="opacity-20" />
         {/* Darker text for the majority threshold */}
         <text x="450" y="30" textAnchor="middle" className="text-[12px] font-bold uppercase fill-primary opacity-80 tracking-widest">{t('shared.majorityThreshold')}</text>
+
+        <g className="lg:hidden">
+          <text 
+            x="450" 
+            y="285" 
+            textAnchor="middle" 
+            className="text-8xl font-bold fill-primary font-['Newsreader']"
+          >
+            {coalitionSeats.toFixed(1)}
+          </text>
+          <text 
+            x="450" 
+            y="325" 
+            textAnchor="middle" 
+            className={`text-[12px] font-black uppercase tracking-[0.2em] ${coalitionSeats >= 61 ? 'fill-green-600' : 'fill-secondary'}`}
+          >
+            {coalitionSeats >= 61 ? t('coalition.majorityFormed') : `${t('shared.seats')} / ${totalSeats}`}
+          </text>
+        </g>
       </svg>
     </div>
   );

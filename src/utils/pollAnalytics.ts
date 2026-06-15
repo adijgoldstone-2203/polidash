@@ -183,11 +183,8 @@ export const getRunningWeightedAverageData = (polls: Poll[]): Record<string, str
       }))
     };
 
-    Object.entries(runningAvg).forEach(([party, seats]) => {
-      const isPresentOnDate = pollsOnDate.some(p => p.data[party] !== undefined);
-      if (isPresentOnDate) {
-        entry[party] = seats;
-      }
+    allParties.forEach(party => {
+      entry[party] = runningAvg[party] !== undefined ? runningAvg[party] : 0;
     });
 
     // Add raw poll seats with a prefix to be used for the scatter points
@@ -209,6 +206,9 @@ export const getRunningWeightedAverageData = (polls: Poll[]): Record<string, str
 export const getSinglePollTimeSeriesData = (polls: Poll[]): Record<string, string | number>[] => {
   const sorted = [...polls].sort((a, b) => a.dateISO.localeCompare(b.dateISO));
   
+  const allParties = new Set<string>();
+  polls.forEach(p => Object.keys(p.data).forEach(party => allParties.add(party)));
+
   // Group polls by dateISO
   const uniqueDates = Array.from(new Set(sorted.map(p => p.dateISO)));
 
@@ -250,8 +250,8 @@ export const getSinglePollTimeSeriesData = (polls: Poll[]): Record<string, strin
     };
 
     // Add averaged line values
-    Object.entries(avgData).forEach(([party, seats]) => {
-      entry[party] = seats;
+    allParties.forEach(party => {
+      entry[party] = avgData[party] !== undefined ? avgData[party] : 0;
     });
 
     // Add raw values for each poll dot

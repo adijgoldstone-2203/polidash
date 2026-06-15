@@ -18,12 +18,11 @@ const Footer: React.FC = () => {
         <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1 font-bold text-secondary" href="#/transparency">
           {t('footer.reply')}
         </a>
-        <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">
+        {/*
+        <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#/privacy">
           {t('footer.privacy')}
         </a>
-        <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">
-          {t('footer.terms')}
-        </a>
+        */}
       </div>
     </footer>
   );

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Politician } from './data';
 import OptimizedImage from './components/OptimizedImage';
@@ -16,6 +16,21 @@ interface VennEngineProps {
 
 const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
   const { t, tParty, tPolitician, tIssue, tStance, tIssueDefinition, lang } = useLanguage();
+  const [activePoliticianId, setActivePoliticianId] = useState<string | null>(null);
+
+  // Close active tooltip when tapping outside
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.politician-face-btn')) {
+        setActivePoliticianId(null);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
 
   // Compute intersection regions
   const regions = useMemo(() => {
@@ -103,20 +118,20 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
   };
 
   return (
-    <div className="relative w-full h-full min-h-[700px] overflow-hidden flex items-center justify-center">
+    <div className="relative w-full h-full min-h-[500px] md:min-h-[700px] overflow-hidden flex items-center justify-center">
       {/* Render Venn Circles */}
       {criteria.map((crit, index) => {
         const getAlignmentClasses = () => {
           if (numCircles === 3) {
-            if (index === 0) return 'items-start justify-center pt-8';
-            if (index === 1) return 'items-end justify-start pb-10 ps-10';
-            if (index === 2) return 'items-end justify-end pb-10 pe-10';
+            if (index === 0) return 'items-start justify-center pt-3 md:pt-8';
+            if (index === 1) return 'items-end justify-start pb-3 ps-3 md:pb-10 md:ps-10';
+            if (index === 2) return 'items-end justify-end pb-3 pe-3 md:pb-10 md:pe-10';
           }
           if (numCircles === 2) {
-            if (index === 0) return 'items-start justify-start pt-10 ps-14';
-            if (index === 1) return 'items-start justify-end pt-10 pe-14';
+            if (index === 0) return 'items-start justify-start pt-3 ps-4 md:pt-10 md:ps-14';
+            if (index === 1) return 'items-start justify-end pt-3 pe-4 md:pt-10 md:pe-14';
           }
-          return 'items-start justify-center pt-6';
+          return 'items-start justify-center pt-3 md:pt-6';
         };
 
         const isHeaderBottom = numCircles === 3 && (index === 1 || index === 2);
@@ -129,7 +144,7 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
             className={`absolute rounded-full venn-circle flex ${getAlignmentClasses()} border-2 border-white/50 shadow-2xl ${colors[index]}`}
             style={{ ...getCircleStyles(index) }}
           >
-            <div className={`relative group/venntooltip text-center font-bold px-6 uppercase tracking-widest text-[9px] leading-tight ${textColors[index]} cursor-help`} style={{textShadow: '0 1px 3px rgba(255,255,255,1)'}}>
+            <div className={`relative group/venntooltip text-center font-bold px-2 md:px-6 uppercase tracking-widest text-[8px] md:text-[9px] leading-tight ${textColors[index]} cursor-help`} style={{textShadow: '0 1px 3px rgba(255,255,255,1)'}}>
               {tIssue(crit.topic)} <br/> ({tStance(crit.stance)})
               <div className={`absolute left-1/2 -translate-x-1/2 w-56 p-3 bg-slate-900 text-white text-[11px] normal-case tracking-normal font-normal leading-relaxed rounded-md shadow-2xl opacity-0 invisible group-hover/venntooltip:opacity-100 group-hover/venntooltip:visible transition-all z-[100] pointer-events-none ${isHeaderBottom ? 'top-full mt-4' : 'bottom-full mb-4'}`} style={{textShadow: 'none'}}>
                 {tIssueDefinition(crit.topic)}
@@ -187,23 +202,37 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
           const yOffset = (row - (Math.ceil(matchedPols.length / cols) - 1) / 2) * spacingY;
           
           return (
-            <a 
+            <div 
               key={pol.id}
-              href={`#/profile/${pol.id}`}
-              className="absolute z-30 group"
+              className={`absolute group politician-face-btn transition-all ${
+                activePoliticianId === pol.id ? 'z-50' : 'z-30 hover:z-50'
+              }`}
               style={{
                 top: `calc(${pos.top} + ${yOffset}px)`,
                 left: `calc(${pos.left} + ${xOffset}px)`,
                 transform: 'translate(-50%, -50%)',
               }}
             >
-              <motion.div
+              <motion.button
                 layoutId={`pol-${pol.id}`}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                className={`w-10 h-10 md:w-11 md:h-11 rounded-full border-2 ${borderColor} shadow-lg bg-white flex items-center justify-center overflow-hidden cursor-pointer hover:scale-110 hover:shadow-xl transition-all`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const isMobile = window.innerWidth < 768;
+                  if (isMobile) {
+                    if (activePoliticianId === pol.id) {
+                      window.location.hash = `#/profile/${pol.id}`;
+                    } else {
+                      setActivePoliticianId(pol.id);
+                    }
+                  } else {
+                    window.location.hash = `#/profile/${pol.id}`;
+                  }
+                }}
+                className={`w-10 h-10 md:w-11 md:h-11 rounded-full border-2 ${borderColor} shadow-lg bg-white flex items-center justify-center overflow-hidden cursor-pointer hover:scale-110 hover:shadow-xl transition-all outline-none focus:outline-none`}
               >
                 {pol.imageUrl ? (
                   <OptimizedImage 
@@ -214,15 +243,22 @@ const VennEngine: React.FC<VennEngineProps> = ({ criteria, politicians }) => {
                 ) : (
                   <span className="material-symbols-outlined text-slate-400">person</span>
                 )}
-              </motion.div>
+              </motion.button>
               
-              {/* Tooltip on hover */}
-              <div className="absolute opacity-0 group-hover:opacity-100 bottom-full mb-3 left-1/2 -translate-x-1/2 bg-[#162839] text-white text-[10px] font-black whitespace-nowrap px-3 py-2 rounded shadow-2xl transition-all duration-200 pointer-events-none z-50 uppercase tracking-widest border border-white/10 flex flex-col items-center gap-0.5 min-w-[80px]" dir={lang === 'he' ? 'rtl' : 'ltr'}>
+              {/* Tooltip on hover/active */}
+              <div 
+                className={`absolute bottom-full mb-3 left-1/2 -translate-x-1/2 bg-[#162839] text-white text-[10px] font-black whitespace-nowrap px-3 py-2 rounded shadow-2xl transition-all duration-200 pointer-events-none z-50 uppercase tracking-widest border border-white/10 flex flex-col items-center gap-0.5 min-w-[80px] ${
+                  activePoliticianId === pol.id 
+                    ? 'opacity-100 scale-100' 
+                    : 'opacity-0 scale-95 md:group-hover:opacity-100 md:group-hover:scale-100'
+                }`}
+                dir={lang === 'he' ? 'rtl' : 'ltr'}
+              >
                 <span>{tPolitician(pol.name)}</span>
                 <span className="text-[8px] text-secondary-container font-bold opacity-90">{tParty(pol.party)}</span>
                 <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#162839]"></div>
               </div>
-            </a>
+            </div>
           );
         });
       })}

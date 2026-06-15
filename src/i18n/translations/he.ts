@@ -17,24 +17,26 @@ export const he: Record<string, string> = {
   "footer.terms": "תנאים",
 
   // Home – Hero
-  "home.hero.title1": "ראה את העמדות.",
-  "home.hero.title2": "בנה את העתיד.",
+  "home.hero.title1": "החלון שלכם ל",
+  "home.hero.title2": "בהירות פוליטית.",
   "home.hero.description":
     "הוא המדריך הבלתי משוחד שלך לבהירות פוליטית. אנו משתמשים בנתונים מאומתים ורשומות מדיניות כדי להראות לך בדיוק היכן עומד כל מנהיג בנושאים שחשובים.",
   "home.hero.exploreBtn": "חקור את הסוגיות",
   "home.hero.workflowBtn": "תהליך העבודה שלנו",
+  "home.hero.photoCredit": "רקע: מליאת הכנסת / בית השלום (ייחוס)",
 
   // Home – Workflow
   "home.workflow.title": "תהליך העבודה שלנו",
-  "home.workflow.data.title": "נתונים מאומתים",
+  "home.workflow.subtitle": "חקור",
+  "home.workflow.data.title": "נתונים מאומתים ומרוכזים",
   "home.workflow.data.desc":
-    "אנו אוספים מצעים, רשומות הצבעה ותמלילים רשמיים.",
-  "home.workflow.ai.title": "סינתזת AI",
+    "אנו מרכזים מצעים, נתוני סקרים ותמלילים רשמיים.",
+  "home.workflow.ai.title": "סינתזת בינה מלאכותית",
   "home.workflow.ai.desc":
-    "מודלים מתקדמים מייצרים סיכומים תמציתיים מבוססי מקור.",
-  "home.workflow.neutral.title": "בהירות ניטרלית",
+    "מודלים מתקדמים של בינה מלאכותית מסכמים את המקורות שלנו ומסירים הטיות פוליטיות",
+  "home.workflow.neutral.title": "הצגה חזותית",
   "home.workflow.neutral.desc":
-    "אנו ממפים עמדות ללא הטיה כדי להבהיר עמדות.",
+    "כלי ויזואליזציה אינטראקטיביים להבנת המפה הפוליטית",
 
   // Home – CTA Cards
   "home.cta.profiles.title": "פרופילי פוליטיקאים",
@@ -83,6 +85,7 @@ export const he: Record<string, string> = {
   "profileDetail.sharedAlignment": "התאמת עמדות משותפת",
   "profileDetail.noShared": "אין פוליטיקאים אחרים החולקים עמדה זו.",
   "profileDetail.intelligence": "מודיעין סוגיות",
+  "profileDetail.photoCredit": "קרדיט צילום",
 
   // Issues Page
   "issues.title1": "מנוע דיאגרמות",
@@ -177,7 +180,7 @@ export const he: Record<string, string> = {
   // Coalition Page
   "coalition.title1": "סימולטור",
   "coalition.title2": "קואליציה",
-  "coalition.desc": "הרכיבו ממשלת רוב מוצעת בכנסת (61 מנדטים ומעלה). בחרו מקורות סקר שונים מתוך מאגר הנתונים, סמנו חברות במפלגות בסרגל הצידי, ונתחו בזמן אמת מחלוקות ועמדות אידיאולוגיות.",
+  "coalition.desc": "העריכו שילובים קואליציוניים על בסיס נתוני הסקרים הנוכחיים, בחרו מבנה אפשרי ונתחו מחלוקות פוטנציאליות.",
   "coalition.seatsOf": "/ 120",
   "coalition.majorityFormed": "הושגה רוב",
   "coalition.majorityThreshold": "סף רוב: 61",
@@ -194,7 +197,7 @@ export const he: Record<string, string> = {
   "polls.title1": "לוח מעקב",
   "polls.title2": "סקרים",
   "polls.desc":
-    "אגרגציה מקיפה של {count} סקרים שפורסמו מ-{channels} ערוצי חדשות, לאורך התקופה מ-{from} עד {to}. ממוצע PoliDash משתמש בממוצע משוקלל-עדכניות כדי לתעדף את הנתונים העדכניים ביותר. השתמשו בבקרים למטה כדי לסנן סקרים לפי ערוץ חדשות, ולחצו על שמות המפלגות במקרא או בטבלת ההשוואה כדי להציג או להסתיר את קווי המגמה שלהן.",
+    "הבינו את מגמת הסקרים של המפלגות המובילות לאורך זמן ומתוך מגוון מקורות מרכזיים. דף זה מציג סקירה מקיפה של {count} סקרים שפורסמו מ-{channels} ערוצי חדשות, בין {from} ל-{to}. בחרו את כל או חלק מערוצי החדשות, טווח התאריכים והמפלגות כדי להציג אותם על גבי הגרף למטה.",
   "polls.trend.title": "ציר זמן מגמת ממוצע",
   "polls.trend.desc":
     "ממוצע המתעדכן באופן רציף לאורך זמן. החלף מפלגות למטה להשוואת מגמות.",

@@ -9,6 +9,7 @@ import Reply from './Reply';
 import CoalitionBuilder from './CoalitionBuilder';
 import PollsDashboard from './PollsDashboard';
 import Footer from './Footer';
+import Privacy from './Privacy';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
@@ -32,6 +33,7 @@ function App() {
   const isQuiz = currentPath === '#/quiz';
   const isReply = currentPath.startsWith('#/reply');
   const isProfileDetail = currentPath.startsWith('#/profile/');
+  const isPrivacy = currentPath === '#/privacy';
 
   return (
     <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300 flex flex-col">
@@ -65,6 +67,10 @@ function App() {
         
         <div className={isReply ? 'block' : 'hidden'}>
           <Reply />
+        </div>
+
+        <div className={isPrivacy ? 'block' : 'hidden'}>
+          <Privacy />
         </div>
 
         {/* Dynamic Detail Page (Unmounted when not in use to handle ID changes) */}

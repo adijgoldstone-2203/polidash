@@ -20,6 +20,7 @@ const Issues: React.FC = () => {
   const [activeCriteria, setActiveCriteria] = useState<Criterion[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
   const [expandedIssue, setExpandedIssue] = useState<string | null>(null);
+  const calculateButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const { t, tIssue, tIssueDefinition, tStance } = useLanguage();
 
@@ -52,7 +53,14 @@ const Issues: React.FC = () => {
       }
     } else {
       if (selectedCriteria.length < 3) {
-        setSelectedCriteria([...selectedCriteria, { topic, stance }]);
+        const nextCriteria = [...selectedCriteria, { topic, stance }];
+        setSelectedCriteria(nextCriteria);
+        
+        if (nextCriteria.length === 3 && window.innerWidth < 768) {
+          setTimeout(() => {
+            calculateButtonRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 150);
+        }
       } else {
         alert(t('issues.maxAlert'));
       }
@@ -81,7 +89,7 @@ const Issues: React.FC = () => {
       <div className="min-h-screen bg-surface px-6 lg:px-12 pt-8 pb-20">
         <main className="max-w-7xl mx-auto">
           <section className="mb-12">
-            <h1 className="font-['Newsreader'] text-5xl md:text-7xl tracking-tight text-primary mb-4">
+            <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-7xl tracking-tight text-primary mb-4">
               {t('issues.title1')} <span className="italic font-bold">{t('issues.title2')}</span>
             </h1>
             <div className="h-1 w-24 bg-primary mb-6"></div>
@@ -91,9 +99,9 @@ const Issues: React.FC = () => {
           </section>
           
           <div className="grid grid-cols-12 gap-8 items-start">
-            <div className="col-span-12 md:col-span-4 space-y-6 z-20">
+            <div className="col-span-12 md:col-span-4 flex flex-col gap-6 z-20">
               
-              <div className="bg-white border border-stone-200 p-6 rounded-lg text-slate-800 shadow-xl">
+              <div className="bg-white border border-stone-200 p-6 rounded-lg text-slate-800 shadow-xl order-2 md:order-1">
                 <p className="text-xs text-primary font-bold uppercase tracking-widest mb-2">{t('issues.liveSynthesis')}</p>
                 {selectedCriteria.length === 0 ? (
                   <p className="text-sm leading-relaxed mb-4 text-slate-500 italic">{t('issues.waiting')}</p>
@@ -113,6 +121,7 @@ const Issues: React.FC = () => {
                   </div>
                 )}
                 <button 
+                  ref={calculateButtonRef}
                   onClick={handleCalculate}
                   className="w-full py-3 bg-secondary hover:bg-secondary-container transition-colors text-white hover:text-on-secondary-container text-sm font-bold rounded flex items-center justify-center gap-2 uppercase tracking-widest"
                 >
@@ -121,10 +130,10 @@ const Issues: React.FC = () => {
                 </button>
               </div>
 
-              <div className="bg-surface-container-low p-6 rounded-lg">
+              <div className="bg-surface-container-low p-6 rounded-lg order-1 md:order-2">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-label font-bold text-sm text-primary flex items-center gap-2 uppercase tracking-wide">
-                    <span className="material-symbols-outlined text-sm">tune</span> {t('issues.binaryStandpoints')}
+                  <h3 className="font-label font-bold text-sm text-primary uppercase tracking-wide">
+                    {t('issues.binaryStandpoints')}
                   </h3>
                   {selectedCriteria.length > 0 && (
                     <button 
@@ -190,7 +199,7 @@ const Issues: React.FC = () => {
             </div>
             {/* Main Venn Container */}
             <div className="col-span-12 md:col-span-8">
-              <div className="relative bg-surface-container-low/30 border-2 border-dashed border-stone-200 rounded-xl h-[860px] editorial-shadow overflow-hidden">
+              <div className="relative bg-surface-container-low/30 border-2 border-dashed border-stone-200 rounded-xl h-[580px] md:h-[860px] editorial-shadow overflow-hidden">
                 <VennEngine criteria={activeCriteria} politicians={politicians} />
               </div>
             </div>

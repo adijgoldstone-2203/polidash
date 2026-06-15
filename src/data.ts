@@ -13,7 +13,7 @@ export interface Politician {
 }
 
 export const ISSUE_DEFINITIONS: Record<string, string> = {
-  "Free Market Priority": "Eliminating government price controls and reducing social welfare budgets to prioritize a competitive, de-regulated economy.",
+  "Free Market Priority": "Eliminating government price controls and reducing social welfare budgets to prioritise a competitive, de-regulated economy.",
   "Two-State Separation": "Establishing a sovereign Palestinian state alongside Israel based on the 1967 borders with mutually agreed land swaps.",
   "Judicial Override": "Passing a \"Basic Law\" that allows a simple Knesset majority (61 members) to re-enact laws struck down by the Supreme Court.",
   "Universal Enlistment": "Rescinding all legal exemptions for Haredi (Ultra-Orthodox) yeshiva students, making military or national service mandatory for all 18-year-old citizens.",
@@ -40,16 +40,16 @@ export const politicians: Politician[] = [
       "Legal Status: He is the first sitting Israeli Prime Minister to be indicted; his ongoing trial on charges of bribery, fraud, and breach of trust has been a central factor in recent coalition formations."
     ],
     "intelligence": {
-      "Gaza & Security": "Supports sustained military application to eliminate security threats; emphasizes Israeli security control over Gaza.",
-      "Cost of Living": "Focuses on reducing regulations, opening markets to imports, and minimizing government intervention.",
+      "Gaza & Security": "Supports sustained military application to eliminate security threats; emphasises Israeli security control over Gaza.",
+      "Cost of Living": "Focuses on reducing regulations, opening markets to imports, and minimising government intervention.",
       "Judicial Reform": "Led the coalition that introduced legislation to alter the balance of power, arguing the judiciary has assumed executive authority.",
       "Haredi Draft": "Demonstrates willingness to support legislative exemptions for ultra-Orthodox yeshiva students to maintain coalition agreements.",
       "Religion & Public Space": "Maintains the existing integration of orthodox religious institutions and state functions.",
-      "Arab-Israeli Integration": "Emphasizes the Jewish national identity of the state, notably through the 2018 Nation-State Law.",
+      "Arab-Israeli Integration": "Emphasises the Jewish national identity of the state, notably through the 2018 Nation-State Law.",
       "Palestinian Statehood": "Opposes the creation of a sovereign Palestinian state, citing national security concerns.",
-      "Internal Cohesion": "Utilizes political messaging focused on mobilizing core constituencies and emphasizing ideological distinctions.",
+      "Internal Cohesion": "Utilises political messaging focused on mobilising core constituencies and emphasising ideological distinctions.",
       "Settlements": "Supports the expansion and continued funding of Israeli settlements in the West Bank.",
-      "Foreign Relations": "Prioritizes independent Israeli action regarding security while maintaining defensive alliances with the United States."
+      "Foreign Relations": "Prioritises independent Israeli action regarding security while maintaining defensive alliances with the United States."
     },
     "stances": {
       "Free Market Priority": "Support",
@@ -68,9 +68,9 @@ export const politicians: Politician[] = [
     "name": "Naftali Bennett",
     "imageUrl": "assets/politicians/naftali-bennett.avif",
     "quote": "A government of unity is not a compromise; it is a strategic necessity for the future of Zionism.",
-    "party": "Bennett 2026",
+    "party": "Together (Bennett-Lapid)",
     "seats": "N/A",
-    "biography": "Bennett served as a company commander in the Maglan special forces unit. He later co-founded and sold multiple international technology companies, including Cyota and Soluto. Entering politics as Netanyahu's Chief of Staff, he subsequently led the Jewish Home party. In 2021, he formed a rotation government consisting of right-wing, centrist, left-wing, and Arab parties, serving as Prime Minister. He recently re-entered politics with the \"Bennett 2026\" faction.",
+    "biography": "Bennett served as a company commander in the Maglan special forces unit. He later co-founded and sold multiple international technology companies, including Cyota and Soluto. Entering politics as Netanyahu's Chief of Staff, he subsequently led the Jewish Home party. In 2021, he formed a rotation government consisting of right-wing, centrist, left-wing, and Arab parties, serving as Prime Minister. He recently re-entered politics with the \"Together\" faction.",
     "partyWebsite": "https://en.wikipedia.org/wiki/Naftali_Bennett",
     "facts": [
       "Religious Demographics: He was Israel's first religiously observant Prime Minister.",
@@ -108,28 +108,28 @@ export const politicians: Politician[] = [
     "quote": "Our duty is to put the state above all partisan interests and restore national stability.",
     "party": "National Unity Party",
     "seats": "12",
-    "biography": "Benny Gantz served in the Israel Defense Forces for nearly four decades, reaching the position of Chief of General Staff (2011–2015). He entered politics in 2019, forming the Blue and White alliance. Gantz has served as Minister of Defense and Alternate Prime Minister. He joined an emergency war cabinet following the October 2023 attacks, later resigning over strategic disagreements regarding the conduct of the war.",
+    "biography": "Benny Gantz served in the Israel Defence Forces for nearly four decades, reaching the position of Chief of General Staff (2011–2015). He entered politics in 2019, forming the Blue and White alliance. Gantz has served as Minister of Defence and Alternate Prime Minister. He joined an emergency war cabinet following the October 2023 attacks, later resigning over strategic disagreements regarding the conduct of the war.",
     "partyWebsite": "https://kachollavan.org.il/",
     "facts": [
       "Military Background: His political profile is heavily based on his tenure as the highest-ranking officer in the IDF.",
-      "Political Doctrine: His platform is centered on the concept of Mamlachtiyut (Stateliness), which prioritizes state institutions over partisan interests.",
+      "Political Doctrine: His platform is centred on the concept of Mamlachtiyut (Stateliness), which prioritises state institutions over partisan interests.",
       "Unity Governments: He has entered into multiple coalition agreements with Benjamin Netanyahu during national crises, a move that has drawn criticism from his political base."
     ],
     "intelligence": {
       "Gaza & Security": "Supports military action combined with the establishment of long-term strategic plans and regional alliances for governance.",
       "Cost of Living": "Supports a mixed economy, combining free-market principles with state investment in public services.",
       "Judicial Reform": "Opposes the 2023 judicial legislation; supports the existing independence and authority of the Supreme Court.",
-      "Haredi Draft": "Proposes an \"Equality in the Burden\" model requiring all citizens to perform either military or recognized civil service.",
+      "Haredi Draft": "Proposes an \"Equality in the Burden\" model requiring all citizens to perform either military or recognised civil service.",
       "Religion & Public Space": "Supports a tolerant interpretation of Jewish identity and opposes orthodox monopolies on civil institutions like marriage.",
-      "Arab-Israeli Integration": "Supports civic equality and increased law enforcement to address organized crime in Arab municipalities.",
-      "Palestinian Statehood": "Emphasizes political separation and reducing conflict, while maintaining Israeli security control in the Jordan Valley.",
+      "Arab-Israeli Integration": "Supports civic equality and increased law enforcement to address organised crime in Arab municipalities.",
+      "Palestinian Statehood": "Emphasises political separation and reducing conflict, while maintaining Israeli security control in the Jordan Valley.",
       "Internal Cohesion": "Identifies societal division as a primary strategic vulnerability and campaigns on reducing political polarization.",
       "Settlements": "Supports the maintenance of major settlement blocs while avoiding the expansion of isolated outposts.",
-      "Foreign Relations": "Prioritizes the strategic alliance with the United States and supports normalization agreements with moderate regional states."
+      "Foreign Relations": "Prioritises the strategic alliance with the United States and supports normalisation agreements with moderate regional states."
     },
     "stances": {
       "Free Market Priority": "Ambiguous",
-      "Two-State Separation": "Support",
+      "Two-State Separation": "Ambiguous",
       "Judicial Override": "Oppose",
       "Universal Enlistment": "Support",
       "State Commission (Oct 7)": "Support",
@@ -151,17 +151,17 @@ export const politicians: Politician[] = [
     "facts": [
       "Personal Bereavement: He lost his youngest son and his nephew during combat operations in the 2023 Gaza War.",
       "Military Pragmatism: He is noted for his direct communication regarding the limitations of military power and the necessity of strategic planning.",
-      "Constitutional Reform: His political platform explicitly calls for formalizing the separation of powers through a broad, consensus-based Israeli Constitution."
+      "Constitutional Reform: His political platform explicitly calls for formalising the separation of powers through a broad, consensus-based Israeli Constitution."
     ],
     "intelligence": {
       "Gaza & Security": "Advocates for a security doctrine focused on restoring deterrence and securing borders rather than long-term territorial occupation.",
       "Cost of Living": "Supports a free-market economy combined with state subsidies for geographic periphery regions.",
-      "Judicial Reform": "Opposes the 2023 judicial legislation. Advocates for a Basic Law defining the legislative process to stabilize the balance of powers.",
+      "Judicial Reform": "Opposes the 2023 judicial legislation. Advocates for a Basic Law defining the legislative process to stabilise the balance of powers.",
       "Haredi Draft": "Supports mandatory military or civil service for all demographic sectors.",
       "Religion & Public Space": "Supports policies based on the Declaration of Independence, protecting freedom of religion and freedom from religious coercion.",
       "Arab-Israeli Integration": "Pledges civil equality for minority citizens and focuses on economic integration.",
-      "Palestinian Statehood": "Prioritizes maintaining a Jewish demographic majority through separation from Palestinian populations over territorial expansion.",
-      "Internal Cohesion": "Centers his political platform on societal healing and unity following the events of 2023.",
+      "Palestinian Statehood": "Prioritises maintaining a Jewish demographic majority through separation from Palestinian populations over territorial expansion.",
+      "Internal Cohesion": "Centres his political platform on societal healing and unity following the events of 2023.",
       "Settlements": "Supports maintaining strategic borders but opposes settlement activities that complicate diplomatic standing or demographic balances.",
       "Foreign Relations": "Focuses on aligning Israel's security strategy with Western alliances."
     },
@@ -184,16 +184,16 @@ export const politicians: Politician[] = [
     "quote": "A democratic and social Israel is a strong Israel.",
     "party": "Democrats",
     "seats": "4",
-    "biography": "Yair Golan is a retired IDF Major General who served as Deputy Chief of the General Staff. He entered politics with the Meretz party and served as Deputy Minister of Economy. In 2024, he was elected leader of the Labor Party and facilitated a merger with Meretz, creating a unified faction called \"The Democrats.\"",
+    "biography": "Yair Golan is a retired IDF Major General who served as Deputy Chief of the General Staff. He entered politics with the Meretz party and served as Deputy Minister of Economy. In 2024, he was elected leader of the Labour Party and facilitated a merger with Meretz, creating a unified faction called \"The Democrats.\"",
     "partyWebsite": "https://democrats.org.il/",
     "facts": [
       "October 7 Actions: During the 2023 attacks, he independently traveled to the conflict zone and assisted in the evacuation of civilians.",
       "Public Statements: He generated public debate following a 2016 speech where he drew comparisons between concerning societal trends in Israel and historical trends in Europe.",
-      "Party Merger: He executed the organizational merger of Israel's two primary left-wing Zionist parties into a single political entity."
+      "Party Merger: He executed the organisational merger of Israel's two primary left-wing Zionist parties into a single political entity."
     ],
     "intelligence": {
-      "Gaza & Security": "Argues that military operations must be accompanied by diplomatic agreements; supports prioritizing hostage negotiations.",
-      "Cost of Living": "Identifies as a social democrat; supports government economic intervention, labor unions, and funding for the public sector.",
+      "Gaza & Security": "Argues that military operations must be accompanied by diplomatic agreements; supports prioritising hostage negotiations.",
+      "Cost of Living": "Identifies as a social democrat; supports government economic intervention, labour unions, and funding for the public sector.",
       "Judicial Reform": "Opposes the 2023 judicial legislation; supports the preservation of the Supreme Court's existing authority and independence.",
       "Haredi Draft": "Supports the immediate cessation of sector-wide military exemptions and the implementation of a universal draft.",
       "Religion & Public Space": "Supports the separation of religion and state, including the institution of civil marriage and the operation of public transportation on the Sabbath.",
@@ -208,7 +208,7 @@ export const politicians: Politician[] = [
       "Two-State Separation": "Support",
       "Judicial Override": "Oppose",
       "Universal Enlistment": "Support",
-      "State Commission (Oct 7)": "Ambiguous",
+      "State Commission (Oct 7)": "Support",
       "Shabbat Public Transit": "Support",
       "West Bank Annexation": "Oppose",
       "Rabbinical Court Power": "Oppose",
@@ -230,12 +230,12 @@ export const politicians: Politician[] = [
       "Legislative Priorities: Under his leadership, the party advocates for the increased influence of Halakha (Jewish religious law) within Israeli society."
     ],
     "intelligence": {
-      "Gaza & Security": "Defers to the defense establishment on operational matters while prioritizing coalition stability.",
+      "Gaza & Security": "Defers to the defence establishment on operational matters while prioritising coalition stability.",
       "Cost of Living": "Supports social welfare policies and government assistance targeted at lower-income populations.",
       "Judicial Reform": "Supports legislative changes to the judicial system and the reduction of judicial oversight.",
       "Haredi Draft": "Opposes the mandatory conscription of Haredi men into national service.",
       "Religion & Public Space": "Advocates for maintaining orthodox traditions and Jewish religious law in the public sphere.",
-      "Arab-Israeli Integration": "Prioritizes Jewish religious and cultural heritage and the socioeconomic advancement of the Sephardic population.",
+      "Arab-Israeli Integration": "Prioritises Jewish religious and cultural heritage and the socioeconomic advancement of the Sephardic population.",
       "Palestinian Statehood": "Historically maintained a moderate stance, but shifted to oppose settlement freezes and support the Greater Jerusalem plan.",
       "Internal Cohesion": "Focuses on addressing economic and social disparities affecting the Sephardic population.",
       "Settlements": "Supports the consolidation of Israeli settlement interests in the West Bank.",
@@ -244,7 +244,7 @@ export const politicians: Politician[] = [
     "stances": {
       "Free Market Priority": "Oppose",
       "Two-State Separation": "Oppose",
-      "Judicial Override": "Ambiguous",
+      "Judicial Override": "Support",
       "Universal Enlistment": "Oppose",
       "State Commission (Oct 7)": "Ambiguous",
       "Shabbat Public Transit": "Oppose",
@@ -268,21 +268,21 @@ export const politicians: Politician[] = [
       "Voter Base: His primary constituency consists of religious or nationalist Israeli Arabs, and the party holds particular popularity among the Negev Bedouin."
     ],
     "intelligence": {
-      "Gaza & Security": "Prioritizes domestic civic issues over military or foreign policy involvement.",
+      "Gaza & Security": "Prioritises domestic civic issues over military or foreign policy involvement.",
       "Cost of Living": "Advocates for increased state funding for infrastructure, housing, and employment in Arab municipalities.",
       "Judicial Reform": "Aligns with maintaining minority protections within the judicial system.",
       "Haredi Draft": "Focuses on Arab civic issues rather than national military conscription debates.",
       "Religion & Public Space": "Represents an Islamist and socially conservative platform.",
-      "Arab-Israeli Integration": "Emphasizes pragmatic political participation to secure state funding and improve daily services for the Arab sector.",
+      "Arab-Israeli Integration": "Emphasises pragmatic political participation to secure state funding and improve daily services for the Arab sector.",
       "Palestinian Statehood": "Supports the two-state framework and the creation of a Palestinian state with East Jerusalem as its capital.",
       "Internal Cohesion": "Focuses on addressing high crime rates within Arab communities.",
       "Settlements": "Opposes settlement expansion, aligning with the two-state framework.",
-      "Foreign Relations": "Prioritizes domestic budgets over international diplomatic positioning."
+      "Foreign Relations": "Prioritises domestic budgets over international diplomatic positioning."
     },
     "stances": {
       "Free Market Priority": "Ambiguous",
       "Two-State Separation": "Support",
-      "Judicial Override": "Ambiguous",
+      "Judicial Override": "Oppose",
       "Universal Enlistment": "Oppose",
       "State Commission (Oct 7)": "Ambiguous",
       "Shabbat Public Transit": "Ambiguous",
@@ -296,9 +296,9 @@ export const politicians: Politician[] = [
     "name": "Yair Lapid",
     "imageUrl": "assets/politicians/yair-lapid.avif",
     "quote": "We are fighting for the soul of Israeli democracy and a sane, liberal future for our children.",
-    "party": "Yesh Atid",
+    "party": "Yesh Atid (Together)",
     "seats": "24",
-    "biography": "Yair Lapid is the leader of Yesh Atid. Prior to entering politics, he worked as an author, television presenter, and news anchor. He entered politics in 2012, subsequently serving as Minister of Finance. He later served as Prime Minister of Israel during the 36th government rotation agreement.",
+    "biography": "Yair Lapid is the leader of Yesh Atid. Prior to entering politics, he worked as an author, television presenter, and news anchor. He entered politics in 2012, subsequently serving as Minister of Finance. He later served as Prime Minister of Israel during the 36th government rotation agreement. He recently led Yesh Atid to join Naftali Bennett's 'Together' faction.",
     "partyWebsite": "https://yeshatid.org.il/",
     "facts": [
       "Governance Reform: He advocates for reducing the size of the government, proposing a statutory limit of 18 ministers.",
@@ -311,9 +311,9 @@ export const politicians: Politician[] = [
       "Judicial Reform": "Opposes the recent judicial legislation and pledges to cancel the judicial overhaul laws.",
       "Haredi Draft": "Supports universal conscription, proposing that individuals who do not enlist will be ineligible for state funding.",
       "Religion & Public Space": "Supports the implementation of civil marriage and the operation of public transportation on the Sabbath in secular municipalities.",
-      "Arab-Israeli Integration": "Emphasizes civic equality and the requirement of core educational standards across all sectors.",
+      "Arab-Israeli Integration": "Emphasises civic equality and the requirement of core educational standards across all sectors.",
       "Palestinian Statehood": "Traditionally supports a two-state framework contingent on security guarantees for Israel.",
-      "Internal Cohesion": "Promotes a national program to address organized crime through coordinated efforts between the police and government branches.",
+      "Internal Cohesion": "Promotes a national programme to address organised crime through coordinated efforts between the police and government branches.",
       "Settlements": "Differentiates between maintaining major settlement blocs and limiting isolated outposts.",
       "Foreign Relations": "Advocates for unifying public diplomacy efforts and coordinating with diaspora Jewry to improve Israel's international standing."
     },
@@ -324,9 +324,9 @@ export const politicians: Politician[] = [
       "Universal Enlistment": "Support",
       "State Commission (Oct 7)": "Support",
       "Shabbat Public Transit": "Support",
-      "West Bank Annexation": "Ambiguous",
+      "West Bank Annexation": "Oppose",
       "Rabbinical Court Power": "Ambiguous",
-      "Basic Law: Equality": "Ambiguous"
+      "Basic Law: Equality": "Support"
     }
   },
   {
@@ -339,19 +339,19 @@ export const politicians: Politician[] = [
     "biography": "Yoaz Hendel is the leader of HaMiluimnikim (The Reservists), a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
     "partyWebsite": "https://www.themiluimnikim.org.il/?1",
     "facts": [
-      "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defense.",
-      "Universal Service: His platform centers on the requirement of mandatory military or national service for every citizen.",
-      "Systemic Reform: He proposes altering the electoral system and balancing the branches of government through the promotion of a formalized constitution."
+      "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defence.",
+      "Universal Service: His platform centres on the requirement of mandatory military or national service for every citizen.",
+      "Systemic Reform: He proposes altering the electoral system and balancing the branches of government through the promotion of a formalised constitution."
     ],
     "intelligence": {
-      "Gaza & Security": "Emphasizes homeland defense and recognizing the sacrifices required for national security.",
+      "Gaza & Security": "Emphasises homeland defence and recognising the sacrifices required for national security.",
       "Cost of Living": "Focuses on structural governance reform as a prerequisite for economic stability.",
       "Judicial Reform": "Supports balancing the branches of government and creating a formal constitution to resolve structural disputes.",
       "Haredi Draft": "Supports mandatory military or national service for all citizens across all demographic sectors.",
       "Religion & Public Space": "Focuses on broad national unity over sectoral religious legislation.",
-      "Arab-Israeli Integration": "Emphasizes universal national service as a foundational requirement for civic participation.",
+      "Arab-Israeli Integration": "Emphasises universal national service as a foundational requirement for civic participation.",
       "Palestinian Statehood": "Traditionally holds right-leaning views regarding territorial retention.",
-      "Internal Cohesion": "Prioritizes national unity, respectful public discourse, and respect for political opponents.",
+      "Internal Cohesion": "Prioritises national unity, respectful public discourse, and respect for political opponents.",
       "Settlements": "Promotes the value of settlement as a core Zionist principle.",
       "Foreign Relations": "Focuses on immigrant absorption and strengthening Zionist identity globally."
     },
@@ -360,7 +360,7 @@ export const politicians: Politician[] = [
       "Two-State Separation": "Ambiguous",
       "Judicial Override": "Ambiguous",
       "Universal Enlistment": "Support",
-      "State Commission (Oct 7)": "Ambiguous",
+      "State Commission (Oct 7)": "Support",
       "Shabbat Public Transit": "Ambiguous",
       "West Bank Annexation": "Ambiguous",
       "Rabbinical Court Power": "Ambiguous",
@@ -378,7 +378,7 @@ export const politicians: Politician[] = [
     "partyWebsite": "https://hadash.org.il/",
     "facts": [
       "Bi-National Movement: He leads a party that operates explicitly as a joint Jewish-Arab movement focused on diplomatic and social campaigns.",
-      "Economic Policy: His platform advocates for the cancellation of privatizations related to government companies, natural resources, and public services.",
+      "Economic Policy: His platform advocates for the cancellation of privatisations related to government companies, natural resources, and public services.",
       "Minority Recognition: His party supports the formal recognition of the Arab-Palestinian population in Israel as a national minority with equal civil and national rights."
     ],
     "intelligence": {
@@ -412,7 +412,7 @@ export const politicians: Politician[] = [
     "quote": "The Torah is the light that has guided our people through every storm in our long history.",
     "party": "United Torah Judaism",
     "seats": "7",
-    "biography": "Yitzhak Goldknopf represents the Hasidic Agudat Yisrael faction and leads the United Torah Judaism list. Before entering the Knesset in 2022, he managed a large network of Haredi kindergartens and daycare centers. He succeeded Yaakov Litzman as the faction's primary representative.",
+    "biography": "Yitzhak Goldknopf represents the Hasidic Agudat Yisrael faction and leads the United Torah Judaism list. Before entering the Knesset in 2022, he managed a large network of Haredi kindergartens and daycare centres. He succeeded Yaakov Litzman as the faction's primary representative.",
     "partyWebsite": "https://en.wikipedia.org/wiki/United_Torah_Judaism",
     "facts": [
       "Alliance Structure: He leads a list that functions as an alliance between the Hasidic Agudat Yisrael and the Lithuanian Degel HaTorah.",
@@ -420,21 +420,21 @@ export const politicians: Politician[] = [
       "Government Participation: The party historically avoided taking full ministerial positions for ideological reasons until recent years, previously preferring deputy minister roles."
     ],
     "intelligence": {
-      "Gaza & Security": "Generally defers to the defense establishment while prioritizing the safety of the Jewish people and religious institutions.",
+      "Gaza & Security": "Generally defers to the defence establishment while prioritising the safety of the Jewish people and religious institutions.",
       "Cost of Living": "Supports social-democratic economic policies due to the lower socioeconomic status of its voter base.",
       "Judicial Reform": "Supports limiting judicial intervention in religious and legislative affairs.",
       "Haredi Draft": "Strongly opposes the mandatory conscription of yeshiva students into the military.",
       "Religion & Public Space": "Advocates for a Halakhic state and supports religious and social conservatism.",
       "Arab-Israeli Integration": "Focuses on maintaining the Jewish character of the state.",
-      "Palestinian Statehood": "Generally aligns with the political right on territorial issues, prioritizing coalition stability and religious funding over diplomatic concessions.",
-      "Internal Cohesion": "Prioritizes the autonomy of the Haredi educational system and religious lifestyle.",
+      "Palestinian Statehood": "Generally aligns with the political right on territorial issues, prioritising coalition stability and religious funding over diplomatic concessions.",
+      "Internal Cohesion": "Prioritises the autonomy of the Haredi educational system and religious lifestyle.",
       "Settlements": "Has signed agreements with religious-Zionist groups to oppose withdrawals from Israeli territories in exchange for political support.",
       "Foreign Relations": "Focuses on the preservation of global Jewish religious institutions."
     },
     "stances": {
       "Free Market Priority": "Oppose",
       "Two-State Separation": "Oppose",
-      "Judicial Override": "Ambiguous",
+      "Judicial Override": "Support",
       "Universal Enlistment": "Oppose",
       "State Commission (Oct 7)": "Ambiguous",
       "Shabbat Public Transit": "Oppose",
@@ -458,21 +458,21 @@ export const politicians: Politician[] = [
       "Systemic Change: The party aims to enact substantial reforms in government systems to reinforce the Jewish character of the state."
     ],
     "intelligence": {
-      "Gaza & Security": "Supports an uncompromising approach to national defense and military action.",
+      "Gaza & Security": "Supports an uncompromising approach to national defence and military action.",
       "Cost of Living": "Advocates for mutual responsibility and addressing the hardships of lower-income citizens in the periphery and cities.",
       "Judicial Reform": "Supports systemic reforms to limit judicial oversight and strengthen national governance.",
       "Haredi Draft": "Focuses on Jewish identity and military security, supporting national service while maintaining alliances with religious parties.",
       "Religion & Public Space": "Supports strengthening Jewish tradition within state institutions.",
-      "Arab-Israeli Integration": "Emphasizes state loyalty as a condition for civic participation and opposes narratives perceived to compromise the state's Jewish character.",
+      "Arab-Israeli Integration": "Emphasises state loyalty as a condition for civic participation and opposes narratives perceived to compromise the state's Jewish character.",
       "Palestinian Statehood": "Opposes a Palestinian state and supports full Israeli sovereignty over all territories.",
       "Internal Cohesion": "Focuses on national pride, Zionism, and unapologetic Jewish identity.",
       "Settlements": "Actively supports the expansion of settlements and the Greater Israel concept.",
-      "Foreign Relations": "Prioritizes national sovereignty over international diplomatic pressures."
+      "Foreign Relations": "Prioritises national sovereignty over international diplomatic pressures."
     },
     "stances": {
       "Free Market Priority": "Ambiguous",
       "Two-State Separation": "Oppose",
-      "Judicial Override": "Ambiguous",
+      "Judicial Override": "Support",
       "Universal Enlistment": "Ambiguous",
       "State Commission (Oct 7)": "Ambiguous",
       "Shabbat Public Transit": "Oppose",
@@ -488,24 +488,24 @@ export const politicians: Politician[] = [
     "quote": "Secular rights are human rights; we will do exactly what we promised our voters.",
     "party": "Yisrael Beiteinu",
     "seats": "6",
-    "biography": "Avigdor Lieberman is the founder and leader of Yisrael Beiteinu (Israel Our Home). He immigrated to Israel from the Soviet Union in 1978. He has served in numerous senior ministerial roles, including Minister of Defense, Minister of Foreign Affairs, and Minister of Finance. Initially drawing his primary political support from Russian-speaking immigrants, he has since expanded his base to focus on secular, right-wing voters.",
+    "biography": "Avigdor Lieberman is the founder and leader of Yisrael Beiteinu (Israel Our Home). He immigrated to Israel from the Soviet Union in 1978. He has served in numerous senior ministerial roles, including Minister of Defence, Minister of Foreign Affairs, and Minister of Finance. Initially drawing his primary political support from Russian-speaking immigrants, he has since expanded his base to focus on secular, right-wing voters.",
     "partyWebsite": "https://beytenu.org.il/",
     "facts": [
       "Political Focus: His platform uniquely combines a hawkish, right-leaning approach to national security with a strictly secular approach to domestic civic issues.",
-      "Coalition Dynamics: He previously resigned from the position of Defense Minister over disagreements regarding ceasefire agreements in Gaza, and later refused to join a right-wing coalition due to disagreements over military conscription for the Haredi sector.",
+      "Coalition Dynamics: He previously resigned from the position of Defence Minister over disagreements regarding ceasefire agreements in Gaza, and later refused to join a right-wing coalition due to disagreements over military conscription for the Haredi sector.",
       "Territorial Proposals: He is the author of the \"Lieberman Plan,\" which proposes a demographic and territorial exchange transferring certain Arab-majority towns in Israel to the Palestinian Authority in exchange for Israeli annexation of major settlement blocs in the West Bank."
     ],
     "intelligence": {
       "Gaza & Security": "Supports a preemptive military doctrine; opposes containment policies and advocates for decisive operational outcomes against regional threats.",
-      "Cost of Living": "Supports free-market policies, the privatization of state assets (ports, airports), and the cancellation of exclusive importer statuses to increase competition.",
+      "Cost of Living": "Supports free-market policies, the privatisation of state assets (ports, airports), and the cancellation of exclusive importer statuses to increase competition.",
       "Judicial Reform": "Opposes the use of an override clause. Supports the establishment of a formal constitution, a constitutional court, and limiting the Prime Minister to two terms.",
       "Haredi Draft": "Demands universal military or national service and proposes conditioning state funding for educational institutions on the implementation of a full core curriculum.",
       "Religion & Public Space": "Supports the complete separation of religion and state, the institution of civil marriage, and the operation of public transportation on the Sabbath.",
-      "Arab-Israeli Integration": "Conditions civic equality on national loyalty and service; supports legislation to penalize institutions or individuals perceived as acting against the state's principles.",
-      "Palestinian Statehood": "Focuses on regional territorial exchanges rather than the traditional two-state framework, aiming to maximize Jewish demographic majority.",
-      "Internal Cohesion": "Centers his domestic platform on reducing the political influence of religious parties and promoting secular civil rights.",
+      "Arab-Israeli Integration": "Conditions civic equality on national loyalty and service; supports legislation to penalise institutions or individuals perceived as acting against the state's principles.",
+      "Palestinian Statehood": "Focuses on regional territorial exchanges rather than the traditional two-state framework, aiming to maximise Jewish demographic majority.",
+      "Internal Cohesion": "Centres his domestic platform on reducing the political influence of religious parties and promoting secular civil rights.",
       "Settlements": "Supports the retention and strengthening of major settlement blocs within the framework of potential territorial exchanges.",
-      "Foreign Relations": "Supports alignment with Western alliances and emphasizes military deterrence as the primary tool for diplomatic stability."
+      "Foreign Relations": "Supports alignment with Western alliances and emphasises military deterrence as the primary tool for diplomatic stability."
     },
     "stances": {
       "Free Market Priority": "Support",
@@ -516,7 +516,7 @@ export const politicians: Politician[] = [
       "Shabbat Public Transit": "Support",
       "West Bank Annexation": "Ambiguous",
       "Rabbinical Court Power": "Oppose",
-      "Basic Law: Equality": "Support"
+      "Basic Law: Equality": "Ambiguous"
     }
   },
   {
@@ -549,7 +549,7 @@ export const politicians: Politician[] = [
       "Free Market Priority": "Oppose",
       "Two-State Separation": "Support",
       "Judicial Override": "Ambiguous",
-      "Universal Enlistment": "Ambiguous",
+      "Universal Enlistment": "Oppose",
       "State Commission (Oct 7)": "Ambiguous",
       "Shabbat Public Transit": "Support",
       "West Bank Annexation": "Oppose",
@@ -564,24 +564,24 @@ export const politicians: Politician[] = [
     "quote": "Settling the land and strengthening our Jewish identity is our historical mission and national duty.",
     "party": "Religious Zionist",
     "seats": "7",
-    "biography": "Bezalel Smotrich is the leader of the Religious Zionist Party. He is a lawyer and a co-founder of the Regavim organization, an NGO focused on monitoring and taking legal action regarding land use and construction in Israel and the West Bank. He entered the Knesset in 2015 as part of the Jewish Home party before eventually forming and leading his own independent Religious Zionist faction.",
+    "biography": "Bezalel Smotrich is the leader of the Religious Zionist Party. He is a lawyer and a co-founder of the Regavim organisation, an NGO focused on monitoring and taking legal action regarding land use and construction in Israel and the West Bank. He entered the Knesset in 2015 as part of the Jewish Home party before eventually forming and leading his own independent Religious Zionist faction.",
     "partyWebsite": "https://zionutdatit.org.il/en/about/",
     "facts": [
       "Territorial Sovereignty: His political platform explicitly focuses on the application of full Israeli sovereignty over Judea and Samaria (the West Bank) and the dismantling of Palestinian infrastructure in Area C.",
       "Judicial Overhaul: He is a primary architect and advocate of comprehensive plans to restructure the Israeli judicial system, proposing legislation to limit judicial review and protect the executive branch from certain legal interventions.",
-      "Economic Policy: Despite his socially conservative platform, he is a staunch advocate for free-market economics, focusing on deregulation, reducing the power of professional trade unions, and minimizing public sector bureaucracy."
+      "Economic Policy: Despite his socially conservative platform, he is a staunch advocate for free-market economics, focusing on deregulation, reducing the power of professional trade unions, and minimising public sector bureaucracy."
     ],
     "intelligence": {
-      "Gaza & Security": "Supports an uncompromising military approach; advocates for the death penalty for terrorism offenses and the withholding of funds from the Palestinian Authority.",
-      "Cost of Living": "Supports free-market policies, decreasing business regulation, and limiting the influence of labor unions to increase economic competition.",
+      "Gaza & Security": "Supports an uncompromising military approach; advocates for the death penalty for terrorism offences and the withholding of funds from the Palestinian Authority.",
+      "Cost of Living": "Supports free-market policies, decreasing business regulation, and limiting the influence of labour unions to increase economic competition.",
       "Judicial Reform": "Actively supports comprehensive systemic reforms, including limiting the Supreme Court's ability to cancel government decisions based on \"unreasonableness.\"",
       "Haredi Draft": "Focuses heavily on the national-religious sector's model of combining military service with Torah study (Yeshivot Hesder), while generally maintaining political alliances with Haredi parties regarding religious exemptions.",
       "Religion & Public Space": "Advocates for strengthening the Orthodox Jewish character of the state, including enforcing Shabbat observance laws in the public sphere and promoting traditional family structures.",
-      "Arab-Israeli Integration": "Prioritizes Jewish demographic majorities in regions like the Galilee and Negev; supports strict enforcement against unauthorized construction in minority communities.",
+      "Arab-Israeli Integration": "Prioritises Jewish demographic majorities in regions like the Galilee and Negev; supports strict enforcement against unauthorised construction in minority communities.",
       "Palestinian Statehood": "Actively opposes the creation of a Palestinian state and focuses on policies designed to prevent Palestinian territorial contiguity.",
-      "Internal Cohesion": "Centers political messaging on religious-Zionist ideology, Jewish heritage, and prioritizing national sovereignty above all else.",
-      "Settlements": "Actively promotes the expansion of settlements and the formal governmental legalization of unauthorized outposts (\"young settlements\").",
-      "Foreign Relations": "Prioritizes the expansion of Jewish settlements and national sovereignty over international diplomatic pressures or international agreements."
+      "Internal Cohesion": "Centres political messaging on religious-Zionist ideology, Jewish heritage, and prioritising national sovereignty above all else.",
+      "Settlements": "Actively promotes the expansion of settlements and the formal governmental legalisation of unauthorised outposts (\"young settlements\").",
+      "Foreign Relations": "Prioritises the expansion of Jewish settlements and national sovereignty over international diplomatic pressures or international agreements."
     },
     "stances": {
       "Free Market Priority": "Support",
