@@ -92,8 +92,8 @@ const PollsDashboard: React.FC = () => {
     
     const sorted = [...POLL_DATA].sort((a, b) => b.dateISO.localeCompare(a.dateISO));
     
-    // Check the 5 most recent polls to see which parties are still actively running
-    const recentPolls = sorted.slice(0, 5);
+    // Check the 20 most recent polls to see which parties are still actively running
+    const recentPolls = sorted.slice(0, 20);
     const activeParties = new Set<string>();
     
     recentPolls.forEach(poll => {
@@ -235,7 +235,12 @@ const PollsDashboard: React.FC = () => {
 
   // Sortable parties for the comparison table
   const sortedPartiesForTable = useMemo(() => {
-    const parties = allParties.filter(p => (weightedAvg[p] || 0) > 0.5);
+    const parties = allParties.filter(p => {
+      const hasAvg = (weightedAvg[p] || 0) > 0.5;
+      const hasRecentSeats = latestUniquePolls.some(poll => (poll.data[p] || 0) > 0);
+      const isCurrentKnesset = (CURRENT_KNESSET[p] || 0) > 0;
+      return hasAvg || hasRecentSeats || isCurrentKnesset;
+    });
     return parties.sort((a, b) => {
       let valA = 0, valB = 0;
       if (sortColumn === 'weighted') { valA = weightedAvg[a] || 0; valB = weightedAvg[b] || 0; }

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { POLL_DATA, MAJORITY_THRESHOLD, TOTAL_SEATS, Poll, PARTY_COLORS } from './polls';
+import { POLL_DATA, MAJORITY_THRESHOLD, TOTAL_SEATS, Poll, PARTY_COLORS, CURRENT_KNESSET } from './polls';
 import { computeWeightedAverage } from './utils/pollAnalytics';
 import { motion } from 'framer-motion';
 import ParliamentChart from './components/ParliamentChart';
@@ -73,6 +73,30 @@ const CoalitionBuilder: React.FC = () => {
   const [selectedPoll, setSelectedPoll] = useState<Poll>(latestUniquePolls[0] || POLL_DATA[0]);
   const [proposedCoalition, setProposedCoalition] = useState<string[]>([]);
   const [expandedIssue, setExpandedIssue] = useState<string | null>(null);
+
+  const allParties = useMemo(() => {
+    const sorted = [...POLL_DATA].sort((a, b) => b.dateISO.localeCompare(a.dateISO));
+    const recentPolls = sorted.slice(0, 20);
+    const activeParties = new Set<string>();
+    
+    recentPolls.forEach(poll => {
+      Object.entries(poll.data).forEach(([party, seats]) => {
+        if (seats > 0) activeParties.add(party);
+      });
+    });
+    
+    Object.keys(CURRENT_KNESSET).forEach(party => activeParties.add(party));
+    
+    const rawParties = Object.keys(PARTY_COLORS).filter(p => p !== 'Default');
+    return rawParties
+      .filter(party => activeParties.has(party))
+      .sort((a, b) => {
+        const seatsA = selectedPoll.data[a] || 0;
+        const seatsB = selectedPoll.data[b] || 0;
+        if (seatsA !== seatsB) return seatsB - seatsA;
+        return a.localeCompare(b);
+      });
+  }, [selectedPoll]);
 
   const currentSeats = useMemo(() => {
     return proposedCoalition.reduce((sum, partyName) => {
@@ -229,26 +253,29 @@ const CoalitionBuilder: React.FC = () => {
                 )}
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-col gap-1.5">
-                {Object.entries(selectedPoll.data)
-                  .sort((a, b) => b[1] - a[1])
-                  .map(([name, seats]) => {
-                    if (seats === 0) return null;
-                    const isSelected = proposedCoalition.includes(name);
-                    const color = PARTY_COLORS[name] || '#2B4C7E';
-                    return (
-                      <button
-                        key={name}
-                        onClick={() => toggleParty(name)}
-                        className={`group relative flex items-center justify-between px-3 py-1.5 rounded-lg transition-all border shadow-sm ${
-                          !isSelected ? 'bg-white text-primary border-stone-100 hover:border-secondary' : 'text-white'
-                        }`}
-                        style={isSelected ? { backgroundColor: color, borderColor: color } : {}}
-                      >
-                        <span className="font-bold text-[8px] uppercase tracking-tight text-start truncate pe-2">{tParty(name)}</span>
-                        <span className="font-['Newsreader'] italic font-bold text-sm">{seats}</span>
-                      </button>
-                    );
-                  })}
+                {allParties.map(name => {
+                  const seats = selectedPoll.data[name] || 0;
+                  const isSelected = proposedCoalition.includes(name);
+                  const color = PARTY_COLORS[name] || '#2B4C7E';
+                  return (
+                    <button
+                      key={name}
+                      onClick={() => toggleParty(name)}
+                      disabled={seats === 0}
+                      className={`group relative flex items-center justify-between px-3 py-1.5 rounded-lg transition-all border shadow-sm ${
+                        seats === 0
+                          ? 'bg-stone-50 text-slate-300 border-stone-100 cursor-not-allowed opacity-50'
+                          : !isSelected
+                            ? 'bg-white text-primary border-stone-100 hover:border-secondary'
+                            : 'text-white'
+                      }`}
+                      style={isSelected && seats > 0 ? { backgroundColor: color, borderColor: color } : {}}
+                    >
+                      <span className="font-bold text-[8px] uppercase tracking-tight text-start truncate pe-2">{tParty(name)}</span>
+                      <span className="font-['Newsreader'] italic font-bold text-sm">{seats}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </section>
