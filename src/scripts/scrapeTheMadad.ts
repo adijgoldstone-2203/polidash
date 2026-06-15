@@ -81,10 +81,9 @@ async function run() {
   const pollsFile = path.join(process.cwd(), 'src/polls.ts');
   let currentContent = fs.readFileSync(pollsFile, 'utf8');
   
-  // Default cutoff is exactly 1 year ago from today
-  const oneYearAgo = new Date();
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 2);
-  let latestDate = oneYearAgo.toISOString().split('T')[0];
+  // Default cutoff is Jan 1, 2025
+  const cutoffDate = "2025-01-01";
+  let latestDate = cutoffDate;
 
   // Extract latest date from existing polls
   const dateRegex = /dateISO:\s*['"]([^'"]+)['"]/g;
@@ -106,7 +105,7 @@ async function run() {
   console.log(`📊 Found ${existingIds.size} existing polls in local DB`);
   
   const newPolls: any[] = [];
-  const oneYearAgoStr = oneYearAgo.toISOString().split('T')[0];
+  const oneYearAgoStr = cutoffDate;
   
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
