@@ -83,7 +83,7 @@ async function run() {
   
   // Default cutoff is exactly 1 year ago from today
   const oneYearAgo = new Date();
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 2);
   let latestDate = oneYearAgo.toISOString().split('T')[0];
 
   // Extract latest date from existing polls
