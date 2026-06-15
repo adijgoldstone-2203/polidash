@@ -17,7 +17,7 @@ const PARTY_MAP: Record<string, string> = {
   'ישראל ביתנו': 'Yisrael Beiteinu',
   'הדמוקרטים': 'Democrats',
   'הציונות הדתית': 'Religious Zionist',
-  'רע״מ': 'United Arab List (Ra\'am)',
+  'רע״מ': 'Ra\'am',
   '‏רשימה ערבית מאוחדת': 'United Arab Party',
   'בל״ד': 'Balad',
   'עוצמה יהודית': 'Otzma Yehudit',

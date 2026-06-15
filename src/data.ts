@@ -258,7 +258,7 @@ export const politicians: Politician[] = [
     "name": "Mansour Abbas",
     "imageUrl": "assets/politicians/mansour-abbas.avif",
     "quote": "Pragmatic partnership is the only way to secure the civic rights and future of our community.",
-    "party": "United Arab List (Ra'am)",
+    "party": "Ra'am",
     "seats": "5",
     "biography": "Mansour Abbas is the chairman of the United Arab List, which operates as the political wing of the Southern Branch of the Islamic Movement in Israel. He holds a degree in dentistry from the Hebrew University of Jerusalem. In 2021, he led his party to become the first independent Arab party to join an Israeli governing coalition, signing an agreement with Yair Lapid and Naftali Bennett.",
     "partyWebsite": "https://en.wikipedia.org/wiki/United_Arab_List",
@@ -621,7 +621,7 @@ export const ELECTION_POLLS: PollData[] = [
       "Otzma Yehudit": 7,
       "Yashar!": 6,
       "Hadash": 5,
-      "United Arab List (Ra'am)": 5,
+      "Ra'am": 5,
       "Democrats": 4,
       "Religious Zionist": 3
     }
@@ -642,7 +642,7 @@ export const ELECTION_POLLS: PollData[] = [
       "Otzma Yehudit": 6,
       "Democrats": 5,
       "Hadash": 5,
-      "United Arab List (Ra'am)": 4,
+      "Ra'am": 4,
       "Religious Zionist": 0
     }
   },
@@ -662,7 +662,7 @@ export const ELECTION_POLLS: PollData[] = [
       "Democrats": 6,
       "Yashar!": 6,
       "Hadash": 5,
-      "United Arab List (Ra'am)": 5,
+      "Ra'am": 5,
       "Religious Zionist": 0
     }
   },
@@ -683,7 +683,7 @@ export const ELECTION_POLLS: PollData[] = [
       "Hadash": 6,
       "Religious Zionist": 5,
       "Democrats": 5,
-      "United Arab List (Ra'am)": 0
+      "Ra'am": 0
     }
   }
 ];

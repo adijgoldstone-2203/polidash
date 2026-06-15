@@ -14,7 +14,6 @@ export const PARTY_LEADER_MAP: Record<string, string> = {
   "Hadash-Ta'al": "ayman-odeh",
   "Hadash": "ayman-odeh",
   "Ra'am": "mansour-abbas",
-  "United Arab List (Ra'am)": "mansour-abbas",
   "United Arab Party": "mansour-abbas",
   "Labor": "yair-golan",
   "Democrats": "yair-golan",

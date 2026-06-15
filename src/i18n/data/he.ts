@@ -11,7 +11,7 @@ export const heData = {
     "Otzma Yehudit": "עוצמה יהודית",
     "Religious Zionist": "הציונות הדתית",
     "Democrats": "הדמוקרטים",
-    "United Arab List (Ra'am)": "רע״ם",
+    "Ra'am": "רע״ם",
     "United Arab Party": "רשימה ערבית מאוחדת",
     "Hadash-Ta'al": "חד״ש-תע״ל",
     "Hadash": "חד״ש",

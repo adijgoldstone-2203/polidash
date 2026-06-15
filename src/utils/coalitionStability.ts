@@ -18,7 +18,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "Yesh Atid": 5, // Vetoed
     "Yisrael Beiteinu": 15, // High tension / veto
     "Democrats": 0,
-    "United Arab List (Ra'am)": 20, // Taboo, historically discussed but far-right blocks it
+    "Ra'am": 20, // Taboo, historically discussed but far-right blocks it
     "United Arab Party": 20,
     "Hadash-Ta'al": 0,
     "Yashar!": 10,
@@ -39,7 +39,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 10,
     "Otzma Yehudit": 0,
     "Religious Zionist": 0,
-    "United Arab List (Ra'am)": 65, // Co-existed in previous government
+    "Ra'am": 65, // Co-existed in previous government
     "United Arab Party": 65,
     "Hadash-Ta'al": 20, // Outside support only
     "Balad (National Democratic Alliance)": 0,
@@ -58,7 +58,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 45,
     "Otzma Yehudit": 5,
     "Religious Zionist": 10,
-    "United Arab List (Ra'am)": 65,
+    "Ra'am": 65,
     "United Arab Party": 65,
     "Hadash-Ta'al": 25,
     "Balad (National Democratic Alliance)": 0,
@@ -77,7 +77,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 30,
     "Otzma Yehudit": 5,
     "Religious Zionist": 10,
-    "United Arab List (Ra'am)": 75, // Formed the initial coalition
+    "Ra'am": 75, // Formed the initial coalition
     "United Arab Party": 75,
     "Hadash-Ta'al": 15,
     "Balad (National Democratic Alliance)": 0,
@@ -96,7 +96,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 35,
     "Otzma Yehudit": 5,
     "Religious Zionist": 15,
-    "United Arab List (Ra'am)": 75,
+    "Ra'am": 75,
     "United Arab Party": 75,
     "Hadash-Ta'al": 15,
     "Balad (National Democratic Alliance)": 0,
@@ -115,7 +115,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 10, // Secularist veto
     "Otzma Yehudit": 5,
     "Religious Zionist": 10,
-    "United Arab List (Ra'am)": 50, // Tension, but sat together
+    "Ra'am": 50, // Tension, but sat together
     "United Arab Party": 50,
     "Hadash-Ta'al": 0,
     "Balad (National Democratic Alliance)": 0,
@@ -134,7 +134,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 5,
     "Otzma Yehudit": 0,
     "Religious Zionist": 0,
-    "United Arab List (Ra'am)": 80,
+    "Ra'am": 80,
     "United Arab Party": 80,
     "Hadash-Ta'al": 60, // Left-Arab alignment
     "Balad (National Democratic Alliance)": 15,
@@ -153,7 +153,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "Religious Zionist": 80,
     "Yashar!": 25,
     "HaMiluimnikim": 35,
-    "United Arab List (Ra'am)": 45, // Religious conservative overlap
+    "Ra'am": 45, // Religious conservative overlap
     "United Arab Party": 45,
     "Hadash-Ta'al": 0,
     "Balad (National Democratic Alliance)": 0,
@@ -172,7 +172,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "Religious Zionist": 80,
     "Yashar!": 25,
     "HaMiluimnikim": 35,
-    "United Arab List (Ra'am)": 45,
+    "Ra'am": 45,
     "United Arab Party": 45,
     "Hadash-Ta'al": 0,
     "Balad (National Democratic Alliance)": 0,
@@ -191,7 +191,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "Religious Zionist": 95,
     "Yashar!": 5,
     "HaMiluimnikim": 15,
-    "United Arab List (Ra'am)": 0,
+    "Ra'am": 0,
     "United Arab Party": 0,
     "Hadash-Ta'al": 0,
     "Balad (National Democratic Alliance)": 0,
@@ -210,12 +210,12 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "Religious Zionist": 100,
     "Yashar!": 10,
     "HaMiluimnikim": 20,
-    "United Arab List (Ra'am)": 0,
+    "Ra'am": 0,
     "United Arab Party": 0,
     "Hadash-Ta'al": 0,
     "Balad (National Democratic Alliance)": 0,
   },
-  "United Arab List (Ra'am)": {
+  "Ra'am": {
     "Likud": 20,
     "Yesh Atid": 65,
     "National Unity Party": 65,
@@ -227,7 +227,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 45,
     "Otzma Yehudit": 0,
     "Religious Zionist": 0,
-    "United Arab List (Ra'am)": 100,
+    "Ra'am": 100,
     "United Arab Party": 30,
     "Hadash-Ta'al": 30, // Arab party rivalry
     "Yashar!": 65,
@@ -246,7 +246,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 45,
     "Otzma Yehudit": 0,
     "Religious Zionist": 0,
-    "United Arab List (Ra'am)": 30,
+    "Ra'am": 30,
     "United Arab Party": 100,
     "Hadash-Ta'al": 30,
     "Yashar!": 65,
@@ -265,7 +265,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 0,
     "Otzma Yehudit": 0,
     "Religious Zionist": 0,
-    "United Arab List (Ra'am)": 30,
+    "Ra'am": 30,
     "United Arab Party": 30,
     "Hadash-Ta'al": 100,
     "Yashar!": 20,
@@ -284,7 +284,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 25,
     "Otzma Yehudit": 5,
     "Religious Zionist": 10,
-    "United Arab List (Ra'am)": 65,
+    "Ra'am": 65,
     "United Arab Party": 65,
     "Hadash-Ta'al": 20,
     "Yashar!": 100,
@@ -303,7 +303,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 35,
     "Otzma Yehudit": 15,
     "Religious Zionist": 20,
-    "United Arab List (Ra'am)": 50,
+    "Ra'am": 50,
     "United Arab Party": 50,
     "Hadash-Ta'al": 10,
     "Yashar!": 85,
@@ -322,7 +322,7 @@ export const PARTY_COMPATIBILITY_MATRIX: Record<string, Record<string, number>> 
     "United Torah Judaism": 0,
     "Otzma Yehudit": 0,
     "Religious Zionist": 0,
-    "United Arab List (Ra'am)": 10,
+    "Ra'am": 10,
     "United Arab Party": 10,
     "Hadash-Ta'al": 40,
     "Yashar!": 0,
