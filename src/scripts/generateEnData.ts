@@ -16,6 +16,7 @@ const enData = {
     "Religious Zionist": "Religious Zionist",
     "Democrats": "Democrats",
     "United Arab List (Ra'am)": "United Arab List (Ra'am)",
+    "United Arab Party": "United Arab Party",
     "Hadash-Ta'al": "Hadash-Ta'al",
     "Together (Bennett-Lapid)": "Together (Bennett-Lapid)",
     "Yashar!": "Yashar!",

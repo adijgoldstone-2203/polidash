@@ -12,6 +12,7 @@ export const heData = {
     "Religious Zionist": "הציונות הדתית",
     "Democrats": "הדמוקרטים",
     "United Arab List (Ra'am)": "רע״ם",
+    "United Arab Party": "רשימה ערבית מאוחדת",
     "Hadash-Ta'al": "חד״ש-תע״ל",
     "Hadash": "חד״ש",
     "Together (Bennett-Lapid)": "ביחד (בנט-לפיד)",

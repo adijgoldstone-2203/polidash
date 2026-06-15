@@ -14,7 +14,7 @@ const getPartyLeaderId = (partyName: string): string | null => {
   if (normalized.includes('yashar')) return 'gadi-eisenkot';
   if (normalized.includes('democrats') || normalized.includes('labor')) return 'yair-golan';
   if (normalized.includes('shas')) return 'aryeh-deri';
-  if (normalized.includes('ra\'am') || normalized.includes('united arab list')) return 'mansour-abbas';
+  if (normalized.includes('ra\'am') || normalized.includes('united arab list') || normalized.includes('united arab party')) return 'mansour-abbas';
   if (normalized.includes('yesh atid')) return 'yair-lapid';
   if (normalized.includes('miluimnikim')) return 'yoaz-hendel';
   if (normalized.includes('hadash') || normalized.includes('ta\'al')) return 'ayman-odeh';

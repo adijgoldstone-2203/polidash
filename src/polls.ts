@@ -81,7 +81,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 17,
-      "Hadash-Ta'al": 7,
+      "United Arab Party": 7,
     }
   },
   {
@@ -119,7 +119,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 16,
-      "Hadash-Ta'al": 6,
+      "United Arab Party": 6,
     }
   },
   {
@@ -236,6 +236,7 @@ export const POLL_DATA: Poll[] = [
       "Yashar!": 17,
     }
   },
+
 
   {
     id: "600",
@@ -5316,6 +5317,7 @@ export const PARTY_COLORS: Record<string, string> = {
   "Otzma Yehudit": "#EA580C",           // Orange (Far Right)
   "United Torah Judaism": "#64748B",    // Slate/Grey (Ultra-Orthodox)
   "United Arab List (Ra'am)": "#059669",// Green (Arab List)
+  "United Arab Party": "#10B981",       // Emerald Green (Arab List)
   "Hadash-Ta'al": "#0D9488",            // Teal (Arab List)
   "Religious Zionist": "#F59E0B",       // Amber/Yellow-Orange (Religious Right)
   "Together (Bennett-Lapid)": "#84CC16",// Lime Green
@@ -5346,6 +5348,7 @@ export const BLOCS: Record<string, string[]> = {
     "Democrats",
     "Yashar!",
     "United Arab List (Ra'am)",
+    "United Arab Party",
     "Hadash-Ta'al"
   ]
 };

@@ -18,7 +18,7 @@ const PARTY_MAP: Record<string, string> = {
   'הדמוקרטים': 'Democrats',
   'הציונות הדתית': 'Religious Zionist',
   'רע״מ': 'United Arab List (Ra\'am)',
-  '‏רשימה ערבית מאוחדת': 'United Arab List (Ra\'am)',
+  '‏רשימה ערבית מאוחדת': 'United Arab Party',
   'בל״ד': 'Balad',
   'עוצמה יהודית': 'Otzma Yehudit',
   'ביחד (בנט ולפיד)': 'Together (Bennett-Lapid)',
@@ -130,29 +130,11 @@ async function run() {
     
     const data: Record<string, number> = {};
     
-    // Check if both 'רע״מ' and '‏רשימה ערבית מאוחדת' are present with positive values in this row
-    let hasRaam = false;
-    let hasUnifiedArab = false;
     for (let j = 5; j < headers.length; j++) {
       const hebParty = headers[j];
       const val = parseInt(row[j], 10);
       if (!isNaN(val) && val > 0) {
-        if (hebParty === 'רע״מ') hasRaam = true;
-        if (hebParty === '‏רשימה ערבית מאוחדת') hasUnifiedArab = true;
-      }
-    }
-
-    for (let j = 5; j < headers.length; j++) {
-      const hebParty = headers[j];
-      const val = parseInt(row[j], 10);
-      if (!isNaN(val) && val > 0) {
-        let engParty = PARTY_MAP[hebParty];
-        // If both Ra'am and Unified Arab List are present in this poll,
-        // map Unified Arab List to Hadash-Ta'al because it represents Hadash-Ta'al's seats here.
-        if (hasRaam && hasUnifiedArab && hebParty === '‏רשימה ערבית מאוחדת') {
-          engParty = "Hadash-Ta'al";
-        }
-        
+        const engParty = PARTY_MAP[hebParty];
         if (engParty) {
           data[engParty] = val;
         } else {
