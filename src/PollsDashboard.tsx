@@ -248,7 +248,7 @@ const PollsDashboard: React.FC = () => {
       else { valA = 0; valB = 0; }
       return sortDir === 'desc' ? valB - valA : valA - valB;
     });
-  }, [sortColumn, sortDir, allParties, weightedAvg]);
+  }, [sortColumn, sortDir, allParties, weightedAvg, latestUniquePolls]);
 
   const toggleSort = (col: string) => {
     if (sortColumn === col) setSortDir(d => d === 'desc' ? 'asc' : 'desc');
