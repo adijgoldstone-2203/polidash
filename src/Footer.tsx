@@ -1,7 +1,11 @@
 import React from 'react';
 import { useLanguage } from './i18n';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onShowMethodology?: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onShowMethodology }) => {
   const { t } = useLanguage();
 
   return (
@@ -12,9 +16,12 @@ const Footer: React.FC = () => {
         </p>
       </div>
       <div className="flex gap-8">
-        <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1" href="#">
+        <button 
+          onClick={onShowMethodology}
+          className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1 cursor-pointer text-start bg-transparent border-none p-0 focus:outline-none"
+        >
           {t('footer.methodology')}
-        </a>
+        </button>
         <a className="font-['Inter'] text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white underline decoration-1 font-bold text-secondary" href="#/transparency">
           {t('footer.reply')}
         </a>

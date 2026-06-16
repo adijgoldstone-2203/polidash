@@ -10,9 +10,11 @@ import CoalitionBuilder from './CoalitionBuilder';
 import PollsDashboard from './PollsDashboard';
 import Footer from './Footer';
 import Privacy from './Privacy';
+import MethodologyModal from './components/MethodologyModal';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
+  const [showMethodology, setShowMethodology] = useState(false);
 
   React.useEffect(() => {
     const handleHashChange = () => {
@@ -42,7 +44,7 @@ function App() {
       <main className="flex-grow relative">
         {/* Persistent Tab Stack */}
         <div className={isHome ? 'block' : 'hidden'}>
-          <Home currentPath={currentPath} />
+          <Home currentPath={currentPath} onShowMethodology={() => setShowMethodology(true)} />
         </div>
         
         <div className={isProfiles ? 'block' : 'hidden'}>
@@ -79,7 +81,9 @@ function App() {
         )}
       </main>
 
-      <Footer />
+      <Footer onShowMethodology={() => setShowMethodology(true)} />
+      
+      <MethodologyModal isOpen={showMethodology} onClose={() => setShowMethodology(false)} />
     </div>
   );
 }

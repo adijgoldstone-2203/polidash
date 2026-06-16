@@ -3,9 +3,10 @@ import { useLanguage } from './i18n';
 
 interface HomeProps {
   currentPath: string;
+  onShowMethodology?: () => void;
 }
 
-const Home: React.FC<HomeProps> = ({ currentPath }) => {
+const Home: React.FC<HomeProps> = ({ currentPath, onShowMethodology }) => {
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -88,6 +89,13 @@ const Home: React.FC<HomeProps> = ({ currentPath }) => {
                 <p className="font-body text-on-surface-variant leading-relaxed">
                   {t('home.workflow.ai.desc')}
                 </p>
+                <button 
+                  onClick={onShowMethodology}
+                  className="mt-3 text-secondary hover:text-primary font-bold text-xs uppercase tracking-wider underline cursor-pointer bg-transparent border-none p-0 focus:outline-none transition-colors flex items-center gap-1"
+                >
+                  <span>{t('footer.methodology')}</span>
+                  <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                </button>
               </div>
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">

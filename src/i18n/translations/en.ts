@@ -240,4 +240,18 @@ export const en: Record<string, string> = {
   "stance.support": "Support",
   "stance.oppose": "Oppose",
   "stance.ambiguous": "Ambiguous",
+
+  // Methodology Modal
+  "methodology.title": "AI Methodology & Data Sourcing",
+  "methodology.subtitle": "How we process, neutralize, and synthesize political data",
+  "methodology.intro": "At PoliDash, our mission is to provide an objective, data-driven window into the stances and trends shaping our democracy. Here is a detailed breakdown of how we gather, process, and present the information on our platform.",
+  "methodology.step1.title": "1. Source Data Ingestion",
+  "methodology.step1.desc": "We aggregate primary data from public manifestos, Knesset voting records, official transcripts, and verified press statements. No secondary analyses or opinion pieces are used. For polling data, we pull directly from Israeli news channels and certified pollsters, and apply a recency-weighted decay algorithm where newer polls carry proportionally more weight.",
+  "methodology.step2.title": "2. AI Processing & De-biasing",
+  "methodology.step2.desc": "We feed raw Hebrew texts into state-of-the-art LLMs (Gemini 3.5 Flash) with strict prompt constraints. The AI is instructed to strip away emotional language, loaded adjectives, and political framing, outputting only neutral factual assertions. Key policy statements are then translated into English.",
+  "methodology.step3.title": "3. Binary Stance Synthesis",
+  "methodology.step3.desc": "Politicians' stances on core policy pillars (e.g. Universal Enlistment, Shabbat Public Transit, Judicial Override) are mapped to one of three categories: Support, Oppose, or Ambiguous. These classifications are based solely on direct quotes and recorded legislative behavior.",
+  "methodology.step4.title": "4. Verification & Right of Reply",
+  "methodology.step4.desc": "Every AI-generated summary undergoes human review. Additionally, we enforce a strict Right of Reply Protocol. Political representatives or users can flag discrepancies and submit correction requests with supporting evidence, which our editorial team reviews and applies directly to the database.",
+  "methodology.close": "Close",
 };
