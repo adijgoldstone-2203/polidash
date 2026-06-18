@@ -254,4 +254,23 @@ export const en: Record<string, string> = {
   "methodology.step4.title": "4. Verification & Right of Reply",
   "methodology.step4.desc": "Every AI-generated summary undergoes human review. Additionally, we enforce a strict Right of Reply Protocol. Political representatives or users can flag discrepancies and submit correction requests with supporting evidence, which our editorial team reviews and applies directly to the database.",
   "methodology.close": "Close",
+
+  // Accessibility Widget
+  "a11y.widget.title": "Accessibility Settings",
+  "a11y.widget.btn.label": "Accessibility Options",
+  "a11y.toggle.contrast.default": "Default Contrast",
+  "a11y.toggle.contrast.high": "High Contrast",
+  "a11y.toggle.contrast.grayscale": "Grayscale Mode",
+  "a11y.toggle.fontSize": "Text Size",
+  "a11y.toggle.fontSize.100": "Default (100%)",
+  "a11y.toggle.fontSize.115": "Large (115%)",
+  "a11y.toggle.fontSize.130": "Extra Large (130%)",
+  "a11y.toggle.fontSize.150": "Huge (150%)",
+  "a11y.toggle.readableFont": "Readable Font",
+  "a11y.toggle.underlineLinks": "Underline Links",
+  "a11y.toggle.highlightHeadings": "Highlight Headings",
+  "a11y.toggle.enhancedFocus": "Highlight Keyboard Focus",
+  "a11y.btn.reset": "Reset All",
+  "a11y.btn.close": "Close",
+  "a11y.skipLink": "Skip to main content",
 };

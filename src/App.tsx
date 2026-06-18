@@ -11,10 +11,13 @@ import PollsDashboard from './PollsDashboard';
 import Footer from './Footer';
 import Privacy from './Privacy';
 import MethodologyModal from './components/MethodologyModal';
+import { AccessibilityWidget } from './components/AccessibilityWidget';
+import { useLanguage } from './i18n';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
   const [showMethodology, setShowMethodology] = useState(false);
+  const { t } = useLanguage();
 
   React.useEffect(() => {
     const handleHashChange = () => {
@@ -39,9 +42,13 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300 flex flex-col">
+      <a href="#main-content" className="a11y-skip-link">
+        {t('a11y.skipLink')}
+      </a>
+
       <Header currentPath={currentPath} />
       
-      <main className="flex-grow relative">
+      <main id="main-content" className="flex-grow relative">
         {/* Persistent Tab Stack */}
         <div className={isHome ? 'block' : 'hidden'}>
           <Home currentPath={currentPath} onShowMethodology={() => setShowMethodology(true)} />
@@ -84,9 +91,12 @@ function App() {
       <Footer onShowMethodology={() => setShowMethodology(true)} />
       
       <MethodologyModal isOpen={showMethodology} onClose={() => setShowMethodology(false)} />
+
+      <AccessibilityWidget />
     </div>
   );
 }
+
 
 export default App;
 // Triggering redeploy for favicon fix at Wed May  6 16:32:01 IDT 2026

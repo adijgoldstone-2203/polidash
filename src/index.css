@@ -28,3 +28,201 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* --- Web Accessibility (a11y) Options --- */
+
+/* 1. Skip to Content Link */
+.a11y-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #162839;
+  color: #fbf9f5;
+  padding: 10px 20px;
+  border-radius: 0 0 8px 8px;
+  z-index: 9999;
+  transition: top 0.2s ease-in-out;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.a11y-skip-link:focus {
+  top: 0;
+  outline: 3px solid #f59e0b;
+  outline-offset: 1px;
+}
+
+/* 2. Root Font Scaling */
+html.a11y-font-100 {
+  font-size: 100% !important;
+}
+html.a11y-font-115 {
+  font-size: 115% !important;
+}
+html.a11y-font-130 {
+  font-size: 130% !important;
+}
+html.a11y-font-150 {
+  font-size: 150% !important;
+}
+
+/* 3. Grayscale Mode */
+html.a11y-grayscale {
+  filter: grayscale(100%) !important;
+}
+
+/* 4. High Contrast Mode */
+html.a11y-high-contrast {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+html.a11y-high-contrast *,
+html.a11y-high-contrast *::before,
+html.a11y-high-contrast *::after {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+html.a11y-high-contrast a,
+html.a11y-high-contrast button,
+html.a11y-high-contrast input,
+html.a11y-high-contrast select,
+html.a11y-high-contrast textarea,
+html.a11y-high-contrast [role="button"] {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+  border: 1px solid #ffff00 !important;
+}
+html.a11y-high-contrast a *,
+html.a11y-high-contrast button * {
+  color: #ffff00 !important;
+  background-color: transparent !important;
+}
+html.a11y-high-contrast a:hover,
+html.a11y-high-contrast button:hover,
+html.a11y-high-contrast [role="button"]:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+html.a11y-high-contrast a:hover *,
+html.a11y-high-contrast button:hover *,
+html.a11y-high-contrast [role="button"]:hover * {
+  color: #000000 !important;
+  background-color: transparent !important;
+}
+html.a11y-high-contrast svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* 5. Readable Font Mode */
+html.a11y-readable-font,
+html.a11y-readable-font * {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.12em !important;
+}
+
+/* 6. Underline Links Mode */
+html.a11y-underline-links a {
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+}
+
+/* 7. Highlight Headings Mode */
+html.a11y-highlight-headings h1,
+html.a11y-highlight-headings h2,
+html.a11y-highlight-headings h3,
+html.a11y-highlight-headings h4,
+html.a11y-highlight-headings h5,
+html.a11y-highlight-headings h6 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  border-left: 5px solid #f59e0b !important;
+  padding-left: 8px !important;
+}
+html.a11y-highlight-headings[dir="rtl"] h1,
+html.a11y-highlight-headings[dir="rtl"] h2,
+html.a11y-highlight-headings[dir="rtl"] h3,
+html.a11y-highlight-headings[dir="rtl"] h4,
+html.a11y-highlight-headings[dir="rtl"] h5,
+html.a11y-highlight-headings[dir="rtl"] h6 {
+  border-left: none !important;
+  border-right: 5px solid #f59e0b !important;
+  padding-right: 8px !important;
+}
+
+/* 8. Enhanced Keyboard Focus Mode */
+html.a11y-enhanced-focus *:focus-visible {
+  outline: 4px solid #f59e0b !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.5) !important;
+}
+
+/* Custom Toggle Switch for Accessibility Widget */
+.a11y-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.a11y-switch input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.a11y-switch-track {
+  width: 36px;
+  height: 20px;
+  background-color: #d6d3d1; /* stone-300 */
+  border-radius: 9999px;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+.html.dark .a11y-switch-track,
+.dark .a11y-switch-track {
+  background-color: #334155; /* slate-700 */
+}
+.a11y-switch-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s ease;
+}
+/* RTL support */
+[dir="rtl"] .a11y-switch-thumb {
+  left: auto;
+  right: 2px;
+}
+.a11y-switch input:checked + .a11y-switch-track {
+  background-color: #162839; /* primary */
+}
+.dark .a11y-switch input:checked + .a11y-switch-track {
+  background-color: #e2e8f0; /* primary slate */
+}
+html.a11y-high-contrast .a11y-switch input:checked + .a11y-switch-track {
+  background-color: #ffff00 !important;
+}
+.a11y-switch input:checked + .a11y-switch-track .a11y-switch-thumb {
+  transform: translateX(16px);
+}
+[dir="rtl"] .a11y-switch input:checked + .a11y-switch-track .a11y-switch-thumb {
+  transform: translateX(-16px);
+}
+.a11y-switch input:focus-visible + .a11y-switch-track {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+

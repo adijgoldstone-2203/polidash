@@ -254,4 +254,23 @@ export const he: Record<string, string> = {
   "methodology.step4.title": "4. אימות וזכות תגובה",
   "methodology.step4.desc": "כל סיכום המופק על ידי בינה מלאכותית עובר בקרה אנושית. בנוסף, אנו מיישמים נוהל קפדני של זכות תגובה. נציגים פוליטיים או משתמשים יכולים להצביע על אי-התאמות ולהגיש בקשות תיקון מגובות בראיות, אשר נבדקות על ידי צוות העורכים שלנו ומיושמות ישירות במסד הנתונים.",
   "methodology.close": "סגור",
+
+  // Accessibility Widget
+  "a11y.widget.title": "הגדרות נגישות",
+  "a11y.widget.btn.label": "אפשרויות נגישות",
+  "a11y.toggle.contrast.default": "ניגודיות רגילה",
+  "a11y.toggle.contrast.high": "ניגודיות גבוהה",
+  "a11y.toggle.contrast.grayscale": "גווני אפור",
+  "a11y.toggle.fontSize": "גודל טקסט",
+  "a11y.toggle.fontSize.100": "רגיל (100%)",
+  "a11y.toggle.fontSize.115": "גדול (115%)",
+  "a11y.toggle.fontSize.130": "גדול מאוד (130%)",
+  "a11y.toggle.fontSize.150": "ענק (150%)",
+  "a11y.toggle.readableFont": "גופן קריא",
+  "a11y.toggle.underlineLinks": "קו תחתון לקישורים",
+  "a11y.toggle.highlightHeadings": "הדגשת כותרות",
+  "a11y.toggle.enhancedFocus": "הדגשת פוקוס מקלדת",
+  "a11y.btn.reset": "איפוס הכל",
+  "a11y.btn.close": "סגור",
+  "a11y.skipLink": "דלג לתוכן המרכזי",
 };
