@@ -2,6 +2,14 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/2022/tiles/:path*",
+      "destination": "https://elections.kaplanopensource.co.il/2022/tiles/:path*"
+    },
+    {
+      "source": "/tiles/:path*",
+      "destination": "https://elections.kaplanopensource.co.il/tiles/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }

@@ -13,6 +13,7 @@ import Privacy from './Privacy';
 import MethodologyModal from './components/MethodologyModal';
 import { AccessibilityWidget } from './components/AccessibilityWidget';
 import { useLanguage } from './i18n';
+import ElectionsMap from './ElectionsMap';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
@@ -39,6 +40,8 @@ function App() {
   const isReply = currentPath.startsWith('#/reply');
   const isProfileDetail = currentPath.startsWith('#/profile/');
   const isPrivacy = currentPath === '#/privacy';
+  const isMap = currentPath === '#/map';
+
 
   return (
     <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300 flex flex-col">
@@ -82,11 +85,16 @@ function App() {
           <Privacy />
         </div>
 
+        <div className={isMap ? 'block' : 'hidden'}>
+          <ElectionsMap />
+        </div>
+
         {/* Dynamic Detail Page (Unmounted when not in use to handle ID changes) */}
         {isProfileDetail && (
           <ProfileDetail id={currentPath.replace('#/profile/', '')} />
         )}
       </main>
+
 
       <Footer onShowMethodology={() => setShowMethodology(true)} />
       

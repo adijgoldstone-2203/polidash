@@ -63,7 +63,9 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
     { name: t('header.nav.quiz'), path: '#/quiz' },
     { name: t('header.nav.polls'), path: '#/polls' },
     { name: t('header.nav.coalition'), path: '#/coalition' },
+    { name: t('header.nav.map'), path: '#/map' },
   ];
+
 
   return (
     <header className="sticky top-0 w-full z-[100] bg-[#fbf9f5]/80 dark:bg-[#162839]/80 backdrop-blur-md border-b border-stone-200/50 dark:border-slate-800/50">
