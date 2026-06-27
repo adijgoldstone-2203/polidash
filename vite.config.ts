@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  define: {
+    'import.meta.env.VITE_PRE_PRODUCTION': JSON.stringify(process.env.VERCEL_ENV !== 'production')
+  },
   server: {
     proxy: {
       '/2022/tiles': {
