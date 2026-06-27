@@ -91,6 +91,8 @@ const ElectionsMap: React.FC = () => {
   const [selectedTownId, setSelectedTownId] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedSocioParties, setSelectedSocioParties] = useState<Set<string>>(new Set());
+  const [mapZoom, setMapZoom] = useState(7.4);
+  const [mapLoaded, setMapLoaded] = useState(false);
   
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
@@ -101,6 +103,7 @@ const ElectionsMap: React.FC = () => {
   const mapInstanceRef = useRef<maplibregl.Map | null>(null);
   const hoverPopupRef = useRef<maplibregl.Popup | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
+  const hasFittedBoundsRef = useRef(false);
 
   // Helper for English Title Case
   const toTitleCase = (str: string) => {
@@ -234,9 +237,10 @@ const ElectionsMap: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // 2. Initialize map once div and geojson are loaded
   useEffect(() => {
     if (!mapRef.current || !geojson || mapInstanceRef.current) return;
+
+    hasFittedBoundsRef.current = false;
 
     // Load Mapbox RTL Text plugin dynamically for proper Hebrew layout
     if (maplibregl.getRTLTextPluginStatus() === 'unavailable') {
@@ -324,12 +328,19 @@ const ElectionsMap: React.FC = () => {
       offset: 15
     });
 
+    let isMapStyleLoaded = false;
+
     map.on('load', () => {
-      // Fit to Israel bounds to show the whole map on both mobile and desktop
-      map.fitBounds([[34.15, 29.45], [35.9, 33.35]], {
-        padding: { top: 20, bottom: 20, left: 20, right: 20 },
-        animate: false
-      });
+      isMapStyleLoaded = true;
+      setMapLoaded(true);
+      const container = mapRef.current;
+      if (container && container.clientWidth > 0 && container.clientHeight > 0) {
+        map.fitBounds([[34.15, 29.45], [35.9, 33.35]], {
+          padding: { top: 20, bottom: 20, left: 20, right: 20 },
+          animate: false
+        });
+        hasFittedBoundsRef.current = true;
+      }
       // Add fill layer for municipalities
       map.addLayer({
         id: 'yishuvim-layer',
@@ -415,12 +426,38 @@ const ElectionsMap: React.FC = () => {
         }
       });
 
+      map.on('zoom', () => {
+        setMapZoom(map.getZoom());
+      });
+
       // Color the map initially
       colorMapPolygons(selectedKnesset);
     });
 
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (width > 0 && height > 0 && mapInstanceRef.current) {
+          mapInstanceRef.current.resize();
+          if (isMapStyleLoaded && !hasFittedBoundsRef.current) {
+            mapInstanceRef.current.fitBounds([[34.15, 29.45], [35.9, 33.35]], {
+              padding: { top: 20, bottom: 20, left: 20, right: 20 },
+              animate: false
+            });
+            hasFittedBoundsRef.current = true;
+          }
+        }
+      }
+    });
+
+    if (mapRef.current) {
+      resizeObserver.observe(mapRef.current);
+    }
+
     // Handle map style hot-reloading for dark/light mode
     return () => {
+      resizeObserver.disconnect();
+      setMapLoaded(false);
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
@@ -809,6 +846,47 @@ const ElectionsMap: React.FC = () => {
             </div>
           )}
           <div ref={mapRef} className="w-full h-full" />
+          
+          {/* Zoom Scroller Overlay */}
+          {mapLoaded && mapInstanceRef.current && (
+            <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 bg-white/95 dark:bg-slate-800/95 border border-stone-200/80 dark:border-slate-700/80 rounded-xl shadow-lg px-2.5 py-1.5 select-none backdrop-blur-sm">
+              <button 
+                onClick={() => {
+                  const newZoom = Math.max(6.5, mapZoom - 0.5);
+                  mapInstanceRef.current?.zoomTo(newZoom);
+                }}
+                disabled={mapZoom <= 6.5}
+                className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-stone-100 dark:hover:bg-slate-700 text-stone-600 dark:text-stone-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                title={isHe ? "התרחק" : "Zoom Out"}
+              >
+                <span className="material-symbols-outlined text-sm font-bold">remove</span>
+              </button>
+              <input
+                type="range"
+                min="6.5"
+                max="13"
+                step="0.1"
+                value={mapZoom}
+                onChange={(e) => {
+                  const val = parseFloat(e.target.value);
+                  setMapZoom(val);
+                  mapInstanceRef.current?.setZoom(val);
+                }}
+                className="w-20 md:w-28 accent-amber-500 bg-stone-200 dark:bg-slate-700 h-1 rounded-lg appearance-none cursor-pointer"
+              />
+              <button 
+                onClick={() => {
+                  const newZoom = Math.min(13, mapZoom + 0.5);
+                  mapInstanceRef.current?.zoomTo(newZoom);
+                }}
+                disabled={mapZoom >= 13}
+                className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-stone-100 dark:hover:bg-slate-700 text-stone-600 dark:text-stone-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                title={isHe ? "התקרב" : "Zoom In"}
+              >
+                <span className="material-symbols-outlined text-sm font-bold">add</span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Sidebar Info Panel */}

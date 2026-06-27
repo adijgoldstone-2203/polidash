@@ -14,6 +14,7 @@ import MethodologyModal from './components/MethodologyModal';
 import { AccessibilityWidget } from './components/AccessibilityWidget';
 import { useLanguage } from './i18n';
 import ElectionsMap from './ElectionsMap';
+import RecentStatements from './RecentStatements';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
@@ -41,6 +42,7 @@ function App() {
   const isProfileDetail = currentPath.startsWith('#/profile/');
   const isPrivacy = currentPath === '#/privacy';
   const isMap = currentPath === '#/map';
+  const isStatements = currentPath === '#/statements';
 
 
   return (
@@ -87,6 +89,10 @@ function App() {
 
         <div className={isMap ? 'block' : 'hidden'}>
           <ElectionsMap />
+        </div>
+
+        <div className={isStatements ? 'block' : 'hidden'}>
+          <RecentStatements />
         </div>
 
         {/* Dynamic Detail Page (Unmounted when not in use to handle ID changes) */}

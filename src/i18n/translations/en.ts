@@ -6,6 +6,7 @@ export const en: Record<string, string> = {
   "header.nav.coalition": "Coalition",
   "header.nav.polls": "Polls",
   "header.nav.quiz": "Quiz",
+  "header.nav.recentStatements": "Recent Statements",
   "header.search.placeholder": "Search...",
   "header.search.noResults": "No results found for",
 

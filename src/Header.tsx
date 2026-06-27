@@ -64,6 +64,7 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
     { name: t('header.nav.polls'), path: '#/polls' },
     { name: t('header.nav.coalition'), path: '#/coalition' },
     { name: t('header.nav.map'), path: '#/map' },
+    { name: t('header.nav.recentStatements'), path: '#/statements' },
   ];
 
 

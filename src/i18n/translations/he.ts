@@ -6,6 +6,7 @@ export const he: Record<string, string> = {
   "header.nav.coalition": "קואליציה",
   "header.nav.polls": "סקרים",
   "header.nav.quiz": "שאלון",
+  "header.nav.recentStatements": "הצהרות אחרונות",
   "header.search.placeholder": "...חיפוש",
   "header.search.noResults": "לא נמצאו תוצאות עבור",
 
