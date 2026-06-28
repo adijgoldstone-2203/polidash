@@ -463,39 +463,32 @@ const PollsDashboard: React.FC = () => {
                             <span className="font-bold text-slate-800 text-xs group-hover:text-primary transition-colors">{tParty(party)}</span>
                           </div>
 
-                          {/* Hover Tooltip Card */}
-                          {(() => {
-                            const leaderId = getPartyLeaderId(party);
-                            const leader = leaderId ? politicians.find(p => p.id === leaderId) : null;
-                            if (!leader) return null;
-
-                            return (
-                              <div 
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  window.location.hash = `#/profile/${leader.id}`;
-                                }}
-                                className="leader-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-white/95 backdrop-blur-sm border border-stone-200 shadow-xl rounded-xl p-3 hidden md:flex items-center gap-3 text-start pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100 scale-95 opacity-0 transition-all duration-200 delay-0 group-hover:delay-[1000ms] z-50 normal-case cursor-pointer hover:border-secondary before:absolute before:content-[''] before:w-full before:h-3 before:top-full before:left-0 text-slate-800"
-                              >
-                                <img 
-                                  src={leader.imageUrl} 
-                                  alt={leader.name} 
-                                  className="w-9 h-9 rounded-full object-cover object-top border border-stone-200 flex-shrink-0"
-                                />
-                                <div className="flex flex-col min-w-0">
-                                  <span className="font-bold text-[10px] text-slate-800 uppercase tracking-tight truncate">
-                                    {tPolitician(leader.name)}
-                                  </span>
-                                  <span className="text-[8px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5 truncate">
-                                    {lang === 'he' ? 'יו"ר מפלגה' : 'Party Leader'}
-                                  </span>
-                                </div>
-                                <span className="material-symbols-outlined text-[12px] text-slate-400 ms-auto flex-shrink-0 hover:text-secondary">
-                                  open_in_new
-                                </span>
-                              </div>
-                            );
-                          })()}
+                           {/* Hover Tooltip Card */}
+                           {(() => {
+                             const leaderId = getPartyLeaderId(party);
+                             const leader = leaderId ? politicians.find(p => p.id === leaderId) : null;
+                             if (!leader) return null;
+ 
+                             return (
+                               <div 
+                                 className="leader-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-40 bg-white/95 backdrop-blur-sm border border-stone-200 shadow-xl rounded-xl p-2.5 hidden md:flex items-center gap-2.5 text-start pointer-events-none group-hover:opacity-100 group-hover:scale-100 scale-95 opacity-0 transition-all duration-200 delay-0 group-hover:delay-[1000ms] z-50 normal-case text-slate-800"
+                               >
+                                 <img 
+                                   src={leader.imageUrl} 
+                                   alt={leader.name} 
+                                   className="w-8 h-8 rounded-full object-cover object-top border border-stone-200 flex-shrink-0"
+                                 />
+                                 <div className="flex flex-col min-w-0">
+                                   <span className="font-bold text-[9px] text-slate-800 uppercase tracking-tight truncate">
+                                     {tPolitician(leader.name)}
+                                   </span>
+                                   <span className="text-[8px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5 truncate">
+                                     {lang === 'he' ? 'יו"ר מפלגה' : 'Party Leader'}
+                                   </span>
+                                 </div>
+                               </div>
+                             );
+                           })()}
                         </td>
                         {latestUniquePolls.map(poll => (
                           <td key={poll.id} className="text-center py-2.5 px-3 text-slate-600 text-sm">
