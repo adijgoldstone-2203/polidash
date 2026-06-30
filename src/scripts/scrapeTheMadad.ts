@@ -50,7 +50,7 @@ async function run() {
   });
 
   console.log('🌐 Navigating to https://themadad.com/allpolls/ ...');
-  await page.goto('https://themadad.com/allpolls/', { waitUntil: 'networkidle2' });
+  await page.goto('https://themadad.com/allpolls/', { waitUntil: 'domcontentloaded' });
   
   console.log('📄 Extracting HTML table...');
   const html = await page.content();
