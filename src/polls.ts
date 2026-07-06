@@ -10,6 +10,82 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "634",
+    source: "כאן חדשות (Jul 5, 2026)",
+    date: "Jul 5, 2026",
+    dateISO: "2026-07-05",
+    data: {
+      "Likud": 23,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 9,
+      "Religious Zionist": 5,
+      "Ra'am": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 16,
+      "Yashar!": 23,
+    }
+  },
+  {
+    id: "633",
+    source: "מעריב (Jul 3, 2026)",
+    date: "Jul 3, 2026",
+    dateISO: "2026-07-03",
+    data: {
+      "Likud": 21,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 19,
+      "Yashar!": 20,
+    }
+  },
+  {
+    id: "631",
+    source: "זמן ישראל (Jul 2, 2026)",
+    date: "Jul 2, 2026",
+    dateISO: "2026-07-02",
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 10,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 11,
+      "Democrats": 8,
+      "Religious Zionist": 5,
+      "Ra'am": 4,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 16,
+      "Yashar!": 23,
+    }
+  },
+  {
+    id: "632",
+    source: "ערוץ 14 (Jul 2, 2026)",
+    date: "Jul 2, 2026",
+    dateISO: "2026-07-02",
+    data: {
+      "Likud": 33,
+      "United Torah Judaism": 7,
+      "Shas": 11,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 9,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 7,
+      "Together (Bennett-Lapid)": 9,
+      "Yashar!": 20,
+    }
+  },
+  {
     id: "630",
     source: "חדשות 13 (Jul 1, 2026)",
     date: "Jul 1, 2026",
