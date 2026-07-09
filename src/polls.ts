@@ -10,6 +10,25 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "636",
+    source: "חדשות 13 (Jul 8, 2026)",
+    date: "Jul 8, 2026",
+    dateISO: "2026-07-08",
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 15,
+      "Yashar!": 23,
+    }
+  },
+  {
     id: "635",
     source: "חדשות 12 (Jul 6, 2026)",
     date: "Jul 6, 2026",
@@ -3032,7 +3051,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 9,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3072,7 +3091,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 5,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 5,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3092,7 +3111,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 8,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3210,7 +3229,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 6,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3269,7 +3288,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 5,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3349,7 +3368,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 19,
       "Yashar!": 6,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3388,7 +3407,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 23,
       "Yashar!": 7,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3486,7 +3505,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 22,
       "Yashar!": 8,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -3584,7 +3603,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 23,
       "Yashar!": 6,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -4074,7 +4093,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 6,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4154,7 +4173,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 19,
       "Yashar!": 8,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4214,7 +4233,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 23,
       "Yashar!": 7,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4275,7 +4294,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 22,
       "Yashar!": 7,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4315,7 +4334,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 9,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -4336,7 +4355,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 5,
       "Together (Bennett-Lapid)": 19,
       "Yashar!": 8,
-      "The Reservists": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -4499,7 +4518,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 18,
       "Yashar!": 12,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4519,7 +4538,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 22,
       "Yashar!": 9,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4540,7 +4559,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 7,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4560,7 +4579,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 18,
       "Yashar!": 9,
-      "The Reservists": 6,
+      "HaMiluimnikim": 6,
     }
   },
   {
@@ -4639,7 +4658,7 @@ export const POLL_DATA: Poll[] = [
       "Ra'am": 6,
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 23,
-      "The Reservists": 6,
+      "HaMiluimnikim": 6,
     }
   },
   {
@@ -4699,7 +4718,7 @@ export const POLL_DATA: Poll[] = [
       "Ra'am": 5,
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 20,
-      "The Reservists": 6,
+      "HaMiluimnikim": 6,
     }
   },
   {
@@ -4740,7 +4759,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 7,
-      "The Reservists": 8,
+      "HaMiluimnikim": 8,
     }
   },
   {
@@ -4820,7 +4839,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 8,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -4860,7 +4879,7 @@ export const POLL_DATA: Poll[] = [
       "Ra'am": 5,
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 19,
-      "The Reservists": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
