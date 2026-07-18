@@ -17,12 +17,48 @@ export const computeWeightedAverage = (polls: Poll[]): Record<string, number> =>
   const result: Record<string, number> = {};
 
   allParties.forEach(party => {
+    // 1. Check if the party has at least one appearance in the active window (polls that carry weight > 0)
+    let hasAppearanceInActiveWindow = false;
+    const activeSourceCount = new Map<string, number>();
+
+    sorted.forEach(poll => {
+      const sourceChannel = poll.source.split(' (')[0];
+      const currentCount = activeSourceCount.get(sourceChannel) || 0;
+      activeSourceCount.set(sourceChannel, currentCount + 1);
+
+      const pollDate = new Date(poll.dateISO);
+      const daysDiff = Math.max(0, (mostRecentDate.getTime() - pollDate.getTime()) / (1000 * 60 * 60 * 24));
+      
+      let weight = 0;
+      if (daysDiff > 30) {
+        weight = 0;
+      } else if (currentCount === 0) {
+        weight = 1.0;
+      } else if (currentCount === 1) {
+        weight = 0.05;
+      } else {
+        weight = 0;
+      }
+
+      if (weight > 0 && poll.data[party] !== undefined) {
+        hasAppearanceInActiveWindow = true;
+      }
+    });
+
+    // If the party has not appeared in any recent polls carrying positive weight, their average is 0
+    if (!hasAppearanceInActiveWindow) {
+      result[party] = 0;
+      return;
+    }
+
+    // 2. Calculate the weighted average using the threshold-edge fallback for absent polls
     let weightedSum = 0;
     let totalWeight = 0;
     const sourceCountForParty = new Map<string, number>();
 
     sorted.forEach(poll => {
-      const seats = poll.data[party] || 0;
+      // Default to 2.5 seats if the active party is absent from this poll
+      const seats = poll.data[party] !== undefined ? poll.data[party] : 2.5;
       
       const sourceChannel = poll.source.split(' (')[0];
       const currentCount = sourceCountForParty.get(sourceChannel) || 0;
