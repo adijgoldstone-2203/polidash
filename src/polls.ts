@@ -10,6 +10,68 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "656",
+    source: "חדשות 12 (Jul 27, 2026)",
+    date: "Jul 27, 2026",
+    dateISO: "2026-07-27",
+    sampleSize: 509,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 4,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 23,
+      "HaMiluimnikim": 4,
+    }
+  },
+  {
+    id: "655",
+    source: "כאן חדשות (Jul 26, 2026)",
+    date: "Jul 26, 2026",
+    dateISO: "2026-07-26",
+    sampleSize: 550,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 21,
+      "HaMiluimnikim": 4,
+    }
+  },
+  {
+    id: "654",
+    source: "ערוץ 14 (Jul 26, 2026)",
+    date: "Jul 26, 2026",
+    dateISO: "2026-07-26",
+    sampleSize: 878,
+    data: {
+      "Likud": 32,
+      "United Torah Judaism": 7,
+      "Shas": 10,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 6,
+      "Democrats": 12,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 7,
+      "Yashar!": 23,
+    }
+  },
+  {
     id: "653",
     source: "מעריב (Jul 24, 2026)",
     date: "Jul 24, 2026",
