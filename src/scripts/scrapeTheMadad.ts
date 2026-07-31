@@ -36,26 +36,28 @@ function parseDateString(dateStr: string): string {
   return dateStr;
 }
 
-async function run() {
-  console.log('🚀 Starting TheMadad Poll Scraper (Stealth Mode)...');
-  
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
-  const page = await browser.newPage();
-  
-  await page.setExtraHTTPHeaders({
-    'Accept-Language': 'he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7',
-  });
+import { execSync } from 'child_process';
 
-  console.log('🌐 Navigating to https://themadad.com/allpolls/ ...');
-  await page.goto('https://themadad.com/allpolls/', { waitUntil: 'domcontentloaded' });
-  
+async function fetchHtml(): Promise<string> {
+  console.log('🌐 Fetching https://themadad.com/allpolls/ via curl...');
+  try {
+    const html = execSync(
+      'curl -s -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "https://themadad.com/allpolls/"',
+      { encoding: 'utf8' }
+    );
+    if (html.includes('<table')) {
+      return html;
+    }
+  } catch (err) {
+    console.warn('⚠️ Direct curl fetch failed:', err);
+  }
+  throw new Error('Failed to fetch polls page HTML');
+}
+
+async function run() {
+  console.log('🚀 Starting TheMadad Poll Scraper...');
+  const html = await fetchHtml();
   console.log('📄 Extracting HTML table...');
-  const html = await page.content();
-  await browser.close();
   
   const $ = cheerio.load(html);
   const rows: string[][] = [];
