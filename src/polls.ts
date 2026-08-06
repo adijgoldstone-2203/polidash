@@ -10,6 +10,47 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "665",
+    source: "ערוץ 16 (Aug 4, 2026)",
+    date: "Aug 4, 2026",
+    dateISO: "2026-08-04",
+    sampleSize: 500,
+    data: {
+      "Likud": 21,
+      "United Torah Judaism": 8,
+      "Shas": 9,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 11,
+      "Religious Zionist": 4,
+      "Ra'am": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 22,
+      "HaMiluimnikim": 4,
+    }
+  },
+  {
+    id: "664",
+    source: "ערוץ 14 (Aug 4, 2026)",
+    date: "Aug 4, 2026",
+    dateISO: "2026-08-04",
+    sampleSize: 588,
+    data: {
+      "Likud": 31,
+      "United Torah Judaism": 8,
+      "Shas": 11,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 10,
+      "Religious Zionist": 6,
+      "Ra'am": 5,
+      "Otzma Yehudit": 6,
+      "Together (Bennett-Lapid)": 8,
+      "Yashar!": 22,
+    }
+  },
+  {
     id: "663",
     source: "חדשות 12 (Aug 3, 2026)",
     date: "Aug 3, 2026",
