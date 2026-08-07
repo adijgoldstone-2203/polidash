@@ -145,11 +145,15 @@ async function run() {
       }
     }
     
+    const sampleSizeNum = parseInt(row[2], 10);
+    const sampleSize = !isNaN(sampleSizeNum) && sampleSizeNum > 0 ? sampleSizeNum : undefined;
+
     newPolls.push({
       id: row[0],
       source: `${source} (${dateFormatted})`,
       date: dateFormatted,
       dateISO: dateISO,
+      sampleSize,
       data
     });
   }
@@ -158,6 +162,14 @@ async function run() {
     console.log('✅ Local database is already up to date!');
     return;
   }
+
+  // Sort new polls descending by dateISO, then by id descending
+  newPolls.sort((a, b) => {
+    if (a.dateISO !== b.dateISO) {
+      return b.dateISO.localeCompare(a.dateISO);
+    }
+    return parseInt(b.id, 10) - parseInt(a.id, 10);
+  });
   
   console.log(`📥 Found ${newPolls.length} new polls to add!`);
   
@@ -169,11 +181,12 @@ async function run() {
     }
     dataStr += '    }';
     
+    const sampleSizeStr = p.sampleSize ? `\n    sampleSize: ${p.sampleSize},` : '';
     return `  {
     id: "${p.id}",
     source: "${p.source}",
     date: "${p.date}",
-    dateISO: "${p.dateISO}",
+    dateISO: "${p.dateISO}",${sampleSizeStr}
     data: ${dataStr}
   }`;
   }).join(',\n');
