@@ -16,7 +16,8 @@ export const enData = {
     "Together (Bennett-Lapid)": "Together (Bennett-Lapid)",
     "Yashar!": "Yashar!",
     "Bennett 2026": "Bennett 2026",
-    "HaMiluimnikim": "HaMiluimnikim",
+    "Trooper-Hendel": "Trooper-Hendel",
+    "HaMiluimnikim": "Trooper-Hendel",
     "Balad (National Democratic Alliance)": "Balad (National Democratic Alliance)",
     "Labor": "Labour"
   },
@@ -261,7 +262,7 @@ export const enData = {
       }
     },
     "yoaz-hendel": {
-      "biography": "Yoaz Hendel is the leader of HaMiluimnikim (The Reservists), a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
+      "biography": "Yoaz Hendel is the leader of Trooper-Hendel, a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
       "quote": "Universal service and national responsibility are the foundation of a resilient society.",
       "facts": [
         "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defence.",

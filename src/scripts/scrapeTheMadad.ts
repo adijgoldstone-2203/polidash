@@ -23,8 +23,8 @@ const PARTY_MAP: Record<string, string> = {
   'עוצמה יהודית': 'Otzma Yehudit',
   'ביחד (בנט ולפיד)': 'Together (Bennett-Lapid)',
   'ישר!': 'Yashar!',
-  'המילואימניקים': 'HaMiluimnikim',
-  'טרופר-הנדל': 'HaMiluimnikim'
+  'המילואימניקים': 'Trooper-Hendel',
+  'טרופר-הנדל': 'Trooper-Hendel'
 };
 
 // Function to convert DD/MM/YYYY to YYYY-MM-DD

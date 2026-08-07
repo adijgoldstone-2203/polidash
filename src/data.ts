@@ -334,9 +334,9 @@ export const politicians: Politician[] = [
     "name": "Yoaz Hendel",
     "imageUrl": "assets/politicians/yoaz-hendel.avif",
     "quote": "Universal service and national responsibility are the foundation of a resilient society.",
-    "party": "HaMiluimnikim",
+    "party": "Trooper-Hendel",
     "seats": "N/A",
-    "biography": "Yoaz Hendel is the leader of HaMiluimnikim (The Reservists), a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
+    "biography": "Yoaz Hendel is the leader of Trooper-Hendel, a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
     "partyWebsite": "https://www.themiluimnikim.org.il/?1",
     "facts": [
       "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defence.",
