@@ -290,12 +290,12 @@ const PollsDashboard: React.FC = () => {
   );
 
   const ChannelSelector = () => (
-    <div className="flex flex-col gap-2 w-full lg:w-[420px] lg:max-w-[420px] lg:flex-shrink-0 lg:flex-grow-0 mt-2 lg:mt-0" dir={lang === 'he' ? 'rtl' : 'ltr'}>
+    <div className="flex flex-col gap-2 w-full lg:w-[480px] lg:max-w-[480px] lg:flex-shrink-0 lg:flex-grow-0 mt-2 lg:mt-0" dir={lang === 'he' ? 'rtl' : 'ltr'}>
       <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{t('polls.trend.channels')}</label>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5">
         <button 
           onClick={() => setSelectedChannels(new Set())}
-          className={`px-3 py-1.5 text-xs font-bold rounded-full border transition-colors ${selectedChannels.size === 0 ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
+          className={`px-2.5 py-1 text-[11px] font-bold rounded-full border transition-colors ${selectedChannels.size === 0 ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
         >
           {t('polls.trend.all')}
         </button>
@@ -311,7 +311,7 @@ const PollsDashboard: React.FC = () => {
               }
               setSelectedChannels(next);
             }}
-            className={`px-3 py-1.5 text-xs font-bold rounded-full border transition-colors ${selectedChannels.has(c) ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
+            className={`px-2.5 py-1 text-[11px] font-bold rounded-full border transition-colors ${selectedChannels.has(c) ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
           >
             {tPollSource(c)}
           </button>
@@ -390,10 +390,10 @@ const PollsDashboard: React.FC = () => {
             </div>
             <div className="flex-grow flex items-center justify-end gap-3" dir={lang === 'he' ? 'rtl' : 'ltr'}>
               <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 flex-shrink-0">{t('polls.trend.channels')}:</label>
-              <div className="flex flex-wrap lg:flex-nowrap justify-end gap-1.5">
+              <div className="flex flex-wrap lg:flex-nowrap justify-end gap-1">
                 <button 
                   onClick={() => setSelectedChannels(new Set())}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-full border transition-colors whitespace-nowrap ${selectedChannels.size === 0 ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
+                  className={`px-2.5 py-1 text-[11px] font-bold rounded-full border transition-colors whitespace-nowrap ${selectedChannels.size === 0 ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
                 >
                   {t('polls.trend.all')}
                 </button>
@@ -409,7 +409,7 @@ const PollsDashboard: React.FC = () => {
                       }
                       setSelectedChannels(next);
                     }}
-                    className={`px-3 py-1.5 text-xs font-bold rounded-full border transition-colors whitespace-nowrap ${selectedChannels.has(c) ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
+                    className={`px-2.5 py-1 text-[11px] font-bold rounded-full border transition-colors whitespace-nowrap ${selectedChannels.has(c) ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}
                   >
                     {tPollSource(c)}
                   </button>
