@@ -7,6 +7,10 @@ export const he: Record<string, string> = {
   "header.nav.polls": "סקרים",
   "header.nav.quiz": "שאלון",
   "header.nav.recentStatements": "הצהרות אחרונות",
+  "header.nav.races": "מרוצים משרדיים",
+  "header.nav.map": "מפת בחירות",
+  "header.nav.voting": "איך מצביעים",
+  "header.nav.methodology": "מתודולוגיה",
   "header.search.placeholder": "...חיפוש",
   "header.search.noResults": "לא נמצאו תוצאות עבור",
 
@@ -274,9 +278,6 @@ export const he: Record<string, string> = {
   "a11y.btn.reset": "איפוס הכל",
   "a11y.btn.close": "סגור",
   "a11y.skipLink": "דלג לתוכן המרכזי",
-
-  // Header Nav Map Link
-  "header.nav.map": "בחירות היסטוריות",
 
   // Interactive Map Page
   "map.title": "נתוני בחירות היסטוריים",

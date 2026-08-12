@@ -4,7 +4,7 @@ import { POLL_DATA, CURRENT_KNESSET, PARTY_COLORS } from './polls';
 import { computeWeightedAverage, getRunningWeightedAverageData, getAllParties, getSinglePollTimeSeriesData } from './utils/pollAnalytics';
 import TrendChart from './components/TrendChart';
 import { useLanguage } from './i18n';
-import { politicians } from './data';
+import { politicians, AI_DISCLAIMER } from './data';
 
 const getPartyLeaderId = (partyName: string): string | null => {
   const normalized = partyName.toLowerCase();
@@ -517,10 +517,62 @@ const PollsDashboard: React.FC = () => {
           <p className="text-xs text-slate-400 max-w-3xl mx-auto leading-relaxed mb-4">
             {t('polls.footer.note')}
           </p>
-          <div className="bg-white/50 rounded-lg p-4 inline-block text-start border border-slate-100 max-w-4xl mx-auto">
+          <div className="bg-white/50 dark:bg-[#1f3448] rounded-lg p-4 inline-block text-start border border-slate-100 dark:border-slate-800 max-w-4xl mx-auto">
             <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">{t('polls.footer.sources')}</p>
-            <p className="text-[11px] text-slate-500 leading-relaxed">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
               {fullSources.map(s => tPollSource(s)).join(', ')}
+            </p>
+          </div>
+        </section>
+
+        {/* Embedded Methodology Section */}
+        <section id="methodology" className="mt-16 pt-12 border-t-2 border-[#162839] dark:border-slate-700 space-y-10">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span>PoliDash Data Integrity & Methodology</span>
+            </div>
+            <h2 className="font-['Newsreader'] text-3xl md:text-4xl font-bold text-[#162839] dark:text-[#fbf9f5]">
+              How PoliDash Calculates the Polling Weighted Average
+            </h2>
+            <p className="mt-2 text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              PoliDash conducts no polls of its own. We aggregate all published polls from primary Israeli sources and compute our custom weighted average using our proprietary mathematical weighting formula.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white dark:bg-[#1f3448] p-6 rounded-xl border border-stone-200 dark:border-slate-800 space-y-3">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#162839] text-white font-bold text-sm">1</span>
+              <h3 className="font-bold text-base text-[#162839] dark:text-[#fbf9f5]">Multi-Source Polling Collection</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                We take all published polls directly from their original sources (Channel 12, Kan 11, Channel 14, i24 News, Maariv/Lazar, Direct Polls) as soon as fieldwork and seat data are released.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-[#1f3448] p-6 rounded-xl border border-stone-200 dark:border-slate-800 space-y-3">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#162839] text-white font-bold text-sm">2</span>
+              <h3 className="font-bold text-base text-[#162839] dark:text-[#fbf9f5]">Our Weighted Recency Calculation</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                We calculate a weighted average prioritizing recency. For each polling source, the latest survey carries 100% weight (1.0) and the previous survey carries 5% weight (0.05), ensuring no single channel skews the average.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-[#1f3448] p-6 rounded-xl border border-stone-200 dark:border-slate-800 space-y-3">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#162839] text-white font-bold text-sm">3</span>
+              <h3 className="font-bold text-base text-[#162839] dark:text-[#fbf9f5]">Time Decay & Threshold Baseline</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Polls published over 14 days ago receive a 50% decay adjustment, and surveys over 30 days old are excluded. If an active list is unmentioned in a specific poll, a 2.5 seat threshold baseline is assigned.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-[#1f3448] p-6 rounded-2xl border border-stone-200 dark:border-slate-800 space-y-4">
+            <h3 className="font-bold text-lg text-[#162839] dark:text-[#fbf9f5] flex items-center gap-2">
+              <span className="material-symbols-outlined text-secondary">verified</span>
+              Platform Data & AI Summarization Disclaimer
+            </h3>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              {AI_DISCLAIMER.full}
             </p>
           </div>
         </section>

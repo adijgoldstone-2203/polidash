@@ -7,6 +7,10 @@ export const en: Record<string, string> = {
   "header.nav.polls": "Polls",
   "header.nav.quiz": "Quiz",
   "header.nav.recentStatements": "Recent Statements",
+  "header.nav.races": "Races",
+  "header.nav.map": "Electoral Map",
+  "header.nav.voting": "How to Vote",
+  "header.nav.methodology": "Methodology",
   "header.search.placeholder": "Search...",
   "header.search.noResults": "No results found for",
 
@@ -274,9 +278,6 @@ export const en: Record<string, string> = {
   "a11y.btn.reset": "Reset All",
   "a11y.btn.close": "Close",
   "a11y.skipLink": "Skip to main content",
-
-  // Header Nav Map Link
-  "header.nav.map": "Historical Elections",
 
   // Interactive Map Page
   "map.title": "Historical Elections Data",

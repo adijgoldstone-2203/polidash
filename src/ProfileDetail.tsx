@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { politicians } from './data';
+import { politicians, AI_DISCLAIMER } from './data';
 import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedImage from './components/OptimizedImage';
 import { useLanguage } from './i18n';
@@ -18,7 +18,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#fbf9f5] px-6 lg:px-12 pt-8 pb-20">
+      <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] px-6 lg:px-12 pt-8 pb-20 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
             <div className="mb-12">
               <a className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors" href="#/profiles">
@@ -49,14 +49,21 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                       </div>
                     )}
                     <div className="text-center lg:text-start">
-                      <h2 className="font-['Newsreader'] text-3xl md:text-4xl font-bold mb-2 text-primary">{tPolitician(politician.name)}</h2>
+                      <div className="flex items-center justify-center lg:justify-start gap-3 mb-1">
+                        <h2 className="font-['Newsreader'] text-3xl md:text-4xl font-bold text-primary dark:text-[#fbf9f5]">{tPolitician(politician.name)}</h2>
+                        {politician.ballotLetters && (
+                          <span lang="he" dir="rtl" className="font-['Suez_One'] text-2xl font-black text-secondary px-2.5 py-0.5 rounded bg-stone-200/70 dark:bg-slate-700/70">
+                            {politician.ballotLetters}
+                          </span>
+                        )}
+                      </div>
                       <p className="text-secondary font-bold uppercase tracking-widest text-sm mb-6">
                         {tParty(politician.party)} • {politician.seats !== "N/A" ? `${politician.seats} ${t('profileDetail.seats')}` : t('profileDetail.na')}
                       </p>
                     </div>
                     
-                    <div className="font-['Inter'] text-slate-600 leading-relaxed border-s-2 border-stone-200 ps-6 mb-8 space-y-6">
-                      <p className="italic font-medium text-slate-700 text-lg">"{tQuote(politician.id)}"</p>
+                    <div className="font-['Inter'] text-slate-600 dark:text-slate-300 leading-relaxed border-s-2 border-stone-200 dark:border-slate-700 ps-6 mb-8 space-y-6">
+                      <p className="italic font-medium text-slate-700 dark:text-slate-200 text-lg">"{tQuote(politician.id)}"</p>
                       <p>{tBio(politician.id)}</p>
                       {tFacts(politician.id) && tFacts(politician.id).length > 0 && (
                         <ul className="list-disc ms-5 space-y-2 mt-4 text-sm font-medium">
@@ -68,7 +75,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                     </div>
 
                     <div className="flex gap-4">
-                      <a href={politician.partyWebsite} target="_blank" rel="noreferrer" className="w-full bg-primary text-white px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+                      <a href={politician.partyWebsite} target="_blank" rel="noreferrer" className="w-full bg-primary dark:bg-secondary text-white px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-2 rounded-lg">
                         {t('profileDetail.partyLink')} <span className="material-symbols-outlined text-sm">open_in_new</span>
                       </a>
                     </div>
@@ -79,39 +86,60 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                 <div className="lg:col-span-8 space-y-16">
                   {/* Binary Stance Board */}
                   <div>
-                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary">{t('profileDetail.stanceBoard')}</h3>
+                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary dark:text-[#fbf9f5] flex items-center justify-between">
+                      <span>{t('profileDetail.stanceBoard')}</span>
+                      <span className="text-xs text-slate-400 font-sans font-medium">Click any stance for citations (↗)</span>
+                    </h3>
                     <div className="relative">
                       <div className={`grid grid-cols-3 gap-1 md:gap-1.5 transition-all duration-500 ${expandedTopic ? 'opacity-20 pointer-events-none' : 'opacity-100'}`}>
                         {Object.entries(politician.stances).map(([topic, status], i) => {
-                          let bgClass = "bg-surface-container-highest";
-                          let labelColor = "text-slate-500";
-                          let valColor = "text-slate-600";
+                          let bgClass = "bg-surface-container-highest dark:bg-[#1a2e40]";
+                          let labelColor = "text-slate-500 dark:text-slate-400";
+                          let valColor = "text-slate-600 dark:text-slate-200";
                           let iconName = "question_mark";
                           let iconColor = "text-slate-400";
                           
                           if (status.toUpperCase() === "SUPPORT") {
-                            bgClass = "bg-secondary-container";
-                            labelColor = "text-on-secondary-container";
-                            valColor = "text-on-secondary-container";
+                            bgClass = "bg-secondary-container dark:bg-[#1b382b]";
+                            labelColor = "text-on-secondary-container dark:text-emerald-300";
+                            valColor = "text-on-secondary-container dark:text-emerald-200";
                             iconName = "check_circle";
-                            iconColor = "text-on-secondary-container";
+                            iconColor = "text-on-secondary-container dark:text-emerald-300";
                           } else if (status.toUpperCase() === "OPPOSE") {
-                            bgClass = "bg-primary";
-                            labelColor = "text-slate-300";
-                            valColor = "text-white";
+                            bgClass = "bg-primary dark:bg-[#2c1d22]";
+                            labelColor = "text-slate-300 dark:text-rose-300";
+                            valColor = "text-white dark:text-rose-100";
                             iconName = "cancel";
-                            iconColor = "text-white";
+                            iconColor = "text-white dark:text-rose-300";
                           }
+
+                          const source = politician.stanceSources?.[topic];
 
                           return (
                             <div 
                               key={i} 
                               onClick={() => setExpandedTopic(topic)}
-                              className={`${bgClass} p-2 md:p-6 flex flex-col justify-between h-20 sm:h-24 md:h-32 cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:z-10 transition-all duration-300 group border-2 border-transparent hover:border-black/5 dark:hover:border-white/10`}
+                              className={`${bgClass} p-2 md:p-6 flex flex-col justify-between h-20 sm:h-24 md:h-32 cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:z-10 transition-all duration-300 group border-2 border-transparent hover:border-black/5 dark:hover:border-white/10 relative`}
                             >
                               <div className="flex justify-between items-start">
-                                <p className={`text-[7.5px] sm:text-[9px] md:text-[10px] font-bold ${labelColor} uppercase tracking-wider`}>{tIssue(topic)}</p>
-                                <span className={`material-symbols-outlined text-[10px] md:text-sm ${labelColor} opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0`}>open_in_full</span>
+                                <p className={`text-[7.5px] sm:text-[9px] md:text-[10px] font-bold ${labelColor} uppercase tracking-wider`}>
+                                  {tIssue(topic)}
+                                </p>
+                                <div className="flex items-center gap-1">
+                                  {source && (
+                                    <a
+                                      href={source.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      title={`Source: ${source.title} (${source.publisher})`}
+                                      onClick={(e) => e.stopPropagation()}
+                                      className="text-secondary font-black text-xs hover:scale-125 transition-transform"
+                                    >
+                                      ↗
+                                    </a>
+                                  )}
+                                  <span className={`material-symbols-outlined text-[10px] md:text-sm ${labelColor} opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0`}>open_in_full</span>
+                                </div>
                               </div>
                               <div className="flex items-center justify-between">
                                 <span className={`${valColor} font-black text-xs sm:text-sm md:text-xl`}>{tStance(status)}</span>
@@ -142,7 +170,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                             
                             <div className="mb-4 md:mb-6">
                               <h4 className="font-bold text-[10px] uppercase tracking-widest text-secondary mb-1 md:mb-2">{tIssue(expandedTopic)}</h4>
-                              <p className="font-['Newsreader'] text-sm sm:text-base md:text-2xl font-bold text-primary leading-tight mb-2 md:mb-4">
+                              <p className="font-['Newsreader'] text-sm sm:text-base md:text-2xl font-bold text-primary dark:text-[#fbf9f5] leading-tight mb-2 md:mb-4">
                                 {tIssueDefinition(expandedTopic)}
                               </p>
                               <div className="flex items-center gap-3">
@@ -175,7 +203,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                                     >
                                       <img src={p.imageUrl} alt={tPolitician(p.name)} className="w-8 h-8 rounded-full object-cover object-top transition-all" />
                                       <div className="min-w-0">
-                                        <p className="text-[10px] font-black text-primary truncate">{tPolitician(p.name)}</p>
+                                        <p className="text-[10px] font-black text-primary dark:text-[#fbf9f5] truncate">{tPolitician(p.name)}</p>
                                         <p className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter truncate">{tParty(p.party)}</p>
                                       </div>
                                     </a>
@@ -196,15 +224,22 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
 
                   {/* 10 Detailed Issues Section */}
                   <div className="space-y-12">
-                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary">{t('profileDetail.intelligence')}</h3>
+                    <h3 className="font-['Newsreader'] text-2xl font-bold mb-8 text-primary dark:text-[#fbf9f5]">{t('profileDetail.intelligence')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                       {Object.keys(politician.intelligence).map((topic, i) => (
                         <div key={i} className="group">
                           <h4 className="font-bold text-xs uppercase tracking-widest text-secondary mb-4">{tIntelligenceTopic(topic)}</h4>
-                          <p className="text-sm leading-relaxed text-slate-700">{tIntelligence(politician.id, topic)}</p>
+                          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{tIntelligence(politician.id, topic)}</p>
                         </div>
                       ))}
                     </div>
+                  </div>
+
+                  {/* AI Disclosure Footer */}
+                  <div className="border-t border-stone-200 dark:border-slate-800 pt-6 text-xs text-slate-500 space-y-2">
+                    <p className="font-medium text-slate-600 dark:text-slate-400">
+                      {AI_DISCLAIMER.full}
+                    </p>
                   </div>
                 </div>
               </div>

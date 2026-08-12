@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import VennEngine, { Criterion } from './VennEngine';
-import { politicians } from './data';
+import { politicians, AI_DISCLAIMER } from './data';
 import { useLanguage } from './i18n';
 
 const ISSUES_LIST = [
@@ -210,14 +210,18 @@ const Issues: React.FC = () => {
               {activeCriteria.length > 0 ? (
                 // Only render Definitions for active selected topics (unique)
                 Array.from(new Set(activeCriteria.map(c => c.topic))).map(topic => (
-                  <div key={topic} className="space-y-4">
+                  <div key={topic} className="space-y-4 bg-white dark:bg-[#1f3448] p-5 rounded-xl border border-stone-200 dark:border-slate-800">
                     <h4 className="font-label font-bold text-secondary text-sm tracking-widest uppercase">{tIssue(topic)}</h4>
-                    <p className="font-headline text-lg leading-relaxed text-primary">{tIssueDefinition(topic)}</p>
+                    <p className="font-headline text-base leading-relaxed text-primary dark:text-[#fbf9f5]">{tIssueDefinition(topic)}</p>
                   </div>
                 ))
               ) : (
                 <div className="col-span-3 text-stone-400 italic">{t('issues.selectToView')}</div>
               )}
+            </div>
+            
+            <div className="mt-12 pt-6 border-t border-stone-200 dark:border-slate-800 text-xs text-slate-500 text-center">
+              PoliDash Intelligence Engine • {AI_DISCLAIMER.full}
             </div>
           </section>
         </main>

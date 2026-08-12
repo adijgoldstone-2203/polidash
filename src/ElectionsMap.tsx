@@ -257,14 +257,12 @@ const ElectionsMap: React.FC = () => {
 
     const baseStyle: maplibregl.StyleSpecification = {
       version: 8,
-      name: "Bare_v2",
-      glyphs: `${window.location.origin}/tiles/fonts/{fontstack}/{range}.pbf`,
+      name: "PoliDash_Map",
+      glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
       sources: {
-        yishuvim_vector_source: {
-          type: "vector",
-          tiles: [
-            `${window.location.origin}/2022/tiles/v2/{z}/{y}/{x}.pbf`
-          ]
+        yishuvim_geojson_source: {
+          type: "geojson",
+          data: geojson
         }
       },
       layers: [
@@ -272,36 +270,7 @@ const ElectionsMap: React.FC = () => {
           id: "background",
           type: "background",
           paint: {
-            "background-color": "hsla(187, 9%, 90%, 1)"
-          }
-        },
-        {
-          id: "countries-near",
-          type: "fill",
-          source: "yishuvim_vector_source",
-          "source-layer": "countries",
-          paint: {
-            "fill-color": "hsl(60, 10%, 96%)",
-            "fill-outline-color": "#cbd5e1"
-          }
-        },
-        {
-          id: "countries-borders",
-          type: "line",
-          source: "yishuvim_vector_source",
-          "source-layer": "countries",
-          paint: {
-            "line-color": "#94a3b8",
-            "line-width": 0.8
-          }
-        },
-        {
-          id: "lakes",
-          type: "fill",
-          source: "yishuvim_vector_source",
-          "source-layer": "lakes",
-          paint: {
-            "fill-color": "hsla(187, 9%, 81%, 1)"
+            "background-color": "#e2e8f0"
           }
         }
       ]
@@ -345,11 +314,10 @@ const ElectionsMap: React.FC = () => {
       map.addLayer({
         id: 'yishuvim-layer',
         type: 'fill',
-        source: 'yishuvim_vector_source',
-        'source-layer': 'yishuv_2022',
+        source: 'yishuvim_geojson_source',
         paint: {
           'fill-color': '#CCCCCC',
-          'fill-opacity': 0.65
+          'fill-opacity': 0.75
         }
       });
 
@@ -357,11 +325,10 @@ const ElectionsMap: React.FC = () => {
       map.addLayer({
         id: 'yishuvim-borders',
         type: 'line',
-        source: 'yishuvim_vector_source',
-        'source-layer': 'yishuv_2022',
+        source: 'yishuvim_geojson_source',
         paint: {
           'line-color': '#ffffff',
-          'line-width': 0.4
+          'line-width': 0.6
         }
       });
 
@@ -369,11 +336,10 @@ const ElectionsMap: React.FC = () => {
       map.addLayer({
         id: 'yishuvim-hover',
         type: 'line',
-        source: 'yishuvim_vector_source',
-        'source-layer': 'yishuv_2022',
+        source: 'yishuvim_geojson_source',
         paint: {
           'line-color': '#000000',
-          'line-width': 1.5
+          'line-width': 1.8
         },
         filter: ['==', ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'semel_yishuv']], '']
       });
@@ -382,8 +348,7 @@ const ElectionsMap: React.FC = () => {
       map.addLayer({
         id: 'yishuvim-selected',
         type: 'line',
-        source: 'yishuvim_vector_source',
-        'source-layer': 'yishuv_2022',
+        source: 'yishuvim_geojson_source',
         paint: {
           'line-color': '#e11d48',
           'line-width': 2.5
@@ -395,8 +360,7 @@ const ElectionsMap: React.FC = () => {
       map.addLayer({
         id: 'yishuvim-labels',
         type: 'symbol',
-        source: 'yishuvim_vector_source',
-        'source-layer': 'Centroids',
+        source: 'yishuvim_geojson_source',
         minzoom: 9.5,
         layout: {
           'text-field': ['coalesce', ['get', 'SHEM_YISHUV'], ['get', 'shem_yishuv']],
@@ -410,6 +374,8 @@ const ElectionsMap: React.FC = () => {
           'text-halo-width': 1.5
         }
       });
+
+      colorMapPolygons(selectedKnesset);
 
       // Map Events
       map.on('mousemove', 'yishuvim-layer', handleMouseMove);
@@ -530,15 +496,20 @@ const ElectionsMap: React.FC = () => {
     const knessetSummary = electionsData[knesset];
     if (!knessetSummary) return;
 
-    const expression: any[] = ['match', ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'semel_yishuv']]];
+    const expression: any[] = [
+      'match',
+      ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv'], 0]
+    ];
 
     Object.entries(knessetSummary.towns).forEach(([code, town]) => {
       const winner = town.winner;
       const color = PARTY_METADATA[winner]?.color || PARTY_METADATA["Other"].color;
-      expression.push(parseInt(code), color);
+      if (parseInt(code)) {
+        expression.push(parseInt(code), color);
+      }
     });
 
-    expression.push('#CCCCCC'); // fallback default color
+    expression.push(['coalesce', ['get', 'color_general'], '#CCCCCC']);
 
     if (map.getLayer('yishuvim-layer')) {
       map.setPaintProperty('yishuvim-layer', 'fill-color', expression);
@@ -554,14 +525,26 @@ const ElectionsMap: React.FC = () => {
 
     if (e.features.length > 0) {
       const feature = e.features[0];
-      const semel = (feature.properties.SEMEL_YISHUV ?? feature.properties.semel_yishuv)?.toString();
+      const semel = (
+        feature.properties.SEMEL_MUN ?? 
+        feature.properties.SEMEL_YISHUV ?? 
+        feature.properties.semel_mun ?? 
+        feature.properties.semel_yishuv
+      )?.toString();
+
+      if (!semel) return;
+
       const townInfo = electionsData[selectedKnesset]?.towns[semel];
       const fallbackName = townInfo ? townInfo.name : (feature.properties.SHEM_YISHUV ?? feature.properties.shem_yishuv ?? "Unknown");
       const townName = getTownName(semel, fallbackName);
 
       // Draw hover boundary
       if (map.getLayer('yishuvim-hover')) {
-        map.setFilter('yishuvim-hover', ['==', ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'semel_yishuv']], parseInt(semel)]);
+        map.setFilter('yishuvim-hover', [
+          '==', 
+          ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv']], 
+          parseInt(semel) || 0
+        ]);
       }
 
       // Fetch town summary stats
@@ -610,7 +593,11 @@ const ElectionsMap: React.FC = () => {
     
     // Clear hover boundary
     if (map.getLayer('yishuvim-hover')) {
-      map.setFilter('yishuvim-hover', ['==', ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'semel_yishuv']], '']);
+      map.setFilter('yishuvim-hover', [
+        '==', 
+        ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv']], 
+        0
+      ]);
     }
 
     if (hoverPopupRef.current) {
@@ -622,8 +609,16 @@ const ElectionsMap: React.FC = () => {
   const handleMapClick = (e: any) => {
     if (e.features.length > 0) {
       const feature = e.features[0];
-      const semel = (feature.properties.SEMEL_YISHUV ?? feature.properties.semel_yishuv).toString();
-      selectAndFocusTown(semel, e.lngLat);
+      const semel = (
+        feature.properties.SEMEL_MUN ?? 
+        feature.properties.SEMEL_YISHUV ?? 
+        feature.properties.semel_mun ?? 
+        feature.properties.semel_yishuv
+      )?.toString();
+
+      if (semel) {
+        selectAndFocusTown(semel, e.lngLat);
+      }
     }
   };
 
@@ -635,7 +630,11 @@ const ElectionsMap: React.FC = () => {
 
     // Apply selected filter boundary
     if (map.getLayer('yishuvim-selected')) {
-      map.setFilter('yishuvim-selected', ['==', ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'semel_yishuv']], parseInt(semel)]);
+      map.setFilter('yishuvim-selected', [
+        '==', 
+        ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv']], 
+        parseInt(semel) || 0
+      ]);
     }
 
     // Zoom and pan

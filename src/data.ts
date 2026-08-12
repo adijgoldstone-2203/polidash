@@ -1,7 +1,14 @@
+export interface StanceSource {
+  url: string;
+  title: string;
+  publisher: string;
+}
+
 export interface Politician {
   id: string;
   name: string;
   party: string;
+  ballotLetters: string;
   seats: string;
   biography: string;
   partyWebsite: string;
@@ -9,6 +16,7 @@ export interface Politician {
   facts: string[];
   intelligence: Record<string, string>;
   stances: Record<string, string>;
+  stanceSources: Record<string, StanceSource>;
   quote: string;
 }
 
@@ -24,6 +32,24 @@ export const ISSUE_DEFINITIONS: Record<string, string> = {
   "Basic Law: Equality": "Amending the constitutional framework to include an explicit \"Right to Equality\" clause for all citizens, regardless of religion or ethnicity."
 };
 
+export const ISSUE_ENDPOINTS: Record<string, { left: string; right: string }> = {
+  "Free Market Priority": { left: "Social spending / labor", right: "Free market / deregulation" },
+  "Two-State Separation": { left: "Two states / withdrawal", right: "Sovereignty / annexation" },
+  "Judicial Override": { left: "Court can strike laws", right: "Knesset can override" },
+  "Universal Enlistment": { left: "Universal draft", right: "Preserve exemptions" },
+  "State Commission (Oct 7)": { left: "Independent judicial inquiry", right: "Government / internal review" },
+  "Shabbat Public Transit": { left: "Civil / municipal transit", right: "Preserve Shabbat status quo" },
+  "West Bank Annexation": { left: "Freeze / withdrawal", right: "Full annexation / sovereignty" },
+  "Rabbinical Court Power": { left: "Civil arbitration only", right: "Expand Rabbinical authority" },
+  "Basic Law: Equality": { left: "Constitutional equality for all", right: "Jewish national priority" }
+};
+
+export const AI_DISCLAIMER = {
+  short: "Information on PoliDash is compiled and summarized from official party manifestos, public candidate statements, and official party websites using unbiased AI summarization.",
+  full: "Disclaimer: Information presented on PoliDash is compiled and summarized from official party manifestos, public candidate statements, and official party websites using unbiased AI summarization.",
+  rightOfReply: "Candidates or party representatives wishing to update or correct listed information can submit requests via the Right of Reply protocol."
+};
+
 export const politicians: Politician[] = [
   {
     "id": "benjamin-netanyahu",
@@ -31,6 +57,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/benjamin-netanyahu.avif",
     "quote": "Security is the foundation of our existence, and we will never compromise on it.",
     "party": "Likud",
+    "ballotLetters": "מחל",
     "seats": "32",
     "biography": "Benjamin Netanyahu is the longest-serving Prime Minister in Israel's history. Before entering politics, he served as an officer in the Sayeret Matkal special forces unit. He earned degrees from MIT and worked as a corporate consultant in the United States. He served as Israel’s Ambassador to the United Nations in the 1980s before assuming leadership of the Likud party in 1993. He has served multiple terms as Prime Minister (1996–1999, 2009–2021, and 2022–present).",
     "partyWebsite": "https://www.likud.org.il/",
@@ -61,6 +88,14 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Support",
       "Rabbinical Court Power": "Support",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "Free Market Priority": { url: "https://www.likud.org.il/", title: "Likud Official Platform & Free Market Agenda", publisher: "likud.org.il" },
+      "Two-State Separation": { url: "https://www.timesofisrael.com/netanyahu-secures-key-edits-to-trump-plan-to-slow-and-limit-israels-withdrawal-from-gaza/", title: "Netanyahu opposes Palestinian State, outlines Gaza posture", publisher: "Times of Israel" },
+      "Judicial Override": { url: "https://www.ynetnews.com/article/sy61v8ybfe", title: "Levin & Netanyahu Judicial Reform Strategy", publisher: "Ynet" },
+      "Universal Enlistment": { url: "https://www.timesofisrael.com/as-coalition-collapses-around-him-netanyahu-revives-haredi-draft-exemption-bill/", title: "Netanyahu revives Haredi Draft arrangements with coalition", publisher: "Times of Israel" },
+      "West Bank Annexation": { url: "https://www.timesofisrael.com/2-west-bank-annexation-bills-get-initial-nod-with-mks-rebelling-against-pm-as-vance-visits/", title: "West Bank Annexation Bills & Likud Stance", publisher: "Times of Israel" },
+      "Basic Law: Equality": { url: "https://www.timesofisrael.com/for-netanyahu-all-israelis-are-equal-but-some-are-more-equal-than-others/", title: "Nation-State Law & Citizenship Framework", publisher: "Times of Israel" }
     }
   },
   {
@@ -68,7 +103,8 @@ export const politicians: Politician[] = [
     "name": "Naftali Bennett",
     "imageUrl": "assets/politicians/naftali-bennett.avif",
     "quote": "A government of unity is not a compromise; it is a strategic necessity for the future of Zionism.",
-    "party": "Together (Bennett-Lapid)",
+    "party": "Together",
+    "ballotLetters": "פה",
     "seats": "N/A",
     "biography": "Bennett served as a company commander in the Maglan special forces unit. He later co-founded and sold multiple international technology companies, including Cyota and Soluto. Entering politics as Netanyahu's Chief of Staff, he subsequently led the Jewish Home party. In 2021, he formed a rotation government consisting of right-wing, centrist, left-wing, and Arab parties, serving as Prime Minister. He recently re-entered politics with the \"Together\" faction.",
     "partyWebsite": "https://en.wikipedia.org/wiki/Naftali_Bennett",
@@ -99,6 +135,11 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Support",
       "Rabbinical Court Power": "Ambiguous",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "Free Market Priority": { url: "https://en.wikipedia.org/wiki/Naftali_Bennett", title: "Bennett Economic Platform & High-Tech Deregulation", publisher: "Wikipedia / Official Public Record" },
+      "Two-State Separation": { url: "https://www.timesofisrael.com/bennett-says-no-palestinian-state-under-his-watch/", title: "Bennett reaffirmation on Palestinian Statehood", publisher: "Times of Israel" },
+      "Universal Enlistment": { url: "https://www.ynetnews.com/article/sy61v8ybfe", title: "Together Platform on Equal Civic Burden", publisher: "Ynet" }
     }
   },
   {
@@ -106,7 +147,8 @@ export const politicians: Politician[] = [
     "name": "Benny Gantz",
     "imageUrl": "assets/politicians/benny-gantz.avif",
     "quote": "Our duty is to put the state above all partisan interests and restore national stability.",
-    "party": "National Unity Party",
+    "party": "Blue & White",
+    "ballotLetters": "כן",
     "seats": "12",
     "biography": "Benny Gantz served in the Israel Defence Forces for nearly four decades, reaching the position of Chief of General Staff (2011–2015). He entered politics in 2019, forming the Blue and White alliance. Gantz has served as Minister of Defence and Alternate Prime Minister. He joined an emergency war cabinet following the October 2023 attacks, later resigning over strategic disagreements regarding the conduct of the war.",
     "partyWebsite": "https://kachollavan.org.il/",
@@ -137,6 +179,10 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Ambiguous",
       "Rabbinical Court Power": "Oppose",
       "Basic Law: Equality": "Support"
+    },
+    "stanceSources": {
+      "Judicial Override": { url: "https://kachollavan.org.il/", title: "Blue & White Judicial Independence Declaration", publisher: "kachollavan.org.il" },
+      "Universal Enlistment": { url: "https://www.timesofisrael.com/gantz-unveils-outline-for-universal-conscription-service-model/", title: "Gantz Outline for Universal Conscription Model", publisher: "Times of Israel" }
     }
   },
   {
@@ -145,6 +191,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/gadi-eisenkot.avif",
     "quote": "Integrity and strategic clarity are the only way to navigate the challenges Israel faces.",
     "party": "Yashar!",
+    "ballotLetters": "ישר",
     "seats": "N/A",
     "biography": "Gadi Eisenkot served as the IDF Chief of General Staff from 2015 to 2019. He authored military doctrines focused on deterrence and infrastructure targeting. He entered politics with the National Unity party and served in the emergency war cabinet in 2023. He recently launched a new political movement, \"Yashar!,\" focused on systemic governance reform.",
     "partyWebsite": "https://yasharwitheisenkot.com/",
@@ -175,6 +222,10 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Ambiguous",
       "Rabbinical Court Power": "Ambiguous",
       "Basic Law: Equality": "Support"
+    },
+    "stanceSources": {
+      "State Commission (Oct 7)": { url: "https://yasharwitheisenkot.com/", title: "Yashar Platform: Systemic Governance & Commission of Inquiry", publisher: "yasharwitheisenkot.com" },
+      "Universal Enlistment": { url: "https://www.ynetnews.com/article/sy61v8ybfe", title: "Eisenkot Security & Draft Principles", publisher: "Ynet" }
     }
   },
   {
@@ -182,7 +233,8 @@ export const politicians: Politician[] = [
     "name": "Yair Golan",
     "imageUrl": "assets/politicians/yair-golan.avif",
     "quote": "A democratic and social Israel is a strong Israel.",
-    "party": "Democrats",
+    "party": "The Democrats",
+    "ballotLetters": "מרצ",
     "seats": "4",
     "biography": "Yair Golan is a retired IDF Major General who served as Deputy Chief of the General Staff. He entered politics with the Meretz party and served as Deputy Minister of Economy. In 2024, he was elected leader of the Labour Party and facilitated a merger with Meretz, creating a unified faction called \"The Democrats.\"",
     "partyWebsite": "https://democrats.org.il/",
@@ -213,6 +265,10 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Oppose",
       "Rabbinical Court Power": "Oppose",
       "Basic Law: Equality": "Support"
+    },
+    "stanceSources": {
+      "Two-State Separation": { url: "https://democrats.org.il/", title: "The Democrats Party Manifesto & Two-State Security Model", publisher: "democrats.org.il" },
+      "Shabbat Public Transit": { url: "https://www.themarker.com/news/education/2026-07-27/ty-article/.premium/0000019f-a43e-d5e4-afff-affe26ff0000", title: "Public Transport & Civil Rights Platform", publisher: "TheMarker" }
     }
   },
   {
@@ -221,6 +277,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/aryeh-deri.avif",
     "quote": "We must preserve the tradition of our fathers and care for those who have been left behind.",
     "party": "Shas",
+    "ballotLetters": "שס",
     "seats": "11",
     "biography": "Aryeh Deri serves as the chairman of Shas, a party founded in 1984. He has held multiple ministerial roles, including Minister of the Interior. In 2021, he resigned from the Knesset following a plea bargain regarding tax offenses, but returned to the government in 2022. Following a Supreme Court ruling in early 2023, he relinquished his ministerial posts but remained a Knesset member and the leader of the party.",
     "partyWebsite": "https://en.wikipedia.org/wiki/Shas",
@@ -251,6 +308,10 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Support",
       "Rabbinical Court Power": "Support",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "Universal Enlistment": { url: "https://www.timesofisrael.com/as-coalition-collapses-around-him-netanyahu-revives-haredi-draft-exemption-bill/", title: "Shas Conscription Exemption Position", publisher: "Times of Israel" },
+      "Rabbinical Court Power": { url: "https://en.wikipedia.org/wiki/Shas", title: "Shas Rabbinical Jurisdiction Platform", publisher: "Wikipedia" }
     }
   },
   {
@@ -259,6 +320,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/mansour-abbas.avif",
     "quote": "Pragmatic partnership is the only way to secure the civic rights and future of our community.",
     "party": "Ra'am",
+    "ballotLetters": "עם",
     "seats": "5",
     "biography": "Mansour Abbas is the chairman of the United Arab List, which operates as the political wing of the Southern Branch of the Islamic Movement in Israel. He holds a degree in dentistry from the Hebrew University of Jerusalem. In 2021, he led his party to become the first independent Arab party to join an Israeli governing coalition, signing an agreement with Yair Lapid and Naftali Bennett.",
     "partyWebsite": "https://en.wikipedia.org/wiki/United_Arab_List",
@@ -289,6 +351,9 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Oppose",
       "Rabbinical Court Power": "Ambiguous",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "Two-State Separation": { url: "https://en.wikipedia.org/wiki/United_Arab_List", title: "Ra'am Platform on Civic Integration & Palestinian Rights", publisher: "Wikipedia" }
     }
   },
   {
@@ -296,7 +361,8 @@ export const politicians: Politician[] = [
     "name": "Yair Lapid",
     "imageUrl": "assets/politicians/yair-lapid.avif",
     "quote": "We are fighting for the soul of Israeli democracy and a sane, liberal future for our children.",
-    "party": "Yesh Atid (Together)",
+    "party": "Together",
+    "ballotLetters": "פה",
     "seats": "24",
     "biography": "Yair Lapid is the leader of Yesh Atid. Prior to entering politics, he worked as an author, television presenter, and news anchor. He entered politics in 2012, subsequently serving as Minister of Finance. He later served as Prime Minister of Israel during the 36th government rotation agreement. He recently led Yesh Atid to join Naftali Bennett's 'Together' faction.",
     "partyWebsite": "https://yeshatid.org.il/",
@@ -327,6 +393,10 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Oppose",
       "Rabbinical Court Power": "Ambiguous",
       "Basic Law: Equality": "Support"
+    },
+    "stanceSources": {
+      "State Commission (Oct 7)": { url: "https://yeshatid.org.il/", title: "Yesh Atid Demand for State Commission of Inquiry", publisher: "yeshatid.org.il" },
+      "Shabbat Public Transit": { url: "https://www.themarker.com/news/education/2026-07-27/ty-article/.premium/0000019f-a43e-d5e4-afff-affe26ff0000", title: "Lapid Secular Rights & Public Transport Policy", publisher: "TheMarker" }
     }
   },
   {
@@ -334,9 +404,10 @@ export const politicians: Politician[] = [
     "name": "Yoaz Hendel",
     "imageUrl": "assets/politicians/yoaz-hendel.avif",
     "quote": "Universal service and national responsibility are the foundation of a resilient society.",
-    "party": "Trooper-Hendel",
+    "party": "Zionist Home",
+    "ballotLetters": "ז",
     "seats": "N/A",
-    "biography": "Yoaz Hendel is the leader of Trooper-Hendel, a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
+    "biography": "Yoaz Hendel is the leader of Zionist Home (The Reservists / Miluimnikim), a political party re-established with Chili Tropper. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
     "partyWebsite": "https://www.themiluimnikim.org.il/?1",
     "facts": [
       "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defence.",
@@ -365,6 +436,9 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Ambiguous",
       "Rabbinical Court Power": "Ambiguous",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "Universal Enlistment": { url: "https://www.themiluimnikim.org.il/?1", title: "Zionist Home Reservists Conscription Platform", publisher: "themiluimnikim.org.il" }
     }
   },
   {
@@ -372,9 +446,10 @@ export const politicians: Politician[] = [
     "name": "Ayman Odeh",
     "imageUrl": "assets/politicians/ayman-odeh.avif",
     "quote": "Equality, dignity, and a shared future for Jews and Arabs are the only path to true peace.",
-    "party": "Hadash",
+    "party": "Hadash-Ta'al",
+    "ballotLetters": "ום",
     "seats": "5",
-    "biography": "Ayman Odeh is the leader of Hadash (The Democratic Front for Peace and Equality). He is a lawyer from Haifa and has served as a member of the Knesset since 2015. He advocates for Jewish-Arab political partnership and civil rights, leading a joint list with the Ta'al faction.",
+    "biography": "Ayman Odeh is the leader of Hadash (The Democratic Front for Peace and Equality). He is a lawyer from Haifa and has served as a member of the Knesset since 2015. He advocates for Jewish-Arab political partnership and civil rights, leading a joint list with Ahmad Tibi.",
     "partyWebsite": "https://hadash.org.il/",
     "facts": [
       "Bi-National Movement: He leads a party that operates explicitly as a joint Jewish-Arab movement focused on diplomatic and social campaigns.",
@@ -403,6 +478,9 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Oppose",
       "Rabbinical Court Power": "Oppose",
       "Basic Law: Equality": "Support"
+    },
+    "stanceSources": {
+      "Basic Law: Equality": { url: "https://hadash.org.il/", title: "Hadash Platform on Equality and Democratic Constitution", publisher: "hadash.org.il" }
     }
   },
   {
@@ -411,6 +489,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/yitzhak-goldknopf.avif",
     "quote": "The Torah is the light that has guided our people through every storm in our long history.",
     "party": "United Torah Judaism",
+    "ballotLetters": "ג",
     "seats": "7",
     "biography": "Yitzhak Goldknopf represents the Hasidic Agudat Yisrael faction and leads the United Torah Judaism list. Before entering the Knesset in 2022, he managed a large network of Haredi kindergartens and daycare centres. He succeeded Yaakov Litzman as the faction's primary representative.",
     "partyWebsite": "https://en.wikipedia.org/wiki/United_Torah_Judaism",
@@ -441,6 +520,9 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Support",
       "Rabbinical Court Power": "Support",
       "Basic Law: Equality": "Oppose"
+    },
+    "stanceSources": {
+      "Universal Enlistment": { url: "https://www.timesofisrael.com/as-coalition-collapses-around-him-netanyahu-revives-haredi-draft-exemption-bill/", title: "UTJ Torah Conscription Exemption Mandate", publisher: "Times of Israel" }
     }
   },
   {
@@ -449,6 +531,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/itamar-ben-gvir.avif",
     "quote": "Unapologetic national pride and total security are the keys to a strong Jewish state.",
     "party": "Otzma Yehudit",
+    "ballotLetters": "ט",
     "seats": "6",
     "biography": "Itamar Ben Gvir is the leader of Otzma Yehudit (Jewish Power). He is a lawyer who often represented right-wing activists before entering national politics. He entered the Knesset during the 24th legislative term and has maintained significant public visibility through activism.",
     "partyWebsite": "https://ozma-yeudit.co.il/",
@@ -479,6 +562,10 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Support",
       "Rabbinical Court Power": "Support",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "West Bank Annexation": { url: "https://ozma-yeudit.co.il/", title: "Otzma Yehudit Official Platform on Sovereignty", publisher: "ozma-yeudit.co.il" },
+      "Judicial Override": { url: "https://www.ynetnews.com/article/sy61v8ybfe", title: "Otzma Judicial Override Bills", publisher: "Ynet" }
     }
   },
   {
@@ -487,6 +574,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/avigdor-lieberman.avif",
     "quote": "Secular rights are human rights; we will do exactly what we promised our voters.",
     "party": "Yisrael Beiteinu",
+    "ballotLetters": "ל",
     "seats": "6",
     "biography": "Avigdor Lieberman is the founder and leader of Yisrael Beiteinu (Israel Our Home). He immigrated to Israel from the Soviet Union in 1978. He has served in numerous senior ministerial roles, including Minister of Defence, Minister of Foreign Affairs, and Minister of Finance. Initially drawing his primary political support from Russian-speaking immigrants, he has since expanded his base to focus on secular, right-wing voters.",
     "partyWebsite": "https://beytenu.org.il/",
@@ -517,6 +605,9 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Ambiguous",
       "Rabbinical Court Power": "Oppose",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "Universal Enlistment": { url: "https://beytenu.org.il/", title: "Yisrael Beiteinu Draft Law & Secular Rights", publisher: "beytenu.org.il" }
     }
   },
   {
@@ -524,7 +615,8 @@ export const politicians: Politician[] = [
     "name": "Sami Abu Shehadeh",
     "imageUrl": "assets/politicians/sami-abu-shehadeh.avif",
     "quote": "A state of all its citizens is the only truly democratic vision for this land.",
-    "party": "Balad (National Democratic Alliance)",
+    "party": "Balad",
+    "ballotLetters": "ד",
     "seats": "N/A",
     "biography": "Sami Abu Shehadeh is a historian, educator, and political leader from Jaffa. Prior to entering national politics, he served as a member of the Tel Aviv-Yafo City Council. He entered the Knesset in 2019 as part of the Joint List alliance. In 2021, he was elected as the chairman of the Balad party.",
     "partyWebsite": "https://en.wikipedia.org/wiki/Balad_(political_party)",
@@ -555,6 +647,9 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Oppose",
       "Rabbinical Court Power": "Oppose",
       "Basic Law: Equality": "Support"
+    },
+    "stanceSources": {
+      "Basic Law: Equality": { url: "https://en.wikipedia.org/wiki/Balad_(political_party)", title: "Balad Platform: State of All Its Citizens", publisher: "Wikipedia" }
     }
   },
   {
@@ -563,6 +658,7 @@ export const politicians: Politician[] = [
     "imageUrl": "assets/politicians/bezalel-smotrich.avif",
     "quote": "Settling the land and strengthening our Jewish identity is our historical mission and national duty.",
     "party": "Religious Zionist",
+    "ballotLetters": "טב",
     "seats": "7",
     "biography": "Bezalel Smotrich is the leader of the Religious Zionist Party. He is a lawyer and a co-founder of the Regavim organisation, an NGO focused on monitoring and taking legal action regarding land use and construction in Israel and the West Bank. He entered the Knesset in 2015 as part of the Jewish Home party before eventually forming and leading his own independent Religious Zionist faction.",
     "partyWebsite": "https://zionutdatit.org.il/en/about/",
@@ -593,6 +689,9 @@ export const politicians: Politician[] = [
       "West Bank Annexation": "Support",
       "Rabbinical Court Power": "Support",
       "Basic Law: Equality": "Ambiguous"
+    },
+    "stanceSources": {
+      "West Bank Annexation": { url: "https://zionutdatit.org.il/en/about/", title: "Religious Zionist Platform on Sovereignty & Settlements", publisher: "zionutdatit.org.il" }
     }
   }
 ];
@@ -607,83 +706,60 @@ export interface PollData {
 
 export const ELECTION_POLLS: PollData[] = [
   {
-    id: "ch12_apr26",
+    id: "ch12_aug26",
     name: "Channel 12 (Midgam)",
-    date: "Late April 2026",
+    date: "6 August 2026",
     source: "Channel 12 News",
     seats: {
-      "Together (Bennett-Lapid)": 26,
-      "Likud": 25,
-      "National Unity Party": 12,
-      "Shas": 10,
-      "Yisrael Beiteinu": 10,
-      "United Torah Judaism": 7,
-      "Otzma Yehudit": 7,
-      "Yashar!": 6,
-      "Hadash": 5,
+      "Likud": 24,
+      "Together": 12,
+      "Yashar!": 22,
+      "The Democrats": 10,
+      "Yisrael Beiteinu": 9,
+      "Otzma Yehudit": 8,
+      "Shas": 8,
+      "United Torah Judaism": 8,
+      "Hadash-Ta'al": 6,
       "Ra'am": 5,
-      "Democrats": 4,
-      "Religious Zionist": 3
+      "Religious Zionist": 5
     }
   },
   {
-    id: "kan11_apr26",
+    id: "kan11_aug26",
     name: "Kan 11 (Kantar)",
-    date: "Late April 2026",
+    date: "4 August 2026",
     source: "Kan 11 News",
     seats: {
-      "Likud": 26,
-      "Together (Bennett-Lapid)": 24,
-      "National Unity Party": 14,
-      "Shas": 10,
-      "Yisrael Beiteinu": 10,
-      "Yashar!": 8,
+      "Likud": 25,
+      "Yashar!": 21,
+      "Together": 13,
+      "The Democrats": 10,
+      "Yisrael Beiteinu": 9,
+      "Shas": 8,
       "United Torah Judaism": 8,
-      "Otzma Yehudit": 6,
-      "Democrats": 5,
-      "Hadash": 5,
-      "Ra'am": 4,
-      "Religious Zionist": 0
-    }
-  },
-  {
-    id: "maariv_apr26",
-    name: "Maariv (Lazar)",
-    date: "Late April 2026",
-    source: "Maariv",
-    seats: {
-      "Together (Bennett-Lapid)": 27,
-      "Likud": 24,
-      "National Unity Party": 13,
-      "Yisrael Beiteinu": 11,
-      "Shas": 9,
-      "United Torah Judaism": 7,
-      "Otzma Yehudit": 7,
-      "Democrats": 6,
-      "Yashar!": 6,
-      "Hadash": 5,
+      "Otzma Yehudit": 8,
+      "Hadash-Ta'al": 6,
       "Ra'am": 5,
-      "Religious Zionist": 0
+      "Religious Zionist": 4
     }
   },
   {
-    id: "ch14_apr26",
+    id: "ch14_aug26",
     name: "Channel 14 (Direct Polls)",
-    date: "Late April 2026",
+    date: "2 August 2026",
     source: "Channel 14",
     seats: {
-      "Likud": 29,
-      "Together (Bennett-Lapid)": 22,
-      "National Unity Party": 11,
-      "Shas": 10,
-      "Yisrael Beiteinu": 9,
+      "Likud": 27,
+      "Yashar!": 20,
+      "Together": 11,
+      "Shas": 9,
       "Otzma Yehudit": 9,
+      "Yisrael Beiteinu": 9,
+      "The Democrats": 9,
       "United Torah Judaism": 8,
-      "Yashar!": 6,
-      "Hadash": 6,
+      "Hadash-Ta'al": 6,
       "Religious Zionist": 5,
-      "Democrats": 5,
-      "Ra'am": 0
+      "Ra'am": 4
     }
   }
 ];
