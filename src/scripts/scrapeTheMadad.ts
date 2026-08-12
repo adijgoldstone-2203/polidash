@@ -10,21 +10,27 @@ const PARTY_MAP: Record<string, string> = {
   'הליכוד': 'Likud',
   'יהדות התורה': 'United Torah Judaism',
   'ש״ס': 'Shas',
+  'ש"ס': 'Shas',
   'כחול לבן': 'Blue and White',
   'המחנה הממלכתי': 'National Unity Party',
   'יש עתיד': 'Yesh Atid',
-  'חדש תע״ל': 'Hadash-Ta\'al',
+  'חדש תע״ל': "Hadash-Ta'al",
+  'חד"ש תע"ל': "Hadash-Ta'al",
   'ישראל ביתנו': 'Yisrael Beiteinu',
   'הדמוקרטים': 'Democrats',
+  'הדמוקרטים ': 'Democrats',
   'הציונות הדתית': 'Religious Zionist',
-  'רע״מ': 'Ra\'am',
+  'רע״מ': "Ra'am",
+  'רע"ם': "Ra'am",
   '‏רשימה ערבית מאוחדת': 'United Arab Party',
   'בל״ד': 'Balad',
   'עוצמה יהודית': 'Otzma Yehudit',
   'ביחד (בנט ולפיד)': 'Together (Bennett-Lapid)',
   'ישר!': 'Yashar!',
   'המילואימניקים': 'Trooper-Hendel',
-  'טרופר-הנדל': 'Trooper-Hendel'
+  'טרופר-הנדל': 'Trooper-Hendel',
+  'בית ציוני-המילואימניקים': 'Trooper-Hendel',
+  'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Ardan-Edelstein'
 };
 
 // Function to convert DD/MM/YYYY to YYYY-MM-DD
