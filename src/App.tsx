@@ -15,16 +15,25 @@ import { AccessibilityWidget } from './components/AccessibilityWidget';
 import { useLanguage } from './i18n';
 import ElectionsMap from './ElectionsMap';
 import RecentStatements from './RecentStatements';
+import VotingGuide from './VotingGuide';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
-  const [showMethodology, setShowMethodology] = useState(false);
+  const [showMethodologyModal, setShowMethodologyModal] = useState(false);
   const { t } = useLanguage();
 
   React.useEffect(() => {
     const handleHashChange = () => {
-      setCurrentPath(window.location.hash || '#/');
-      window.scrollTo(0, 0);
+      const path = window.location.hash || '#/';
+      setCurrentPath(path);
+
+      if (path === '#/methodology' || path.includes('#methodology')) {
+        setTimeout(() => {
+          document.getElementById('methodology')?.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      } else {
+        window.scrollTo(0, 0);
+      }
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -37,15 +46,20 @@ function App() {
   const isProfiles = currentPath === '#/profiles';
   const isIssues = currentPath.startsWith('#/issues');
   const isCoalition = currentPath === '#/coalition';
-  const isPolls = currentPath === '#/polls';
+  const isPolls = currentPath.startsWith('#/polls') || currentPath === '#/methodology';
   const isQuiz = currentPath === '#/quiz';
-  const isReply = currentPath.startsWith('#/reply');
+  const isReply = currentPath.startsWith('#/reply') || currentPath === '#/transparency';
   const isProfileDetail = currentPath.startsWith('#/profile/');
   const isPrivacy = currentPath === '#/privacy';
   const isMap = isPreProduction && currentPath === '#/map';
   const isStatements = isPreProduction && currentPath === '#/statements';
-  const isHome = currentPath === '#/' || currentPath === '#/transparency' || (!isPreProduction && (currentPath === '#/map' || currentPath === '#/statements'));
-
+  const isVoting = isPreProduction && currentPath === '#/voting';
+  
+  const isHome = currentPath === '#/' || (
+    !isProfiles && !isIssues && !isCoalition && !isPolls && !isQuiz && 
+    !isReply && !isProfileDetail && !isPrivacy && !isMap && !isStatements && 
+    !isVoting
+  );
 
   return (
     <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] transition-colors duration-300 flex flex-col">
@@ -58,7 +72,7 @@ function App() {
       <main id="main-content" className="flex-grow relative">
         {/* Persistent Tab Stack */}
         <div className={isHome ? 'block' : 'hidden'}>
-          <Home currentPath={currentPath} onShowMethodology={() => setShowMethodology(true)} />
+          <Home currentPath={currentPath} onShowMethodology={() => setShowMethodologyModal(true)} />
         </div>
         
         <div className={isProfiles ? 'block' : 'hidden'}>
@@ -97,22 +111,23 @@ function App() {
           <RecentStatements />
         </div>
 
+        <div className={isVoting ? 'block' : 'hidden'}>
+          <VotingGuide />
+        </div>
+
         {/* Dynamic Detail Page (Unmounted when not in use to handle ID changes) */}
         {isProfileDetail && (
           <ProfileDetail id={currentPath.replace('#/profile/', '')} />
         )}
       </main>
 
-
-      <Footer onShowMethodology={() => setShowMethodology(true)} />
+      <Footer />
       
-      <MethodologyModal isOpen={showMethodology} onClose={() => setShowMethodology(false)} />
+      <MethodologyModal isOpen={showMethodologyModal} onClose={() => setShowMethodologyModal(false)} />
 
       <AccessibilityWidget />
     </div>
   );
 }
 
-
 export default App;
-// Triggering redeploy for favicon fix at Wed May  6 16:32:01 IDT 2026

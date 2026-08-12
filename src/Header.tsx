@@ -67,7 +67,8 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
     { name: t('header.nav.coalition'), path: '#/coalition' },
     ...(isPreProduction ? [
       { name: t('header.nav.map'), path: '#/map' },
-      { name: t('header.nav.recentStatements'), path: '#/statements' }
+      { name: t('header.nav.recentStatements'), path: '#/statements' },
+      { name: t('header.nav.voting'), path: '#/voting' },
     ] : []),
   ];
 
