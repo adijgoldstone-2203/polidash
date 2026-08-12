@@ -17,7 +17,6 @@ export const enData = {
     "Yashar!": "Yashar!",
     "Bennett 2026": "Bennett 2026",
     "Trooper-Hendel": "Trooper-Hendel",
-    "HaMiluimnikim": "Trooper-Hendel",
     "Balad (National Democratic Alliance)": "Balad (National Democratic Alliance)",
     "Labor": "Labour"
   },
@@ -87,10 +86,13 @@ export const enData = {
     "חדשות 12": "Channel 12 News",
     "חדשות 13": "Channel 13 News",
     "ערוץ 14": "Channel 14",
+    "ערוץ 16": "Channel 16",
     "זמן ישראל": "Times of Israel",
     "ישראל היום": "Israel Hayom",
     "i24 news": "i24 News",
-    "i24 News": "i24 News"
+    "i24 News": "i24 News",
+    "וואלה": "Walla",
+    "מכונת האמת": "Truth Machine"
   },
   "politicians": {
     "benjamin-netanyahu": {
@@ -262,7 +264,7 @@ export const enData = {
       }
     },
     "yoaz-hendel": {
-      "biography": "Yoaz Hendel is the leader of Trooper-Hendel, a political party established in 2025. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
+      "biography": "Yoaz Hendel is the leader of Zionist Home (The Reservists / Miluimnikim), a political party re-established with Chili Tropper. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
       "quote": "Universal service and national responsibility are the foundation of a resilient society.",
       "facts": [
         "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defence.",
@@ -283,7 +285,7 @@ export const enData = {
       }
     },
     "ayman-odeh": {
-      "biography": "Ayman Odeh is the leader of Hadash (The Democratic Front for Peace and Equality). He is a lawyer from Haifa and has served as a member of the Knesset since 2015. He advocates for Jewish-Arab political partnership and civil rights, leading a joint list with the Ta'al faction.",
+      "biography": "Ayman Odeh is the leader of Hadash (The Democratic Front for Peace and Equality). He is a lawyer from Haifa and has served as a member of the Knesset since 2015. He advocates for Jewish-Arab political partnership and civil rights, leading a joint list with Ahmad Tibi.",
       "quote": "Equality, dignity, and a shared future for Jews and Arabs are the only path to true peace.",
       "facts": [
         "Bi-National Movement: He leads a party that operates explicitly as a joint Jewish-Arab movement focused on diplomatic and social campaigns.",

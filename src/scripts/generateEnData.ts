@@ -81,10 +81,13 @@ const enData = {
     "חדשות 12": "Channel 12 News",
     "חדשות 13": "Channel 13 News",
     "ערוץ 14": "Channel 14",
+    "ערוץ 16": "Channel 16",
     "זמן ישראל": "Times of Israel",
     "ישראל היום": "Israel Hayom",
     "i24 news": "i24 News",
-    "i24 News": "i24 News"
+    "i24 News": "i24 News",
+    "וואלה": "Walla",
+    "מכונת האמת": "Truth Machine"
   },
   politicians: politicians.reduce((acc, p) => {
     acc[p.id] = {
