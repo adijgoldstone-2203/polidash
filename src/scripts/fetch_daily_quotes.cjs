@@ -1,11 +1,25 @@
-// src/scripts/fetch_daily_quotes.cjs
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
+// Auto-load .env from root directory if present
+const envPath = path.join(__dirname, '../../.env');
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf8');
+  envContent.split('\n').forEach(line => {
+    const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+    if (match) {
+      const key = match[1];
+      let value = (match[2] || '').trim().replace(/^"|"$/g, '');
+      if (!process.env[key]) process.env[key] = value;
+    }
+  });
+}
+
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 if (!GEMINI_API_KEY) {
   console.error("Error: GEMINI_API_KEY environment variable is required.");
+  console.error("Please add GEMINI_API_KEY=your_key_here to your .env file.");
   process.exit(1);
 }
 

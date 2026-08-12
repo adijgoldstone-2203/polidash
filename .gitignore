@@ -39,3 +39,6 @@ scrape_test.cjs
 translate_polls.py
 typescript
 update_polls.py
+.env
+*.env
+
