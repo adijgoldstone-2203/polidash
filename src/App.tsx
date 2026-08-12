@@ -40,8 +40,6 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const isPreProduction = (import.meta.env as any).VITE_PRE_PRODUCTION;
-
   // Determine which page to show for simple routing logic
   const isProfiles = currentPath === '#/profiles';
   const isIssues = currentPath.startsWith('#/issues');
@@ -51,9 +49,9 @@ function App() {
   const isReply = currentPath.startsWith('#/reply') || currentPath === '#/transparency';
   const isProfileDetail = currentPath.startsWith('#/profile/');
   const isPrivacy = currentPath === '#/privacy';
-  const isMap = isPreProduction && currentPath === '#/map';
-  const isStatements = isPreProduction && currentPath === '#/statements';
-  const isVoting = isPreProduction && currentPath === '#/voting';
+  const isMap = false;
+  const isStatements = false;
+  const isVoting = false;
   
   const isHome = currentPath === '#/' || (
     !isProfiles && !isIssues && !isCoalition && !isPolls && !isQuiz && 
