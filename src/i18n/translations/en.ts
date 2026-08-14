@@ -309,5 +309,11 @@ export const en: Record<string, string> = {
   "map.noData": "No voting data available for this locality",
   "map.votesCast": "Votes Cast",
   "map.votesPercent": "Percentage",
+  "map.credits.title": "Official Data Sources",
+  "map.credits.desc": "Election results sourced directly from the Central Elections Committee (bechirot.gov.il):",
+  "map.credits.bechirot25": "25th Knesset (2022) City Results",
+  "map.credits.bechirot24": "24th Knesset (2021) City Results",
+  "map.credits.bechirot23": "23rd Knesset (2020) City Results",
+  "map.credits.bechirot22": "22nd Knesset (2019) Results",
 };
 

@@ -309,5 +309,11 @@ export const he: Record<string, string> = {
   "map.noData": "אין נתוני הצבעה זמינים עבור יישוב זה",
   "map.votesCast": "קולות שנספרו",
   "map.votesPercent": "אחוז קולות",
+  "map.credits.title": "מקורות מידע רשמיים",
+  "map.credits.desc": "תוצאות הבחירות נשאבו ישירות מוועדת הבחירות המרכזית (bechirot.gov.il):",
+  "map.credits.bechirot25": "תוצאות לפי יישובים - הכנסת ה-25 (2022)",
+  "map.credits.bechirot24": "תוצאות לפי יישובים - הכנסת ה-24 (2021)",
+  "map.credits.bechirot23": "תוצאות לפי יישובים - הכנסת ה-23 (2020)",
+  "map.credits.bechirot22": "תוצאות הבחירות - הכנסת ה-22 (2019)",
 };
 

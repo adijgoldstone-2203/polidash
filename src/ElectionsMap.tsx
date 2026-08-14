@@ -19,7 +19,7 @@ const PARTY_METADATA: Record<string, { nameEn: string, nameHe: string, color: st
   "National Unity": { nameEn: "National Unity", nameHe: "המחנה הממלכתי", color: "#49536B" },
   "Blue & White": { nameEn: "Blue & White", nameHe: "כחול לבן", color: "#49536B" },
   "Religious Zionism": { nameEn: "Religious Zionism", nameHe: "הציונות הדתית", color: "#B51D78" },
-  "United Torah Judaism": { nameEn: "United Torah Judaism", nameHe: "יהדות התורה", color: "#BBBBBB" },
+  "United Torah Judaism": { nameEn: "United Torah Judaism", nameHe: "יהדות התורה", color: "#8E9AAF" },
   "Yisrael Beiteinu": { nameEn: "Yisrael Beiteinu", nameHe: "ישראל ביתנו", color: "#6079FC" },
   "Hadash-Ta'al": { nameEn: "Hadash-Ta'al", nameHe: "חד\"ש תע\"ל", color: "#FF8E3C" },
   "Joint List": { nameEn: "Joint List", nameHe: "הרשימה המשותפת", color: "#FF8E3C" },
@@ -57,15 +57,29 @@ const SOCIO_PARTY_MAP: Record<string, string> = {
   "Habait Hayehudi": "Jewish Home"
 };
 
-interface KnessetData {
-  knesset: string;
-  bzb: number;
-  voters: number;
-  valid: number;
-  turnout: number;
-  results: Record<string, number>;
-  towns: Record<string, TownData>;
-}
+// Bechirot.gov.il official links per Knesset
+const BECHIROT_SOURCES: Record<string, { labelEn: string, labelHe: string, url: string }> = {
+  "25": {
+    labelEn: "25th Knesset (Nov 2022) City Results",
+    labelHe: "תוצאות הבחירות לכנסת ה-25 לפי יישובים",
+    url: "https://votes25.bechirot.gov.il/cityresults"
+  },
+  "24": {
+    labelEn: "24th Knesset (Mar 2021) City Results",
+    labelHe: "תוצאות הבחירות לכנסת ה-24 לפי יישובים",
+    url: "https://votes24.bechirot.gov.il/cityresults"
+  },
+  "23": {
+    labelEn: "23rd Knesset (Mar 2020) City Results",
+    labelHe: "תוצאות הבחירות לכנסת ה-23 לפי יישובים",
+    url: "https://votes23.bechirot.gov.il/cityresults"
+  },
+  "22": {
+    labelEn: "22nd Knesset (Sep 2019) Results",
+    labelHe: "תוצאות הבחירות לכנסת ה-22",
+    url: "https://votes22.bechirot.gov.il/"
+  }
+};
 
 interface TownData {
   name: string;
@@ -77,6 +91,16 @@ interface TownData {
   results: Record<string, number>;
 }
 
+interface KnessetData {
+  knesset: string;
+  bzb: number;
+  voters: number;
+  valid: number;
+  turnout: number;
+  results: Record<string, number>;
+  towns: Record<string, TownData>;
+}
+
 const ElectionsMap: React.FC = () => {
   const { t, dir, lang } = useLanguage();
   const isHe = lang === 'he';
@@ -85,16 +109,14 @@ const ElectionsMap: React.FC = () => {
   const [geojson, setGeojson] = useState<any>(null);
   const [townTranslations, setTownTranslations] = useState<Record<string, { he: string, en: string }> | null>(null);
   const [socioData, setSocioData] = useState<Record<string, any[]> | null>(null);
+
   const [socioKnesset, setSocioKnesset] = useState<string>("25");
   const [socioMode, setSocioMode] = useState<"coalition" | "parties">("coalition");
   const [selectedKnesset, setSelectedKnesset] = useState<string>("25");
   const [selectedTownId, setSelectedTownId] = useState<string | null>(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedSocioParties, setSelectedSocioParties] = useState<Set<string>>(new Set());
-  const [mapZoom, setMapZoom] = useState(7.4);
-  const [mapLoaded, setMapLoaded] = useState(false);
-  
-  // Search state
+
+  // Search autocomplete state
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<{ id: string, name: string }[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -105,20 +127,16 @@ const ElectionsMap: React.FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const hasFittedBoundsRef = useRef(false);
 
-  // Helper for English Title Case
+  // Helper for Title Case
   const toTitleCase = (str: string) => {
     return str
       .toLowerCase()
       .split(' ')
-      .map(word => {
-        return word.split('-').map(part => {
-          return part.charAt(0).toUpperCase() + part.slice(1);
-        }).join('-');
-      })
+      .map(word => word.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('-'))
       .join(' ');
   };
 
-  // Helper to get translated town name
+  // Get translated town name
   const getTownName = (semel: string, fallbackHe: string) => {
     if (!townTranslations || !semel) return fallbackHe;
     const trans = townTranslations[semel];
@@ -130,6 +148,7 @@ const ElectionsMap: React.FC = () => {
     }
   };
 
+  // Get party color by name
   const getPartyColorByName = (name: string) => {
     const found = Object.values(PARTY_METADATA).find(meta => 
       meta.nameEn === name || meta.nameHe === name
@@ -137,6 +156,7 @@ const ElectionsMap: React.FC = () => {
     return found ? found.color : "#6C7CA5";
   };
 
+  // Socioeconomic chart data calculation
   const getSocioChartData = () => {
     if (!socioData || !socioData[socioKnesset]) return [];
     const rawList = socioData[socioKnesset];
@@ -144,7 +164,6 @@ const ElectionsMap: React.FC = () => {
     if (socioMode === 'coalition') {
       const coalitionKeys25 = ["Likud", "Hatziyonut Hadatit", "Shas", "Yehadut Hatora"];
       const coalitionKeys24 = ["Yesh Atid", "Kachol Lavan", "Yamina", "Avoda", "Yisrael Beitenu", "Tikva", "Meretz", "Raam"];
-
       const coalitionKeys = socioKnesset === '25' ? coalitionKeys25 : coalitionKeys24;
 
       return rawList.map(item => {
@@ -186,7 +205,6 @@ const ElectionsMap: React.FC = () => {
     }
   };
 
-  // Reset selected socioeconomic party filters when year or mode changes
   useEffect(() => {
     setSelectedSocioParties(new Set());
   }, [socioKnesset, socioMode]);
@@ -195,7 +213,7 @@ const ElectionsMap: React.FC = () => {
     if (!socioData || !socioData[socioKnesset]) return [];
     const firstItem = socioData[socioKnesset][0];
     if (!firstItem) return [];
-    
+
     const rawKeys = Object.keys(firstItem).filter(k => k !== 'cluster');
     const partyKeysSet = new Set<string>();
     rawKeys.forEach(k => {
@@ -204,11 +222,11 @@ const ElectionsMap: React.FC = () => {
         partyKeysSet.add(mappedKey);
       }
     });
-    
+
     return Array.from(partyKeysSet);
   };
 
-  // 1. Fetch JSON data on mount
+  // 1. Fetch election summary, polygon GeoJSON, translations, and socioeconomic datasets
   useEffect(() => {
     Promise.all([
       fetch('/elections_summary.json').then(res => res.json()),
@@ -227,28 +245,18 @@ const ElectionsMap: React.FC = () => {
       });
   }, []);
 
-  // Track dark mode class on html element
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDarkMode(document.documentElement.classList.contains('dark'));
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    setIsDarkMode(document.documentElement.classList.contains('dark'));
-    return () => observer.disconnect();
-  }, []);
-
+  // 2. Initialize MapLibre GL map
   useEffect(() => {
     if (!mapRef.current || !geojson || mapInstanceRef.current) return;
 
     hasFittedBoundsRef.current = false;
 
-    // Load Mapbox RTL Text plugin dynamically for proper Hebrew layout
     if (maplibregl.getRTLTextPluginStatus() === 'unavailable') {
       try {
         (maplibregl as any).setRTLTextPlugin(
           'https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.2.3/mapbox-gl-rtl-text.js',
           (err: any) => { if (err) console.error('RTL text plugin error:', err); },
-          true // lazy load
+          true
         );
       } catch (e) {
         console.error('Failed to set RTL text plugin:', e);
@@ -257,7 +265,7 @@ const ElectionsMap: React.FC = () => {
 
     const baseStyle: maplibregl.StyleSpecification = {
       version: 8,
-      name: "PoliDash_Map",
+      name: "PoliDash_ElectionsMap",
       glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
       sources: {
         yishuvim_geojson_source: {
@@ -270,7 +278,7 @@ const ElectionsMap: React.FC = () => {
           id: "background",
           type: "background",
           paint: {
-            "background-color": "#e2e8f0"
+            "background-color": "#f8fafc"
           }
         }
       ]
@@ -290,18 +298,13 @@ const ElectionsMap: React.FC = () => {
 
     mapInstanceRef.current = map;
 
-    // Create a hover popup (not added to map yet)
     hoverPopupRef.current = new maplibregl.Popup({
       closeButton: false,
       closeOnClick: false,
       offset: 15
     });
 
-    let isMapStyleLoaded = false;
-
     map.on('load', () => {
-      isMapStyleLoaded = true;
-      setMapLoaded(true);
       const container = mapRef.current;
       if (container && container.clientWidth > 0 && container.clientHeight > 0) {
         map.fitBounds([[34.15, 29.45], [35.9, 33.35]], {
@@ -310,79 +313,93 @@ const ElectionsMap: React.FC = () => {
         });
         hasFittedBoundsRef.current = true;
       }
-      // Add fill layer for municipalities
+
+      // Fill layer painted by winning party color (excluding country outline feature)
       map.addLayer({
         id: 'yishuvim-layer',
         type: 'fill',
         source: 'yishuvim_geojson_source',
+        filter: ['!=', ['get', 'is_country_outline'], true],
         paint: {
           'fill-color': '#CCCCCC',
-          'fill-opacity': 0.75
+          'fill-opacity': 0.95
         }
       });
 
-      // Add borders layer
+      // Polygon borders layer
       map.addLayer({
         id: 'yishuvim-borders',
         type: 'line',
         source: 'yishuvim_geojson_source',
+        filter: ['!=', ['get', 'is_country_outline'], true],
         paint: {
           'line-color': '#ffffff',
           'line-width': 0.6
         }
       });
 
-      // Add high visibility hover outline layer
+      // National perimeter outline border layer (clean dark outline around Israel, Golan, West Bank & Gaza)
+      map.addLayer({
+        id: 'israel-country-border',
+        type: 'line',
+        source: 'yishuvim_geojson_source',
+        filter: ['==', ['get', 'is_country_outline'], true],
+        paint: {
+          'line-color': '#0f172a',
+          'line-width': 1.5,
+          'line-opacity': 0.95
+        }
+      });
+
+      // Hover outline layer
       map.addLayer({
         id: 'yishuvim-hover',
         type: 'line',
         source: 'yishuvim_geojson_source',
         paint: {
-          'line-color': '#000000',
-          'line-width': 1.8
+          'line-color': '#0f172a',
+          'line-width': 2.0
         },
         filter: ['==', ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'semel_yishuv']], '']
       });
 
-      // Add highlighted selected boundary layer
+      // Selected boundary highlight layer
       map.addLayer({
         id: 'yishuvim-selected',
         type: 'line',
         source: 'yishuvim_geojson_source',
         paint: {
           'line-color': '#e11d48',
-          'line-width': 2.5
+          'line-width': 3.0
         },
         filter: ['==', ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'semel_yishuv']], '']
       });
 
-      // Add symbol layer for town names
+      // Label symbol layer for locality names
       map.addLayer({
         id: 'yishuvim-labels',
         type: 'symbol',
         source: 'yishuvim_geojson_source',
-        minzoom: 9.5,
+        minzoom: 9.2,
         layout: {
           'text-field': ['coalesce', ['get', 'SHEM_YISHUV'], ['get', 'shem_yishuv']],
           'text-size': 11,
-          'text-padding': 8,
+          'text-padding': 6,
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular']
         },
         paint: {
-          'text-color': '#1e293b',
+          'text-color': '#0f172a',
           'text-halo-color': '#ffffff',
-          'text-halo-width': 1.5
+          'text-halo-width': 1.8
         }
       });
 
       colorMapPolygons(selectedKnesset);
 
-      // Map Events
       map.on('mousemove', 'yishuvim-layer', handleMouseMove);
       map.on('mouseleave', 'yishuvim-layer', handleMouseLeave);
       map.on('click', 'yishuvim-layer', handleMapClick);
 
-      // Deselect municipality when clicking on an empty area of the map
       map.on('click', (e) => {
         const features = map.queryRenderedFeatures(e.point, {
           layers: ['yishuvim-layer']
@@ -391,27 +408,12 @@ const ElectionsMap: React.FC = () => {
           handleReset();
         }
       });
-
-      map.on('zoom', () => {
-        setMapZoom(map.getZoom());
-      });
-
-      // Color the map initially
-      colorMapPolygons(selectedKnesset);
     });
 
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        const { width, height } = entry.contentRect;
-        if (width > 0 && height > 0 && mapInstanceRef.current) {
+        if (entry.contentRect.width > 0 && entry.contentRect.height > 0 && mapInstanceRef.current) {
           mapInstanceRef.current.resize();
-          if (isMapStyleLoaded && !hasFittedBoundsRef.current) {
-            mapInstanceRef.current.fitBounds([[34.15, 29.45], [35.9, 33.35]], {
-              padding: { top: 20, bottom: 20, left: 20, right: 20 },
-              animate: false
-            });
-            hasFittedBoundsRef.current = true;
-          }
         }
       }
     });
@@ -420,10 +422,8 @@ const ElectionsMap: React.FC = () => {
       resizeObserver.observe(mapRef.current);
     }
 
-    // Handle map style hot-reloading for dark/light mode
     return () => {
       resizeObserver.disconnect();
-      setMapLoaded(false);
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
@@ -431,7 +431,7 @@ const ElectionsMap: React.FC = () => {
     };
   }, [geojson]);
 
-  // 3. Update map labels when language or translations load
+  // 3. Update map labels when language changes
   useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map) return;
@@ -460,11 +460,10 @@ const ElectionsMap: React.FC = () => {
     }
   }, [lang, townTranslations]);
 
-  // 3.5. Recolour map when selected Knesset changes
+  // Recolour polygons when selected Knesset changes
   useEffect(() => {
     if (mapInstanceRef.current && mapInstanceRef.current.isStyleLoaded()) {
       colorMapPolygons(selectedKnesset);
-      // Reset selected town details if it doesn't exist in the new Knesset year
       if (selectedTownId && electionsData) {
         const townExists = !!electionsData[selectedKnesset]?.towns[selectedTownId];
         if (!townExists) {
@@ -477,7 +476,7 @@ const ElectionsMap: React.FC = () => {
     }
   }, [selectedKnesset, electionsData]);
 
-  // Handle click outside autocomplete search results
+  // Close search dropdown on click outside
   useEffect(() => {
     const clickOutside = (e: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
@@ -488,7 +487,7 @@ const ElectionsMap: React.FC = () => {
     return () => document.removeEventListener("mousedown", clickOutside);
   }, []);
 
-  // Map colouring helper using match expression
+  // Map polygon fill expression builder
   const colorMapPolygons = (knesset: string) => {
     const map = mapInstanceRef.current;
     if (!map || !electionsData) return;
@@ -498,8 +497,13 @@ const ElectionsMap: React.FC = () => {
 
     const expression: any[] = [
       'match',
-      ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv'], 0]
+      ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'SEMEL_MUN'], ['get', 'semel_yishuv'], ['get', 'semel_mun'], 0]
     ];
+
+    // Judea & Samaria region background fill color (#CCCCCC)
+    expression.push(99999, '#CCCCCC');
+    // Country outline feature 88888 (transparent fill)
+    expression.push(88888, 'rgba(0,0,0,0)');
 
     Object.entries(knessetSummary.towns).forEach(([code, town]) => {
       const winner = town.winner;
@@ -509,11 +513,55 @@ const ElectionsMap: React.FC = () => {
       }
     });
 
-    expression.push(['coalesce', ['get', 'color_general'], '#CCCCCC']);
+    expression.push('#CCCCCC');
 
     if (map.getLayer('yishuvim-layer')) {
       map.setPaintProperty('yishuvim-layer', 'fill-color', expression);
     }
+  };
+
+  // Priority Feature Selection (prioritizes items with election data and smaller polygon area)
+  const getPriorityFeature = (features: any[]) => {
+    const valid = (features || []).filter((f: any) => {
+      const code = (f.properties.SEMEL_YISHUV ?? f.properties.SEMEL_MUN ?? f.properties.semel_yishuv ?? f.properties.semel_mun);
+      return code !== 99999 && code !== '99999' && code !== 88888 && code !== '88888' && !f.properties.is_region_bg && !f.properties.is_country_outline;
+    });
+
+    if (valid.length === 0) return null;
+
+    const getBboxArea = (feat: any) => {
+      try {
+        const coords = feat.geometry.coordinates.flat(3);
+        let minX = 180, maxX = -180, minY = 90, maxY = -90;
+        for (let i = 0; i < coords.length; i += 2) {
+          const x = coords[i];
+          const y = coords[i + 1];
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+        }
+        return (maxX - minX) * (maxY - minY);
+      } catch (e) {
+        return 999;
+      }
+    };
+
+    valid.sort((a: any, b: any) => {
+      const codeA = (a.properties.SEMEL_YISHUV ?? a.properties.SEMEL_MUN ?? a.properties.semel_yishuv ?? a.properties.semel_mun)?.toString();
+      const codeB = (b.properties.SEMEL_YISHUV ?? b.properties.SEMEL_MUN ?? b.properties.semel_yishuv ?? b.properties.semel_mun)?.toString();
+
+      const hasDataA = codeA && electionsData && electionsData[selectedKnesset]?.towns[codeA] ? 1 : 0;
+      const hasDataB = codeB && electionsData && electionsData[selectedKnesset]?.towns[codeB] ? 1 : 0;
+
+      if (hasDataA !== hasDataB) {
+        return hasDataB - hasDataA;
+      }
+
+      return getBboxArea(a) - getBboxArea(b);
+    });
+
+    return valid[0];
   };
 
   // Hover Tooltip Callback
@@ -521,67 +569,66 @@ const ElectionsMap: React.FC = () => {
     const map = mapInstanceRef.current;
     if (!map || !electionsData) return;
 
+    const feature = getPriorityFeature(e.features);
+
+    if (!feature) {
+      handleMouseLeave();
+      return;
+    }
+
     map.getCanvas().style.cursor = 'pointer';
 
-    if (e.features.length > 0) {
-      const feature = e.features[0];
-      const semel = (
-        feature.properties.SEMEL_MUN ?? 
-        feature.properties.SEMEL_YISHUV ?? 
-        feature.properties.semel_mun ?? 
-        feature.properties.semel_yishuv
-      )?.toString();
+    const semel = (
+      feature.properties.SEMEL_YISHUV ?? 
+      feature.properties.SEMEL_MUN ?? 
+      feature.properties.semel_yishuv ?? 
+      feature.properties.semel_mun
+    )?.toString();
 
-      if (!semel) return;
+    if (!semel) return;
 
-      const townInfo = electionsData[selectedKnesset]?.towns[semel];
-      const fallbackName = townInfo ? townInfo.name : (feature.properties.SHEM_YISHUV ?? feature.properties.shem_yishuv ?? "Unknown");
-      const townName = getTownName(semel, fallbackName);
+    const townInfo = electionsData[selectedKnesset]?.towns[semel];
+    const fallbackName = townInfo ? townInfo.name : (feature.properties.SHEM_YISHUV ?? feature.properties.shem_yishuv ?? "Unknown");
+    const townName = getTownName(semel, fallbackName);
 
-      // Draw hover boundary
-      if (map.getLayer('yishuvim-hover')) {
-        map.setFilter('yishuvim-hover', [
-          '==', 
-          ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv']], 
-          parseInt(semel) || 0
-        ]);
-      }
+    // Draw hover boundary
+    if (map.getLayer('yishuvim-hover')) {
+      map.setFilter('yishuvim-hover', [
+        '==', 
+        ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'SEMEL_MUN'], ['get', 'semel_yishuv'], ['get', 'semel_mun']], 
+        parseInt(semel) || 0
+      ]);
+    }
 
-      // Fetch town summary stats
-      const turnoutText = townInfo 
-        ? `${townInfo.turnout}%` 
-        : t('map.noData');
+    const turnoutText = townInfo ? `${townInfo.turnout}%` : t('map.noData');
+    const winningPartyName = townInfo 
+      ? (isHe ? PARTY_METADATA[townInfo.winner]?.nameHe : PARTY_METADATA[townInfo.winner]?.nameEn)
+      : null;
 
-      const winningPartyName = townInfo 
-        ? (isHe ? PARTY_METADATA[townInfo.winner]?.nameHe : PARTY_METADATA[townInfo.winner]?.nameEn)
-        : null;
-
-      // Build popup HTML
-      let html = `
-        <div style="direction: ${dir}; text-align: ${dir === 'rtl' ? 'right' : 'left'}; font-family: sans-serif;">
-          <h4 style="margin: 0 0 6px 0; font-weight: 800; font-size: 14px;">${townName}</h4>
-          <p style="margin: 0 0 4px 0; font-size: 12px; opacity: 0.85;">
-            <strong>${t('map.voterTurnout')}:</strong> ${turnoutText}
-          </p>
+    let html = `
+      <div style="direction: ${dir}; text-align: ${dir === 'rtl' ? 'right' : 'left'}; font-family: sans-serif; padding: 2px;">
+        <h4 style="margin: 0 0 6px 0; font-weight: 800; font-size: 14px; color: #0f172a;">${townName}</h4>
+        <p style="margin: 0 0 4px 0; font-size: 12px; opacity: 0.85;">
+          <strong>${t('map.voterTurnout')}:</strong> ${turnoutText}
+        </p>
+    `;
+    if (winningPartyName) {
+      html += `
+        <p style="margin: 0; font-size: 12px; opacity: 0.85;">
+          <strong>${t('map.winningParty')}:</strong> 
+          <span style="color: ${PARTY_METADATA[townInfo!.winner]?.color}; font-weight: bold;">
+            ${winningPartyName}
+          </span>
+        </p>
       `;
-      if (winningPartyName) {
-        html += `
-          <p style="margin: 0; font-size: 12px; opacity: 0.85;">
-            <strong>${t('map.winningParty')}:</strong> 
-            <span style="color: ${PARTY_METADATA[townInfo!.winner]?.color}; font-weight: bold;">
-              ${winningPartyName}
-            </span>
-          </p>
-        `;
-      }
-      html += `</div>`;
+    }
+    html += `</div>`;
 
-      if (hoverPopupRef.current) {
-        hoverPopupRef.current
-          .setLngLat(e.lngLat)
-          .setHTML(html)
-          .addTo(map);
-      }
+    if (hoverPopupRef.current) {
+      hoverPopupRef.current
+        .setLngLat(e.lngLat)
+        .setHTML(html)
+        .addTo(map);
     }
   };
 
@@ -591,11 +638,10 @@ const ElectionsMap: React.FC = () => {
 
     map.getCanvas().style.cursor = '';
     
-    // Clear hover boundary
     if (map.getLayer('yishuvim-hover')) {
       map.setFilter('yishuvim-hover', [
         '==', 
-        ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv']], 
+        ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'SEMEL_MUN'], ['get', 'semel_yishuv'], ['get', 'semel_mun']], 
         0
       ]);
     }
@@ -605,15 +651,15 @@ const ElectionsMap: React.FC = () => {
     }
   };
 
-  // Click handler on town
   const handleMapClick = (e: any) => {
-    if (e.features.length > 0) {
-      const feature = e.features[0];
+    const feature = getPriorityFeature(e.features);
+
+    if (feature) {
       const semel = (
-        feature.properties.SEMEL_MUN ?? 
         feature.properties.SEMEL_YISHUV ?? 
-        feature.properties.semel_mun ?? 
-        feature.properties.semel_yishuv
+        feature.properties.SEMEL_MUN ?? 
+        feature.properties.semel_yishuv ?? 
+        feature.properties.semel_mun
       )?.toString();
 
       if (semel) {
@@ -628,23 +674,20 @@ const ElectionsMap: React.FC = () => {
 
     setSelectedTownId(semel);
 
-    // Apply selected filter boundary
     if (map.getLayer('yishuvim-selected')) {
       map.setFilter('yishuvim-selected', [
         '==', 
-        ['coalesce', ['get', 'SEMEL_MUN'], ['get', 'SEMEL_YISHUV'], ['get', 'semel_mun'], ['get', 'semel_yishuv']], 
+        ['coalesce', ['get', 'SEMEL_YISHUV'], ['get', 'SEMEL_MUN'], ['get', 'semel_yishuv'], ['get', 'semel_mun']], 
         parseInt(semel) || 0
       ]);
     }
 
-    // Zoom and pan
     if (lngLat) {
       map.easeTo({
         center: lngLat,
-        zoom: Math.max(map.getZoom(), 9.2)
+        zoom: Math.max(map.getZoom(), 9.5)
       });
     } else if (geojson) {
-      // Find feature in geojson to get centroid
       const feat = geojson.features.find((f: any) => f.properties.SEMEL_YISHUV.toString() === semel);
       if (feat) {
         const centroid = getCentroid(feat.geometry);
@@ -656,7 +699,6 @@ const ElectionsMap: React.FC = () => {
     }
   };
 
-  // Centroid calculator helper
   const getCentroid = (geometry: any) => {
     let coords: number[][] = [];
     if (geometry.type === 'Polygon') {
@@ -694,7 +736,6 @@ const ElectionsMap: React.FC = () => {
     });
   };
 
-  // Handle Search Input Change
   const handleSearchChange = (val: string) => {
     setSearchQuery(val);
     if (!electionsData || val.length < 2) {
@@ -710,7 +751,7 @@ const ElectionsMap: React.FC = () => {
         return { id: code, name: resolvedName };
       })
       .filter((item) => item.name.toLowerCase().includes(val.toLowerCase()))
-      .slice(0, 10); // cap to 10 results
+      .slice(0, 10);
 
     setSearchResults(matches);
     setShowResults(matches.length > 0);
@@ -722,557 +763,394 @@ const ElectionsMap: React.FC = () => {
     selectAndFocusTown(item.id);
   };
 
-  // Get active statistics
+  // Active statistics data
   const hasSelectedTown = selectedTownId && electionsData && electionsData[selectedKnesset]?.towns[selectedTownId];
   const activeTownData = hasSelectedTown ? electionsData![selectedKnesset].towns[selectedTownId!] : null;
   const activeKnessetData = electionsData ? electionsData[selectedKnesset] : null;
 
-  // Chart values
+  const activeTitle = activeTownData
+    ? getTownName(selectedTownId!, activeTownData.name)
+    : (t('map.nationalAverage') + ` (${selectedKnesset === "25" ? "2022" : selectedKnesset === "24" ? "2021" : selectedKnesset === "23" ? "2020" : "2019"})`);
+
+  const activeBzb = activeTownData ? activeTownData.bzb : (activeKnessetData ? activeKnessetData.bzb : 0);
+  const activeVoters = activeTownData ? activeTownData.voters : (activeKnessetData ? activeKnessetData.voters : 0);
+  const activeTurnout = activeTownData ? activeTownData.turnout : (activeKnessetData ? activeKnessetData.turnout : 0);
+
   const rawResults = activeTownData 
     ? activeTownData.results 
     : (activeKnessetData ? activeKnessetData.results : {});
 
-  // Sort results by percentage desc
   const sortedResults = Object.entries(rawResults)
     .sort((a, b) => b[1] - a[1])
     .filter(([_, pct]) => pct > 0);
 
   return (
-    <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] px-6 lg:px-12 pt-8 pb-20" dir={dir}>
+    <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] px-4 md:px-8 lg:px-12 pt-8 pb-20 transition-colors duration-300" dir={dir}>
       <div className="max-w-7xl mx-auto flex flex-col">
         
         {/* Page Header */}
-        <section className="mb-12">
-          <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-7xl tracking-tight text-primary dark:text-[#fbf9f5] mb-4">
-            {t('map.title1')} <span className="italic font-bold">{t('map.title2')}</span>
-          </h1>
-          <div className="h-1 w-24 bg-primary dark:bg-amber-500 mb-6" />
-          <p className="font-body text-lg text-on-surface-variant dark:text-slate-300 max-w-2xl leading-relaxed">
+        <section className="mb-8">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="material-symbols-outlined text-3xl text-secondary dark:text-amber-400">map</span>
+            <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-6xl tracking-tight text-[#162839] dark:text-[#fbf9f5]">
+              {t('map.title1')} <span className="italic font-bold">{t('map.title2')}</span>
+            </h1>
+          </div>
+          <div className="h-1 w-20 bg-secondary dark:bg-amber-400 mb-4" />
+          <p className="font-['Inter'] text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
             {t('map.desc')}
           </p>
         </section>
 
-        {/* Map UI Wrapper */}
-        <div className="flex flex-col relative h-[650px] md:h-[750px] rounded-2xl overflow-hidden border border-stone-200/60 dark:border-slate-800 shadow-xl bg-white dark:bg-[#1e293b] w-full">
+        {/* Map Container & Control Bar */}
+        <div className="flex flex-col rounded-2xl overflow-hidden border border-stone-200/80 dark:border-slate-800 shadow-2xl bg-white dark:bg-[#1e293b] w-full mb-6">
           
-          {/* Search and Year selector Bar */}
-          <div className="bg-white dark:bg-[#1e293b] border-b border-stone-200/50 dark:border-slate-800/50 px-4 md:px-8 py-3 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 z-10 shadow-sm">
-        
-        {/* Page Title */}
-        <h1 className="font-headline font-bold text-lg md:text-xl text-primary dark:text-[#fbf9f5] flex items-center gap-2">
-          <span className="material-symbols-outlined text-2xl text-primary dark:text-amber-500">map</span>
-          {t('map.title')}
-        </h1>
-
-        {/* Filters */}
-        <div className="flex flex-row items-center gap-3">
-          
-          {/* Autocomplete Search input */}
-          <div ref={searchRef} className="relative flex-grow sm:w-60">
-            <div className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder={t('map.searchPlaceholder')}
-                className={`w-full text-base py-2.5 rounded-lg bg-stone-100 dark:bg-slate-900 border-none text-[#162839] dark:text-[#fbf9f5] focus:ring-2 focus:ring-amber-500 focus:outline-none ${isHe ? 'pr-10 pl-4' : 'pl-10 pr-4'}`}
-              />
-              <span 
-                className={`material-symbols-outlined absolute top-1/2 -translate-y-1/2 text-stone-400 text-lg pointer-events-none ${isHe ? 'right-3' : 'left-3'}`}
+          {/* Controls Bar: Election Selector & Search */}
+          <div className="bg-stone-50 dark:bg-[#192635] border-b border-stone-200/60 dark:border-slate-800 px-4 md:px-6 py-4 flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 z-10">
+            
+            {/* Knesset Selector */}
+            <div className="flex items-center gap-3">
+              <label htmlFor="knesset-select" className="font-['Inter'] text-xs uppercase tracking-widest font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-base">how_to_vote</span>
+                {t('map.selectKnesset')}:
+              </label>
+              <select
+                id="knesset-select"
+                value={selectedKnesset}
+                onChange={(e) => setSelectedKnesset(e.target.value)}
+                className="font-['Inter'] text-sm font-bold bg-white dark:bg-slate-800 text-[#162839] dark:text-[#fbf9f5] border border-stone-300 dark:border-slate-700 rounded-xl px-4 py-2 focus:ring-2 focus:ring-secondary focus:outline-none shadow-sm cursor-pointer"
               >
-                search
-              </span>
-              {searchQuery && (
-                <button 
-                  onClick={() => handleSearchChange("")}
-                  className={`absolute top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 cursor-pointer focus:outline-none flex items-center justify-center ${isHe ? 'left-3' : 'right-3'}`}
-                >
-                  <span className="material-symbols-outlined text-sm">close</span>
-                </button>
+                <option value="25">{t('map.knesset25')}</option>
+                <option value="24">{t('map.knesset24')}</option>
+                <option value="23">{t('map.knesset23')}</option>
+                <option value="22">{t('map.knesset22')}</option>
+              </select>
+            </div>
+
+            {/* Search Input */}
+            <div ref={searchRef} className="relative flex-grow max-w-md">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  placeholder={t('map.searchPlaceholder')}
+                  className={`w-full font-['Inter'] text-sm py-2 rounded-xl bg-white dark:bg-slate-800 border border-stone-300 dark:border-slate-700 text-[#162839] dark:text-[#fbf9f5] focus:ring-2 focus:ring-secondary focus:outline-none shadow-sm ${isHe ? 'pr-10 pl-8' : 'pl-10 pr-8'}`}
+                />
+                <span className={`material-symbols-outlined absolute top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none ${isHe ? 'right-3' : 'left-3'}`}>
+                  search
+                </span>
+                {searchQuery && (
+                  <button 
+                    onClick={() => handleSearchChange("")}
+                    className={`absolute top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer focus:outline-none ${isHe ? 'left-3' : 'right-3'}`}
+                  >
+                    <span className="material-symbols-outlined text-sm">close</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Autocomplete Results Dropdown */}
+              {showResults && (
+                <div className={`absolute top-full ${isHe ? 'right-0' : 'left-0'} mt-1 w-full bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 rounded-xl shadow-2xl overflow-hidden py-1 z-[120] max-h-60 overflow-y-auto`}>
+                  {searchResults.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => selectSearchResult(item)}
+                      className="w-full text-start px-4 py-2 text-sm font-['Inter'] font-medium text-[#162839] dark:text-[#fbf9f5] hover:bg-stone-100 dark:hover:bg-slate-700 transition-colors flex items-center gap-2"
+                    >
+                      <span className="material-symbols-outlined text-xs text-slate-400">location_on</span>
+                      {item.name}
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
 
-            {/* Results popup */}
-            {showResults && (
-              <div className="search-results-list border border-stone-200 dark:border-slate-850">
-                {searchResults.map((item) => (
-                  <div
-                    key={item.id}
-                    onClick={() => selectSearchResult(item)}
-                    className="search-result-item text-[#162839] dark:text-[#fbf9f5]"
-                  >
-                    {item.name}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
-          {/* Knesset selector */}
-          <div className="relative">
-            <select
-              value={selectedKnesset}
-              onChange={(e) => setSelectedKnesset(e.target.value)}
-              className={`text-base border-none bg-stone-100 dark:bg-slate-900 text-[#162839] dark:text-[#fbf9f5] rounded-lg py-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none font-bold appearance-none cursor-pointer ${isHe ? 'pl-10 pr-4' : 'pr-10 pl-4'}`}
-              style={{ WebkitAppearance: 'none', MozAppearance: 'none', backgroundImage: 'none' }}
-            >
-              <option value="25">{t('map.knesset25')}</option>
-              <option value="24">{t('map.knesset24')}</option>
-              <option value="23">{t('map.knesset23')}</option>
-              <option value="22">{t('map.knesset22')}</option>
-            </select>
-            <span 
-              className={`material-symbols-outlined absolute top-1/2 -translate-y-1/2 text-stone-500 pointer-events-none ${isHe ? 'left-3' : 'right-3'}`}
-            >
-              expand_more
-            </span>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Main layout */}
-      <div className="map-container-wrapper flex-grow overflow-hidden" style={{ height: '100%', minHeight: '0' }}>
-        
-        {/* Map Canvas */}
-        <div className="map-canvas-container flex-grow">
-          {(!geojson || !electionsData) && (
-            <div className="absolute inset-0 z-20 flex items-center justify-center bg-stone-100/80 dark:bg-slate-950/80 backdrop-blur-sm">
-              <div className="flex flex-col items-center gap-3">
-                <div className="animate-spin rounded-full h-10 w-10 border-4 border-amber-500 border-t-transparent"></div>
-                <span className="text-sm font-semibold text-stone-600 dark:text-stone-300">Loading map geometries...</span>
-              </div>
-            </div>
-          )}
-          <div ref={mapRef} className="w-full h-full" />
-          
-          {/* Zoom Scroller Overlay */}
-          {mapLoaded && mapInstanceRef.current && (
-            <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 bg-white/95 dark:bg-slate-800/95 border border-stone-200/80 dark:border-slate-700/80 rounded-xl shadow-lg px-2.5 py-1.5 select-none backdrop-blur-sm">
-              <button 
-                onClick={() => {
-                  const newZoom = Math.max(6.5, mapZoom - 0.5);
-                  mapInstanceRef.current?.zoomTo(newZoom);
-                }}
-                disabled={mapZoom <= 6.5}
-                className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-stone-100 dark:hover:bg-slate-700 text-stone-600 dark:text-stone-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
-                title={isHe ? "התרחק" : "Zoom Out"}
-              >
-                <span className="material-symbols-outlined text-sm font-bold">remove</span>
-              </button>
-              <input
-                type="range"
-                min="6.5"
-                max="13"
-                step="0.1"
-                value={mapZoom}
-                onChange={(e) => {
-                  const val = parseFloat(e.target.value);
-                  setMapZoom(val);
-                  mapInstanceRef.current?.setZoom(val);
-                }}
-                className="w-20 md:w-28 accent-amber-500 bg-stone-200 dark:bg-slate-700 h-1 rounded-lg appearance-none cursor-pointer"
-              />
-              <button 
-                onClick={() => {
-                  const newZoom = Math.min(13, mapZoom + 0.5);
-                  mapInstanceRef.current?.zoomTo(newZoom);
-                }}
-                disabled={mapZoom >= 13}
-                className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-stone-100 dark:hover:bg-slate-700 text-stone-600 dark:text-stone-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
-                title={isHe ? "התקרב" : "Zoom In"}
-              >
-                <span className="material-symbols-outlined text-sm font-bold">add</span>
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Sidebar Info Panel */}
-        <div className="map-sidebar flex flex-col bg-white dark:bg-[#1a293a]">
-          
-          {/* Header section in sidebar */}
-          <div className="p-5 border-b border-stone-200/50 dark:border-slate-800/50 flex flex-col gap-2 bg-stone-50/50 dark:bg-slate-900/30">
-            <div className="flex justify-between items-start">
-              <div>
-                <h2 className="font-headline font-extrabold text-lg md:text-xl text-primary dark:text-[#fbf9f5]">
-                  {activeTownData ? getTownName(selectedTownId!, activeTownData.name) : t('map.nationalAverage')}
-                </h2>
-                <p className="text-xs text-stone-400 dark:text-slate-500 uppercase tracking-widest font-bold mt-0.5">
-                  {t('map.title')} - {t(`map.knesset${selectedKnesset}`)}
-                </p>
-              </div>
+          {/* Main Map & Side Details Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[600px] relative">
+            
+            {/* Map Canvas */}
+            <div className="lg:col-span-8 relative h-[450px] lg:h-full bg-stone-100 dark:bg-slate-900 border-b lg:border-b-0 lg:border-e border-stone-200/60 dark:border-slate-800">
+              <div ref={mapRef} className="w-full h-full" />
               
-              {/* Reset view / back button */}
+              {/* Floating Map Reset Button */}
               {selectedTownId && (
                 <button
                   onClick={handleReset}
-                  className="text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-red-500 hover:underline cursor-pointer focus:outline-none flex items-center gap-1"
+                  className={`absolute top-4 ${isHe ? 'left-4' : 'right-4'} bg-white/95 dark:bg-[#162839]/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-stone-200/80 dark:border-slate-700 text-xs font-['Inter'] font-bold text-[#162839] dark:text-[#fbf9f5] shadow-lg hover:bg-stone-100 dark:hover:bg-slate-800 transition-all flex items-center gap-1.5 z-10`}
                 >
-                  <span className="material-symbols-outlined text-sm">replay</span>
+                  <span className="material-symbols-outlined text-sm">restart_alt</span>
                   {t('map.resetView')}
                 </button>
               )}
             </div>
 
-            {/* Quick general stats grid */}
-            {activeKnessetData && (
-              <div className="grid grid-cols-3 gap-2 mt-3 text-center">
-                <div className="bg-stone-200/30 dark:bg-slate-900/40 p-2 rounded-lg">
-                  <span className="text-[10px] text-stone-500 dark:text-stone-400 uppercase tracking-wider block">
-                    {t('map.voterTurnout')}
+            {/* Side Results Panel */}
+            <div className="lg:col-span-4 p-5 md:p-6 flex flex-col bg-white dark:bg-[#1e293b] overflow-y-auto max-h-[600px]">
+              
+              {/* Selected Town Header */}
+              <div className="flex justify-between items-start mb-4 pb-3 border-b border-stone-200/60 dark:border-slate-800">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-0.5">
+                    {selectedTownId ? t('map.town') : t('map.nationalAverage')}
                   </span>
-                  <span className="text-base font-extrabold text-primary dark:text-amber-500">
-                    {activeTownData ? activeTownData.turnout : activeKnessetData.turnout}%
+                  <h3 className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]">
+                    {activeTitle}
+                  </h3>
+                </div>
+                {selectedTownId && (
+                  <button
+                    onClick={handleReset}
+                    className="text-xs text-secondary dark:text-amber-400 font-bold hover:underline"
+                  >
+                    {t('map.resetView')}
+                  </button>
+                )}
+              </div>
+
+              {/* Stats Cards Grid */}
+              <div className="grid grid-cols-3 gap-2 mb-6">
+                <div className="bg-stone-50 dark:bg-slate-800/60 p-2.5 rounded-xl border border-stone-200/40 dark:border-slate-800 text-center">
+                  <span className="text-[10px] font-bold text-slate-400 block mb-0.5">{t('map.voterTurnout')}</span>
+                  <span className="font-['Newsreader'] text-xl font-bold text-secondary dark:text-amber-400">
+                    {activeTurnout}%
                   </span>
                 </div>
-                
-                <div className="bg-stone-200/30 dark:bg-slate-900/40 p-2 rounded-lg">
-                  <span className="text-[10px] text-stone-500 dark:text-stone-400 uppercase tracking-wider block">
-                    {t('map.eligibleVoters')}
-                  </span>
-                  <span className="text-sm font-extrabold text-slate-700 dark:text-slate-300">
-                    {Number(activeTownData ? activeTownData.bzb : activeKnessetData.bzb).toLocaleString()}
+                <div className="bg-stone-50 dark:bg-slate-800/60 p-2.5 rounded-xl border border-stone-200/40 dark:border-slate-800 text-center">
+                  <span className="text-[10px] font-bold text-slate-400 block mb-0.5">{t('map.eligibleVoters')}</span>
+                  <span className="font-['Inter'] text-xs font-bold text-[#162839] dark:text-[#fbf9f5]">
+                    {activeBzb.toLocaleString()}
                   </span>
                 </div>
-                
-                <div className="bg-stone-200/30 dark:bg-slate-900/40 p-2 rounded-lg">
-                  <span className="text-[10px] text-stone-500 dark:text-stone-400 uppercase tracking-wider block">
-                    {t('map.votesCast')}
-                  </span>
-                  <span className="text-sm font-extrabold text-slate-700 dark:text-slate-300">
-                    {Number(activeTownData ? activeTownData.voters : activeKnessetData.voters).toLocaleString()}
+                <div className="bg-stone-50 dark:bg-slate-800/60 p-2.5 rounded-xl border border-stone-200/40 dark:border-slate-800 text-center">
+                  <span className="text-[10px] font-bold text-slate-400 block mb-0.5">{t('map.validVotes')}</span>
+                  <span className="font-['Inter'] text-xs font-bold text-[#162839] dark:text-[#fbf9f5]">
+                    {activeVoters.toLocaleString()}
                   </span>
                 </div>
               </div>
-            )}
-          </div>
 
-          {/* Results list chart */}
-          <div className="flex-grow p-5 space-y-4 overflow-y-auto custom-scrollbar">
-            
-            {sortedResults.length > 0 ? (
-              <div className="space-y-3">
-                {sortedResults.map(([partyKey, pct]) => {
-                  const meta = PARTY_METADATA[partyKey] || PARTY_METADATA["Other"];
-                  const partyName = isHe ? meta.nameHe : meta.nameEn;
-                  
-                  return (
-                    <div key={partyKey} className="space-y-1.5">
-                      {/* Party Info label */}
-                      <div className="flex justify-between items-center text-xs font-semibold">
-                        <span className="text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                          <span 
-                            className="inline-block w-2.5 h-2.5 rounded-full" 
-                            style={{ backgroundColor: meta.color }} 
+              {/* Party Results List */}
+              <div className="flex-grow">
+                <h4 className="font-['Inter'] text-xs uppercase tracking-widest font-bold text-slate-400 mb-3">
+                  {t('map.votesPercent')}
+                </h4>
+                
+                <div className="space-y-2.5 max-h-[340px] overflow-y-auto pe-1 custom-scrollbar">
+                  {sortedResults.map(([partyName, pct]) => {
+                    const partyMeta = PARTY_METADATA[partyName] || PARTY_METADATA["Other"];
+                    const displayName = isHe ? partyMeta.nameHe : partyMeta.nameEn;
+                    const color = partyMeta.color;
+
+                    return (
+                      <div key={partyName} className="flex flex-col gap-1">
+                        <div className="flex justify-between items-center text-xs font-['Inter']">
+                          <span className="font-bold text-[#162839] dark:text-[#fbf9f5] flex items-center gap-1.5">
+                            <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: color }} />
+                            {displayName}
+                          </span>
+                          <span className="font-bold text-slate-600 dark:text-slate-300">
+                            {pct}%
+                          </span>
+                        </div>
+                        <div className="w-full bg-stone-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{ width: `${Math.min(pct * 2.5, 100)}%`, backgroundColor: color }}
                           />
-                          {partyName}
-                        </span>
-                        <span className="text-primary dark:text-[#fbf9f5] font-extrabold">{pct}%</span>
+                        </div>
                       </div>
-                      
-                      {/* Progress bar */}
-                      <div className="w-full h-2 bg-stone-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full rounded-full transition-all duration-500 ease-out"
-                          style={{ 
-                            width: `${pct}%`, 
-                            backgroundColor: meta.color 
-                          }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="h-full flex items-center justify-center text-center text-sm text-stone-400 py-12">
-                <div className="flex flex-col items-center gap-2 max-w-[200px]">
-                  <span className="material-symbols-outlined text-4xl text-stone-300 dark:text-slate-700">touch_app</span>
-                  {t('map.selectTown')}
+                    );
+                  })}
                 </div>
               </div>
-            )}
 
-          </div>
+            </div>
 
-          {/* Sidebar Footer/Legend */}
-          <div className="p-4 border-t border-stone-200/50 dark:border-slate-800/50 bg-stone-50 dark:bg-slate-900/40 text-center">
-            <span className="text-[10px] text-stone-400 dark:text-slate-500 uppercase tracking-widest font-bold">
-              Data source: Central Elections Committee
-            </span>
           </div>
 
         </div>
-      </div>
-    </div>
 
-        {/* Socioeconomic Section */}
-        {socioData && (
-          <section className="mt-12 bg-white dark:bg-[#1e293b] rounded-2xl border border-stone-200/60 dark:border-slate-800 shadow-xl p-6 md:p-8">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+        {/* Prominent Data Source Credits Section */}
+        <section className="bg-white dark:bg-[#1e293b] rounded-2xl border border-stone-200/80 dark:border-slate-800 p-5 md:p-6 shadow-md mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-2xl text-secondary dark:text-amber-400">verified</span>
               <div>
-                <h2 className="font-headline font-bold text-lg md:text-xl text-primary dark:text-[#fbf9f5]">
-                  {t('map.socioeconomicTitle')}
-                </h2>
-                <p className="text-sm text-stone-500 dark:text-slate-400 mt-1 max-w-2xl">
-                  {t('map.socioeconomicDesc')}
+                <h3 className="font-['Inter'] text-sm font-bold text-[#162839] dark:text-[#fbf9f5]">
+                  {t('map.credits.title')}
+                </h3>
+                <p className="font-['Inter'] text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  {t('map.credits.desc')}
                 </p>
               </div>
-              
-              {/* Controls */}
-              <div className="flex flex-wrap items-center gap-3">
-                {/* Knesset Select */}
-                <div className="relative">
-                  <select
-                    value={socioKnesset}
-                    onChange={(e) => setSocioKnesset(e.target.value)}
-                    className={`text-sm border-none bg-stone-100 dark:bg-slate-900 text-[#162839] dark:text-[#fbf9f5] rounded-lg py-2 focus:ring-2 focus:ring-amber-500 focus:outline-none font-bold appearance-none cursor-pointer ${isHe ? 'pr-3 pl-8' : 'pl-3 pr-8'}`}
-                    style={{ WebkitAppearance: 'none', MozAppearance: 'none', backgroundImage: 'none' }}
-                  >
-                    <option value="25">{t('map.socioeconomicKnesset25')}</option>
-                    <option value="24">{t('map.socioeconomicKnesset24')}</option>
-                  </select>
-                  <span 
-                    className={`material-symbols-outlined absolute top-1/2 -translate-y-1/2 text-stone-500 pointer-events-none ${isHe ? 'left-3' : 'right-3'}`}
-                  >
-                    expand_more
-                  </span>
-                </div>
-
-                {/* Mode Select Buttons */}
-                <div className="flex bg-stone-100 dark:bg-slate-900 rounded-lg p-1">
-                  <button
-                    onClick={() => setSocioMode('coalition')}
-                    className={`text-xs font-bold py-1.5 px-3 rounded-md transition-all cursor-pointer ${
-                      socioMode === 'coalition'
-                        ? 'bg-white dark:bg-slate-800 text-primary dark:text-[#fbf9f5] shadow-sm'
-                        : 'text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200'
-                    }`}
-                  >
-                    {t('map.socioeconomicModeCoalition')}
-                  </button>
-                  <button
-                    onClick={() => setSocioMode('parties')}
-                    className={`text-xs font-bold py-1.5 px-3 rounded-md transition-all cursor-pointer ${
-                      socioMode === 'parties'
-                        ? 'bg-white dark:bg-slate-800 text-primary dark:text-[#fbf9f5] shadow-sm'
-                        : 'text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200'
-                    }`}
-                  >
-                    {t('map.socioeconomicModeParties')}
-                  </button>
-                </div>
-              </div>
             </div>
 
-            {socioMode === 'parties' && (
-              <div className="flex flex-wrap gap-2 items-center mb-6 bg-stone-50 dark:bg-slate-900/40 p-4 rounded-xl border border-stone-200/50 dark:border-slate-800/50">
-                <span className="text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider block me-2">
-                  {isHe ? 'סנן לפי מפלגה:' : 'Filter by Party:'}
-                </span>
-                <div className="flex flex-wrap gap-1.5 items-center">
-                  {getSocioPartiesList().map(partyKey => {
-                    const isActive = selectedSocioParties.has(partyKey);
-                    const isColored = isActive;
-                    const meta = PARTY_METADATA[partyKey];
-                    const displayName = isHe ? meta.nameHe : meta.nameEn;
-                    const color = meta.color;
-                    return (
-                      <button
-                        key={partyKey}
-                        onClick={() => {
-                          setSelectedSocioParties(prev => {
-                            const next = new Set(prev);
-                            if (next.has(partyKey)) {
-                              next.delete(partyKey);
-                            } else {
-                              next.add(partyKey);
-                            }
-                            return next;
-                          });
-                        }}
-                        className={`px-2.5 py-1 text-xs font-semibold uppercase tracking-wider rounded-full border transition-all duration-200 cursor-pointer ${
-                          isColored
-                            ? 'text-white border-transparent'
-                            : 'bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-stone-200 dark:border-slate-800 hover:border-slate-400'
-                        }`}
-                        style={isColored ? { backgroundColor: color, borderColor: color } : {}}
-                      >
-                        {displayName}
-                      </button>
-                    );
-                  })}
-                  
-                  {/* Select All / Reset action buttons */}
-                  <div className="flex items-center gap-1 ms-1">
-                    <button
-                      onClick={() => setSelectedSocioParties(new Set(getSocioPartiesList()))}
-                      disabled={selectedSocioParties.size === getSocioPartiesList().length}
-                      className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full transition-colors cursor-pointer ${
-                        selectedSocioParties.size === getSocioPartiesList().length
-                          ? 'text-slate-200 dark:text-slate-700 cursor-not-allowed'
-                          : 'text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline decoration-dashed underline-offset-4'
-                      }`}
-                    >
-                      {isHe ? 'בחר הכל' : 'Select All'}
-                    </button>
-                    <button
-                      onClick={() => setSelectedSocioParties(new Set())}
-                      disabled={selectedSocioParties.size === 0}
-                      className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full transition-colors cursor-pointer ${
-                        selectedSocioParties.size === 0
-                          ? 'text-slate-200 dark:text-slate-700 cursor-not-allowed'
-                          : 'text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline decoration-dashed underline-offset-4'
-                      }`}
-                    >
-                      {isHe ? 'איפוס' : 'Reset'}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Coalition / Opposition Legend */}
-            {socioMode === 'coalition' && (() => {
-              const coalitionKeys25 = ["Likud", "Hatziyonut Hadatit", "Shas", "Yehadut Hatora"];
-              const coalitionKeys24 = ["Yesh Atid", "Kachol Lavan", "Yamina", "Avoda", "Yisrael Beitenu", "Tikva", "Meretz", "Raam"];
-              const coalitionKeys = socioKnesset === '25' ? coalitionKeys25 : coalitionKeys24;
-              const allDataKeys = socioData && socioData[socioKnesset] && socioData[socioKnesset][0]
-                ? Object.keys(socioData[socioKnesset][0]).filter(k => k !== 'cluster')
-                : [];
-              const oppositionKeys = allDataKeys.filter(k => !coalitionKeys.includes(k));
-
-              const getDisplayName = (socioKey: string) => {
-                const metaKey = SOCIO_PARTY_MAP[socioKey];
-                if (metaKey && PARTY_METADATA[metaKey]) {
-                  return isHe ? PARTY_METADATA[metaKey].nameHe : PARTY_METADATA[metaKey].nameEn;
-                }
-                return socioKey;
-              };
-
-              return (
-                <div className="flex flex-wrap gap-6 items-center mt-4 mb-2 px-1">
-                  {[
-                    { label: t('map.coalitionBlock'), color: '#1C5BAD', parties: coalitionKeys },
-                    { label: t('map.oppositionBlock'), color: '#FC6B60', parties: oppositionKeys },
-                  ].map(bloc => (
-                    <div key={bloc.label} className="relative group">
-                      <div className="flex items-center gap-2 cursor-default">
-                        <span
-                          className="w-3 h-3 rounded-full inline-block flex-shrink-0"
-                          style={{ backgroundColor: bloc.color }}
-                        />
-                        <span className="text-sm font-semibold text-stone-700 dark:text-stone-300">
-                          {bloc.label}
-                        </span>
-                        <span className="material-symbols-outlined text-stone-400 dark:text-stone-500 text-sm" style={{ fontSize: '16px' }}>
-                          info
-                        </span>
-                      </div>
-                      {/* Hover tooltip */}
-                      <div className="absolute bottom-full mb-2 left-0 z-50 hidden group-hover:block min-w-[200px]">
-                        <div className="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 rounded-xl shadow-lg p-3">
-                          <p className="text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">
-                            {bloc.label} — {isHe ? `כנסת ה-${socioKnesset}` : `Knesset ${socioKnesset}`}
-                          </p>
-                          <div className="flex flex-col gap-1">
-                            {bloc.parties.map(pKey => {
-                              const metaKey = SOCIO_PARTY_MAP[pKey];
-                              const pColor = metaKey && PARTY_METADATA[metaKey] ? PARTY_METADATA[metaKey].color : '#999';
-                              return (
-                                <div key={pKey} className="flex items-center gap-2">
-                                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: pColor }} />
-                                  <span className="text-xs text-stone-600 dark:text-stone-400">
-                                    {getDisplayName(pKey)}
-                                  </span>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              );
-            })()}
-
-            {/* Chart Wrapper */}
-            <div className="h-[400px] w-full mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={getSocioChartData()}
-                  margin={{ top: 10, right: 30, left: 10, bottom: 20 }}
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(BECHIROT_SOURCES).map(([knessetKey, source]) => (
+                <a
+                  key={knessetKey}
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`font-['Inter'] text-xs font-bold px-3 py-1.5 rounded-lg border transition-all flex items-center gap-1.5 ${
+                    selectedKnesset === knessetKey
+                      ? 'bg-secondary/15 text-secondary border-secondary/30 dark:bg-amber-400/15 dark:text-amber-400 dark:border-amber-400/30 shadow-sm'
+                      : 'bg-stone-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-stone-200 dark:border-slate-700 hover:border-secondary/40'
+                  }`}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke={isDarkMode ? '#334155' : '#e2e8f0'} className="dark:stroke-slate-800/40" />
-                  <XAxis 
-                    dataKey="cluster" 
-                    stroke={isDarkMode ? '#94a3b8' : '#64748b'} 
-                    fontSize={12} 
-                    tickLine={false}
-                    label={{ 
-                      value: isHe ? 'אשכול חברתי-כלכלי (1 הכי נמוך - 10 הכי גבוה)' : 'Socio-economic Cluster (1 Lowest - 10 Highest)', 
-                      position: 'insideBottom', 
-                      offset: -10, 
-                      fill: isDarkMode ? '#94a3b8' : '#64748b', 
-                      fontSize: 12 
-                    }}
-                  />
-                  <YAxis 
-                    stroke={isDarkMode ? '#94a3b8' : '#64748b'} 
-                    fontSize={12} 
-                    tickLine={false}
-                    tickFormatter={(val) => `${val}%`}
-                  />
-                  <ChartTooltip 
-                    contentStyle={{
-                      backgroundColor: isDarkMode ? '#1e293b' : '#ffffff',
-                      borderColor: isDarkMode ? '#334155' : '#e2e8f0',
-                      borderRadius: '8px',
-                      fontSize: '13px',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-                    }}
-                    itemStyle={{ padding: '2px 0', color: isDarkMode ? '#fbf9f5' : '#1e293b' }}
-                    labelStyle={{ fontWeight: 'bold', marginBottom: '4px', color: isDarkMode ? '#fbf9f5' : '#1e293b' }}
-                    formatter={(value: any, name: any) => [`${value}%`, name]}
-                    labelFormatter={(label) => `${isHe ? 'אשכול' : 'Cluster'} ${label}`}
-                    itemSorter={(item: any) => -(item.value as number)}
-                  />
-                  {Object.keys(getSocioChartData()[0] || {})
-                    .filter(k => k !== 'cluster')
-                    .filter(key => {
-                      if (socioMode === 'coalition') return true;
-                      
-                      const matchedKey = Object.keys(PARTY_METADATA).find(metaKey => {
-                        const meta = PARTY_METADATA[metaKey];
-                        return meta.nameEn === key || meta.nameHe === key;
-                      });
-
-                      if (!matchedKey) return true;
-                      return selectedSocioParties.has(matchedKey);
-                    })
-                    .map(key => {
-                      const strokeColor = socioMode === 'coalition'
-                        ? (key === t('map.coalitionBlock') ? '#1C5BAD' : '#FC6B60')
-                        : getPartyColorByName(key);
-                      return (
-                        <Line
-                          key={key}
-                          type="monotone"
-                          dataKey={key}
-                          stroke={strokeColor}
-                          strokeWidth={3}
-                          dot={{ r: 4, strokeWidth: 1 }}
-                          activeDot={{ r: 7 }}
-                        />
-                      );
-                    })}
-                </LineChart>
-              </ResponsiveContainer>
+                  <span>{isHe ? source.labelHe : source.labelEn}</span>
+                  <span className="material-symbols-outlined text-xs">open_in_new</span>
+                </a>
+              ))}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+
+        {/* Preserved Socioeconomic Cluster Analysis Section */}
+        <section className="bg-white dark:bg-[#1e293b] rounded-2xl border border-stone-200/80 dark:border-slate-800 p-6 md:p-8 shadow-xl">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+            <div>
+              <h2 className="font-['Newsreader'] italic text-2xl md:text-3xl font-bold text-[#162839] dark:text-[#fbf9f5]">
+                {t('map.socioeconomicTitle')}
+              </h2>
+              <p className="font-['Inter'] text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-2xl">
+                {t('map.socioeconomicDesc')}
+              </p>
+            </div>
+
+            {/* Socioeconomic Mode Toggles */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-1 bg-stone-100 dark:bg-slate-800 p-1 rounded-xl border border-stone-200 dark:border-slate-700">
+                <button
+                  onClick={() => setSocioKnesset("25")}
+                  className={`px-3 py-1.5 text-xs font-['Inter'] font-bold rounded-lg transition-all ${
+                    socioKnesset === "25"
+                      ? 'bg-white dark:bg-[#162839] text-[#162839] dark:text-[#fbf9f5] shadow-sm'
+                      : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                  }`}
+                >
+                  {t('map.socioeconomicKnesset25')}
+                </button>
+                <button
+                  onClick={() => setSocioKnesset("24")}
+                  className={`px-3 py-1.5 text-xs font-['Inter'] font-bold rounded-lg transition-all ${
+                    socioKnesset === "24"
+                      ? 'bg-white dark:bg-[#162839] text-[#162839] dark:text-[#fbf9f5] shadow-sm'
+                      : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                  }`}
+                >
+                  {t('map.socioeconomicKnesset24')}
+                </button>
+              </div>
+
+              <div className="flex items-center gap-1 bg-stone-100 dark:bg-slate-800 p-1 rounded-xl border border-stone-200 dark:border-slate-700">
+                <button
+                  onClick={() => setSocioMode("coalition")}
+                  className={`px-3 py-1.5 text-xs font-['Inter'] font-bold rounded-lg transition-all ${
+                    socioMode === "coalition"
+                      ? 'bg-white dark:bg-[#162839] text-[#162839] dark:text-[#fbf9f5] shadow-sm'
+                      : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                  }`}
+                >
+                  {t('map.socioeconomicModeCoalition')}
+                </button>
+                <button
+                  onClick={() => setSocioMode("parties")}
+                  className={`px-3 py-1.5 text-xs font-['Inter'] font-bold rounded-lg transition-all ${
+                    socioMode === "parties"
+                      ? 'bg-white dark:bg-[#162839] text-[#162839] dark:text-[#fbf9f5] shadow-sm'
+                      : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                  }`}
+                >
+                  {t('map.socioeconomicModeParties')}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Party Filter Chips for Individual Parties Mode */}
+          {socioMode === 'parties' && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              {getSocioPartiesList().map(partyName => {
+                const isSelected = selectedSocioParties.has(partyName);
+                const color = getPartyColorByName(partyName);
+                const displayName = isHe ? PARTY_METADATA[partyName]?.nameHe : PARTY_METADATA[partyName]?.nameEn;
+
+                return (
+                  <button
+                    key={partyName}
+                    onClick={() => {
+                      const next = new Set(selectedSocioParties);
+                      if (next.has(partyName)) {
+                        next.delete(partyName);
+                      } else {
+                        next.add(partyName);
+                      }
+                      setSelectedSocioParties(next);
+                    }}
+                    className={`font-['Inter'] text-xs font-bold px-3 py-1.5 rounded-full border transition-all flex items-center gap-1.5 ${
+                      isSelected || selectedSocioParties.size === 0
+                        ? 'bg-stone-100 dark:bg-slate-800 text-[#162839] dark:text-[#fbf9f5] border-stone-300 dark:border-slate-600 shadow-sm'
+                        : 'opacity-40 border-stone-200 dark:border-slate-800'
+                    }`}
+                  >
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
+                    {displayName}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Recharts Socioeconomic Line Chart */}
+          <div className="h-80 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={getSocioChartData()} margin={{ top: 10, right: 20, left: 0, bottom: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.5} />
+                <XAxis dataKey="cluster" label={{ value: 'Socioeconomic Cluster (1-10)', position: 'insideBottom', offset: -5 }} />
+                <YAxis label={{ value: 'Vote Share (%)', angle: -90, position: 'insideLeft' }} />
+                <ChartTooltip
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
+                    borderColor: '#334155',
+                    borderRadius: '0.75rem',
+                    color: '#f8fafc',
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '12px'
+                  }}
+                />
+                {socioMode === 'coalition' ? (
+                  <>
+                    <Line type="monotone" dataKey={t('map.coalitionBlock')} stroke="#1C5BAD" strokeWidth={3} dot={{ r: 4 }} />
+                    <Line type="monotone" dataKey={t('map.oppositionBlock')} stroke="#FF8E3C" strokeWidth={3} dot={{ r: 4 }} />
+                  </>
+                ) : (
+                  getSocioPartiesList().map(partyName => {
+                    const displayName = isHe ? PARTY_METADATA[partyName]?.nameHe : PARTY_METADATA[partyName]?.nameEn;
+                    if (selectedSocioParties.size > 0 && !selectedSocioParties.has(partyName)) {
+                      return null;
+                    }
+                    return (
+                      <Line
+                        key={partyName}
+                        type="monotone"
+                        dataKey={displayName}
+                        stroke={getPartyColorByName(partyName)}
+                        strokeWidth={2.5}
+                        dot={{ r: 3 }}
+                      />
+                    );
+                  })
+                )}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+        </section>
 
       </div>
     </div>

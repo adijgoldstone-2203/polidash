@@ -49,7 +49,7 @@ Output ONLY a valid JSON array of statement objects matching this exact structur
 }]`;
 
 async function callGemini() {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${GEMINI_API_KEY}`;
   
   const payload = JSON.stringify({
     contents: [
