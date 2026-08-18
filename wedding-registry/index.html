@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Wedding Registry</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            plum: {
+              DEFAULT: '#582A3A', // Primary / Main Accent
+              medium: '#6D4355',   // Secondary Plum Accent
+              light: '#835D6E',    // Secondary Plum Accent
+            },
+            forest: '#344335',     // Dark Forest Green Accent
+            darkText: '#200B14',   // Deep/Dark Text
+            offWhite: '#F0F2EE',   // Light Background
+            paleBlush: '#D9CDD2',  // Light Background / Claimed button
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Supabase/Firebase Libraries (Optional initialization in JS) -->
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Firebase JS SDK (compat versions for quick single-file scripts) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+</head>
+<body class="bg-offWhite text-darkText font-sans min-h-screen flex flex-col selection:bg-plum/20">
+
+  <!-- Elegant Floral Backdrop Accents -->
+  <div class="absolute top-0 left-0 w-64 h-64 bg-paleBlush/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+  <div class="absolute top-1/3 right-0 w-96 h-96 bg-plum/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+  <!-- Header -->
+  <header class="py-16 md:py-24 text-center px-4 max-w-4xl mx-auto">
+    <span class="text-xs uppercase tracking-[0.25em] text-plum/70 font-semibold mb-3 block">Welcome to Our Celebration</span>
+    <h1 class="font-serif text-5xl md:text-6xl text-plum font-normal tracking-wide mb-6">Our Registry</h1>
+    <div class="w-16 h-[1px] bg-plum/30 mx-auto mb-6"></div>
+    <p class="text-sm md:text-base text-darkText/80 leading-relaxed font-light max-w-xl mx-auto">
+      Your presence is the greatest gift of all. If you wish to contribute to our new home, we have curated a selection of items we would cherish. Thank you for your love and support!
+    </p>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 md:px-8 pb-24">
+    <!-- Realtime Sync indicator -->
+    <div id="sync-status" class="hidden mb-6 mx-auto max-w-xs justify-center items-center gap-2 bg-emerald-50 text-emerald-800 text-xs px-3 py-1.5 rounded-full border border-emerald-100 shadow-sm transition-all duration-300">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span id="sync-status-text">Connected to live registry</span>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <!-- Grid items are rendered dynamically via JavaScript -->
+      <div class="col-span-full py-20 text-center text-darkText/50">
+        <div class="inline-block w-8 h-8 border-2 border-plum border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="font-light">Loading registry items...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-paleBlush/40 text-center text-xs text-darkText/50 font-light">
+    <p>&copy; 2026 Olivia & Adi. Made with love.</p>
+  </footer>
+
+  <!-- Modal 1: Claim Gift Form Modal -->
+  <div id="claim-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-darkText/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-paleBlush/40 overflow-hidden transform scale-95 transition-all duration-300">
+      <!-- Modal Header -->
+      <div class="bg-plum text-white px-6 py-5 relative">
+        <h3 class="font-serif text-2xl font-normal tracking-wide">Claim Gift</h3>
+        <button id="close-claim-modal" class="absolute top-5 right-5 text-white/80 hover:text-white transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      
+      <!-- Modal Content -->
+      <form id="claim-form" class="p-6 space-y-5">
+        <input type="hidden" id="claim-item-id">
+        
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-plum/70 font-semibold mb-1">Selected Item</label>
+          <p id="claim-item-title" class="font-serif text-lg text-darkText font-medium">Morphy Richards Blender</p>
+          <p id="claim-item-price" class="text-sm text-plum font-semibold mt-0.5">₪250</p>
+        </div>
+
+        <div class="border-t border-paleBlush/30 my-4"></div>
+
+        <div class="space-y-4">
+          <div>
+            <label for="claim-name" class="block text-xs uppercase tracking-wider text-darkText/70 font-medium mb-1">Full Name <span class="text-rose-500">*</span></label>
+            <input type="text" id="claim-name" required class="w-full px-4 py-2.5 bg-offWhite/50 border border-paleBlush focus:border-plum focus:ring-1 focus:ring-plum outline-none rounded-lg text-sm text-darkText transition-all" placeholder="Enter your full name">
+          </div>
+          
+          <div>
+            <label for="claim-email" class="block text-xs uppercase tracking-wider text-darkText/70 font-medium mb-1">Email Address <span class="text-rose-500">*</span></label>
+            <input type="email" id="claim-email" required class="w-full px-4 py-2.5 bg-offWhite/50 border border-paleBlush focus:border-plum focus:ring-1 focus:ring-plum outline-none rounded-lg text-sm text-darkText transition-all" placeholder="name@example.com">
+          </div>
+        </div>
+
+        <div class="pt-4 flex flex-col gap-2">
+          <button type="submit" class="w-full bg-plum hover:bg-plum-medium active:bg-plum-light text-white text-sm font-medium py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+            Confirm & View Transfer Details
+          </button>
+          <button type="button" id="cancel-claim-modal" class="w-full bg-transparent hover:bg-offWhite text-darkText/70 hover:text-darkText text-sm font-medium py-2 rounded-lg transition-all">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Success & Bank Details Modal -->
+  <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-darkText/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-paleBlush/40 overflow-hidden transform scale-95 transition-all duration-300 flex flex-col max-h-[90vh]">
+      <!-- Modal Header -->
+      <div class="bg-forest text-white px-6 py-5 flex items-center gap-3 shrink-0">
+        <div class="bg-white/10 p-1.5 rounded-full">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h3 class="font-serif text-2xl font-normal tracking-wide">Gift Successfully Reserved!</h3>
+      </div>
+      
+      <!-- Modal Content (Scrollable) -->
+      <div class="p-6 overflow-y-auto space-y-6 text-sm md:text-base leading-relaxed text-darkText">
+        
+        <!-- Verbatim banking instructions display -->
+        <div class="bg-offWhite/60 border border-paleBlush/50 p-5 rounded-xl font-sans text-darkText whitespace-pre-wrap select-text selection:bg-forest/10">Thank you for claiming this gift! To finalise your contribution, please open your personal banking app or PayBox to complete the transfer now.
+
+🇮🇱 Option 1: Paybox (Israel)
+[INSERT_YOUR_PAYBOX_LINK_HERE]
+
+🇬🇧 Option 2: Bank Transfer (UK)
+Olivia Brummer
+Monzo Bank
+04-00-04 43596419
+
+🇮🇱 Option 3: Bank Transfer (Israel)
+Adi Goldstone
+31 (bein leumi)
+92
+330022
+
+Once you click 'Place Order' below, this item will instantly lock as 'Claimed' on our registry page so other guests know it is spoken for. Thank you!</div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-6 border-t border-paleBlush/30 bg-offWhite/30 shrink-0">
+        <button id="place-order-btn" class="w-full bg-forest hover:bg-forest/90 active:bg-forest/85 text-white font-medium py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-center block">
+          Place Order
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js" type="module"></script>
+</body>
+</html>

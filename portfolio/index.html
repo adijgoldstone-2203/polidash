@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization -->
+    <title>Adi Goldstone | Data Scientist & Analyst Portfolio</title>
+    <meta name="description" content="Portfolio of Adi Goldstone, an Economics and Data Science student at Reichman University. Featuring data analytics projects, an interactive F1 strategy simulator, and professional experience.">
+    <meta name="author" content="Adi Goldstone">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+
+    <!-- Premium Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <!-- Page Loader Reveal Screen -->
+    <div id="loader" class="page-loader">
+        <div class="loader-content">
+            <span class="loader-name">ADI GOLDSTONE</span>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar" id="main-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">AG</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Portfolio</a>
+                <a href="#cv" class="nav-link">CV</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-sun">light_mode</span>
+                    <span class="material-symbols-outlined theme-icon-moon">dark_mode</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Scroll Progress Bar -->
+        <div id="scroll-progress-bar" class="scroll-progress"></div>
+
+        <!-- Print Only Header -->
+        <div class="print-only-header">
+            <h1>Adi Goldstone</h1>
+            <p>
+                Economics & Data Science Student &bull; Data Analyst &bull; Tel Aviv, Israel<br>
+                054-9959063 &bull; Adi@familygoldstone.com &bull; linkedin.com/in/adi-goldstone
+            </p>
+        </div>
+
+        <!-- Hero / Header Section -->
+        <header class="hero-section">
+            <!-- Left: Daily Fact -->
+            <div class="hero-left">
+                <div class="daily-fact-bubble fade-in">
+                    <div class="fact-bubble-header">
+                        <span class="material-symbols-outlined">lightbulb</span>
+                        <span>Daily Random Fact</span>
+                        <button id="shuffle-fact-btn" class="shuffle-btn" aria-label="Get another random fact">
+                            <span class="material-symbols-outlined">autorenew</span>
+                        </button>
+                    </div>
+                    <p id="daily-fact-text">Loading...</p>
+                </div>
+            </div>
+
+            <!-- Middle: Name & Info -->
+            <div class="hero-middle">
+                <div class="hero-title-container fade-in">
+                    <canvas id="name-paint-canvas"></canvas>
+                    <h1 class="sr-only">Adi Goldstone</h1>
+                </div>
+            </div>
+
+            <!-- Right: Portrait -->
+            <div class="hero-right">
+                <div class="hero-avatar-container fade-in">
+                    <img src="./src/profile.jpg" alt="Adi Goldstone" class="hero-avatar">
+                </div>
+            </div>
+
+            <!-- Middle row 2: Subtitle + contact links -->
+            <div class="hero-bottom">
+                <p class="hero-subtitle fade-in">Economics &amp; Data Science Student at Reichman University &bull; Data Analyst</p>
+                
+                <div class="contact-links fade-in">
+                    <button class="contact-item" id="copy-email" data-clipboard="Adi@familygoldstone.com" aria-label="Copy email address">
+                        <span class="material-symbols-outlined">mail</span>
+                        <span class="contact-text">Adi@familygoldstone.com</span>
+                        <span class="tooltip" id="email-tooltip">Copy email</span>
+                    </button>
+                    <a href="tel:0549959063" class="contact-item" aria-label="Call Adi">
+                        <span class="material-symbols-outlined">call</span>
+                        <span class="contact-text">054-9959063</span>
+                    </a>
+                    <a href="https://linkedin.com/in/adi-goldstone" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="LinkedIn profile">
+                        <span class="material-symbols-outlined">share</span>
+                        <span class="contact-text">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Typographic Scrolling Marquee -->
+        <div class="marquee-container fade-in">
+            <div class="marquee-content">
+                <span>DATA SCIENCE &bull; ECONOMICS &bull; INFRASTRUCTURE &bull; MACHINE LEARNING &bull; DATA VISUALISATION &bull; DATA STORYTELLING &bull; PROBLEM SOLVING &bull; AI &bull; DATA SCIENCE &bull; ECONOMICS &bull; INFRASTRUCTURE &bull; MACHINE LEARNING &bull; DATA VISUALISATION &bull; DATA STORYTELLING &bull; PROBLEM SOLVING &bull; AI &bull;</span>
+            </div>
+        </div>
+
+        <!-- Collapsible Graphic Accordion Sections -->
+        <div class="accordions-wrapper">
+            
+            <!-- ABOUT Accordion Section -->
+            <section id="about" class="accordion-section scroll-reveal">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="about-content">ABOUT</button>
+                <div id="about-content" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="about-grid">
+                            <div class="about-text">
+                                <p class="lead-paragraph">
+                                    Second-year Economics and Data Science student at Reichman University (97.5 GPA, Dean's List) with over three years of real-world data analytics experience spanning the IDF and a Tel Aviv startup.
+                                </p>
+                                <p>
+                                    Raised in an entrepreneurial environment, I have a deep appreciation for high-ownership, high-impact roles. Whether building a startup's entire data infrastructure from a blank slate or leading teams of analysts to optimise large-scale pipelines, I focus on turning messy, complex data into actionable decisions.
+                                </p>
+                                <p>
+                                    I specialise in bridging the gap between raw data and real business decisions, applying rigorous analytical thinking and strong problem-solving to drive real business impact. I bring a robust background in structural analysis alongside a practical focus on product and workflow development.
+                                </p>
+                            </div>
+                            <div class="about-stats">
+                                <div class="stat-card">
+                                    <span class="stat-num">97.5</span>
+                                    <span class="stat-lbl">GPA (Dean's List)</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-num">3+</span>
+                                    <span class="stat-lbl">Years Analytics Experience</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-num">2</span>
+                                    <span class="stat-lbl">Languages (English, Hebrew)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS Accordion Section -->
+            <section id="skills" class="accordion-section scroll-reveal">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="skills-content">SKILLS</button>
+                <div id="skills-content" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="skills-grid">
+                            <div class="skills-category-card">
+                                <div class="category-header">
+                                    <span class="material-symbols-outlined">terminal</span>
+                                    <h3>Technical Skills</h3>
+                                </div>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">Python (Pandas, NumPy, Scikit-Learn)</span>
+                                    <span class="skill-tag">R Language</span>
+                                    <span class="skill-tag">SQL (PostgreSQL, BigQuery)</span>
+                                    <span class="skill-tag">Power BI</span>
+                                    <span class="skill-tag">Advanced Excel</span>
+                                    <span class="skill-tag">Data Visualisation</span>
+                                    <span class="skill-tag">Dashboard Development</span>
+                                    <span class="skill-tag">Statistical Analysis</span>
+                                    <span class="skill-tag">Machine Learning Regression</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category-card">
+                                <div class="category-header">
+                                    <span class="material-symbols-outlined">psychology</span>
+                                    <h3>Professional & Tools</h3>
+                                </div>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">AI Workflows (Antigravity, Gemini, Claude)</span>
+                                    <span class="skill-tag">Analytical Problem Solving</span>
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Data Storytelling</span>
+                                    <span class="skill-tag">Strategic Communication</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS Accordion Section -->
+            <section id="projects" class="accordion-section scroll-reveal">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="projects-content">PORTFOLIO</button>
+                <div id="projects-content" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="projects-grid">
+                            <!-- Polidash Project -->
+                            <article class="project-card">
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span class="proj-tag">React</span>
+                                        <span class="proj-tag">TypeScript</span>
+                                        <span class="proj-tag">AI Workflows</span>
+                                        <span class="proj-tag">Vercel</span>
+                                    </div>
+                                    <h3>Polidash</h3>
+                                    <p>
+                                        A data visualisation platform providing unbiased, aggregated, and easily understandable political information. Built to resolve data complexity in political ecosystems, the application leverages specialised AI tooling via Antigravity and is deployed seamlessly on Vercel.
+                                    </p>
+                                    <div class="project-actions">
+                                        <a href="https://polidash-puce.vercel.app/#/" target="_blank" rel="noopener noreferrer" class="proj-link primary">
+                                            Live Project <span class="material-symbols-outlined">arrow_outward</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- F1 Machine Learning Model (with Embedded Simulator) -->
+                            <article class="project-card">
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span class="proj-tag">Python</span>
+                                        <span class="proj-tag">XGBoost</span>
+                                        <span class="proj-tag">Telemetry API</span>
+                                        <span class="proj-tag">Scikit-Learn</span>
+                                    </div>
+                                    <h3>Formula 1 Lap Time Prediction ML Model</h3>
+                                    <p>
+                                        A supervised learning regression architecture built using official F1 timing and telemetry data from the FastF1 API. The project optimises pit stop timing and tyre strategy by predicting continuous lap time values based on real-time race conditions across major modern tracks. Features engineered include non-linear tyre degradation parameters and model evaluations across Linear, Random Forest, and XGBoost structures to target a Mean Absolute Error of under 1 second.
+                                    </p>
+                                    
+                                    <!-- Embedded F1 Strategy Simulator -->
+                                    <div class="embedded-sim-container">
+                                        <h4 class="sim-heading">Model Performance Sandbox</h4>
+                                        <p class="sim-subheading">Interact with the sliders below to run live inference from the tyre degradation model.</p>
+                                        
+                                        <div class="sim-widget-layout">
+                                            <div class="sim-widget-controls">
+                                                <!-- Compound Selector -->
+                                                <div class="widget-control-group">
+                                                    <label class="widget-control-label">Tyre Compound</label>
+                                                    <div class="compound-selector">
+                                                        <button type="button" class="compound-btn active" data-compound="soft" style="--comp-color: #e10600;">Soft</button>
+                                                        <button type="button" class="compound-btn" data-compound="medium" style="--comp-color: #ffd100;">Medium</button>
+                                                        <button type="button" class="compound-btn" data-compound="hard" style="--comp-color: #7a7a7a;">Hard</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Tyre Age Slider -->
+                                                <div class="widget-control-group">
+                                                    <div class="slider-label-row">
+                                                        <label for="tyre-age" class="widget-control-label">Tyre Age</label>
+                                                        <span id="tyre-age-val" class="slider-value">12 laps</span>
+                                                    </div>
+                                                    <input type="range" id="tyre-age" min="0" max="40" value="12" class="range-slider">
+                                                </div>
+
+                                                <!-- Track Temp Slider -->
+                                                <div class="widget-control-group">
+                                                    <div class="slider-label-row">
+                                                        <label for="track-temp" class="widget-control-label">Track Temp</label>
+                                                        <span id="track-temp-val" class="slider-value">32°C</span>
+                                                    </div>
+                                                    <input type="range" id="track-temp" min="15" max="55" value="32" class="range-slider">
+                                                </div>
+
+                                                <!-- Fuel Load Slider -->
+                                                <div class="widget-control-group">
+                                                    <div class="slider-label-row">
+                                                        <label for="fuel-load" class="widget-control-label">Fuel Load</label>
+                                                        <span id="fuel-load-val" class="slider-value">60 kg</span>
+                                                    </div>
+                                                    <input type="range" id="fuel-load" min="5" max="110" value="60" class="range-slider">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="sim-widget-viz">
+                                                <div class="viz-header">
+                                                    <div class="viz-title">Inference Output</div>
+                                                    <div class="viz-status"><span class="pulse-dot"></span> Online</div>
+                                                </div>
+                                                
+                                                <div class="chart-container">
+                                                    <canvas id="f1-chart" width="360" height="150"></canvas>
+                                                </div>
+                                                
+                                                <div class="model-outputs">
+                                                    <div class="output-stat">
+                                                        <span class="output-lbl">Predicted Time</span>
+                                                        <span id="pred-laptime" class="output-val">1:34.520</span>
+                                                    </div>
+                                                    <div class="output-stat">
+                                                        <span class="output-lbl">Degradation Delta</span>
+                                                        <span id="pred-delta" class="output-val">+0.85s</span>
+                                                    </div>
+                                                    <div class="output-stat">
+                                                        <span class="output-lbl">Est. Grip</span>
+                                                        <span id="pred-grip" class="output-val">76%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CV Accordion Section -->
+            <section id="cv" class="accordion-section scroll-reveal">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="cv-content">CV</button>
+                <div id="cv-content" class="accordion-content">
+                    <div class="accordion-inner">
+                        <!-- CV Actions (Download Button) -->
+                        <div class="cv-actions">
+                            <a href="./Adi_Goldstone_CV.pdf" download="Adi_Goldstone_CV.pdf" class="proj-link primary download-cv-btn">
+                                <span class="material-symbols-outlined">download</span> Download CV PDF
+                            </a>
+                        </div>
+                        
+                        <div class="cv-layout">
+                            <!-- Left: Experience -->
+                            <div class="cv-column">
+                                <h3 class="cv-section-title">Experience</h3>
+                                
+                                <div class="cv-item">
+                                    <div class="cv-item-header">
+                                        <h4 class="cv-item-role">Data Analyst</h4>
+                                        <span class="cv-item-date">Sep 2023 – May 2024</span>
+                                    </div>
+                                    <div class="cv-item-company">Worklik &bull; Bnei Brak</div>
+                                    <ul class="cv-item-bullet-list">
+                                        <li>Recruited as the first and sole data analyst at an early-stage startup, building the company's entire data infrastructure from the ground up with no existing framework.</li>
+                                        <li>Identified and structured all company data, delivering a centralised system that transformed the organisation into a data-driven one.</li>
+                                        <li>Surfaced key commercial insights and presented findings company-wide, directly informing strategic decisions at executive level.</li>
+                                        <li><strong>Key Project:</strong> Designed and deployed interactive Power BI dashboards used daily across 4–5 teams to track KPIs, monitor performance, and identify future growth opportunities.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="cv-item">
+                                    <div class="cv-item-header">
+                                        <h4 class="cv-item-role">Data Analyst / Team Lead</h4>
+                                        <span class="cv-item-date">Dec 2020 – Aug 2023</span>
+                                    </div>
+                                    <div class="cv-item-company">IDF &bull; Human Resources, Business Intelligence Team</div>
+                                    <ul class="cv-item-bullet-list">
+                                        <li>Led a team of 4–5 analysts, providing hands-on mentorship and technical guidance that measurably improved team output and cohesion.</li>
+                                        <li>Recognised with an Excellence Award for outstanding performance and delivery on high-stakes analytical projects.</li>
+                                        <li>Built end-to-end data pipelines using SQL, Python, Excel, and Power BI, extracting and transforming data from multiple sources to drive major changes.</li>
+                                        <li><strong>Key Project:</strong> Delivered a large-scale statistical forecasting analysis across key population sectors, directly improving the IDF's recruitment effectiveness at a national level.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="cv-item">
+                                    <div class="cv-item-header">
+                                        <h4 class="cv-item-role">Private Maths Tutoring Business</h4>
+                                        <span class="cv-item-date">2019 – Present</span>
+                                    </div>
+                                    <div class="cv-item-company">Founder & Tutor</div>
+                                    <ul class="cv-item-bullet-list">
+                                        <li>Founded and scaled an independent tutoring business to 50+ students, teaching mathematics at bagrut level in both English and Hebrew.</li>
+                                        <li>Achieved a 100% bagrut pass rate across all students, consistently pushing each individual beyond their own expectations.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Right: Education & Additional -->
+                            <div class="cv-column">
+                                <h3 class="cv-section-title">Education</h3>
+                                
+                                <div class="cv-item">
+                                    <div class="cv-item-header">
+                                        <h4 class="cv-item-role">BA in Economics and Entrepreneurship with Data Science</h4>
+                                        <span class="cv-item-date">2024 – 2027</span>
+                                    </div>
+                                    <div class="cv-item-company">Reichman University</div>
+                                    <ul class="cv-item-bullet-list">
+                                        <li>Top of the Dean's List, 97.5 GPA — highest in the year.</li>
+                                        <li>A member of the prestigious ASE Honours Class of 2027 for high-achieving students.</li>
+                                        <li>Elected class representative, leading the class and taking initiative to represent student interests and bridging communication between students and faculty.</li>
+                                        <li>Participated in many extra curricular activities such as the Consulting club, IGI investment group, Gamechangers hackathon and the 1% club TV show.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="cv-item">
+                                    <div class="cv-item-header">
+                                        <h4 class="cv-item-role">Technology High School Kfar Batya</h4>
+                                        <span class="cv-item-date">2017 – 2019</span>
+                                    </div>
+                                    <div class="cv-item-company">High School Graduate</div>
+                                    <ul class="cv-item-bullet-list">
+                                        <li>Completed a full bagrut with 36 points, maintaining an average of 115-117.</li>
+                                        <li>Majored in Computer Science and Chemistry, and took 5-point Maths.</li>
+                                    </ul>
+                                </div>
+
+                                <h3 class="cv-section-title" style="margin-top: 2rem;">Additional</h3>
+                                <div class="cv-item">
+                                    <ul class="cv-item-bullet-list no-bullets">
+                                        <li><strong>Psychometric:</strong> Took the Psychometric in high school 2019, math weighted score of 717 and a normal score of 691.</li>
+                                        <li><strong>AI Projects:</strong> Created multiple AI projects using Antigravity, Vercel and Claude code, including websites and games.</li>
+                                        <li><strong>Extracurriculars:</strong> Participated and presented at the Gamechangers hackathon at NYU in Summer 2025.</li>
+                                        <li><strong>Interests:</strong> Avid football, padel and board game player. Gifted student program ("Mechonenim") participant in primary/middle school.</li>
+                                        <li><strong>Passports:</strong> Dual British and Israeli citizen (native English and Hebrew speaker).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT Accordion Section -->
+            <section id="contact" class="accordion-section scroll-reveal">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="contact-content">CONTACT</button>
+                <div id="contact-content" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="contact-box-content">
+                            <p class="contact-prompt">
+                                I'm currently seeking internship and entry-level analyst opportunities for Summer/Fall 2026. If you're looking for an analyst who can build infrastructure, write production models, and communicate insights to executives, let's talk.
+                            </p>
+                            <div class="contact-grid">
+                                <a href="mailto:Adi@familygoldstone.com" class="big-contact-card">
+                                    <span class="material-symbols-outlined contact-icon">mail</span>
+                                    <div class="contact-details">
+                                        <span class="contact-lbl">Email me</span>
+                                        <span class="contact-val">Adi@familygoldstone.com</span>
+                                    </div>
+                                </a>
+                                <a href="tel:0549959063" class="big-contact-card">
+                                    <span class="material-symbols-outlined contact-icon">phone_iphone</span>
+                                    <div class="contact-details">
+                                        <span class="contact-lbl">Call or WhatsApp</span>
+                                        <span class="contact-val">054-9959063</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Adi Goldstone. All rights reserved.</p>
+            <p class="footer-credit">Designed with warm editorial aesthetics &bull; Driven by data</p>
+        </div>
+    </footer>
+
+    <!-- Custom Cursor follow ring -->
+    <div id="custom-cursor" class="custom-cursor"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
