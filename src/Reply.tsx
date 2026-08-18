@@ -286,15 +286,29 @@ const Reply: React.FC = () => {
 
         {viewMode === 'form' ? (
           <>
-            <header className="mb-12 text-start">
+            <header className="mb-8 text-start">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3 block">{t('reply.subtitle')}</span>
               <h1 className="font-['Newsreader'] text-3xl sm:text-4xl md:text-7xl tracking-tight text-primary mb-4">
                 {t('reply.title1')} <span className="italic font-bold">{t('reply.title2')}</span>
               </h1>
               <div className="h-1 w-24 bg-primary mb-6" />
-              <p className="font-body text-lg text-slate-500 max-w-2xl leading-relaxed">
+              <p className="font-body text-lg text-slate-500 max-w-2xl leading-relaxed mb-6">
                 {t('reply.desc')}
               </p>
+
+              {/* Legal Notice & Takedown Procedure Info Box */}
+              <div className="bg-stone-50 border-s-4 border-[#162839] p-5 rounded-r-xl text-xs text-slate-600 leading-relaxed max-w-3xl space-y-2">
+                <div className="flex items-center gap-2 font-bold text-primary text-sm">
+                  <span className="material-symbols-outlined text-base">gavel</span>
+                  <span>{lang === 'he' ? 'נוהל הודעה והסרה - זכות תגובה ותיקון עובדתי' : 'Notice and Takedown & Statutory Right of Reply Protocol'}</span>
+                </div>
+                <p>
+                  {lang === 'he'
+                    ? 'בהתאם לעקרונות חוק איסור לשון הרע וחוק הגנת הפרטיות, PoliDash מפעיל מנגנון הודעה והסרה מהיר למועמדים, מפלגות והציבור הרחב. כל דיווח על אי-דיוק, טעות עובדתית או בקשת להבהרה ייבדקו מול הרשומות הרשמיות בתוך 72 שעות.'
+                    : 'Pursuant to the principles of the Israeli Defamation Law and Privacy Protection Law, PoliDash maintains a rapid Notice and Takedown & Right of Reply protocol for candidates, slates, and citizens. All reported discrepancies, factual errors, or context requests will be investigated against official public logs within 72 hours.'
+                  }
+                </p>
+              </div>
             </header>
 
             <div className="max-w-3xl">

@@ -86,6 +86,63 @@ const Methodology: React.FC = () => {
           </div>
         </section>
 
+        {/* Statutory Legal Compliance & Transparency Section */}
+        <section className="bg-stone-50 dark:bg-[#1a2e40] p-8 rounded-2xl border border-stone-200 dark:border-slate-800 space-y-6">
+          <div className="flex items-center gap-3 border-b border-stone-200 dark:border-slate-700 pb-4">
+            <span className="material-symbols-outlined text-3xl text-[#162839] dark:text-amber-400">gavel</span>
+            <div>
+              <h3 className="font-['Newsreader'] text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]">
+                Legal Framework & Operational Disclaimers
+              </h3>
+              <p className="text-xs text-slate-500 font-semibold uppercase tracking-widest">
+                Compliance with Israeli Law (Copyright, Defamation, Elections & Privacy)
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div className="space-y-2">
+              <h4 className="font-bold text-[#162839] dark:text-[#fbf9f5] text-sm flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                Copyright & Fair Use (סעיף 19 לחוק זכות יוצרים)
+              </h4>
+              <p>
+                PoliDash relies on short original summaries and brief factual citations. Quotations and factual references are utilized under the Fair Use doctrine (Section 19 of the Copyright Law, 5768-2007) for non-commercial review, reporting, and public education. Candidate portraits are credited to Wikimedia Commons / official public domain archives, and direct links to party platforms are provided.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-bold text-[#162839] dark:text-[#fbf9f5] text-sm flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-600"></span>
+                Election Propaganda Transparency (סעיף 2א1 לחוק הבחירות)
+              </h4>
+              <p>
+                PoliDash is a strictly independent, non-partisan educational project. It is **not** funded, sponsored, or operated by any candidate, political party, or election campaign. Pursuant to Section 2A1 of the Elections Law (Propaganda Methods), PoliDash accepts no paid political promotion or undisclosed party sponsorship.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-bold text-[#162839] dark:text-[#fbf9f5] text-sm flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                Defamation Protection & Neutrality (חוק איסור לשון הרע)
+              </h4>
+              <p>
+                All policy stance mappings use objective, neutral classifications (Support / Oppose / Ambiguous). PoliDash strictly avoids pejorative labeling, subjective ratings, or personal commentary. Summaries reflect verified public voting logs and official quotes.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-bold text-[#162839] dark:text-[#fbf9f5] text-sm flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-purple-600"></span>
+                Notice & Takedown Protocol (נוהל הודעה והסרה)
+              </h4>
+              <p>
+                In accordance with Israeli legal precedents, PoliDash maintains an active <a href="#/reply" className="text-secondary font-bold underline">Right of Reply & Notice and Takedown portal</a>. Candidates, parties, or citizens may report discrepancies, and our editorial team reviews all submissions within 72 hours.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Source Citation & AI Disclosure */}
         <section className="bg-white dark:bg-[#1f3448] p-8 rounded-2xl border-2 border-[#162839]/10 dark:border-slate-700 shadow-md space-y-6">
           <div className="flex items-center gap-3">
@@ -125,7 +182,7 @@ const Methodology: React.FC = () => {
 
         {/* Footer info */}
         <div className="text-center text-xs text-slate-500 pt-6">
-          PoliDash Methodology • Last updated August 2026 • Non-Partisan Educational Platform
+          PoliDash Methodology & Statutory Legal Framework • Updated August 2026 • Independent Non-Partisan Educational Platform
         </div>
       </div>
     </div>

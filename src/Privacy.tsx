@@ -39,55 +39,55 @@ const Privacy: React.FC = () => {
               <>
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    1. מבוא וסקירה כללית
+                    1. מבוא ועמידה בדין (עפ"י תיקון 13 לחוק הגנת הפרטיות)
                   </h2>
                   <p>
-                    פולידאש (PoliDash) הוא פלטפורמה עצמאית למעקב אחר עמדות פוליטיות, מחויב לשקיפות וניטרליות. אנו מאמינים בשמירה על פרטיות המשתמשים שלנו, ולכן האתר בנוי כך שאינו דורש הרשמה, יצירת חשבון או מסירת פרטים מזהים כלשהם.
+                    פולידאש (PoliDash) הוא מיזם מידע עצמאי ובלתי תלוי למעקב אחר עמדות פוליטיות, המחוייב באופן מוחלט לשמירה על הפרטיות, השקיפות והניטרליות. האתר פועל בהתאם להוראות חוק הגנת הפרטיות, התשמ"א-1981, לרבות **תיקון מס' 13 לחוק הגנת הפרטיות, התשפ"ד-2024** (הנכנס לתוקף באוגוסט 2025). האתר תוכנן במבנה של Privacy by Design ואינו דורש הרשמה, יצירת חשבון או מסירת פרטים מזהים כלשהם.
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    2. איסוף נתונים אישיים
+                    2. איסוף ואחסון מידע רגיש ונתוני משתמשים
                   </h2>
                   <p>
-                    אנו <strong>איננו</strong> אוספים, שומרים או מעבדים מידע אישי מזהה (כגון שם, כתובת אימייל, מספר טלפון או מיקום) של המבקרים באתר. הגלישה בפולידאש היא אנונימית לחלוטין.
+                    על פי הדין הישראלי, עמדות ודעות פוליטיות נחשבות כ**מידע רגיש**. אנו <strong>איננו</strong> אוספים, מעבירים לשרתים או שומרים במסד נתונים מרכזי את תשובות המשתמשים בשאלון ההתאמה הפוליטית או את עמדותיהם. כל הנתונים הנוצרים בעקבות המענה על השאלון נשמרים **בופן מקומי בלבד** בדפדפן המשתמש (Local Storage) ואינם מועברים לגורם שלישי כלשהו.
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    3. עוגיות ואחסון מקומי (Cookies & Storage)
+                    3. עוגיות ואחסון מקומי (Cookies & Local Storage)
                   </h2>
                   <p>
-                    אתר זה אינו משתמש בעוגיות מעקב (Tracking Cookies) או בעוגיות צד שלישי למטרות פרסום. אנו עשויים להשתמש באחסון המקומי של הדפדפן שלך (Local Storage) אך ורק כדי לשמור העדפות ממשק בסיסיות (כמו בחירת שפה או העדפת מצב כהה) וכן כדי לשמור את התוצאות של שאלון התאמת העמדות המקומי שלך, כך שחוויית הגלישה שלך תישמר בביקור הבא. מידע זה נשאר מקומית על המכשיר שלך ואינו מועבר לשרתים שלנו.
+                    אתר זה אינו משתמש בעוגיות מעקב (Tracking Cookies) או בעוגיות צד שלישי למטרות פרסום או פרופילינג. האחסון המקומי של הדפדפן שלך משמש אך ורק לשמירת העדפות ממשק בסיסיות (כגון בחירת שפה או העדפת מצב כהה) וכן לשמירת תוצאות שאלון ההתאמה המקומי במכשירך.
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    4. אירוח ואנליטיקה
+                    4. איסוף מידע על אישי ציבור ורשומות פומביות
                   </h2>
                   <p>
-                    האתר מאוחסן ומורץ באמצעות פלטפורמת Vercel. שרתי האירוח עשויים לרשום מידע טכני בסיסי ולא מזהה (כמו סוג הדפדפן, מערכת ההפעלה, וזמן הגישה) כחלק מיומני השרת הרגילים לצורך אבטחה, ניטור ביצועים ומניעת שימוש לרעה, בהתאם למדיניות הפרטיות של Vercel.
+                    כל המידע המוצג באתר לגבי מועמדים ואישי ציבור מתייחס исключительно לפעילותם הציבורית והפוליטית. המידע מבוסס על מקורות גלויים, רשומות הכנסת, מצעים רשמיים ופרסומים עיתונאיים מאומתים. האתר נמנע באופן מוחלט מאוסף או פרסום של מידע אישי פרטי (כגון כתובת מגורים, טלפון אישי, מידע רפואי או פרטי משפחה).
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    5. נתוני אישי ציבור ועמדות
+                    5. אירוח ואנליטיקה
                   </h2>
                   <p>
-                    כל המידע המוצג באתר לגבי אישי ציבור, מפלגות ועמדותיהם מבוסס על מקורות גלויים לציבור, רשומות רשמיות של הכנסת, מצעי מפלגות ופרסומים עיתונאיים מאומתים. אנו מקפידים לצרף קישורים למקורות הרלוונטיים ומתחייבים לפעול על פי פרוטוקול "זכות התגובה" למתן אפשרות לתיקון או הבהרת מידע במידת הצורך.
+                    האתר מאוחסן ומורץ באמצעות פלטפורמת Vercel. שרתי האירוח עשויים לרשום מידע טכני בסיסי ולא מזהה (כמו סוג הדפדפן, מערכת ההפעלה, וזמן הגישה) כחלק מיומני השרת הרגילים לצורך אבטחה, ניטור ביצועים ומניעת שימוש לרעה.
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    6. יצירת קשר
+                    6. יצירת קשר ונוהל הודעה והסרה
                   </h2>
                   <p>
-                    לכל שאלה או פנייה בנושא פרטיות או דיוק הנתונים המוצגים באתר, ניתן לפנות אלינו באמצעות ערוצי יצירת הקשר הרשמיים או דרך מנגנון זכות התגובה שברובריקה התחתונה של האתר.
+                    לכל שאלה, פנייה בנושא פרטיות או דיווח על אי-דיוקים, ניתן לפנות אלינו באמצעות <a href="#/reply" className="text-secondary font-bold underline">פורטל זכות התגובה ונוהל הודעה והסרה</a>. אנו מתחייבים לבדוק כל פנייה ולפעול לתיקון במידת הצורך בתוך 72 שעות.
                   </p>
                 </section>
               </>
@@ -96,19 +96,19 @@ const Privacy: React.FC = () => {
               <>
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    1. Overview
+                    1. Overview & Statutory Compliance (Amendment 13)
                   </h2>
                   <p>
-                    PoliDash is an independent political tracking platform dedicated to transparency and political clarity. We believe in preserving user anonymity, which is why our platform is built without the need for user accounts, registration, or the submission of personal identifiers.
+                    PoliDash is an independent, non-partisan political intelligence platform operating under strict compliance with the Israeli Privacy Protection Law (5741-1981) and **Amendment No. 13 (5784-2024)**. Designed around strict Privacy-by-Design principles, our dashboard requires no user accounts, registration, or submission of personal identifiers.
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    2. Data Collection
+                    2. Sensitive Personal Data Protection
                   </h2>
                   <p>
-                    We do <strong>not</strong> collect, store, or process any personally identifiable information (PII) such as names, email addresses, phone numbers, or physical locations from our visitors. Your browsing session is entirely anonymous.
+                    Under Israeli law, political opinions and stances are explicitly categorized as **sensitive personal data**. PoliDash does <strong>not</strong> transmit, record, or store user quiz responses or political alignments on any remote database or server. All alignment calculations occur **strictly client-side** within your browser's memory and local storage.
                   </p>
                 </section>
 
@@ -117,34 +117,34 @@ const Privacy: React.FC = () => {
                     3. Cookies and Local Storage
                   </h2>
                   <p>
-                    We do not use tracking cookies or third-party advertising cookies. We may utilise your browser's local storage (Local Storage) solely to preserve basic user preferences (such as your language selection or dark mode setting) and to temporarily cache your local political quiz answers so your progress is saved on your device for your next visit. This data stays on your machine and is never transmitted to our servers.
+                    We do not deploy tracking cookies, fingerprinting pixels, or third-party advertising cookies. Local storage is used exclusively to retain basic UI preferences (language selection, dark mode) and temporary quiz calculations on your local device.
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    4. Hosting and Server Logs
+                    4. Public Figure Data Restrictions
                   </h2>
                   <p>
-                    Our platform is hosted on Vercel. Standard, non-identifying server logs (such as user-agent, operating system, and request timestamp) may be automatically logged by Vercel for security monitoring, performance analysis, and abuse prevention, in accordance with Vercel's privacy guidelines.
+                    All public figure profiles and stance maps on PoliDash reflect strictly public, official parliamentary records, party manifestos, and verified media broadcasts. We strictly omit all private personal details (such as home addresses, personal contacts, family data, or medical records).
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    5. Public Figure Data and Attributions
+                    5. Infrastructure & Security
                   </h2>
                   <p>
-                    All public figure profiles, statements, and policy stance maps displayed on this website are aggregated from public records, Knesset transcripts, official party platforms, and verified media articles. We link to source materials for verification and remain fully committed to the "Right of Reply" protocol to ensure objective reporting.
+                    PoliDash is hosted on Vercel. Standard, non-identifying technical server logs (browser type, OS, timestamp) may be logged by Vercel solely for DDoS protection, infrastructure security, and system stability.
                   </p>
                 </section>
 
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    6. Contact
+                    6. Notice and Takedown Protocol
                   </h2>
                   <p>
-                    If you have any questions or feedback regarding this policy or the accuracy of our public stance tracking, please reach out via the Right of Reply protocol located in the footer of our dashboard.
+                    For inquiries, data protection questions, or factual correction requests, please contact our editorial team via our <a href="#/reply" className="text-secondary font-bold underline">Right of Reply & Notice and Takedown Portal</a>. All requests are reviewed within 72 business hours.
                   </p>
                 </section>
               </>
