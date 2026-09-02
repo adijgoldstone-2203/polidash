@@ -16,7 +16,7 @@ export const enData = {
     "Together (Bennett-Lapid)": "Together (Bennett-Lapid)",
     "Yashar!": "Yashar!",
     "Bennett 2026": "Bennett 2026",
-    "Trooper-Hendel": "Trooper-Hendel",
+    "Trooper-Hendel": "Miluimnikim (The Reservists)",
     "Joint List": "Joint List",
     "Ofer Winter": "Ofer Winter",
     "Erdan-Edelstein": "Erdan-Edelstein",
