@@ -57,6 +57,10 @@ const partyMapping = {
   'ישר!': 'Yashar!',
   'טרופר-הנדל': 'Trooper-Hendel',
   'המילואימניקים': 'Trooper-Hendel',
+  'בית ציוני-המילואימניקים': 'Trooper-Hendel',
+  'הרשימה המשותפת': 'Joint List',
+  'עופר וינטר': 'Ofer Winter',
+  'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Erdan-Edelstein',
   '‏רשימה ערבית מאוחדת': 'United Arab Party'
 };
 
@@ -102,7 +106,7 @@ for (let i = 1; i < rows.length; i++) {
   const data = {};
   headers.slice(5).forEach(h => {
     const seats = parseInt(poll[h], 10);
-    const engKey = partyMapping[h];
+    const engKey = partyMapping[h] || h.trim();
     if (engKey && seats > 0) {
       data[engKey] = seats;
     }

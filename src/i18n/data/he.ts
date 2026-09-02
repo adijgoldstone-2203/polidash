@@ -20,6 +20,9 @@ export const heData = {
     "Bennett 2026": "בנט 2026",
     "Trooper-Hendel": "טרופר-הנדל",
     "HaMiluimnikim": "טרופר-הנדל",
+    "Joint List": "הרשימה המשותפת",
+    "Ofer Winter": "עופר וינטר",
+    "Erdan-Edelstein": "ארדן-אדלשטיין",
     "Balad (National Democratic Alliance)": "בל״ד",
     "Labor": "העבודה"
   },

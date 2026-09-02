@@ -17,6 +17,9 @@ export const enData = {
     "Yashar!": "Yashar!",
     "Bennett 2026": "Bennett 2026",
     "Trooper-Hendel": "Trooper-Hendel",
+    "Joint List": "Joint List",
+    "Ofer Winter": "Ofer Winter",
+    "Erdan-Edelstein": "Erdan-Edelstein",
     "Balad (National Democratic Alliance)": "Balad (National Democratic Alliance)",
     "Labor": "Labour"
   },

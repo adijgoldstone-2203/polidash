@@ -10,6 +10,450 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "702",
+    source: "וואלה (Sep 2, 2026)",
+    date: "Sep 2, 2026",
+    dateISO: "2026-09-02",
+    sampleSize: 500,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 7,
+      "Together (Bennett-Lapid)": 15,
+      "Yashar!": 24,
+      "Joint List": 8,
+    }
+  },
+  {
+    id: "701",
+    source: "חדשות 12 (Aug 31, 2026)",
+    date: "Aug 31, 2026",
+    dateISO: "2026-08-31",
+    sampleSize: 506,
+    data: {
+      "Likud": 23,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 11,
+      "Ra'am": 4,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 15,
+      "Yashar!": 24,
+      "Joint List": 7,
+      "Ofer Winter": 4,
+    }
+  },
+  {
+    id: "700",
+    source: "ערוץ 14 (Aug 30, 2026)",
+    date: "Aug 30, 2026",
+    dateISO: "2026-08-30",
+    sampleSize: 666,
+    data: {
+      "Likud": 31,
+      "United Torah Judaism": 7,
+      "Shas": 10,
+      "Yisrael Beiteinu": 7,
+      "Democrats": 8,
+      "Religious Zionist": 4,
+      "Ra'am": 5,
+      "Otzma Yehudit": 7,
+      "Together (Bennett-Lapid)": 6,
+      "Yashar!": 24,
+      "Joint List": 7,
+      "Ofer Winter": 4,
+    }
+  },
+  {
+    id: "699",
+    source: "כאן חדשות (Aug 30, 2026)",
+    date: "Aug 30, 2026",
+    dateISO: "2026-08-30",
+    sampleSize: 551,
+    data: {
+      "Likud": 21,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 9,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 7,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 24,
+      "Joint List": 8,
+      "Ofer Winter": 4,
+    }
+  },
+  {
+    id: "698",
+    source: "מעריב (Aug 28, 2026)",
+    date: "Aug 28, 2026",
+    dateISO: "2026-08-28",
+    sampleSize: 506,
+    data: {
+      "Likud": 20,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 15,
+      "Yashar!": 25,
+      "Joint List": 8,
+      "Ofer Winter": 5,
+    }
+  },
+  {
+    id: "697",
+    source: "ערוץ 14 (Aug 27, 2026)",
+    date: "Aug 27, 2026",
+    dateISO: "2026-08-27",
+    sampleSize: 981,
+    data: {
+      "Likud": 31,
+      "United Torah Judaism": 7,
+      "Shas": 10,
+      "Yisrael Beiteinu": 6,
+      "Democrats": 9,
+      "Religious Zionist": 4,
+      "Ra'am": 5,
+      "Otzma Yehudit": 7,
+      "Together (Bennett-Lapid)": 7,
+      "Yashar!": 23,
+      "Joint List": 7,
+      "Ofer Winter": 4,
+    }
+  },
+  {
+    id: "696",
+    source: "זמן ישראל (Aug 27, 2026)",
+    date: "Aug 27, 2026",
+    dateISO: "2026-08-27",
+    sampleSize: 500,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 9,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 8,
+      "Ra'am": 5,
+      "Otzma Yehudit": 6,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 26,
+      "Joint List": 6,
+      "Ofer Winter": 6,
+    }
+  },
+  {
+    id: "695",
+    source: "ערוץ 14 (Aug 24, 2026)",
+    date: "Aug 24, 2026",
+    dateISO: "2026-08-24",
+    sampleSize: 486,
+    data: {
+      "Likud": 32,
+      "United Torah Judaism": 8,
+      "Shas": 10,
+      "Yisrael Beiteinu": 7,
+      "Democrats": 9,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 7,
+      "Yashar!": 24,
+      "Joint List": 5,
+    }
+  },
+  {
+    id: "694",
+    source: "חדשות 13 (Aug 26, 2026)",
+    date: "Aug 26, 2026",
+    dateISO: "2026-08-26",
+    sampleSize: 1407,
+    data: {
+      "Likud": 19,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 11,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 13,
+      "Yashar!": 24,
+      "Joint List": 10,
+    }
+  },
+  {
+    id: "693",
+    source: "ערוץ 16 (Aug 26, 2026)",
+    date: "Aug 26, 2026",
+    dateISO: "2026-08-26",
+    sampleSize: 552,
+    data: {
+      "Likud": 21,
+      "United Torah Judaism": 7,
+      "Shas": 9,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 11,
+      "Ra'am": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 16,
+      "Yashar!": 21,
+      "Joint List": 7,
+      "Ofer Winter": 7,
+    }
+  },
+  {
+    id: "692",
+    source: "i24 news (Aug 26, 2026)",
+    date: "Aug 26, 2026",
+    dateISO: "2026-08-26",
+    sampleSize: 532,
+    data: {
+      "Likud": 26,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 10,
+      "Religious Zionist": 4,
+      "Ra'am": 6,
+      "Otzma Yehudit": 6,
+      "Together (Bennett-Lapid)": 8,
+      "Yashar!": 23,
+      "Joint List": 6,
+      "Ofer Winter": 8,
+    }
+  },
+  {
+    id: "691",
+    source: "וואלה (Aug 26, 2026)",
+    date: "Aug 26, 2026",
+    dateISO: "2026-08-26",
+    sampleSize: 500,
+    data: {
+      "Likud": 21,
+      "United Torah Judaism": 7,
+      "Shas": 7,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 15,
+      "Yashar!": 25,
+      "Joint List": 7,
+      "Ofer Winter": 6,
+    }
+  },
+  {
+    id: "690",
+    source: "חדשות 12 (Aug 24, 2026)",
+    date: "Aug 24, 2026",
+    dateISO: "2026-08-24",
+    sampleSize: 502,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 11,
+      "Religious Zionist": 4,
+      "Ra'am": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 15,
+      "Yashar!": 24,
+      "Joint List": 7,
+    }
+  },
+  {
+    id: "689",
+    source: "ערוץ 14 (Aug 24, 2026)",
+    date: "Aug 24, 2026",
+    dateISO: "2026-08-24",
+    sampleSize: 486,
+    data: {
+      "Likud": 32,
+      "United Torah Judaism": 8,
+      "Shas": 10,
+      "Yisrael Beiteinu": 7,
+      "Democrats": 9,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 7,
+      "Yashar!": 24,
+      "Joint List": 5,
+    }
+  },
+  {
+    id: "688",
+    source: "כאן חדשות (Aug 23, 2026)",
+    date: "Aug 23, 2026",
+    dateISO: "2026-08-23",
+    sampleSize: 552,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 24,
+      "Joint List": 7,
+    }
+  },
+  {
+    id: "687",
+    source: "מעריב (Aug 21, 2026)",
+    date: "Aug 21, 2026",
+    dateISO: "2026-08-21",
+    sampleSize: 501,
+    data: {
+      "Likud": 20,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 26,
+    }
+  },
+  {
+    id: "686",
+    source: "ישראל היום (Aug 20, 2026)",
+    date: "Aug 20, 2026",
+    dateISO: "2026-08-20",
+    sampleSize: 553,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 10,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 13,
+      "Yashar!": 23,
+      "Joint List": 8,
+    }
+  },
+  {
+    id: "685",
+    source: "זמן ישראל (Aug 20, 2026)",
+    date: "Aug 20, 2026",
+    dateISO: "2026-08-20",
+    sampleSize: 400,
+    data: {
+      "Likud": 21,
+      "United Torah Judaism": 8,
+      "Shas": 9,
+      "Yisrael Beiteinu": 11,
+      "Democrats": 8,
+      "Religious Zionist": 6,
+      "Ra'am": 5,
+      "Otzma Yehudit": 7,
+      "Together (Bennett-Lapid)": 15,
+      "Yashar!": 23,
+      "Joint List": 7,
+    }
+  },
+  {
+    id: "684",
+    source: "חדשות 13 (Aug 19, 2026)",
+    date: "Aug 19, 2026",
+    dateISO: "2026-08-19",
+    sampleSize: 961,
+    data: {
+      "Likud": 23,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 11,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 13,
+      "Yashar!": 26,
+    }
+  },
+  {
+    id: "683",
+    source: "ערוץ 16 (Aug 19, 2026)",
+    date: "Aug 19, 2026",
+    dateISO: "2026-08-19",
+    sampleSize: 500,
+    data: {
+      "Likud": 22,
+      "United Torah Judaism": 7,
+      "Shas": 9,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 4,
+      "Ra'am": 4,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 16,
+      "Yashar!": 25,
+    }
+  },
+  {
+    id: "682",
+    source: "כאן חדשות (Aug 19, 2026)",
+    date: "Aug 19, 2026",
+    dateISO: "2026-08-19",
+    sampleSize: 558,
+    data: {
+      "Likud": 23,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Hadash-Ta'al": 6,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 10,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 24,
+    }
+  },
+  {
+    id: "681",
+    source: "i24 news (Aug 18, 2026)",
+    date: "Aug 18, 2026",
+    dateISO: "2026-08-18",
+    sampleSize: 522,
+    data: {
+      "Likud": 31,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Hadash-Ta'al": 5,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 11,
+      "Religious Zionist": 5,
+      "Ra'am": 5,
+      "Otzma Yehudit": 6,
+      "Together (Bennett-Lapid)": 9,
+      "Yashar!": 24,
+    }
+  },
+  {
     id: "680",
     source: "חדשות 12 (Aug 17, 2026)",
     date: "Aug 17, 2026",
@@ -7518,16 +7962,19 @@ export const PARTY_COLORS: Record<string, string> = {
   "Yisrael Beiteinu": "#4F46E5",        // Indigo (Secular Right)
   "Otzma Yehudit": "#EA580C",           // Orange (Far Right)
   "United Torah Judaism": "#64748B",    // Slate/Grey (Ultra-Orthodox)
-  "Ra'am": "#059669",// Green (Arab List)
+  "Ra'am": "#059669",                   // Green (Arab List)
   "United Arab Party": "#10B981",       // Emerald Green (Arab List)
   "Hadash-Ta'al": "#0D9488",            // Teal (Arab List)
+  "Joint List": "#0F766E",              // Dark Teal (Arab List)
   "Religious Zionist": "#F59E0B",       // Amber/Yellow-Orange (Religious Right)
   "Together (Bennett-Lapid)": "#84CC16",// Lime Green
   "Democrats (Labor-Meretz)": "#EF4444",// Vibrant Light Red
   "Labor": "#E11D48",                   // Crimson/Rose (Labor)
   "Yashar!": "#EC4899",                 // Magenta/Pink
   "Bennett 2026": "#10B981",            // Emerald Green
-  "Trooper-Hendel": "#78350F",            // Bronze Brown
+  "Trooper-Hendel": "#78350F",          // Bronze Brown
+  "Ofer Winter": "#D97706",             // Amber / Brown-Orange
+  "Erdan-Edelstein": "#2563EB",         // Blue
   "Balad": "#C084FC",                   // Soft Violet
   "Balad (National Democratic Alliance)": "#C084FC", // Soft Violet
   "Default": "#94a3b8"                  // Slate Grey
@@ -7539,7 +7986,9 @@ export const BLOCS: Record<string, string[]> = {
     "Religious Zionist",
     "Shas",
     "United Torah Judaism",
-    "Otzma Yehudit"
+    "Otzma Yehudit",
+    "Ofer Winter",
+    "Erdan-Edelstein"
   ],
   "Center/Left/Arab": [
     "Together (Bennett-Lapid)",
@@ -7551,6 +8000,7 @@ export const BLOCS: Record<string, string[]> = {
     "Yashar!",
     "Ra'am",
     "United Arab Party",
-    "Hadash-Ta'al"
+    "Hadash-Ta'al",
+    "Joint List"
   ]
 };

@@ -30,7 +30,9 @@ const PARTY_MAP: Record<string, string> = {
   'המילואימניקים': 'Trooper-Hendel',
   'טרופר-הנדל': 'Trooper-Hendel',
   'בית ציוני-המילואימניקים': 'Trooper-Hendel',
-  'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Ardan-Edelstein'
+  'הרשימה המשותפת': 'Joint List',
+  'עופר וינטר': 'Ofer Winter',
+  'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Erdan-Edelstein'
 };
 
 // Function to convert DD/MM/YYYY to YYYY-MM-DD
@@ -142,11 +144,9 @@ async function run() {
       const hebParty = headers[j];
       const val = parseInt(row[j], 10);
       if (!isNaN(val) && val > 0) {
-        const engParty = PARTY_MAP[hebParty];
+        const engParty = PARTY_MAP[hebParty] || hebParty.trim();
         if (engParty) {
           data[engParty] = val;
-        } else {
-          console.warn(`⚠️ Unknown party header: ${hebParty}`);
         }
       }
     }
