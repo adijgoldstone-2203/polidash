@@ -32,7 +32,9 @@ const PARTY_MAP: Record<string, string> = {
   'בית ציוני-המילואימניקים': 'Trooper-Hendel',
   'הרשימה המשותפת': 'Joint List',
   'עופר וינטר': 'Ofer Winter',
-  'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Erdan-Edelstein'
+  'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Erdan-Edelstein',
+  'הציונות הדתית / זהות': 'Religious Zionist',
+  'המפלגה של הנדל וזליכה': 'Trooper-Hendel'
 };
 
 // Function to convert DD/MM/YYYY to YYYY-MM-DD
