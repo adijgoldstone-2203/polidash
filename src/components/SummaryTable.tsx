@@ -28,7 +28,7 @@ const getPartyLeaderId = (partyName: string): string | null => {
   if (normalized.includes('shas')) return 'aryeh-deri';
   if (normalized.includes('ra\'am') || normalized.includes('united arab list')) return 'mansour-abbas';
   if (normalized.includes('yesh atid')) return 'yair-lapid';
-  if (normalized.includes('miluimnikim')) return 'yoaz-hendel';
+  if (normalized.includes('miluimnikim') || normalized.includes('trooper') || normalized.includes('hendel')) return 'yoaz-hendel';
   if (normalized.includes('hadash') || normalized.includes('ta\'al')) return 'ayman-odeh';
   if (normalized.includes('torah') || normalized.includes('utj') || normalized.includes('goldknopf')) return 'yitzhak-goldknopf';
   if (normalized.includes('otzma') || normalized.includes('gvir')) return 'itamar-ben-gvir';

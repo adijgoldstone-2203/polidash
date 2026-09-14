@@ -23,6 +23,8 @@ const enData = {
     "Bennett 2026": "Bennett 2026",
     "Trooper-Hendel": "Trooper-Hendel",
     "Ofer Winter": "Ofer Winter",
+    "Joint List": "Joint List",
+    "Erdan-Edelstein": "Erdan-Edelstein",
     "Balad (National Democratic Alliance)": "Balad (National Democratic Alliance)",
     "Labor": "Labour"
   },
