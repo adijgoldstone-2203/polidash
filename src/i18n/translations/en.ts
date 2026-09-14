@@ -76,14 +76,14 @@ export const en: Record<string, string> = {
   "profiles.title2": "Profiles",
   "profiles.desc":
     "An objective summary of backgrounds, stances on key issues, and policy priorities within the leading representatives.",
-  "profiles.seats": "Seats",
-  "profiles.held": "Held",
+  "profiles.seats": "PoliDash",
+  "profiles.held": "Avg Seats",
   "profiles.viewFull": "View Full Profile",
 
   // Profile Detail Page
   "profileDetail.back": "Back to All Profiles",
-  "profileDetail.seats": "Seats",
-  "profileDetail.na": "N/A",
+  "profileDetail.seats": "Seats (PoliDash Avg)",
+  "profileDetail.na": "Under Threshold (< 3.25%)",
   "profileDetail.partyLink": "Link to Party Website",
   "profileDetail.stanceBoard": "Stance Board: Core Principles",
   "profileDetail.stance": "Politician's Stance:",

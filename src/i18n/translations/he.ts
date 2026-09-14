@@ -76,14 +76,14 @@ export const he: Record<string, string> = {
   "profiles.title2": "פוליטיקאים",
   "profiles.desc":
     "סיכום אובייקטיבי של רקע, עמדות בסוגיות מפתח וסדרי עדיפויות מדיניים של הנציגים המובילים.",
-  "profiles.seats": "מושבים",
-  "profiles.held": "מוחזקים",
+  "profiles.seats": "ממוצע",
+  "profiles.held": "PoliDash",
   "profiles.viewFull": "צפה בפרופיל מלא",
 
   // Profile Detail Page
   "profileDetail.back": "חזרה לכל הפרופילים",
-  "profileDetail.seats": "מושבים",
-  "profileDetail.na": "לא רלוונטי",
+  "profileDetail.seats": "מושבים (ממוצע PoliDash)",
+  "profileDetail.na": "מתחת לאחוז החסימה (< 3.25%)",
   "profileDetail.partyLink": "קישור לאתר המפלגה",
   "profileDetail.stanceBoard": "לוח עמדות: עקרונות ליבה",
   "profileDetail.stance": "עמדת הפוליטיקאי:",

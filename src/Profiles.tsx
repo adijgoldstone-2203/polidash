@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { politicians } from './data';
+import { POLL_DATA } from './polls';
+import { computeWeightedAverage, getPoliticianPollAverage } from './utils/pollAnalytics';
 import OptimizedImage from './components/OptimizedImage';
 import { useLanguage } from './i18n';
 
 const Profiles: React.FC = () => {
   const { t, tPolitician, tParty, lang } = useLanguage();
+  const weightedAvg = useMemo(() => computeWeightedAverage(POLL_DATA), []);
 
   return (
     <>
@@ -42,12 +45,23 @@ const Profiles: React.FC = () => {
                         <p className="text-[9px] sm:text-xs font-bold uppercase tracking-widest mt-1 text-secondary">{tParty(pol.party)}</p>
                       </div>
                     </div>
-                    <div className="flex sm:flex-col flex-row items-baseline gap-1 justify-center sm:text-end">
-                      <span className="block text-lg sm:text-2xl font-['Newsreader'] italic font-bold leading-none">{pol.seats}</span>
-                      <div className="flex sm:flex-col flex-row gap-1 sm:gap-0">
-                        <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold">{t('profiles.seats')}</span>
-                        <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold sm:block hidden">{t('profiles.held')}</span>
-                      </div>
+                    <div className="flex flex-col items-center sm:items-end justify-center shrink-0">
+                      {(() => {
+                        const avg = getPoliticianPollAverage(pol.id, weightedAvg);
+                        const isUnderThreshold = avg === null || avg === 0;
+                        const displayVal = !isUnderThreshold ? (avg % 1 === 0 ? avg.toString() : avg.toFixed(1)) : '< 3.25%';
+                        return (
+                          <>
+                            <span className={`block font-bold leading-none ${isUnderThreshold ? "text-xs sm:text-sm font-sans text-slate-500" : "text-lg sm:text-2xl font-['Newsreader'] italic"}`}>
+                              {displayVal}
+                            </span>
+                            <div className="flex flex-col text-center sm:text-end mt-1">
+                              <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold">{t('profiles.seats')}</span>
+                              <span className="text-[8px] leading-tight uppercase tracking-widest text-slate-400 font-bold">{t('profiles.held')}</span>
+                            </div>
+                          </>
+                        );
+                      })()}
                     </div>
                   </div>
                   <div className="mt-2 sm:mt-4 flex justify-center sm:justify-start">

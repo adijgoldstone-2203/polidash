@@ -33,7 +33,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/benjamin-netanyahu.avif",
         role: "Incumbent Prime Minister",
         keyStance: "Security control over Gaza, Abraham Accords expansion, opposes Palestinian statehood.",
-        seats: "24"
+        seats: "22.3"
       },
       {
         id: "naftali-bennett",
@@ -43,7 +43,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/naftali-bennett.avif",
         role: "Former Prime Minister",
         keyStance: "National unity coalition, high-tech economic growth, preemptive security doctrine.",
-        seats: "12"
+        seats: "12.7"
       },
       {
         id: "yair-lapid",
@@ -53,7 +53,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/yair-lapid.avif",
         role: "Former Prime Minister & Opposition Leader",
         keyStance: "Liberal democracy, core education requirements, cost-of-living ministry.",
-        seats: "12"
+        seats: "12.7"
       },
       {
         id: "benny-gantz",
@@ -63,7 +63,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/benny-gantz.avif",
         role: "Former Defense Minister & Chief of Staff",
         keyStance: "Mamlachtiyut (Stateliness), regional defense pacts, universal civil service.",
-        seats: "12"
+        seats: "< 3.25%"
       },
       {
         id: "yair-golan",
@@ -73,7 +73,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/yair-golan.avif",
         role: "Democrats Leader & Maj. Gen. (res.)",
         keyStance: "Social democracy, two-state security framework, immediate Haredi draft.",
-        seats: "10"
+        seats: "9.1"
       }
     ]
   },
@@ -90,7 +90,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/israel-katz.avif",
         role: "Defense Minister",
         keyStance: "Hawkish defense posture, pressure on adversary infrastructure.",
-        seats: "24"
+        seats: "22.3"
       },
       {
         id: "gadi-eisenkot",
@@ -100,7 +100,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/gadi-eisenkot.avif",
         role: "Former IDF Chief of General Staff",
         keyStance: "Deterrence restoration, strategic planning, mandatory universal draft.",
-        seats: "22"
+        seats: "23.5"
       },
       {
         id: "yoaz-hendel",
@@ -110,7 +110,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/yoaz-hendel.avif",
         role: "Reservists Party Leader",
         keyStance: "Miluimnikim rights, national service mandate, Zionist security doctrine.",
-        seats: "N/A"
+        seats: "2.7"
       },
       {
         id: "ofer-winter",
@@ -120,7 +120,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/ofer-winter.avif",
         role: "Amcha Yisrael Party Leader",
         keyStance: "Decisive military victory, security control in Gaza, universal draft requirement.",
-        seats: "4"
+        seats: "3.8"
       }
     ]
   },
@@ -137,7 +137,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/bezalel-smotrich.avif",
         role: "Incumbent Finance Minister",
         keyStance: "Deregulation, free-market roots, funding for settlements and peripheral regions.",
-        seats: "5"
+        seats: "5.4"
       },
       {
         id: "avigdor-lieberman",
@@ -147,7 +147,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/avigdor-lieberman.avif",
         role: "Former Finance Minister",
         keyStance: "Privatization of ports/airports, breaking importer monopolies, secular tax reform.",
-        seats: "9"
+        seats: "8.2"
       }
     ]
   },
@@ -164,7 +164,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/yariv-levin.avif",
         role: "Incumbent Justice Minister",
         keyStance: "Judicial overhaul, Knesset override clause, Judicial Selection Committee reform.",
-        seats: "24"
+        seats: "22.3"
       },
       {
         id: "yair-golan",
@@ -174,7 +174,7 @@ const RACES_DATA: CabinetRace[] = [
         imageUrl: "assets/politicians/yair-golan.avif",
         role: "Democrats Faction Leader",
         keyStance: "Supreme Court independence, Basic Law: Equality, constitutional protections.",
-        seats: "10"
+        seats: "9.1"
       }
     ]
   }
@@ -255,7 +255,7 @@ const CabinetRaces: React.FC = () => {
                           {cand.name}
                         </h3>
                         <p className="text-xs text-slate-500 font-medium">
-                          {cand.party} • {cand.seats} seats
+                          {cand.party} • {cand.seats.includes('<') ? cand.seats : `${cand.seats} seats (PoliDash avg)`}
                         </p>
                       </div>
                     </div>

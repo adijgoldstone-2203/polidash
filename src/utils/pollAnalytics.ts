@@ -342,3 +342,48 @@ export const getAllParties = (polls: Poll[]): string[] => {
 export const getLatestPoll = (polls: Poll[]): Poll => {
   return [...polls].sort((a, b) => b.dateISO.localeCompare(a.dateISO))[0];
 };
+
+/**
+ * Maps a politician's unique ID to their party's current PoliDash weighted average seats.
+ */
+export const getPoliticianPollAverage = (
+  politicianId: string,
+  weightedAvg: Record<string, number>
+): number | null => {
+  switch (politicianId) {
+    case 'benjamin-netanyahu':
+      return weightedAvg['Likud'] ?? null;
+    case 'naftali-bennett':
+    case 'yair-lapid':
+      return weightedAvg['Together (Bennett-Lapid)'] ?? weightedAvg['Together'] ?? null;
+    case 'benny-gantz':
+      return weightedAvg['Blue and White'] ?? weightedAvg['National Unity'] ?? 0;
+    case 'gadi-eisenkot':
+      return weightedAvg['Yashar!'] ?? null;
+    case 'yair-golan':
+      return weightedAvg['Democrats'] ?? weightedAvg['The Democrats'] ?? null;
+    case 'aryeh-deri':
+      return weightedAvg['Shas'] ?? null;
+    case 'mansour-abbas':
+      return weightedAvg["Ra'am"] ?? null;
+    case 'yoaz-hendel':
+      return weightedAvg['Trooper-Hendel'] ?? weightedAvg['Miluimnikim'] ?? weightedAvg['Zionist Home'] ?? null;
+    case 'ayman-odeh':
+      return weightedAvg['Joint List'] ?? weightedAvg["Hadash-Ta'al"] ?? null;
+    case 'yitzhak-goldknopf':
+      return weightedAvg['United Torah Judaism'] ?? null;
+    case 'itamar-ben-gvir':
+      return weightedAvg['Otzma Yehudit'] ?? null;
+    case 'avigdor-lieberman':
+      return weightedAvg['Yisrael Beiteinu'] ?? null;
+    case 'sami-abu-shehadeh':
+      return weightedAvg['Balad'] ?? 0;
+    case 'bezalel-smotrich':
+      return weightedAvg['Religious Zionist'] ?? null;
+    case 'ofer-winter':
+      return weightedAvg['Ofer Winter'] ?? weightedAvg['Amcha Yisrael'] ?? null;
+    default:
+      return null;
+  }
+};
+

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { politicians, AI_DISCLAIMER } from './data';
+import { POLL_DATA } from './polls';
+import { computeWeightedAverage, getPoliticianPollAverage } from './utils/pollAnalytics';
 import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedImage from './components/OptimizedImage';
 import { useLanguage } from './i18n';
@@ -15,6 +17,7 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
   
   const { t, tPolitician, tParty, tIssue, tIntelligenceTopic, tStance, tIssueDefinition, tBio, tQuote, tFacts, tIntelligence, lang } = useLanguage();
   const credit = IMAGE_CREDITS[politician.id];
+  const weightedAvg = useMemo(() => computeWeightedAverage(POLL_DATA), []);
 
   return (
     <>
@@ -58,7 +61,14 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                         )}
                       </div>
                       <p className="text-secondary font-bold uppercase tracking-widest text-sm mb-6">
-                        {tParty(politician.party)} • {politician.seats !== "N/A" ? `${politician.seats} ${t('profileDetail.seats')}` : t('profileDetail.na')}
+                        {(() => {
+                          const avg = getPoliticianPollAverage(politician.id, weightedAvg);
+                          const isUnderThreshold = avg === null || avg === 0;
+                          const seatsText = !isUnderThreshold
+                            ? `${avg % 1 === 0 ? avg : avg.toFixed(1)} ${t('profileDetail.seats')}`
+                            : t('profileDetail.na');
+                          return `${tParty(politician.party)} • ${seatsText}`;
+                        })()}
                       </p>
                     </div>
                     

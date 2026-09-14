@@ -58,7 +58,7 @@ export const politicians: Politician[] = [
     "quote": "Security is the foundation of our existence, and we will never compromise on it.",
     "party": "Likud",
     "ballotLetters": "מחל",
-    "seats": "32",
+    "seats": "22.3",
     "biography": "Benjamin Netanyahu is the longest-serving Prime Minister in Israel's history. Before entering politics, he served as an officer in the Sayeret Matkal special forces unit. He earned degrees from MIT and worked as a corporate consultant in the United States. He served as Israel’s Ambassador to the United Nations in the 1980s before assuming leadership of the Likud party in 1993. He has served multiple terms as Prime Minister (1996–1999, 2009–2021, and 2022–present).",
     "partyWebsite": "https://www.likud.org.il/",
     "facts": [
@@ -105,7 +105,7 @@ export const politicians: Politician[] = [
     "quote": "A government of unity is not a compromise; it is a strategic necessity for the future of Zionism.",
     "party": "Together",
     "ballotLetters": "פה",
-    "seats": "N/A",
+    "seats": "12.7",
     "biography": "Bennett served as a company commander in the Maglan special forces unit. He later co-founded and sold multiple international technology companies, including Cyota and Soluto. Entering politics as Netanyahu's Chief of Staff, he subsequently led the Jewish Home party. In 2021, he formed a rotation government consisting of right-wing, centrist, left-wing, and Arab parties, serving as Prime Minister. He recently re-entered politics with the \"Together\" faction.",
     "partyWebsite": "https://en.wikipedia.org/wiki/Naftali_Bennett",
     "facts": [
@@ -149,7 +149,7 @@ export const politicians: Politician[] = [
     "quote": "Our duty is to put the state above all partisan interests and restore national stability.",
     "party": "Blue & White",
     "ballotLetters": "כן",
-    "seats": "12",
+    "seats": "< 3.25%",
     "biography": "Benny Gantz served in the Israel Defence Forces for nearly four decades, reaching the position of Chief of General Staff (2011–2015). He entered politics in 2019, forming the Blue and White alliance. Gantz has served as Minister of Defence and Alternate Prime Minister. He joined an emergency war cabinet following the October 2023 attacks, later resigning over strategic disagreements regarding the conduct of the war.",
     "partyWebsite": "https://kachollavan.org.il/",
     "facts": [
@@ -192,7 +192,7 @@ export const politicians: Politician[] = [
     "quote": "Integrity and strategic clarity are the only way to navigate the challenges Israel faces.",
     "party": "Yashar!",
     "ballotLetters": "ישר",
-    "seats": "N/A",
+    "seats": "23.5",
     "biography": "Gadi Eisenkot served as the IDF Chief of General Staff from 2015 to 2019. He authored military doctrines focused on deterrence and infrastructure targeting. He entered politics with the National Unity party and served in the emergency war cabinet in 2023. He recently launched a new political movement, \"Yashar!,\" focused on systemic governance reform.",
     "partyWebsite": "https://yasharwitheisenkot.com/",
     "facts": [
@@ -235,7 +235,7 @@ export const politicians: Politician[] = [
     "quote": "A democratic and social Israel is a strong Israel.",
     "party": "The Democrats",
     "ballotLetters": "מרצ",
-    "seats": "4",
+    "seats": "9.1",
     "biography": "Yair Golan is a retired IDF Major General who served as Deputy Chief of the General Staff. He entered politics with the Meretz party and served as Deputy Minister of Economy. In 2024, he was elected leader of the Labour Party and facilitated a merger with Meretz, creating a unified faction called \"The Democrats.\"",
     "partyWebsite": "https://democrats.org.il/",
     "facts": [
@@ -278,7 +278,7 @@ export const politicians: Politician[] = [
     "quote": "We must preserve the tradition of our fathers and care for those who have been left behind.",
     "party": "Shas",
     "ballotLetters": "שס",
-    "seats": "11",
+    "seats": "7.8",
     "biography": "Aryeh Deri serves as the chairman of Shas, a party founded in 1984. He has held multiple ministerial roles, including Minister of the Interior. In 2021, he resigned from the Knesset following a plea bargain regarding tax offenses, but returned to the government in 2022. Following a Supreme Court ruling in early 2023, he relinquished his ministerial posts but remained a Knesset member and the leader of the party.",
     "partyWebsite": "https://en.wikipedia.org/wiki/Shas",
     "facts": [
@@ -321,7 +321,7 @@ export const politicians: Politician[] = [
     "quote": "Pragmatic partnership is the only way to secure the civic rights and future of our community.",
     "party": "Ra'am",
     "ballotLetters": "עם",
-    "seats": "5",
+    "seats": "5.1",
     "biography": "Mansour Abbas is the chairman of the United Arab List, which operates as the political wing of the Southern Branch of the Islamic Movement in Israel. He holds a degree in dentistry from the Hebrew University of Jerusalem. In 2021, he led his party to become the first independent Arab party to join an Israeli governing coalition, signing an agreement with Yair Lapid and Naftali Bennett.",
     "partyWebsite": "https://en.wikipedia.org/wiki/United_Arab_List",
     "facts": [
@@ -363,7 +363,7 @@ export const politicians: Politician[] = [
     "quote": "We are fighting for the soul of Israeli democracy and a sane, liberal future for our children.",
     "party": "Together",
     "ballotLetters": "פה",
-    "seats": "24",
+    "seats": "12.7",
     "biography": "Yair Lapid is the leader of Yesh Atid. Prior to entering politics, he worked as an author, television presenter, and news anchor. He entered politics in 2012, subsequently serving as Minister of Finance. He later served as Prime Minister of Israel during the 36th government rotation agreement. He recently led Yesh Atid to join Naftali Bennett's 'Together' faction.",
     "partyWebsite": "https://yeshatid.org.il/",
     "facts": [
@@ -406,7 +406,7 @@ export const politicians: Politician[] = [
     "quote": "Universal service and national responsibility are the foundation of a resilient society.",
     "party": "Zionist Home",
     "ballotLetters": "ז",
-    "seats": "N/A",
+    "seats": "2.7",
     "biography": "Yoaz Hendel is the leader of Zionist Home (The Reservists / Miluimnikim), a political party re-established with Chili Tropper. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
     "partyWebsite": "https://www.themiluimnikim.org.il/?1",
     "facts": [
@@ -448,7 +448,7 @@ export const politicians: Politician[] = [
     "quote": "Equality, dignity, and a shared future for Jews and Arabs are the only path to true peace.",
     "party": "Hadash-Ta'al",
     "ballotLetters": "ום",
-    "seats": "5",
+    "seats": "7.0",
     "biography": "Ayman Odeh is the leader of Hadash (The Democratic Front for Peace and Equality). He is a lawyer from Haifa and has served as a member of the Knesset since 2015. He advocates for Jewish-Arab political partnership and civil rights, leading a joint list with Ahmad Tibi.",
     "partyWebsite": "https://hadash.org.il/",
     "facts": [
@@ -490,7 +490,7 @@ export const politicians: Politician[] = [
     "quote": "The Torah is the light that has guided our people through every storm in our long history.",
     "party": "United Torah Judaism",
     "ballotLetters": "ג",
-    "seats": "7",
+    "seats": "7.7",
     "biography": "Yitzhak Goldknopf represents the Hasidic Agudat Yisrael faction and leads the United Torah Judaism list. Before entering the Knesset in 2022, he managed a large network of Haredi kindergartens and daycare centres. He succeeded Yaakov Litzman as the faction's primary representative.",
     "partyWebsite": "https://en.wikipedia.org/wiki/United_Torah_Judaism",
     "facts": [
@@ -532,7 +532,7 @@ export const politicians: Politician[] = [
     "quote": "Unapologetic national pride and total security are the keys to a strong Jewish state.",
     "party": "Otzma Yehudit",
     "ballotLetters": "ט",
-    "seats": "6",
+    "seats": "7.5",
     "biography": "Itamar Ben Gvir is the leader of Otzma Yehudit (Jewish Power). He is a lawyer who often represented right-wing activists before entering national politics. He entered the Knesset during the 24th legislative term and has maintained significant public visibility through activism.",
     "partyWebsite": "https://ozma-yeudit.co.il/",
     "facts": [
@@ -575,7 +575,7 @@ export const politicians: Politician[] = [
     "quote": "Secular rights are human rights; we will do exactly what we promised our voters.",
     "party": "Yisrael Beiteinu",
     "ballotLetters": "ל",
-    "seats": "6",
+    "seats": "8.2",
     "biography": "Avigdor Lieberman is the founder and leader of Yisrael Beiteinu (Israel Our Home). He immigrated to Israel from the Soviet Union in 1978. He has served in numerous senior ministerial roles, including Minister of Defence, Minister of Foreign Affairs, and Minister of Finance. Initially drawing his primary political support from Russian-speaking immigrants, he has since expanded his base to focus on secular, right-wing voters.",
     "partyWebsite": "https://beytenu.org.il/",
     "facts": [
@@ -617,7 +617,7 @@ export const politicians: Politician[] = [
     "quote": "A state of all its citizens is the only truly democratic vision for this land.",
     "party": "Balad",
     "ballotLetters": "ד",
-    "seats": "N/A",
+    "seats": "< 3.25%",
     "biography": "Sami Abu Shehadeh is a historian, educator, and political leader from Jaffa. Prior to entering national politics, he served as a member of the Tel Aviv-Yafo City Council. He entered the Knesset in 2019 as part of the Joint List alliance. In 2021, he was elected as the chairman of the Balad party.",
     "partyWebsite": "https://en.wikipedia.org/wiki/Balad_(political_party)",
     "facts": [
@@ -659,7 +659,7 @@ export const politicians: Politician[] = [
     "quote": "Settling the land and strengthening our Jewish identity is our historical mission and national duty.",
     "party": "Religious Zionist",
     "ballotLetters": "טב",
-    "seats": "7",
+    "seats": "5.4",
     "biography": "Bezalel Smotrich is the leader of the Religious Zionist Party. He is a lawyer and a co-founder of the Regavim organisation, an NGO focused on monitoring and taking legal action regarding land use and construction in Israel and the West Bank. He entered the Knesset in 2015 as part of the Jewish Home party before eventually forming and leading his own independent Religious Zionist faction.",
     "partyWebsite": "https://zionutdatit.org.il/en/about/",
     "facts": [
@@ -701,7 +701,7 @@ export const politicians: Politician[] = [
     "quote": "We are not interested in the political seat; we are interested in the people. We established Amcha Yisrael as a determined team of fighters coming to serve the people of Israel.",
     "party": "Ofer Winter",
     "ballotLetters": "ך",
-    "seats": "4",
+    "seats": "3.8",
     "biography": "Brigadier General (Res.) Ofer Winter is the founder and leader of the Amcha Yisrael party. A graduate of the Or Etzion military boarding school and the Bnei David pre-military academy in Eli, he began his military career in Sayeret Matkal and later served as an officer in the Maglan special forces unit. During the Second Intifada, he commanded the Givati reconnaissance battalion, which received a Chief of Staff citation under his leadership. He later served as the IDF attaché to the US Marine Corps, commanded the Duvdevan special forces unit, and commanded the Northern Brigade in the Gaza Strip. He subsequently served as military secretary to four defense ministers, including Prime Minister Benjamin Netanyahu. As commander of the Givati Brigade during Operation Protective Edge (2014), he led the brigade's combat operations. In his final IDF posting, he commanded the 98th Paratroopers Division (Fire Formation). He lives in Mitzpe Netofa, is married, and is a father of eight.",
     "partyWebsite": "https://amchaisrael.co.il",
     "facts": [

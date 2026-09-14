@@ -90,7 +90,7 @@ const VotingGuide: React.FC = () => {
                 className="group bg-white dark:bg-[#1f3448] p-4 rounded-xl border-2 border-[#162839]/10 dark:border-slate-700 hover:border-[#162839] dark:hover:border-secondary transition-all duration-200 flex flex-col justify-between h-40 shadow-sm hover:shadow-md"
               >
                 <div className="flex justify-between items-start">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{card.seats !== "N/A" ? `${card.seats} seats` : 'New List'}</span>
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{card.seats.includes('<') ? card.seats : card.seats !== "N/A" ? `${card.seats} seats` : 'New List'}</span>
                   <span lang="he" dir="rtl" className="font-['Suez_One'] text-3xl font-black text-[#162839] dark:text-[#fbf9f5] group-hover:scale-110 transition-transform">
                     {card.letters}
                   </span>
