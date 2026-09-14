@@ -65,7 +65,7 @@ export const IMAGE_CREDITS: Record<string, ImageCredit> = {
     attribution: "Avi Ohayon / GPO (CC BY-SA 3.0)"
   },
   "ofer-winter": {
-    source: "https://amchaisrael.co.il",
-    attribution: "Amcha Yisrael Campaign"
+    source: "https://commons.wikimedia.org/wiki/File:Ofer_Winter_2026.png",
+    attribution: "Nadav Margalit (CC BY-SA 4.0)"
   }
 };
