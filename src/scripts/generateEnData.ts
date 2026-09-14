@@ -43,7 +43,8 @@ const enData = {
     "Itamar Ben Gvir": "Itamar Ben Gvir",
     "Avigdor Lieberman": "Avigdor Lieberman",
     "Sami Abu Shehadeh": "Sami Abu Shehadeh",
-    "Bezalel Smotrich": "Bezalel Smotrich"
+    "Bezalel Smotrich": "Bezalel Smotrich",
+    "Ofer Winter": "Ofer Winter"
   },
   issueNames: {
     "Free Market Priority": "Free Market Priority",

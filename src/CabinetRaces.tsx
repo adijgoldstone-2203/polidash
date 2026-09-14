@@ -111,6 +111,16 @@ const RACES_DATA: CabinetRace[] = [
         role: "Reservists Party Leader",
         keyStance: "Miluimnikim rights, national service mandate, Zionist security doctrine.",
         seats: "N/A"
+      },
+      {
+        id: "ofer-winter",
+        name: "Ofer Winter",
+        party: "Amcha Yisrael",
+        ballotLetters: "ך",
+        imageUrl: "assets/politicians/ofer-winter.avif",
+        role: "Amcha Yisrael Party Leader",
+        keyStance: "Decisive military victory, security control in Gaza, universal draft requirement.",
+        seats: "4"
       }
     ]
   },

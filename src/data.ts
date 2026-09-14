@@ -693,6 +693,53 @@ export const politicians: Politician[] = [
     "stanceSources": {
       "West Bank Annexation": { url: "https://zionutdatit.org.il/en/about/", title: "Religious Zionist Platform on Sovereignty & Settlements", publisher: "zionutdatit.org.il" }
     }
+  },
+  {
+    "id": "ofer-winter",
+    "name": "Ofer Winter",
+    "imageUrl": "assets/politicians/ofer-winter.avif",
+    "quote": "We are not interested in the political seat; we are interested in the people. We established Amcha Yisrael as a determined team of fighters coming to serve the people of Israel.",
+    "party": "Ofer Winter",
+    "ballotLetters": "ך",
+    "seats": "4",
+    "biography": "Brigadier General (Res.) Ofer Winter is the founder and leader of the Amcha Yisrael party. A graduate of the Or Etzion military boarding school and the Bnei David pre-military academy in Eli, he began his military career in Sayeret Matkal and later served as an officer in the Maglan special forces unit. During the Second Intifada, he commanded the Givati reconnaissance battalion, which received a Chief of Staff citation under his leadership. He later served as the IDF attaché to the US Marine Corps, commanded the Duvdevan special forces unit, and commanded the Northern Brigade in the Gaza Strip. He subsequently served as military secretary to four defense ministers, including Prime Minister Benjamin Netanyahu. As commander of the Givati Brigade during Operation Protective Edge (2014), he led the brigade's combat operations. In his final IDF posting, he commanded the 98th Paratroopers Division (Fire Formation). He lives in Mitzpe Netofa, is married, and is a father of eight.",
+    "partyWebsite": "https://amchaisrael.co.il",
+    "facts": [
+      "Military Career: Commanded Sayeret Givati, Duvdevan special forces, the Gaza Northern Brigade, Givati Brigade during Operation Protective Edge (2014), and the 98th Paratroopers Division.",
+      "Political Platform: Founded the Amcha Yisrael party in August 2026, advancing an uncompromising security doctrine, military victory, and Haredi enlistment reform.",
+      "Defense Experience: Served as military secretary to four Ministers of Defense, including Prime Minister Benjamin Netanyahu."
+    ],
+    "intelligence": {
+      "Gaza & Security": "Advocates decisive military victory, sustained combat pressure until total threat elimination, and maintaining full Israeli security control over Gaza.",
+      "Cost of Living": "Prioritizes reducing the cost of living by breaking monopolies, cutting red tape, and providing targeted economic support for reservists and peripheral communities.",
+      "Judicial Reform": "Supports comprehensive conservative judicial reform to restore the balance of power, curb Supreme Court intervention in security and legislative matters, and reform the attorney general's powers.",
+      "Haredi Draft": "Stipulates mandatory service legislation as a prerequisite for entering government; calls for universal national and military service across all sectors without exemptions.",
+      "Religion & Public Space": "Emphasizes Jewish heritage and traditional values as the foundation of national resilience while championing unity across observant and secular sectors.",
+      "Arab-Israeli Integration": "Encourages genuine civil integration and national service for loyal minority communities, alongside strict enforcement against crime and protection rackets.",
+      "Palestinian Statehood": "Firmly and categorically opposes the establishment of a sovereign Palestinian state, viewing it as an existential threat to Israel's survival and security.",
+      "Internal Cohesion": "Calls for transcending factional political tribalism, uniting the 'reservist generation' around shared sacrifice, mutual accountability, and national mission.",
+      "Settlements": "Strongly supports the defense, expansion, and permanent sovereign infrastructure of Israeli communities in Judea and Samaria.",
+      "Foreign Relations": "Maintains strategic alliances with international partners like the US while insisting on absolute Israeli freedom of military action and operational independence."
+    },
+    "stances": {
+      "Free Market Priority": "Support",
+      "Two-State Separation": "Oppose",
+      "Judicial Override": "Support",
+      "Universal Enlistment": "Support",
+      "State Commission (Oct 7)": "Support",
+      "Shabbat Public Transit": "Oppose",
+      "West Bank Annexation": "Support",
+      "Rabbinical Court Power": "Support",
+      "Basic Law: Equality": "Oppose"
+    },
+    "stanceSources": {
+      "Free Market Priority": { url: "https://amchaisrael.co.il", title: "Amcha Yisrael Socio-Economic Platform", publisher: "amchaisrael.co.il" },
+      "Two-State Separation": { url: "https://amchaisrael.co.il/team", title: "Amcha Yisrael Security Doctrine & Rejection of Palestinian State", publisher: "amchaisrael.co.il" },
+      "Judicial Override": { url: "https://amchaisrael.co.il/team", title: "Eran Ben-Ari & Amcha Yisrael Judicial Reform Agenda", publisher: "amchaisrael.co.il" },
+      "Universal Enlistment": { url: "https://amchaisrael.co.il", title: "Winter demands universal draft legislation for coalition entry", publisher: "amchaisrael.co.il" },
+      "State Commission (Oct 7)": { url: "https://amchaisrael.co.il", title: "Winter proposals on investigating October 7 failures", publisher: "amchaisrael.co.il" },
+      "West Bank Annexation": { url: "https://amchaisrael.co.il/team", title: "Sovereignty in Judea and Samaria Platform", publisher: "amchaisrael.co.il" }
+    }
   }
 ];
 

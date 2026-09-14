@@ -63,5 +63,9 @@ export const IMAGE_CREDITS: Record<string, ImageCredit> = {
   "bezalel-smotrich": {
     source: "https://commons.wikimedia.org/wiki/File:Bezalel_Smotrich.jpg",
     attribution: "Avi Ohayon / GPO (CC BY-SA 3.0)"
+  },
+  "ofer-winter": {
+    source: "https://amchaisrael.co.il",
+    attribution: "Amcha Yisrael Campaign"
   }
 };
