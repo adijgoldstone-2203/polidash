@@ -22,6 +22,7 @@ const enData = {
     "Yashar!": "Yashar!",
     "Bennett 2026": "Bennett 2026",
     "Trooper-Hendel": "Trooper-Hendel",
+    "Ofer Winter": "Ofer Winter",
     "Balad (National Democratic Alliance)": "Balad (National Democratic Alliance)",
     "Labor": "Labour"
   },
