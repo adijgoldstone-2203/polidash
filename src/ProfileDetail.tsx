@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { politicians, AI_DISCLAIMER } from './data';
 import { POLL_DATA } from './polls';
-import { computeWeightedAverage, getPoliticianPollAverage } from './utils/pollAnalytics';
+import { computeWeightedAverage, getPoliticianPollAverage, getPoliticianPollParty } from './utils/pollAnalytics';
 import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedImage from './components/OptimizedImage';
 import { useLanguage } from './i18n';
@@ -67,7 +67,21 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                           const seatsText = !isUnderThreshold
                             ? `${avg % 1 === 0 ? avg : avg.toFixed(1)} ${t('profileDetail.seats')}`
                             : t('profileDetail.na');
-                          return `${tParty(politician.party)} • ${seatsText}`;
+                          const pollParty = getPoliticianPollParty(politician.id);
+                          const pollsHref = pollParty ? `#/polls?party=${encodeURIComponent(pollParty)}` : '#/polls';
+                          return (
+                            <>
+                              <span>{tParty(politician.party)}</span>
+                              {" • "}
+                              <a
+                                href={pollsHref}
+                                className="underline hover:text-primary dark:hover:text-white transition-colors cursor-pointer"
+                                title={`${t('profiles.viewPollingData')}: ${tParty(pollParty || politician.party)}`}
+                              >
+                                {seatsText} ↗
+                              </a>
+                            </>
+                          );
                         })()}
                       </p>
                     </div>

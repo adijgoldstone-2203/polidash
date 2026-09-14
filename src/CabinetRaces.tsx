@@ -255,7 +255,9 @@ const CabinetRaces: React.FC = () => {
                           {cand.name}
                         </h3>
                         <p className="text-xs text-slate-500 font-medium">
-                          {cand.party} • {cand.seats.includes('<') ? cand.seats : `${cand.seats} seats (PoliDash avg)`}
+                          <a href={`#/polls?party=${encodeURIComponent(cand.party)}`} className="hover:underline hover:text-secondary transition-colors">
+                            {cand.party} • {cand.seats.includes('<') ? cand.seats : `${cand.seats} seats (PoliDash avg)`}
+                          </a>
                         </p>
                       </div>
                     </div>

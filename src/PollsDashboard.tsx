@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import ReactSlider from 'react-slider';
 import { POLL_DATA, CURRENT_KNESSET, PARTY_COLORS } from './polls';
-import { computeWeightedAverage, getRunningWeightedAverageData, getAllParties, getSinglePollTimeSeriesData } from './utils/pollAnalytics';
+import { computeWeightedAverage, getRunningWeightedAverageData, getAllParties, getSinglePollTimeSeriesData, getPoliticianPollParty } from './utils/pollAnalytics';
 import TrendChart from './components/TrendChart';
 import { useLanguage } from './i18n';
 import { politicians, AI_DISCLAIMER } from './data';
@@ -23,6 +23,7 @@ const getPartyLeaderId = (partyName: string): string | null => {
   if (normalized.includes('beiteinu') || normalized.includes('lieberman')) return 'avigdor-lieberman';
   if (normalized.includes('balad') || normalized.includes('shehadeh')) return 'sami-abu-shehadeh';
   if (normalized.includes('religious zionist') || normalized.includes('smotrich')) return 'bezalel-smotrich';
+  if (normalized.includes('winter') || normalized.includes('וינטר') || normalized.includes('amcha')) return 'ofer-winter';
   return null;
 };
 
@@ -76,13 +77,18 @@ const DateRangeSlider: React.FC<DateRangeSliderProps> = ({ months, initialRange,
   );
 };
 
-const PollsDashboard: React.FC = () => {
+interface PollsDashboardProps {
+  currentPath?: string;
+}
+
+const PollsDashboard: React.FC<PollsDashboardProps> = ({ currentPath }) => {
   const { t, tParty, tPollSource, tPolitician, dateLocale, lang } = useLanguage();
   const [selectedChannels, setSelectedChannels] = useState<Set<string>>(new Set());
   const [monthRange, setMonthRange] = useState<[number, number]>([0, 100]); // will sync dynamically
   const [sortColumn, setSortColumn] = useState<string>('weighted');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
   const [visibleParties, setVisibleParties] = useState<Set<string>>(new Set());
+  const [highlightedParty, setHighlightedParty] = useState<string | null>(null);
   
   const chartRef = useRef<HTMLDivElement>(null);
 
@@ -104,6 +110,51 @@ const PollsDashboard: React.FC = () => {
     
     return rawParties.filter(party => activeParties.has(party));
   }, []);
+
+  // Handle URL navigation with party/politician query params (e.g. #/polls?party=Ofer%20Winter)
+  useEffect(() => {
+    const handleUrlParty = () => {
+      const hash = window.location.hash || '';
+      if (!hash.includes('?')) return;
+
+      const queryString = hash.split('?')[1];
+      const params = new URLSearchParams(queryString);
+      const partyParam = params.get('party');
+      const politicianParam = params.get('politician');
+
+      let targetParty: string | null = null;
+      if (partyParam) {
+        const decoded = decodeURIComponent(partyParam).trim();
+        const match = allParties.find(p => p.toLowerCase() === decoded.toLowerCase())
+          || allParties.find(p => p.toLowerCase().includes(decoded.toLowerCase()))
+          || decoded;
+        targetParty = match;
+      } else if (politicianParam) {
+        targetParty = getPoliticianPollParty(politicianParam);
+      }
+
+      if (targetParty) {
+        setVisibleParties(new Set([targetParty]));
+        setSelectedChannels(new Set()); // Ensure all channels are enabled
+        setHighlightedParty(targetParty);
+
+        const timer = setTimeout(() => {
+          setHighlightedParty(null);
+        }, 5000);
+
+        // Smooth scroll to chart after rendering
+        setTimeout(() => {
+          chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+
+        return () => clearTimeout(timer);
+      }
+    };
+
+    handleUrlParty();
+    window.addEventListener('hashchange', handleUrlParty);
+    return () => window.removeEventListener('hashchange', handleUrlParty);
+  }, [allParties, currentPath]);
 
   const handleRowClick = (e: React.MouseEvent, party: string) => {
     if ((e.target as HTMLElement).closest('.leader-tooltip')) {
@@ -451,11 +502,18 @@ const PollsDashboard: React.FC = () => {
                     const knesset = CURRENT_KNESSET[party] || 0;
                     const partyColor = PARTY_COLORS[party] || '#94a3b8';
                     
+                    const isHighlighted = highlightedParty === party;
+
                     return (
                       <tr 
                         key={party} 
+                        id={`party-row-${party.replace(/\s+/g, '-').toLowerCase()}`}
                         onClick={(e) => handleRowClick(e, party)}
-                        className={`border-b border-slate-50 hover:bg-blue-50/30 transition-colors cursor-pointer ${i % 2 === 0 ? '' : 'bg-slate-50/20'}`}
+                        className={`border-b border-slate-50 transition-all cursor-pointer ${
+                          isHighlighted 
+                            ? 'bg-amber-100/60 dark:bg-amber-900/30 ring-2 ring-secondary' 
+                            : 'hover:bg-blue-50/30 ' + (i % 2 === 0 ? '' : 'bg-slate-50/20')
+                        }`}
                       >
                         <td className="py-2.5 px-4 sticky start-0 bg-inherit z-20 hover:z-40 group relative">
                           <div className="flex items-center gap-2">

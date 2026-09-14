@@ -79,6 +79,7 @@ export const en: Record<string, string> = {
   "profiles.seats": "PoliDash",
   "profiles.held": "Avg Seats",
   "profiles.viewFull": "View Full Profile",
+  "profiles.viewPollingData": "View Polling Data",
 
   // Profile Detail Page
   "profileDetail.back": "Back to All Profiles",

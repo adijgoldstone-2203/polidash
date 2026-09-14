@@ -79,6 +79,7 @@ export const he: Record<string, string> = {
   "profiles.seats": "ממוצע",
   "profiles.held": "PoliDash",
   "profiles.viewFull": "צפה בפרופיל מלא",
+  "profiles.viewPollingData": "צפה בנתוני סקרים",
 
   // Profile Detail Page
   "profileDetail.back": "חזרה לכל הפרופילים",

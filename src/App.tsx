@@ -31,6 +31,8 @@ function App() {
         setTimeout(() => {
           document.getElementById('methodology')?.scrollIntoView({ behavior: 'smooth' });
         }, 150);
+      } else if (path.startsWith('#/polls?')) {
+        // PollsDashboard will smoothly scroll to the selected party's chart
       } else {
         window.scrollTo(0, 0);
       }
@@ -88,7 +90,7 @@ function App() {
         </div>
 
         <div className={isPolls ? 'block' : 'hidden'}>
-          <PollsDashboard />
+          <PollsDashboard currentPath={currentPath} />
         </div>
         
         <div className={isQuiz ? 'block' : 'hidden'}>

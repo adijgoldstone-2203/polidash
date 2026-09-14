@@ -387,3 +387,44 @@ export const getPoliticianPollAverage = (
   }
 };
 
+/**
+ * Maps a politician's unique ID to their party name as represented in POLL_DATA.
+ */
+export const getPoliticianPollParty = (politicianId: string): string | null => {
+  switch (politicianId) {
+    case 'benjamin-netanyahu':
+      return 'Likud';
+    case 'naftali-bennett':
+    case 'yair-lapid':
+      return 'Together (Bennett-Lapid)';
+    case 'benny-gantz':
+      return 'Blue and White';
+    case 'gadi-eisenkot':
+      return 'Yashar!';
+    case 'yair-golan':
+      return 'Democrats';
+    case 'aryeh-deri':
+      return 'Shas';
+    case 'mansour-abbas':
+      return "Ra'am";
+    case 'yoaz-hendel':
+      return 'Trooper-Hendel';
+    case 'ayman-odeh':
+      return 'Joint List';
+    case 'yitzhak-goldknopf':
+      return 'United Torah Judaism';
+    case 'itamar-ben-gvir':
+      return 'Otzma Yehudit';
+    case 'avigdor-lieberman':
+      return 'Yisrael Beiteinu';
+    case 'sami-abu-shehadeh':
+      return 'Balad';
+    case 'bezalel-smotrich':
+      return 'Religious Zionist';
+    case 'ofer-winter':
+      return 'Ofer Winter';
+    default:
+      return null;
+  }
+};
+
