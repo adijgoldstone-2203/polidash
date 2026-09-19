@@ -21,8 +21,8 @@ export const he: Record<string, string> = {
   "footer.terms": "תנאים",
 
   // Home – Hero
-  "home.hero.title1": "החלון שלכם ל",
-  "home.hero.title2": "בהירות פוליטית.",
+  "home.hero.title1": "החלון שלכם",
+  "home.hero.title2": "לבהירות פוליטית.",
   "home.hero.description":
     "הינו פרויקט סטודנטיאלי אקדמי עצמאי וללא כוונת רווח, המציג תמונת מצב אזרחית בהירה. אנו מרכזים נתונים מאומתים, סקרים ומצעים רשמיים כדי להציג את עמדות המנהיגים בסוגיות המרכזיות.",
   "home.hero.exploreBtn": "חקור את הסוגיות",
