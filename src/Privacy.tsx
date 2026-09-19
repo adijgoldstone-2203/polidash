@@ -39,10 +39,10 @@ const Privacy: React.FC = () => {
               <>
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    1. מבוא ועמידה בדין (עפ"י תיקון 13 לחוק הגנת הפרטיות)
+                    1. מבוא ועמידה בדין (פרויקט סטודנטיאלי ללא מטרות רווח ועמידה בתיקון 13)
                   </h2>
                   <p>
-                    פולידאש (PoliDash) הוא מיזם מידע עצמאי ובלתי תלוי למעקב אחר עמדות פוליטיות, המחוייב באופן מוחלט לשמירה על הפרטיות, השקיפות והניטרליות. האתר פועל בהתאם להוראות חוק הגנת הפרטיות, התשמ"א-1981, לרבות **תיקון מס' 13 לחוק הגנת הפרטיות, התשפ"ד-2024** (הנכנס לתוקף באוגוסט 2025). האתר תוכנן במבנה של Privacy by Design ואינו דורש הרשמה, יצירת חשבון או מסירת פרטים מזהים כלשהם.
+                    פולידאש (PoliDash) הוא פרויקט סטודנטיאלי אקדמי עצמאי, הפועל ללא כוונת רווח למטרות מחקר וחינוך אזרחי בלבד. האתר מחוייב באופן מוחלט לשמירה על הפרטיות, השקיפות והניטרליות, ופועל בהתאם להוראות חוק הגנת הפרטיות, התשמ"א-1981, לרבות **תיקון מס' 13 לחוק הגנת הפרטיות, התשפ"ד-2024** (הנכנס לתוקף באוגוסט 2025). האתר תוכנן במבנה של Privacy by Design ואינו דורש הרשמה, יצירת חשבון או מסירת פרטים מזהים כלשהם.
                   </p>
                 </section>
 
@@ -96,10 +96,10 @@ const Privacy: React.FC = () => {
               <>
                 <section className="space-y-3">
                   <h2 className="font-['Newsreader'] text-xl md:text-2xl font-bold text-primary dark:text-[#fbf9f5]">
-                    1. Overview & Statutory Compliance (Amendment 13)
+                    1. Overview & Non-Profit Academic Status (Amendment 13 Compliance)
                   </h2>
                   <p>
-                    PoliDash is an independent, non-partisan political intelligence platform operating under strict compliance with the Israeli Privacy Protection Law (5741-1981) and **Amendment No. 13 (5784-2024)**. Designed around strict Privacy-by-Design principles, our dashboard requires no user accounts, registration, or submission of personal identifiers.
+                    PoliDash is an independent, non-profit academic student project developed solely for civic research and educational awareness, operating under strict compliance with the Israeli Privacy Protection Law (5741-1981) and **Amendment No. 13 (5784-2024)**. Designed around strict Privacy-by-Design principles, our dashboard requires no user accounts, registration, or submission of personal identifiers.
                   </p>
                 </section>
 

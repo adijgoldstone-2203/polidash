@@ -223,6 +223,9 @@ const Quiz: React.FC = () => {
                 </button>
               </div>
             </div>
+            <p className="text-[11px] text-slate-400 dark:text-slate-500 text-center mt-6">
+              {t('disclaimers.quiz')}
+            </p>
           </section>
 
           <AnimatePresence>
@@ -233,7 +236,7 @@ const Quiz: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="max-w-5xl mx-auto mb-24"
               >
-                <div className="flex justify-between items-end mb-12 border-b border-stone-200 pb-4">
+                <div className="flex justify-between items-end mb-8 border-b border-stone-200 pb-4">
                   <h2 className="font-headline text-3xl font-bold text-primary italic">{t('quiz.results.title')}</h2>
                   <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">{t('quiz.results.subtitle')}</span>
                 </div>
@@ -297,6 +300,9 @@ const Quiz: React.FC = () => {
                     </motion.div>
                   ))}
                 </div>
+                <p className="mt-10 text-center text-xs text-slate-400 dark:text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                  {t('disclaimers.quiz')}
+                </p>
               </motion.section>
             )}
           </AnimatePresence>

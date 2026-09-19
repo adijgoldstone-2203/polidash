@@ -10,6 +10,7 @@ import CoalitionBuilder from './CoalitionBuilder';
 import PollsDashboard from './PollsDashboard';
 import Footer from './Footer';
 import Privacy from './Privacy';
+import Terms from './Terms';
 import MethodologyModal from './components/MethodologyModal';
 import { AccessibilityWidget } from './components/AccessibilityWidget';
 import { useLanguage } from './i18n';
@@ -53,13 +54,14 @@ function App() {
   const isReply = currentPath.startsWith('#/reply') || currentPath === '#/transparency';
   const isProfileDetail = currentPath.startsWith('#/profile/');
   const isPrivacy = currentPath === '#/privacy';
+  const isTerms = currentPath === '#/terms' || currentPath === '#/disclaimers';
   const isMap = isDev && currentPath === '#/map';
   const isStatements = isDev && currentPath === '#/statements';
   const isVoting = isDev && currentPath === '#/voting';
   
   const isHome = currentPath === '#/' || (
     !isProfiles && !isIssues && !isCoalition && !isPolls && !isQuiz && 
-    !isReply && !isProfileDetail && !isPrivacy && !isMap && !isStatements && 
+    !isReply && !isProfileDetail && !isPrivacy && !isTerms && !isMap && !isStatements && 
     !isVoting
   );
 
@@ -103,6 +105,10 @@ function App() {
 
         <div className={isPrivacy ? 'block' : 'hidden'}>
           <Privacy />
+        </div>
+
+        <div className={isTerms ? 'block' : 'hidden'}>
+          <Terms />
         </div>
 
         <div className={isMap ? 'block' : 'hidden'}>

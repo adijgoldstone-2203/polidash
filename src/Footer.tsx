@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLanguage } from './i18n';
-import { AI_DISCLAIMER } from './data';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -12,12 +11,9 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]">PoliDash</span>
             <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-secondary/15 text-secondary border border-secondary/20">Israel 2026</span>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50">
-              מיזם עצמאי • ללא מימון פוליטי (סעיף 2א1)
-            </span>
           </div>
           <p className="font-['Inter'] text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-            {AI_DISCLAIMER.full}
+            {t('footer.studentNotice')}
           </p>
           <p className="font-['Inter'] text-[11px] text-slate-400 dark:text-slate-500">
             {t('footer.copyright')}
@@ -33,6 +29,9 @@ const Footer: React.FC = () => {
           </a>
           <a className="font-['Inter'] text-xs uppercase tracking-widest font-bold text-slate-600 dark:text-slate-300 hover:text-secondary transition-colors" href="#/privacy">
             {t('footer.privacy')}
+          </a>
+          <a className="font-['Inter'] text-xs uppercase tracking-widest font-bold text-slate-600 dark:text-slate-300 hover:text-secondary transition-colors" href="#/terms">
+            {t('footer.terms')}
           </a>
         </div>
       </div>

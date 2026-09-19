@@ -77,6 +77,11 @@ const Profiles: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* Subtle Neutrality Footnote */}
+            <p className="mt-8 mb-12 text-center text-[11px] text-stone-400 dark:text-stone-500 max-w-2xl mx-auto leading-relaxed">
+              {t('disclaimers.profiles')}
+            </p>
         </main>
       </div>
     </>

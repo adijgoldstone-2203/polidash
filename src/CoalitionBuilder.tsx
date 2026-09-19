@@ -398,9 +398,10 @@ const CoalitionBuilder: React.FC = () => {
           </div>
         </div>
 
-        {/* Poll Source Label */}
-        <div className="flex justify-end pt-2 pe-4">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 flex items-center gap-1">
+        {/* Footer Note & Poll Source Label */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 pt-2 px-2 text-[11px] text-slate-400 dark:text-slate-500">
+          <span>{t('disclaimers.coalition')}</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest shrink-0">
             {t('coalition.dataSource')} {selectedPoll.id === 'polidash_avg' ? t('polls.table.avg') : tPollSource(selectedPoll.source)}
           </span>
         </div>

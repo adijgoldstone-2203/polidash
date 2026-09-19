@@ -632,6 +632,14 @@ const PollsDashboard: React.FC<PollsDashboardProps> = ({ currentPath }) => {
             <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               {AI_DISCLAIMER.full}
             </p>
+            <div className="pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center gap-4 text-xs font-semibold">
+              <a href="#/terms" className="text-secondary underline hover:opacity-80">
+                {t('footer.terms')}
+              </a>
+              <a href="#/reply" className="text-secondary underline hover:opacity-80">
+                {t('footer.reply')}
+              </a>
+            </div>
           </div>
         </section>
 

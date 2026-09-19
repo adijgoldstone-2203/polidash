@@ -220,8 +220,17 @@ const Issues: React.FC = () => {
               )}
             </div>
             
-            <div className="mt-12 pt-6 border-t border-stone-200 dark:border-slate-800 text-xs text-slate-500 text-center">
-              PoliDash Intelligence Engine • {AI_DISCLAIMER.full}
+            <div className="mt-12 pt-6 border-t border-stone-200 dark:border-slate-800 text-xs text-slate-500 text-center space-y-2">
+              <p>PoliDash Intelligence Engine • {AI_DISCLAIMER.full}</p>
+              <div className="flex justify-center items-center gap-4 text-xs font-semibold">
+                <a href="#/terms" className="text-secondary underline hover:opacity-80">
+                  {t('footer.terms')}
+                </a>
+                <span>•</span>
+                <a href="#/reply" className="text-secondary underline hover:opacity-80">
+                  {t('footer.reply')}
+                </a>
+              </div>
             </div>
           </section>
         </main>

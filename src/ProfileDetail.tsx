@@ -259,11 +259,22 @@ const ProfileDetail: React.FC<Props> = ({ id }) => {
                     </div>
                   </div>
 
-                  {/* AI Disclosure Footer */}
+                  {/* AI & Legal Disclosure Footer */}
                   <div className="border-t border-stone-200 dark:border-slate-800 pt-6 text-xs text-slate-500 space-y-2">
-                    <p className="font-medium text-slate-600 dark:text-slate-400">
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                       {AI_DISCLAIMER.full}
                     </p>
+                    <p className="text-[11px] text-slate-400 dark:text-slate-500">
+                      {t('disclaimers.profiles')}
+                    </p>
+                    <div className="flex items-center gap-4 text-xs font-semibold pt-1">
+                      <a href="#/terms" className="text-secondary underline hover:opacity-80">
+                        {t('footer.terms')}
+                      </a>
+                      <a href="#/reply" className="text-secondary underline hover:opacity-80">
+                        {t('footer.reply')}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

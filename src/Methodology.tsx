@@ -107,7 +107,7 @@ const Methodology: React.FC = () => {
                 Copyright & Fair Use (סעיף 19 לחוק זכות יוצרים)
               </h4>
               <p>
-                PoliDash relies on short original summaries and brief factual citations. Quotations and factual references are utilized under the Fair Use doctrine (Section 19 of the Copyright Law, 5768-2007) for non-commercial review, reporting, and public education. Candidate portraits are credited to Wikimedia Commons / official public domain archives, and direct links to party platforms are provided.
+                PoliDash relies on short original summaries and brief factual citations. Quotations and factual references are utilized under the Fair Use doctrine (Section 19 of the Copyright Law, 5768-2007) for non-profit academic research, study, review, and civic education. Candidate portraits are credited to Wikimedia Commons / official public domain archives, and direct links to party platforms are provided.
               </p>
             </div>
 
@@ -117,7 +117,7 @@ const Methodology: React.FC = () => {
                 Election Propaganda Transparency (סעיף 2א1 לחוק הבחירות)
               </h4>
               <p>
-                PoliDash is a strictly independent, non-partisan educational project. It is **not** funded, sponsored, or operated by any candidate, political party, or election campaign. Pursuant to Section 2A1 of the Elections Law (Propaganda Methods), PoliDash accepts no paid political promotion or undisclosed party sponsorship.
+                PoliDash is a strictly independent, non-profit academic student project developed solely for civic research and educational awareness. It is **not** funded, sponsored, or operated by any candidate, political party, or election campaign. Pursuant to Section 2A1 of the Elections Law (Propaganda Methods), PoliDash accepts no paid political promotion, undisclosed party sponsorship, or commercial advertising.
               </p>
             </div>
 
@@ -171,18 +171,26 @@ const Methodology: React.FC = () => {
 
           <div className="pt-4 border-t border-stone-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
             <span className="text-xs text-slate-500 font-medium">Are you a candidate or party representative?</span>
-            <a
-              href="#/reply"
-              className="inline-flex items-center gap-2 bg-[#162839] dark:bg-secondary text-white px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity"
-            >
-              Right of Reply Protocol <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href="#/terms"
+                className="inline-flex items-center gap-2 border border-[#162839] dark:border-slate-600 text-[#162839] dark:text-[#fbf9f5] px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-stone-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                Terms & Disclaimers
+              </a>
+              <a
+                href="#/reply"
+                className="inline-flex items-center gap-2 bg-[#162839] dark:bg-secondary text-white px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity"
+              >
+                Right of Reply Protocol <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+            </div>
           </div>
         </section>
 
         {/* Footer info */}
         <div className="text-center text-xs text-slate-500 pt-6">
-          PoliDash Methodology & Statutory Legal Framework • Updated August 2026 • Independent Non-Partisan Educational Platform
+          PoliDash Methodology & Statutory Legal Framework • Non-Profit Academic Student Project • Updated September 2026
         </div>
       </div>
     </div>

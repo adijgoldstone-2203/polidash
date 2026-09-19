@@ -103,7 +103,14 @@ const MethodologyModal: React.FC<MethodologyModalProps> = ({ isOpen, onClose }) 
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end px-6 py-4 border-t border-stone-200/50 dark:border-slate-800/50 bg-stone-50 dark:bg-slate-900/40">
+        <div className="flex justify-between items-center px-6 py-4 border-t border-stone-200/50 dark:border-slate-800/50 bg-stone-50 dark:bg-slate-900/40 text-xs">
+          <a
+            href="#/terms"
+            onClick={onClose}
+            className="text-secondary font-bold underline hover:opacity-80"
+          >
+            {t('footer.terms')}
+          </a>
           <button
             onClick={onClose}
             className="px-5 py-2 bg-primary dark:bg-slate-800 text-white font-label font-bold text-sm rounded hover:bg-secondary transition-all cursor-pointer"

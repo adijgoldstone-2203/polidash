@@ -45,9 +45,10 @@ export const ISSUE_ENDPOINTS: Record<string, { left: string; right: string }> = 
 };
 
 export const AI_DISCLAIMER = {
-  short: "Information on PoliDash is compiled and summarized from official party manifestos, public candidate statements, and official party websites using unbiased AI summarization.",
-  full: "Disclaimer: Information presented on PoliDash is compiled and summarized from official party manifestos, public candidate statements, and official party websites using unbiased AI summarization.",
-  rightOfReply: "Candidates or party representatives wishing to update or correct listed information can submit requests via the Right of Reply protocol."
+  short: "PoliDash is a non-profit academic student project. Information is compiled and summarized from official party manifestos, public candidate statements, and official party websites using unbiased AI summarization.",
+  full: "PoliDash is an independent, non-profit academic student project created for civic educational and research purposes. Information is compiled and summarized from official party manifestos, public candidate statements, and official party websites using unbiased AI summarization.",
+  rightOfReply: "Candidates or party representatives wishing to update or correct listed information can submit requests via the Right of Reply protocol.",
+  studentProject: "PoliDash is an independent student project created for academic research and civic educational purposes, operated on a strictly non-profit basis with no political funding or commercial interest."
 };
 
 export const politicians: Politician[] = [

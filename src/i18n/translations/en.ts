@@ -7,7 +7,6 @@ export const en: Record<string, string> = {
   "header.nav.polls": "Polls",
   "header.nav.quiz": "Quiz",
   "header.nav.recentStatements": "Recent Statements",
-  "header.nav.races": "Races",
   "header.nav.map": "Electoral Map",
   "header.nav.voting": "How to Vote",
   "header.nav.methodology": "Methodology",
@@ -25,7 +24,7 @@ export const en: Record<string, string> = {
   "home.hero.title1": "Your window to",
   "home.hero.title2": "political clarity.",
   "home.hero.description":
-    "is your unbiased guide to political clarity. We use verified data and policy records to show you exactly where every leader stands on the issues that matter.",
+    "is an independent, non-profit academic student project providing political clarity. We synthesize verified public records and polling data to show where leaders stand on the issues that matter.",
   "home.hero.exploreBtn": "Explore the Issues",
   "home.hero.workflowBtn": "Our Workflow",
   "home.hero.photoCredit": "Background: Knesset Plenum / Bayit HaShalom (Attribution)",
@@ -229,7 +228,7 @@ export const en: Record<string, string> = {
   "polls.table.avgPrediction": "Avg Prediction",
   "polls.table.trend": "Trend",
   "polls.footer.note":
-    "Polls are snapshots in time and are subject to margins of error. The PoliDash Average uses a recency-weighted formula where newer polls carry proportionally more influence.",
+    "Section 16H Polling Notice: Polls reflect public opinion at the time of inquiry and do not predict election outcomes. PoliDash aggregates published surveys from accredited Israeli polling institutes using an academic recency-weighted mathematical model.",
   "polls.footer.sources": "Data Sources & Pollsters",
 
   // Shared / Components
@@ -316,5 +315,16 @@ export const en: Record<string, string> = {
   "map.credits.bechirot24": "24th Knesset (2021) City Results",
   "map.credits.bechirot23": "23rd Knesset (2020) City Results",
   "map.credits.bechirot22": "22nd Knesset (2019) Results",
+
+  // Legal Disclaimers & Disclosures (Non-profit Student Project)
+  "footer.badge": "Academic Student Project • Non-Profit • Section 2A1 Independent Initiative",
+  "footer.studentNotice": "PoliDash is an independent, non-profit academic student project developed solely for civic research and educational awareness. It does not provide voting advice, receives zero political funding, and is not affiliated with any party, candidate, or campaign.",
+  "disclaimers.polls": "Statutory Polling Notice (Section 16H, Elections Law): PoliDash is an academic statistical aggregator. Polling figures reflect published surveys conducted by accredited Israeli polling institutes (Midgam, Kantar, Lazar, Direct Polls). Aggregated averages are mathematical models and do not guarantee or predict election results.",
+  "disclaimers.quiz": "Academic civic alignment tool. All calculations run client-side in your browser; no answers are recorded or transmitted. Does not constitute political endorsement or voting advice.",
+  "disclaimers.coalition": "Simulation Modeling: Coalition scenarios are theoretical mathematical models based on polling seat counts and declared ideological compatibilities. They do not constitute actual political agreements or forecasts of government formation.",
+  "disclaimers.voting": "Independent Civic Guide: PoliDash is an independent, non-profit student project and is NOT the official Central Elections Committee (CEC). For certified voting instructions, voter roll queries, and official polling stations, visit bechirot.gov.il.",
+  "disclaimers.map": "Data Attribution: Map tiles © OpenStreetMap contributors under ODbL, tiles © CARTO. Historical election returns © Central Elections Committee (CEC). Socioeconomic data © Central Bureau of Statistics (CBS). Boundaries are for statistical visualization only.",
+  "disclaimers.statements": "Fair Use Citation: Public quotes are cited under Section 19 of the Copyright Law for non-profit academic review and reporting from indicated media sources. PoliDash does not endorse or adopt statements made by political figures. The live arrival animation is an interactive demonstration.",
+  "disclaimers.profiles": "Objective Compilation: Politician profiles and stance ratings (Support / Oppose / Ambiguous) are automated syntheses of official party manifestos and public statements for academic civic education. Candidate representatives may submit updates via our Right of Reply protocol."
 };
 
