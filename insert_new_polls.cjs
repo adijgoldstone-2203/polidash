@@ -40,6 +40,7 @@ const partyMapping = {
   'הדמוקרטים': 'Democrats',
   'הדמוקרטים ': 'Democrats',
   'הציונות הדתית': 'Religious Zionist',
+  'הציונות הדתית / זהות': 'Religious Zionist',
   'רע״מ': "Ra'am",
   'רע"ם': "Ra'am",
   'בל״ד': 'Balad',
@@ -49,6 +50,7 @@ const partyMapping = {
   'טרופר-הנדל': 'Trooper-Hendel',
   'המילואימניקים': 'Trooper-Hendel',
   'בית ציוני-המילואימניקים': 'Trooper-Hendel',
+  'המפלגה של הנדל וזליכה': 'Trooper-Hendel',
   'הרשימה המשותפת': 'Joint List',
   'עופר וינטר': 'Ofer Winter',
   'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Erdan-Edelstein',
@@ -114,8 +116,13 @@ for (let i = 1; i < rows.length; i++) {
   });
 }
 
-// Sort newest first
-newPolls.sort((a, b) => parseInt(b.id, 10) - parseInt(a.id, 10));
+// Sort newest first (by dateISO desc, then id desc)
+newPolls.sort((a, b) => {
+  if (b.dateISO !== a.dateISO) {
+    return b.dateISO.localeCompare(a.dateISO);
+  }
+  return parseInt(b.id, 10) - parseInt(a.id, 10);
+});
 
 if (newPolls.length === 0) {
   console.log('No new polls to insert.');
