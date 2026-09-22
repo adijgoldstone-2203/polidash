@@ -80,7 +80,6 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
           {/* Desktop logo link */}
           <div className="hidden md:flex items-center gap-2">
             <a className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5]" href="#/">PoliDash</a>
-            <span className="px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest rounded bg-secondary/15 text-secondary border border-secondary/20 leading-none">BETA</span>
           </div>
 
           {/* Mobile logo dropdown */}
@@ -90,7 +89,6 @@ const Header: React.FC<HeaderProps> = ({ currentPath }) => {
               className="font-['Newsreader'] italic text-2xl font-bold text-[#162839] dark:text-[#fbf9f5] flex items-center gap-1.5 focus:outline-none"
             >
               <span>PoliDash</span>
-              <span className="px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest rounded bg-secondary/15 text-secondary border border-secondary/20 leading-none">BETA</span>
               <span className={`material-symbols-outlined text-lg transition-transform duration-200 ${isMobileNavOpen ? 'rotate-180' : ''}`}>
                 keyboard_arrow_down
               </span>
