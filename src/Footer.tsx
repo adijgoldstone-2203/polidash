@@ -1,7 +1,11 @@
 import React from 'react';
 import { useLanguage } from './i18n';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenDisclaimer?: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onOpenDisclaimer }) => {
   const { t } = useLanguage();
 
   return (
@@ -33,6 +37,14 @@ const Footer: React.FC = () => {
           <a className="font-['Inter'] text-xs uppercase tracking-widest font-bold text-slate-600 dark:text-slate-300 hover:text-secondary transition-colors" href="#/terms">
             {t('footer.terms')}
           </a>
+          {onOpenDisclaimer && (
+            <button
+              onClick={onOpenDisclaimer}
+              className="font-['Inter'] text-xs uppercase tracking-widest font-bold text-slate-600 dark:text-slate-300 hover:text-secondary transition-colors cursor-pointer"
+            >
+              {t('home.disclaimer.title')}
+            </button>
+          )}
         </div>
       </div>
     </footer>

@@ -13,6 +13,7 @@ import Privacy from './Privacy';
 import Terms from './Terms';
 import MethodologyModal from './components/MethodologyModal';
 import { AccessibilityWidget } from './components/AccessibilityWidget';
+import DisclaimerPopup from './components/DisclaimerPopup';
 import { useLanguage } from './i18n';
 import ElectionsMap from './ElectionsMap';
 import RecentStatements from './RecentStatements';
@@ -21,7 +22,22 @@ import VotingGuide from './VotingGuide';
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
   const [showMethodologyModal, setShowMethodologyModal] = useState(false);
+  const [showDisclaimer, setShowDisclaimer] = useState<boolean>(() => {
+    try {
+      localStorage.removeItem('polidash_disclaimer_accepted');
+      return sessionStorage.getItem('polidash_disclaimer_accepted') !== 'true';
+    } catch {
+      return true;
+    }
+  });
   const { t } = useLanguage();
+
+  const handleDismissDisclaimer = () => {
+    setShowDisclaimer(false);
+    try {
+      sessionStorage.setItem('polidash_disclaimer_accepted', 'true');
+    } catch {}
+  };
 
   React.useEffect(() => {
     const handleHashChange = () => {
@@ -129,11 +145,13 @@ function App() {
         )}
       </main>
 
-      <Footer />
+      <Footer onOpenDisclaimer={() => setShowDisclaimer(true)} />
       
       <MethodologyModal isOpen={showMethodologyModal} onClose={() => setShowMethodologyModal(false)} />
 
       <AccessibilityWidget />
+
+      <DisclaimerPopup isOpen={showDisclaimer} onDismiss={handleDismissDisclaimer} />
     </div>
   );
 }
