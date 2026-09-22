@@ -211,6 +211,7 @@ export const en: Record<string, string> = {
   "polls.trend.all": "All",
   "polls.trend.noDates": "No dates available",
   "polls.trend.reset": "Reset",
+  "polls.trend.clearAll": "Clear All",
   "polls.trend.showPoints": "Show Raw Data Points",
   "polls.trend.enableTooltips": "Enable Tooltips",
   "polls.trend.specificPoll": "Specific Poll",

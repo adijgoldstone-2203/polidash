@@ -211,6 +211,7 @@ export const he: Record<string, string> = {
   "polls.trend.all": "הכל",
   "polls.trend.noDates": "אין תאריכים זמינים",
   "polls.trend.reset": "איפוס",
+  "polls.trend.clearAll": "נקה הכל",
   "polls.trend.showPoints": "הצג נקודות נתונים גולמיות",
   "polls.trend.enableTooltips": "אפשר חלונות מידע",
   "polls.trend.specificPoll": "סקר ספציפי",

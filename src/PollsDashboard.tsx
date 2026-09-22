@@ -77,39 +77,40 @@ const DateRangeSlider: React.FC<DateRangeSliderProps> = ({ months, initialRange,
   );
 };
 
+const getInitialActiveParties = (): string[] => {
+  const rawParties = getAllParties(POLL_DATA);
+  if (POLL_DATA.length === 0) return rawParties;
+  
+  const sorted = [...POLL_DATA].sort((a, b) => b.dateISO.localeCompare(a.dateISO));
+  
+  // Check the 20 most recent polls to see which parties are still actively running
+  const recentPolls = sorted.slice(0, 20);
+  const activeParties = new Set<string>();
+  
+  recentPolls.forEach(poll => {
+    Object.entries(poll.data).forEach(([party, seats]) => {
+      if (seats > 0) activeParties.add(party);
+    });
+  });
+  
+  return rawParties.filter(party => activeParties.has(party));
+};
+
 interface PollsDashboardProps {
   currentPath?: string;
 }
 
 const PollsDashboard: React.FC<PollsDashboardProps> = ({ currentPath }) => {
   const { t, tParty, tPollSource, tPolitician, dateLocale, lang } = useLanguage();
+  const allParties = useMemo(() => getInitialActiveParties(), []);
   const [selectedChannels, setSelectedChannels] = useState<Set<string>>(new Set());
   const [monthRange, setMonthRange] = useState<[number, number]>([0, 100]); // will sync dynamically
   const [sortColumn, setSortColumn] = useState<string>('weighted');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
-  const [visibleParties, setVisibleParties] = useState<Set<string>>(new Set());
+  const [visibleParties, setVisibleParties] = useState<Set<string>>(() => new Set(allParties));
   const [highlightedParty, setHighlightedParty] = useState<string | null>(null);
   
   const chartRef = useRef<HTMLDivElement>(null);
-
-  const allParties = useMemo(() => {
-    const rawParties = getAllParties(POLL_DATA);
-    if (POLL_DATA.length === 0) return rawParties;
-    
-    const sorted = [...POLL_DATA].sort((a, b) => b.dateISO.localeCompare(a.dateISO));
-    
-    // Check the 20 most recent polls to see which parties are still actively running
-    const recentPolls = sorted.slice(0, 20);
-    const activeParties = new Set<string>();
-    
-    recentPolls.forEach(poll => {
-      Object.entries(poll.data).forEach(([party, seats]) => {
-        if (seats > 0) activeParties.add(party);
-      });
-    });
-    
-    return rawParties.filter(party => activeParties.has(party));
-  }, []);
 
   // Handle URL navigation with party/politician query params (e.g. #/polls?party=Ofer%20Winter)
   useEffect(() => {
@@ -326,13 +327,14 @@ const PollsDashboard: React.FC<PollsDashboardProps> = ({ currentPath }) => {
     if (months.length > 0) {
       setMonthRange([Math.max(0, months.length - 2), months.length - 1]);
     }
-    setVisibleParties(new Set());
+    setVisibleParties(new Set(allParties));
     setSortColumn('weighted');
     setSortDir('desc');
   };
 
   const isDefaultRange = months.length > 0 && monthRange[0] === Math.max(0, months.length - 2) && monthRange[1] === months.length - 1;
-  const isDefaultState = selectedChannels.size === 0 && isDefaultRange && visibleParties.size === 0 && sortColumn === 'weighted';
+  const isDefaultParties = visibleParties.size === allParties.length && allParties.every(p => visibleParties.has(p));
+  const isDefaultState = selectedChannels.size === 0 && isDefaultRange && isDefaultParties && sortColumn === 'weighted' && sortDir === 'desc';
 
   const SortArrow = ({ col }: { col: string }) => (
     <span className="text-[8px] ms-0.5 opacity-50">

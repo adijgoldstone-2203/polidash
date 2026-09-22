@@ -314,12 +314,20 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
           />
           {t('polls.trend.enableTooltips')}
         </label>
+        {visibleParties.size < allParties.length && (
+          <button
+            onClick={onSelectAll}
+            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full border-2 border-transparent text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4 cursor-pointer"
+          >
+            {t('polls.trend.reset')}
+          </button>
+        )}
         {visibleParties.size > 0 && (
           <button
             onClick={onClearAll}
-            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full border-2 border-transparent text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4"
+            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full border-2 border-transparent text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4 cursor-pointer"
           >
-            {t('polls.trend.reset')}
+            {t('polls.trend.clearAll')}
           </button>
         )}
       </div>
@@ -502,7 +510,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
         })}
       </div>
 
-      {/* Select All / Reset Actions */}
+      {/* Select All / Clear All Actions */}
       <div className="flex justify-center items-center gap-4 mt-4 w-full">
         <button
           onClick={onSelectAll}
@@ -515,7 +523,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, visibleParties, onToggleP
             onClick={onClearAll}
             className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full text-slate-400 hover:text-slate-700 transition-colors underline decoration-dashed underline-offset-4 cursor-pointer whitespace-nowrap"
           >
-            {t('polls.trend.reset')}
+            {t('polls.trend.clearAll')}
           </button>
         )}
       </div>
