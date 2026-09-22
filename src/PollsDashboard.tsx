@@ -218,8 +218,8 @@ const PollsDashboard: React.FC<PollsDashboardProps> = ({ currentPath }) => {
   // Sync range when months load
   useEffect(() => {
     if (months.length > 0) {
-      // Default to the most recent 2 months
-      setMonthRange([Math.max(0, months.length - 2), months.length - 1]);
+      // Default to the most recent 3 months
+      setMonthRange([Math.max(0, months.length - 3), months.length - 1]);
     }
   }, [months]);
 
@@ -325,14 +325,14 @@ const PollsDashboard: React.FC<PollsDashboardProps> = ({ currentPath }) => {
   const handleReset = () => {
     setSelectedChannels(new Set());
     if (months.length > 0) {
-      setMonthRange([Math.max(0, months.length - 2), months.length - 1]);
+      setMonthRange([Math.max(0, months.length - 3), months.length - 1]);
     }
     setVisibleParties(new Set(allParties));
     setSortColumn('weighted');
     setSortDir('desc');
   };
 
-  const isDefaultRange = months.length > 0 && monthRange[0] === Math.max(0, months.length - 2) && monthRange[1] === months.length - 1;
+  const isDefaultRange = months.length > 0 && monthRange[0] === Math.max(0, months.length - 3) && monthRange[1] === months.length - 1;
   const isDefaultParties = visibleParties.size === allParties.length && allParties.every(p => visibleParties.has(p));
   const isDefaultState = selectedChannels.size === 0 && isDefaultRange && isDefaultParties && sortColumn === 'weighted' && sortDir === 'desc';
 
