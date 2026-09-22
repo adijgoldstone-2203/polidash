@@ -326,6 +326,13 @@ export const en: Record<string, string> = {
   "disclaimers.voting": "Independent Civic Guide: PoliDash is an independent, non-profit student project and is NOT the official Central Elections Committee (CEC). For certified voting instructions, voter roll queries, and official polling stations, visit bechirot.gov.il.",
   "disclaimers.map": "Data Attribution: Map tiles © OpenStreetMap contributors under ODbL, tiles © CARTO. Historical election returns © Central Elections Committee (CEC). Socioeconomic data © Central Bureau of Statistics (CBS). Boundaries are for statistical visualization only.",
   "disclaimers.statements": "Fair Use Citation: Public quotes are cited under Section 19 of the Copyright Law for non-profit academic review and reporting from indicated media sources. PoliDash does not endorse or adopt statements made by political figures. The live arrival animation is an interactive demonstration.",
-  "disclaimers.profiles": "Objective Compilation: Politician profiles and stance ratings (Support / Oppose / Ambiguous) are automated syntheses of official party manifestos and public statements for academic civic education. Candidate representatives may submit updates via our Right of Reply protocol."
+  "disclaimers.profiles": "Objective Compilation: Politician profiles and stance ratings (Support / Oppose / Ambiguous) are automated syntheses of official party manifestos and public statements for academic civic education. Candidate representatives may submit updates via our Right of Reply protocol.",
+
+  // Home Disclaimer Popup
+  "home.disclaimer.title": "Legal Disclaimer",
+  "home.disclaimer.badge": "Non-Profit Academic Project",
+  "home.disclaimer.text": "PoliDash is an independent, non-profit academic student project developed solely for civic research, democratic transparency, and educational awareness. It does not provide voting advice, receives zero political funding, and is not affiliated with any party, candidate, or campaign.",
+  "home.disclaimer.termsLink": "Full Terms & Disclaimers",
+  "home.disclaimer.understandBtn": "I understand",
 };
 
