@@ -60,71 +60,21 @@ const Home: React.FC<HomeProps> = ({ currentPath, onShowMethodology }) => {
               </p>
               <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                 <button 
-                  onClick={() => document.getElementById('workflow')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:bg-secondary hover:shadow-xl transition-all flex items-center justify-center cursor-pointer w-64"
-                >
-                  {t('home.hero.workflowBtn')}
-                </button>
-                <button 
                   onClick={() => document.getElementById('explore')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-white text-primary border border-primary/20 font-label font-bold text-lg rounded-sm hover:bg-stone-100 hover:shadow-lg transition-all flex items-center justify-center cursor-pointer w-64"
+                  className="px-8 py-4 bg-primary text-white font-label font-bold text-lg rounded-sm hover:bg-secondary hover:shadow-xl transition-all flex items-center justify-center cursor-pointer w-64"
                 >
                   {t('home.workflow.subtitle')}
                 </button>
-              </div>
-            </div>
-          </section>
-          {/* 3-Step Breakdown */}
-          <section id="workflow" className="py-24 px-12 bg-white border-y border-stone-100">
-            <div className="max-w-7xl mx-auto text-center mb-16">
-              <h3 className="font-headline text-3xl md:text-4xl font-bold text-primary tracking-tight">
-                {t('home.workflow.title')}
-              </h3>
-            </div>
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined text-primary text-3xl" data-icon="description">description</span>
-                </div>
-                <h3 className="font-headline text-2xl font-bold text-primary mb-3">
-                  {t('home.workflow.data.title')}
-                </h3>
-                <p className="font-body text-on-surface-variant leading-relaxed">
-                  {t('home.workflow.data.desc')}
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined text-primary text-3xl" data-icon="auto_awesome">auto_awesome</span>
-                </div>
-                <h3 className="font-headline text-2xl font-bold text-primary mb-3">
-                  {t('home.workflow.ai.title')}
-                </h3>
-                <p className="font-body text-on-surface-variant leading-relaxed">
-                  {t('home.workflow.ai.desc')}
-                </p>
                 <button 
-                  onClick={onShowMethodology}
-                  className="mt-3 text-secondary hover:text-primary font-bold text-xs uppercase tracking-wider underline cursor-pointer bg-transparent border-none p-0 focus:outline-none transition-colors flex items-center gap-1"
+                  onClick={() => document.getElementById('workflow')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 bg-white text-primary border border-primary/20 font-label font-bold text-lg rounded-sm hover:bg-stone-100 hover:shadow-lg transition-all flex items-center justify-center cursor-pointer w-64"
                 >
-                  <span>{t('footer.methodology')}</span>
-                  <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                  {t('home.hero.workflowBtn')}
                 </button>
               </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined text-primary text-3xl" data-icon="filter_tilt_shift">filter_tilt_shift</span>
-                </div>
-                <h3 className="font-headline text-2xl font-bold text-primary mb-3">
-                  {t('home.workflow.neutral.title')}
-                </h3>
-                <p className="font-body text-on-surface-variant leading-relaxed">
-                  {t('home.workflow.neutral.desc')}
-                </p>
-              </div>
             </div>
           </section>
-          {/* CTA Section */}
+          {/* CTA Section (Pages) */}
           <section id="explore" className="py-24 px-12">
             <div className="max-w-7xl mx-auto text-center mb-16">
               <h3 className="font-headline text-3xl md:text-4xl font-bold text-primary tracking-tight">
@@ -208,6 +158,56 @@ const Home: React.FC<HomeProps> = ({ currentPath, onShowMethodology }) => {
                     {t('home.cta.coalition.btn')}
                   </a>
                 </div>
+              </div>
+            </div>
+          </section>
+          {/* 3-Step Breakdown (Our Workflow) */}
+          <section id="workflow" className="py-24 px-12 bg-white border-y border-stone-100">
+            <div className="max-w-7xl mx-auto text-center mb-16">
+              <h3 className="font-headline text-3xl md:text-4xl font-bold text-primary tracking-tight">
+                {t('home.workflow.title')}
+              </h3>
+            </div>
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
+                  <span className="material-symbols-outlined text-primary text-3xl" data-icon="description">description</span>
+                </div>
+                <h3 className="font-headline text-2xl font-bold text-primary mb-3">
+                  {t('home.workflow.data.title')}
+                </h3>
+                <p className="font-body text-on-surface-variant leading-relaxed">
+                  {t('home.workflow.data.desc')}
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
+                  <span className="material-symbols-outlined text-primary text-3xl" data-icon="auto_awesome">auto_awesome</span>
+                </div>
+                <h3 className="font-headline text-2xl font-bold text-primary mb-3">
+                  {t('home.workflow.ai.title')}
+                </h3>
+                <p className="font-body text-on-surface-variant leading-relaxed">
+                  {t('home.workflow.ai.desc')}
+                </p>
+                <button 
+                  onClick={onShowMethodology}
+                  className="mt-3 text-secondary hover:text-primary font-bold text-xs uppercase tracking-wider underline cursor-pointer bg-transparent border-none p-0 focus:outline-none transition-colors flex items-center gap-1"
+                >
+                  <span>{t('footer.methodology')}</span>
+                  <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                </button>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-6">
+                  <span className="material-symbols-outlined text-primary text-3xl" data-icon="filter_tilt_shift">filter_tilt_shift</span>
+                </div>
+                <h3 className="font-headline text-2xl font-bold text-primary mb-3">
+                  {t('home.workflow.neutral.title')}
+                </h3>
+                <p className="font-body text-on-surface-variant leading-relaxed">
+                  {t('home.workflow.neutral.desc')}
+                </p>
               </div>
             </div>
           </section>
