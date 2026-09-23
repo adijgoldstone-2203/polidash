@@ -22,15 +22,46 @@ import VotingGuide from './VotingGuide';
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
   const [showMethodologyModal, setShowMethodologyModal] = useState(false);
-  const [showDisclaimer, setShowDisclaimer] = useState<boolean>(() => {
+  const [showDisclaimer, setShowDisclaimer] = useState<boolean>(false);
+  const { t } = useLanguage();
+
+  // Trigger disclaimer popup only when an action is performed (click or scroll)
+  React.useEffect(() => {
     try {
       localStorage.removeItem('polidash_disclaimer_accepted');
-      return sessionStorage.getItem('polidash_disclaimer_accepted') !== 'true';
+      if (sessionStorage.getItem('polidash_disclaimer_accepted') === 'true') {
+        return;
+      }
     } catch {
-      return true;
+      return;
     }
-  });
-  const { t } = useLanguage();
+
+    const handleUserAction = (e?: Event) => {
+      if (e && !e.isTrusted) return;
+      setShowDisclaimer(true);
+      removeListeners();
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener('scroll', handleUserAction, { capture: true } as any);
+      window.removeEventListener('wheel', handleUserAction, { capture: true } as any);
+      window.removeEventListener('touchmove', handleUserAction, { capture: true } as any);
+      window.removeEventListener('click', handleUserAction, { capture: true } as any);
+      window.removeEventListener('pointerdown', handleUserAction, { capture: true } as any);
+      window.removeEventListener('keydown', handleUserAction, { capture: true } as any);
+    };
+
+    window.addEventListener('scroll', handleUserAction, { passive: true, capture: true });
+    window.addEventListener('wheel', handleUserAction, { passive: true, capture: true });
+    window.addEventListener('touchmove', handleUserAction, { passive: true, capture: true });
+    window.addEventListener('click', handleUserAction, { capture: true });
+    window.addEventListener('pointerdown', handleUserAction, { capture: true });
+    window.addEventListener('keydown', handleUserAction, { capture: true });
+
+    return () => {
+      removeListeners();
+    };
+  }, []);
 
   const handleDismissDisclaimer = () => {
     setShowDisclaimer(false);

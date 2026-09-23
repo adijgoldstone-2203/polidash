@@ -334,5 +334,11 @@ export const en: Record<string, string> = {
   "home.disclaimer.text": "PoliDash is an independent, non-profit academic student project developed solely for civic research, democratic transparency, and educational awareness. It does not provide voting advice, receives zero political funding, and is not affiliated with any party, candidate, or campaign.",
   "home.disclaimer.termsLink": "Full Terms & Disclaimers",
   "home.disclaimer.understandBtn": "I understand",
+  "home.disclaimer.pillar1.title": "Academic & Non-Profit",
+  "home.disclaimer.pillar1.desc": "Independent student initiative with zero political funding or party ties.",
+  "home.disclaimer.pillar2.title": "No Voting Advice",
+  "home.disclaimer.pillar2.desc": "Statistical models and data for research and democratic transparency only.",
+  "home.disclaimer.pillar3.title": "Public Sources",
+  "home.disclaimer.pillar3.desc": "Accredited polling institutes, official election data, and fair use citations.",
 };
 
