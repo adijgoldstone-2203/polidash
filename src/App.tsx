@@ -23,51 +23,54 @@ function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
   const [showMethodologyModal, setShowMethodologyModal] = useState(false);
   const [showDisclaimer, setShowDisclaimer] = useState<boolean>(false);
+  const [hasDismissedDisclaimer, setHasDismissedDisclaimer] = useState<boolean>(false);
   const { t } = useLanguage();
 
-  // Trigger disclaimer popup only when an action is performed (click or scroll)
+  // Clear legacy storage keys on load so stale flags never block the popup
   React.useEffect(() => {
     try {
       localStorage.removeItem('polidash_disclaimer_accepted');
-      if (sessionStorage.getItem('polidash_disclaimer_accepted') === 'true') {
-        return;
-      }
-    } catch {
-      return;
-    }
+      sessionStorage.removeItem('polidash_disclaimer_accepted');
+    } catch {}
+  }, []);
 
-    const handleUserAction = (e?: Event) => {
-      if (e && !e.isTrusted) return;
+  // Trigger disclaimer popup on first user action (click or scroll)
+  React.useEffect(() => {
+    if (hasDismissedDisclaimer) return;
+
+    const handleUserAction = () => {
       setShowDisclaimer(true);
       removeListeners();
     };
 
     const removeListeners = () => {
       window.removeEventListener('scroll', handleUserAction, { capture: true } as any);
+      document.removeEventListener('scroll', handleUserAction, { capture: true } as any);
       window.removeEventListener('wheel', handleUserAction, { capture: true } as any);
       window.removeEventListener('touchmove', handleUserAction, { capture: true } as any);
       window.removeEventListener('click', handleUserAction, { capture: true } as any);
       window.removeEventListener('pointerdown', handleUserAction, { capture: true } as any);
+      window.removeEventListener('touchstart', handleUserAction, { capture: true } as any);
       window.removeEventListener('keydown', handleUserAction, { capture: true } as any);
     };
 
     window.addEventListener('scroll', handleUserAction, { passive: true, capture: true });
+    document.addEventListener('scroll', handleUserAction, { passive: true, capture: true });
     window.addEventListener('wheel', handleUserAction, { passive: true, capture: true });
     window.addEventListener('touchmove', handleUserAction, { passive: true, capture: true });
     window.addEventListener('click', handleUserAction, { capture: true });
     window.addEventListener('pointerdown', handleUserAction, { capture: true });
+    window.addEventListener('touchstart', handleUserAction, { passive: true, capture: true });
     window.addEventListener('keydown', handleUserAction, { capture: true });
 
     return () => {
       removeListeners();
     };
-  }, []);
+  }, [hasDismissedDisclaimer]);
 
   const handleDismissDisclaimer = () => {
     setShowDisclaimer(false);
-    try {
-      sessionStorage.setItem('polidash_disclaimer_accepted', 'true');
-    } catch {}
+    setHasDismissedDisclaimer(true);
   };
 
   React.useEffect(() => {
