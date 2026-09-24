@@ -39,6 +39,10 @@ scrape_test.cjs
 translate_polls.py
 typescript
 update_polls.py
+inspect_madad.cjs
+inspect_missing.cjs
+madad_latest.html
+polidash_site_text_export.md
 .env
 *.env
 

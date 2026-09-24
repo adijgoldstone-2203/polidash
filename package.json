@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "scrape": "tsx src/scripts/scrapeTheMadad.ts"
+    "scrape": "tsx src/scripts/scrapeTheMadad.ts",
+    "update-polls": "node insert_new_polls.cjs"
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7",

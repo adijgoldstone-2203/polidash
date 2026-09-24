@@ -12,8 +12,26 @@ while ((match = idRegex.exec(pollsTsContent)) !== null) {
   existingIds.add(match[1]);
 }
 
-// Read madad_raw.html
-const html = fs.readFileSync('madad_raw.html', 'utf8');
+const { execSync } = require('child_process');
+
+// Fetch latest HTML from themadad.com or fall back to madad_raw.html
+let html = '';
+try {
+  console.log('Fetching latest polls from https://themadad.com/allpolls/ ...');
+  html = execSync(
+    'curl -s -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "https://themadad.com/allpolls/"',
+    { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
+  );
+  if (html.includes('<table')) {
+    fs.writeFileSync('madad_raw.html', html);
+  } else {
+    throw new Error('Table not found in response');
+  }
+} catch (err) {
+  console.warn('Network fetch failed or skipped, reading local madad_raw.html...');
+  html = fs.readFileSync('madad_raw.html', 'utf8');
+}
+
 const $ = cheerio.load(html);
 
 const rows = [];
