@@ -28,10 +28,12 @@ const PARTY_MAP: Record<string, string> = {
   'ביחד (בנט ולפיד)': 'Together (Bennett-Lapid)',
   'ישר!': 'Yashar!',
   'המילואימניקים': 'Trooper-Hendel',
+  'המילואימניקים / זליכה': 'Trooper-Hendel',
   'טרופר-הנדל': 'Trooper-Hendel',
   'בית ציוני-המילואימניקים': 'Trooper-Hendel',
   'הרשימה המשותפת': 'Joint List',
   'עופר וינטר': 'Ofer Winter',
+  'עמך ישראל': 'Ofer Winter',
   'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Erdan-Edelstein',
   'הציונות הדתית / זהות': 'Religious Zionist',
   'המפלגה של הנדל וזליכה': 'Trooper-Hendel'

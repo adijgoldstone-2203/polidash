@@ -67,10 +67,12 @@ const partyMapping = {
   'ישר!': 'Yashar!',
   'טרופר-הנדל': 'Trooper-Hendel',
   'המילואימניקים': 'Trooper-Hendel',
+  'המילואימניקים / זליכה': 'Trooper-Hendel',
   'בית ציוני-המילואימניקים': 'Trooper-Hendel',
   'המפלגה של הנדל וזליכה': 'Trooper-Hendel',
   'הרשימה המשותפת': 'Joint List',
   'עופר וינטר': 'Ofer Winter',
+  'עמך ישראל': 'Ofer Winter',
   'מפלגה בראשות גלעד ארדן ויולי אדלשטיין': 'Erdan-Edelstein',
   '‏רשימה ערבית מאוחדת': 'United Arab Party'
 };
