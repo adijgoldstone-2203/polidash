@@ -10,6 +10,27 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "743",
+    source: "חדשות 13 (Sep 30, 2026)",
+    date: "Sep 30, 2026",
+    dateISO: "2026-09-30",
+    sampleSize: 1013,
+    data: {
+      "Likud": 19,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 9,
+      "Democrats": 11,
+      "Religious Zionist": 7,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 11,
+      "Yashar!": 21,
+      "Joint List": 9,
+      "Ofer Winter": 5,
+    }
+  },
+  {
     id: "742",
     source: "ערוץ 16 (Sep 29, 2026)",
     date: "Sep 29, 2026",
