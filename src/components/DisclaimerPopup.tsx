@@ -31,8 +31,7 @@ const DisclaimerPopup: React.FC<DisclaimerPopupProps> = ({ isOpen, onDismiss }) 
     >
       {/* Fullscreen Backdrop Blur */}
       <div 
-        className="fixed inset-0 bg-stone-900/65 dark:bg-slate-950/85 backdrop-blur-md transition-opacity cursor-pointer animate-in fade-in duration-200" 
-        onClick={onDismiss}
+        className="fixed inset-0 bg-stone-900/65 dark:bg-slate-950/85 backdrop-blur-md transition-opacity animate-in fade-in duration-200" 
         aria-hidden="true"
       />
 
@@ -61,13 +60,6 @@ const DisclaimerPopup: React.FC<DisclaimerPopupProps> = ({ isOpen, onDismiss }) 
               </span>
             </div>
           </div>
-          <button 
-            onClick={onDismiss}
-            className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-1.5 rounded-full hover:bg-stone-200/60 dark:hover:bg-slate-800/60 focus:outline-none cursor-pointer"
-            aria-label="Close"
-          >
-            <span className="material-symbols-outlined text-xl leading-none">close</span>
-          </button>
         </div>
 
         {/* Modal Body */}

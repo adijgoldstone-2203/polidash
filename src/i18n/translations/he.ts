@@ -333,7 +333,7 @@ export const he: Record<string, string> = {
   "home.disclaimer.badge": "פרויקט סטודנטיאלי ללא כוונת רווח",
   "home.disclaimer.text": "אתר פולידאש (PoliDash) הוא פרויקט סטודנטיאלי אקדמי עצמאי וללא כוונת רווח, שפותח אך ורק לצורכי מחקר, שקיפות דמוקרטית וחינוך אזרחי. האתר אינו מספק ייעוץ הצבעה, אינו מקבל מימון פוליטי, ואינו מזוהה עם אף מפלגה, מועמד או מטה בחירות.",
   "home.disclaimer.termsLink": "תנאי שימוש והבהרות מלאות",
-  "home.disclaimer.understandBtn": "הבנתי",
+  "home.disclaimer.understandBtn": "אני מאשר/ת",
   "home.disclaimer.pillar1.title": "עצמאי ואקדמי",
   "home.disclaimer.pillar1.desc": "מיזם סטודנטיאלי עצמאי ללא מטרות רווח וללא מימון או שיוך פוליטי.",
   "home.disclaimer.pillar2.title": "ללא ייעוץ הצבעה",
