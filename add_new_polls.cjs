@@ -49,6 +49,7 @@ const partyMapping = {
   'הדמוקרטים': 'Democrats',
   'הדמוקרטים ': 'Democrats',
   'הציונות הדתית': 'Religious Zionist',
+  'הציונות הדתית / זהות': 'Religious Zionist',
   'רע״מ': "Ra'am",
   'רע"ם': "Ra'am",
   'בל״ד': 'Balad',
