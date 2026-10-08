@@ -10,6 +10,68 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "752",
+    source: "חדשות 13 (Oct 7, 2026)",
+    date: "Oct 7, 2026",
+    dateISO: "2026-10-07",
+    sampleSize: 1263,
+    data: {
+      "Likud": 20,
+      "United Torah Judaism": 8,
+      "Shas": 7,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 10,
+      "Religious Zionist": 7,
+      "Ra'am": 6,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 12,
+      "Yashar!": 20,
+      "Joint List": 9,
+      "Ofer Winter": 5,
+    }
+  },
+  {
+    id: "751",
+    source: "ערוץ 14 (Oct 7, 2026)",
+    date: "Oct 7, 2026",
+    dateISO: "2026-10-07",
+    sampleSize: 1100,
+    data: {
+      "Likud": 31,
+      "United Torah Judaism": 8,
+      "Shas": 10,
+      "Yisrael Beiteinu": 5,
+      "Democrats": 9,
+      "Religious Zionist": 6,
+      "Ra'am": 5,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 8,
+      "Yashar!": 23,
+      "Joint List": 7,
+    }
+  },
+  {
+    id: "750",
+    source: "ערוץ 16 (Oct 6, 2026)",
+    date: "Oct 6, 2026",
+    dateISO: "2026-10-06",
+    sampleSize: 500,
+    data: {
+      "Likud": 21,
+      "United Torah Judaism": 7,
+      "Shas": 8,
+      "Yisrael Beiteinu": 7,
+      "Democrats": 9,
+      "Religious Zionist": 7,
+      "Ra'am": 6,
+      "Otzma Yehudit": 7,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 23,
+      "Joint List": 7,
+      "Ofer Winter": 4,
+    }
+  },
+  {
     id: "749",
     source: "חדשות 12 (Oct 5, 2026)",
     date: "Oct 5, 2026",
