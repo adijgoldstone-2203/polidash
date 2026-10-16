@@ -39,6 +39,7 @@ const enData = {
     "Yair Lapid": "Yair Lapid",
     "Yoaz Hendel": "Yoaz Hendel",
     "Ayman Odeh": "Ayman Odeh",
+    "Yaakov Asher": "Yaakov Asher",
     "Yitzhak Goldknopf": "Yitzhak Goldknopf",
     "Itamar Ben Gvir": "Itamar Ben Gvir",
     "Avigdor Lieberman": "Avigdor Lieberman",

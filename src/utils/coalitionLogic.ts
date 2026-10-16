@@ -8,7 +8,7 @@ export const PARTY_LEADER_MAP: Record<string, string> = {
   "Together (Bennett-Lapid)": "naftali-bennett",
   "Yisrael Beiteinu": "avigdor-lieberman",
   "Shas": "aryeh-deri",
-  "United Torah Judaism": "yitzhak-goldknopf",
+  "United Torah Judaism": "yaakov-asher",
   "Otzma Yehudit": "itamar-ben-gvir",
   "Religious Zionist": "bezalel-smotrich",
   "Hadash-Ta'al": "ayman-odeh",

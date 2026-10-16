@@ -34,6 +34,7 @@ export const enData = {
     "Yair Lapid": "Yair Lapid",
     "Yoaz Hendel": "Yoaz Hendel",
     "Ayman Odeh": "Ayman Odeh",
+    "Yaakov Asher": "Yaakov Asher",
     "Yitzhak Goldknopf": "Yitzhak Goldknopf",
     "Itamar Ben Gvir": "Itamar Ben Gvir",
     "Avigdor Lieberman": "Avigdor Lieberman",
@@ -307,6 +308,27 @@ export const enData = {
         "Internal Cohesion": "Focuses on Jewish-Arab partnership and class-based economic policies.",
         "Settlements": "Calls for a complete withdrawal from all territories occupied in 1967 and the evacuation of all settlements.",
         "Foreign Relations": "Opposes U.S. regional policies and agreements perceived as circumventing Palestinian national rights."
+      }
+    },
+    "yaakov-asher": {
+      "biography": "Yaakov Asher represents the Lithuanian Degel HaTorah faction and leads the United Torah Judaism list. Before his parliamentary career, he served as Mayor of Bnei Brak (2008–2013) and has chaired several major Knesset committees, including the Internal Affairs and Environment Committee and the Constitution, Law and Justice Committee.",
+      "quote": "The Torah and its learners are the cornerstone of the Jewish people and the true shield of our land.",
+      "facts": [
+        "Alliance Structure: He leads the joint United Torah Judaism list, uniting the Lithuanian Degel HaTorah and the Hasidic Agudat Yisrael factions.",
+        "Leadership Protocol: His party's leadership decisions and policies are directed by the Moetzes Gedolei HaTorah (Council of Torah Sages).",
+        "Municipal & Parliamentary Leadership: Prior to the Knesset, he served as Mayor of Bnei Brak from 2008 to 2013 and subsequently chaired key parliamentary committees."
+      ],
+      "intelligence": {
+        "Gaza & Security": "Generally defers to the defence establishment while prioritising the safety of the Jewish people and religious institutions.",
+        "Cost of Living": "Supports social-democratic economic policies due to the lower socioeconomic status of its voter base.",
+        "Judicial Reform": "Supports limiting judicial intervention in religious and legislative affairs.",
+        "Haredi Draft": "Strongly opposes the mandatory conscription of yeshiva students into the military.",
+        "Religion & Public Space": "Advocates for a Halakhic state and supports religious and social conservatism.",
+        "Arab-Israeli Integration": "Focuses on maintaining the Jewish character of the state.",
+        "Palestinian Statehood": "Generally aligns with the political right on territorial issues, prioritising coalition stability and religious funding over diplomatic concessions.",
+        "Internal Cohesion": "Prioritises the autonomy of the Haredi educational system and religious lifestyle.",
+        "Settlements": "Has signed agreements with religious-Zionist groups to oppose withdrawals from Israeli territories in exchange for political support.",
+        "Foreign Relations": "Focuses on the preservation of global Jewish religious institutions."
       }
     },
     "yitzhak-goldknopf": {

@@ -485,19 +485,19 @@ export const politicians: Politician[] = [
     }
   },
   {
-    "id": "yitzhak-goldknopf",
-    "name": "Yitzhak Goldknopf",
-    "imageUrl": "assets/politicians/yitzhak-goldknopf.avif",
-    "quote": "The Torah is the light that has guided our people through every storm in our long history.",
+    "id": "yaakov-asher",
+    "name": "Yaakov Asher",
+    "imageUrl": "assets/politicians/yaakov-asher.avif",
+    "quote": "The Torah and its learners are the cornerstone of the Jewish people and the true shield of our land.",
     "party": "United Torah Judaism",
     "ballotLetters": "ג",
     "seats": "7.7",
-    "biography": "Yitzhak Goldknopf represents the Hasidic Agudat Yisrael faction and leads the United Torah Judaism list. Before entering the Knesset in 2022, he managed a large network of Haredi kindergartens and daycare centres. He succeeded Yaakov Litzman as the faction's primary representative.",
+    "biography": "Yaakov Asher represents the Lithuanian Degel HaTorah faction and leads the United Torah Judaism list. Before his parliamentary career, he served as Mayor of Bnei Brak (2008–2013) and has chaired several major Knesset committees, including the Internal Affairs and Environment Committee and the Constitution, Law and Justice Committee.",
     "partyWebsite": "https://en.wikipedia.org/wiki/United_Torah_Judaism",
     "facts": [
-      "Alliance Structure: He leads a list that functions as an alliance between the Hasidic Agudat Yisrael and the Lithuanian Degel HaTorah.",
-      "Leadership Protocol: His party's leadership decisions and policies are directed by a Council of Torah Sages.",
-      "Government Participation: The party historically avoided taking full ministerial positions for ideological reasons until recent years, previously preferring deputy minister roles."
+      "Alliance Structure: He leads the joint United Torah Judaism list, uniting the Lithuanian Degel HaTorah and the Hasidic Agudat Yisrael factions.",
+      "Leadership Protocol: His party's leadership decisions and policies are directed by the Moetzes Gedolei HaTorah (Council of Torah Sages).",
+      "Municipal & Parliamentary Leadership: Prior to the Knesset, he served as Mayor of Bnei Brak from 2008 to 2013 and subsequently chaired key parliamentary committees."
     ],
     "intelligence": {
       "Gaza & Security": "Generally defers to the defence establishment while prioritising the safety of the Jewish people and religious institutions.",

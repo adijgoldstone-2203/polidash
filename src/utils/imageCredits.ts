@@ -44,6 +44,10 @@ export const IMAGE_CREDITS: Record<string, ImageCredit> = {
     source: "https://commons.wikimedia.org/wiki/File:Ayman_Odeh_2021.png",
     attribution: "Amir Deeb / Knesset (CC BY-SA 4.0)"
   },
+  "yaakov-asher": {
+    source: "https://commons.wikimedia.org/wiki/File:Yaakev_asher.jpg",
+    attribution: "Wikimedia Commons (CC BY-SA 4.0)"
+  },
   "yitzhak-goldknopf": {
     source: "https://commons.wikimedia.org/wiki/File:Yitzchak_Goldknopf_1.jpg",
     attribution: "Avi Ohayon / GPO (CC BY-SA 3.0)"

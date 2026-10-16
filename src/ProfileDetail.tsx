@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ProfileDetail: React.FC<Props> = ({ id }) => {
-  const politician = politicians.find(p => p.id === id) || politicians[0];
+  const politician = politicians.find(p => p.id === id) || (id === 'yitzhak-goldknopf' ? politicians.find(p => p.id === 'yaakov-asher') : null) || politicians[0];
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   
   const { t, tPolitician, tParty, tIssue, tIntelligenceTopic, tStance, tIssueDefinition, tBio, tQuote, tFacts, tIntelligence, lang } = useLanguage();
