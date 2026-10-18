@@ -367,7 +367,7 @@ export const getPoliticianPollAverage = (
     case 'mansour-abbas':
       return weightedAvg["Ra'am"] ?? null;
     case 'yoaz-hendel':
-      return weightedAvg['Trooper-Hendel'] ?? weightedAvg['Miluimnikim'] ?? weightedAvg['Zionist Home'] ?? null;
+      return weightedAvg['HaMiluimnikim'] ?? weightedAvg['Miluimnikim'] ?? weightedAvg['Zionist Home'] ?? null;
     case 'ayman-odeh':
       return weightedAvg['Joint List'] ?? weightedAvg["Hadash-Ta'al"] ?? null;
     case 'yaakov-asher':
@@ -409,7 +409,7 @@ export const getPoliticianPollParty = (politicianId: string): string | null => {
     case 'mansour-abbas':
       return "Ra'am";
     case 'yoaz-hendel':
-      return 'Trooper-Hendel';
+      return 'HaMiluimnikim';
     case 'ayman-odeh':
       return 'Joint List';
     case 'yaakov-asher':

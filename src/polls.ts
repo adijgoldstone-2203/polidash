@@ -26,7 +26,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
       "Ofer Winter": 4,
     }
@@ -48,7 +48,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 24,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 9,
     }
   },
@@ -69,7 +69,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 11,
       "Yashar!": 26,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
     }
   },
@@ -90,7 +90,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 20,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 9,
       "Ofer Winter": 4,
     }
@@ -112,7 +112,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 21,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
       "Joint List": 8,
       "Ofer Winter": 4,
     }
@@ -155,7 +155,7 @@ export const POLL_DATA: Poll[] = [
       "Together (Bennett-Lapid)": 7,
       "Yisrael Beiteinu": 5,
       "Ra'am": 5,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -175,7 +175,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
     }
   },
@@ -196,7 +196,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
       "Ofer Winter": 4,
     }
@@ -218,7 +218,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -282,7 +282,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 22,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
       "Joint List": 8,
     }
   },
@@ -365,7 +365,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
     }
   },
@@ -386,7 +386,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
     }
   },
@@ -407,7 +407,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -470,7 +470,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 10,
       "Yashar!": 21,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
       "Joint List": 8,
       "Ofer Winter": 4,
     }
@@ -513,7 +513,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 5,
     }
@@ -555,7 +555,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 11,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -577,7 +577,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -599,7 +599,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -683,7 +683,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 11,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
       "Ofer Winter": 5,
     }
@@ -705,7 +705,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -727,7 +727,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -810,7 +810,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -853,7 +853,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 16,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 6,
       "Ofer Winter": 4,
     }
@@ -895,7 +895,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 8,
       "Ofer Winter": 4,
     }
@@ -917,7 +917,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 24,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -1063,7 +1063,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 24,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -1127,7 +1127,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 25,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
     }
   },
@@ -1189,7 +1189,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 7,
       "Ofer Winter": 4,
     }
@@ -1273,7 +1273,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 15,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
       "Joint List": 6,
     }
   },
@@ -1842,7 +1842,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -1903,7 +1903,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 12,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2004,7 +2004,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 15,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2045,7 +2045,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2106,7 +2106,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2146,7 +2146,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2166,7 +2166,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2187,7 +2187,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 15,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2209,7 +2209,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2250,7 +2250,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 13,
       "Yashar!": 23,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -2291,7 +2291,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2312,7 +2312,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2413,7 +2413,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2454,7 +2454,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 10,
       "Together (Bennett-Lapid)": 15,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2474,7 +2474,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 16,
       "Yashar!": 22,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2552,7 +2552,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 15,
       "Yashar!": 21,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -2648,7 +2648,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 14,
       "Yashar!": 23,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -5712,7 +5712,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 9,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -5752,7 +5752,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 5,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 5,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -5772,7 +5772,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 8,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -5890,7 +5890,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 6,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -5949,7 +5949,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 5,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -6029,7 +6029,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 19,
       "Yashar!": 6,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -6068,7 +6068,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 23,
       "Yashar!": 7,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -6166,7 +6166,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 22,
       "Yashar!": 8,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -6264,7 +6264,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 23,
       "Yashar!": 6,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -6754,7 +6754,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 6,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -6834,7 +6834,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 19,
       "Yashar!": 8,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -6894,7 +6894,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 23,
       "Yashar!": 7,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -6955,7 +6955,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 22,
       "Yashar!": 7,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -6995,7 +6995,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 9,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -7016,7 +7016,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 5,
       "Together (Bennett-Lapid)": 19,
       "Yashar!": 8,
-      "Trooper-Hendel": 4,
+      "HaMiluimnikim": 4,
     }
   },
   {
@@ -7179,7 +7179,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 18,
       "Yashar!": 12,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -7199,7 +7199,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 22,
       "Yashar!": 9,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -7220,7 +7220,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 20,
       "Yashar!": 7,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -7240,7 +7240,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 18,
       "Yashar!": 9,
-      "Trooper-Hendel": 6,
+      "HaMiluimnikim": 6,
     }
   },
   {
@@ -7319,7 +7319,7 @@ export const POLL_DATA: Poll[] = [
       "Ra'am": 6,
       "Otzma Yehudit": 7,
       "Together (Bennett-Lapid)": 23,
-      "Trooper-Hendel": 6,
+      "HaMiluimnikim": 6,
     }
   },
   {
@@ -7379,7 +7379,7 @@ export const POLL_DATA: Poll[] = [
       "Ra'am": 5,
       "Otzma Yehudit": 6,
       "Together (Bennett-Lapid)": 20,
-      "Trooper-Hendel": 6,
+      "HaMiluimnikim": 6,
     }
   },
   {
@@ -7420,7 +7420,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 7,
-      "Trooper-Hendel": 8,
+      "HaMiluimnikim": 8,
     }
   },
   {
@@ -7500,7 +7500,7 @@ export const POLL_DATA: Poll[] = [
       "Otzma Yehudit": 8,
       "Together (Bennett-Lapid)": 21,
       "Yashar!": 8,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -7540,7 +7540,7 @@ export const POLL_DATA: Poll[] = [
       "Ra'am": 5,
       "Otzma Yehudit": 9,
       "Together (Bennett-Lapid)": 19,
-      "Trooper-Hendel": 5,
+      "HaMiluimnikim": 5,
     }
   },
   {
@@ -9303,7 +9303,7 @@ export const PARTY_COLORS: Record<string, string> = {
   "Labor": "#E11D48",                   // Crimson/Rose (Labor)
   "Yashar!": "#EC4899",                 // Magenta/Pink
   "Bennett 2026": "#10B981",            // Emerald Green
-  "Trooper-Hendel": "#78350F",          // Bronze Brown
+  "HaMiluimnikim": "#78350F",          // Bronze Brown
   "Ofer Winter": "#D97706",             // Amber / Brown-Orange
   "Erdan-Edelstein": "#2563EB",         // Blue
   "Balad": "#C084FC",                   // Soft Violet
