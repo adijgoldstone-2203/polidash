@@ -269,7 +269,7 @@ export const enData = {
       }
     },
     "yoaz-hendel": {
-      "biography": "Yoaz Hendel is the leader of Zionist Home (The Reservists / Miluimnikim), a political party re-established with Chili Tropper. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
+      "biography": "Yoaz Hendel is the leader of HaMiluimnikim (The Reservists). He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
       "quote": "Universal service and national responsibility are the foundation of a resilient society.",
       "facts": [
         "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defence.",

@@ -17,7 +17,8 @@ export const PARTY_LEADER_MAP: Record<string, string> = {
   "United Arab Party": "mansour-abbas",
   "Labor": "yair-golan",
   "Democrats": "yair-golan",
-  "Yashar!": "gadi-eisenkot"
+  "Yashar!": "gadi-eisenkot",
+  "HaMiluimnikim": "yoaz-hendel"
 };
 
 export interface Conflict {

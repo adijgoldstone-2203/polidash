@@ -405,10 +405,10 @@ export const politicians: Politician[] = [
     "name": "Yoaz Hendel",
     "imageUrl": "assets/politicians/yoaz-hendel.avif",
     "quote": "Universal service and national responsibility are the foundation of a resilient society.",
-    "party": "Zionist Home",
+    "party": "HaMiluimnikim",
     "ballotLetters": "ז",
     "seats": "2.7",
-    "biography": "Yoaz Hendel is the leader of Zionist Home (The Reservists / Miluimnikim), a political party re-established with Chili Tropper. He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
+    "biography": "Yoaz Hendel is the leader of HaMiluimnikim (The Reservists). He previously served as Minister of Communications. Prior to his political career, he served as a military officer in naval special operations, and later worked as a journalist, author, and historian.",
     "partyWebsite": "https://www.themiluimnikim.org.il/?1",
     "facts": [
       "Party Foundation: He founded the party to explicitly promote Zionist values, including settlement, immigrant absorption, and homeland defence.",
@@ -439,7 +439,7 @@ export const politicians: Politician[] = [
       "Basic Law: Equality": "Ambiguous"
     },
     "stanceSources": {
-      "Universal Enlistment": { url: "https://www.themiluimnikim.org.il/?1", title: "Zionist Home Reservists Conscription Platform", publisher: "themiluimnikim.org.il" }
+      "Universal Enlistment": { url: "https://www.themiluimnikim.org.il/?1", title: "HaMiluimnikim Reservists Conscription Platform", publisher: "themiluimnikim.org.il" }
     }
   },
   {
