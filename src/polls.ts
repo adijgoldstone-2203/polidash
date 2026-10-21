@@ -10,6 +10,67 @@ export interface Poll {
 
 export const POLL_DATA: Poll[] = [
   {
+    id: "773",
+    source: "ערוץ 14 (Oct 20, 2026)",
+    date: "Oct 20, 2026",
+    dateISO: "2026-10-20",
+    sampleSize: 2116,
+    data: {
+      "Likud": 30,
+      "United Torah Judaism": 8,
+      "Shas": 9,
+      "Yisrael Beiteinu": 6,
+      "Democrats": 9,
+      "Religious Zionist": 7,
+      "Ra'am": 6,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 9,
+      "Yashar!": 20,
+      "Joint List": 8,
+    }
+  },
+  {
+    id: "772",
+    source: "i24 news (Oct 20, 2026)",
+    date: "Oct 20, 2026",
+    dateISO: "2026-10-20",
+    sampleSize: 521,
+    data: {
+      "Likud": 26,
+      "United Torah Judaism": 8,
+      "Shas": 8,
+      "Yisrael Beiteinu": 7,
+      "Democrats": 9,
+      "Religious Zionist": 7,
+      "Ra'am": 6,
+      "Otzma Yehudit": 9,
+      "Together (Bennett-Lapid)": 12,
+      "Yashar!": 20,
+      "Joint List": 8,
+    }
+  },
+  {
+    id: "771",
+    source: "וואלה (Oct 20, 2026)",
+    date: "Oct 20, 2026",
+    dateISO: "2026-10-20",
+    sampleSize: 601,
+    data: {
+      "Likud": 19,
+      "United Torah Judaism": 7,
+      "Shas": 8,
+      "Yisrael Beiteinu": 8,
+      "Democrats": 9,
+      "Religious Zionist": 6,
+      "Ra'am": 6,
+      "Otzma Yehudit": 8,
+      "Together (Bennett-Lapid)": 14,
+      "Yashar!": 23,
+      "HaMiluimnikim": 4,
+      "Joint List": 8,
+    }
+  },
+  {
     id: "770",
     source: "חדשות 13 (Oct 19, 2026)",
     date: "Oct 19, 2026",
