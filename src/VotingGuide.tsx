@@ -3,22 +3,21 @@ import { politicians, AI_DISCLAIMER } from './data';
 
 const VotingGuide: React.FC = () => {
 
-  // Deduplicate parties and extract ballot letters with leader ID
-  const partyCards = Array.from(
-    new Map(
-      politicians.map((p) => [
-        p.party,
-        {
-          id: p.id,
-          party: p.party,
-          leader: p.name,
-          letters: p.ballotLetters,
-          seats: p.seats,
-          website: p.partyWebsite
-        }
-      ])
-    ).values()
-  );
+  // Deduplicate parties and extract ballot letters with primary leader ID
+  const partyCardsMap = new Map<string, { id: string; party: string; leader: string; letters: string; seats: string; website: string }>();
+  for (const p of politicians) {
+    if (!partyCardsMap.has(p.party)) {
+      partyCardsMap.set(p.party, {
+        id: p.id,
+        party: p.party,
+        leader: p.name,
+        letters: p.ballotLetters,
+        seats: p.seats,
+        website: p.partyWebsite
+      });
+    }
+  }
+  const partyCards = Array.from(partyCardsMap.values());
 
   return (
     <div className="min-h-screen bg-[#fbf9f5] dark:bg-[#162839] px-4 md:px-8 py-8 transition-colors duration-300">
